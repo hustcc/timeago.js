@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<script type="text/javascript" src="dist/timeago.min.js"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+		var test_local = {
+	      'JUST_NOW': ["刚刚", "片刻后"],
+	      'SECOND_AGO': ["%s秒前", "%s秒后"],
+	      'A_MINUTE_AGO': ["1分钟前", "1分钟后"],
+	      'MINUTES_AGO': ["%s分钟前", "%s分钟后"],
+	      'AN_HOUR_AGO': ["1小时前", "1小时后"],
+	      'HOURS_AGO': ["%s小时前", "%s小时后"],
+	      'A_DAY_AGO': ["1天前", "1天后"],
+	      'DAYS_AGO': ["%s天前", "%s天后"],
+	      'A_MONTH_AGO': ["1月前", "1月后"],
+	      'MONTHS_AGO': ["%s月前", "%s月后"],
+	      'A_YEAR_AGO': ["1年前", "1年后"],
+	      'YEARS_AGO': ["%s年前", "%s年后"]
+	    };
+		var timeago = timeago('2016-06-10 12:12:12');
+		timeago.register('test', test_local);
+		console.log(timeago.format('2016-06-12', 'test'));
+		</script>
+	</body>
+</html>
