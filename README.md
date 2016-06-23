@@ -30,6 +30,7 @@ in 6 months
 in 2 years
 ```
 
+
 # Usage
 
 **1. Install timeago.js**
@@ -112,10 +113,11 @@ var timeago = timeago('2016-06-10 12:12:12'); // set the relative date here.
 timeago.format('2016-06-12', 'zh_CN');
 ```
 
+
 # TODO
 
- - testcase by travis
  - website page
+
 
 # LICENSE
 
