@@ -10,6 +10,24 @@ Python version here. [timeago](https://github.com/hustcc/timeago).
 
 [![npm](https://img.shields.io/npm/v/timeago.js.svg?style=flat-square)](https://www.npmjs.com/package/timeago.js) [![npm](https://img.shields.io/npm/dt/timeago.js.svg?style=flat-square)](https://www.npmjs.com/package/timeago.js) [![npm](https://img.shields.io/npm/l/timeago.js.svg?style=flat-square)](https://www.npmjs.com/package/timeago.js)
 
+Such as
+
+```
+just now
+12 seconds ago
+3 minutes ago
+2 hours ago
+24 days ago
+6 months ago
+2 years ago
+
+in 12 seconds
+in 3 minutes
+in 2 hours
+in 24 days
+in 6 months
+in 2 years
+```
 
 # Usage
 
