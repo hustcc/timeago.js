@@ -5,6 +5,7 @@
  - localization supported.
  - time ago, time in supported.
  - npm and browser supported.
+ - well tesed.
 
 Python version here. [timeago](https://github.com/hustcc/timeago).
 

@@ -11,47 +11,44 @@ var timeago = function(nowDate) {
   // 已有的local
   locals = {
     'en': {
-      'JUST_NOW': ["just now", "a while"],
-      'SECOND_AGO': ["%s seconds ago", "in %s seconds"],
-      'A_MINUTE_AGO': ["1 minute ago", "in 1 minute"],
-      'MINUTES_AGO': ["%s minutes ago", "in %s minutes"],
-      'AN_HOUR_AGO': ["1 hour ago", "in 1 hour"],
-      'HOURS_AGO': ["%s hours ago", "in %s hours"],
-      'A_DAY_AGO': ["1 day ago", "in 1 day"],
-      'DAYS_AGO': ["%s days ago", "in %s days"],
-      'A_MONTH_AGO': ["1 month ago", "in 1 month"],
-      'MONTHS_AGO': ["%s months ago", "in %s months"],
-      'A_YEAR_AGO': ["1 year ago", "in 1 year"],
-      'YEARS_AGO': ["%s years ago", "in %s years"]
+      'JUST_NOW': ['just now', 'a while'],
+      'SECOND_AGO': ['%s seconds ago', 'in %s seconds'],
+      'A_MINUTE_AGO': ['1 minute ago', 'in 1 minute'],
+      'MINUTES_AGO': ['%s minutes ago', 'in %s minutes'],
+      'AN_HOUR_AGO': ['1 hour ago', 'in 1 hour'],
+      'HOURS_AGO': ['%s hours ago', 'in %s hours'],
+      'A_DAY_AGO': ['1 day ago', 'in 1 day'],
+      'DAYS_AGO': ['%s days ago', 'in %s days'],
+      'A_MONTH_AGO': ['1 month ago', 'in 1 month'],
+      'MONTHS_AGO': ['%s months ago', 'in %s months'],
+      'A_YEAR_AGO': ['1 year ago', 'in 1 year'],
+      'YEARS_AGO': ['%s years ago', 'in %s years']
     },
     'zh_CN': {
-      'JUST_NOW': ["刚刚", "片刻后"],
-      'SECOND_AGO': ["%s秒前", "%s秒后"],
-      'A_MINUTE_AGO': ["1分钟前", "1分钟后"],
-      'MINUTES_AGO': ["%s分钟前", "%s分钟后"],
-      'AN_HOUR_AGO': ["1小时前", "1小时后"],
-      'HOURS_AGO': ["%s小时前", "%s小时后"],
-      'A_DAY_AGO': ["1天前", "1天后"],
-      'DAYS_AGO': ["%s天前", "%s天后"],
-      'A_MONTH_AGO': ["1月前", "1月后"],
-      'MONTHS_AGO': ["%s月前", "%s月后"],
-      'A_YEAR_AGO': ["1年前", "1年后"],
-      'YEARS_AGO': ["%s年前", "%s年后"]
+      'JUST_NOW': ['刚刚', '片刻后'],
+      'SECOND_AGO': ['%s秒前', '%s秒后'],
+      'A_MINUTE_AGO': ['1分钟前', '1分钟后'],
+      'MINUTES_AGO': ['%s分钟前', '%s分钟后'],
+      'AN_HOUR_AGO': ['1小时前', '1小时后'],
+      'HOURS_AGO': ['%s小时前', '%s小时后'],
+      'A_DAY_AGO': ['1天前', '1天后'],
+      'DAYS_AGO': ['%s天前', '%s天后'],
+      'A_MONTH_AGO': ['1月前', '1月后'],
+      'MONTHS_AGO': ['%s月前', '%s月后'],
+      'A_YEAR_AGO': ['1年前', '1年后'],
+      'YEARS_AGO': ['%s年前', '%s年后']
     }
   },
   format = function(date, local) {
-    var now = new Date();
-    if (! nowDate) {
-      now = new Date();
-    }
-    else {
-      now = toDate(nowDate);
-    }
+    var now;
+    if (! nowDate) now = new Date();
+    else now = toDate(nowDate);
+    
     date = toDate(date);
 
     var diff = (now.getTime() - date.getTime()) / 1000;
     var index = 0;
-    if (diff < 0) {
+    if (diff < 0) { // 如果是负数，使用xxx后模版
       index = 1;
     }
     diff = Math.abs(diff);
@@ -103,19 +100,7 @@ var timeago = function(nowDate) {
   },
   // 简单的字符串模版
   simpleTemplate = function(str, tmp) {
-    if (typeof(tmp) === 'number') {
-      tmp = tmp + ""; // 转成字符
-    }
-    if (typeof(tmp) === 'string') {
-      return str.replace("%s", tmp);
-    }
-    if (typeof(tmp) === 'object') {
-      for (var i in tmp) {
-        str = str.replace("%s", tmp[i]);
-      }
-      return str;
-    }
-    return str;
+    return str.replace('%s', tmp);
   };
 
   return {
