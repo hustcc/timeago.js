@@ -1,64 +1,62 @@
 # timeago.js
 
-> **timeago.js** is a simple library (less then `2kb`) to used to format datetime with `*** time ago` statement. eg: '3 hours ago'. 
+> **timeago.js** 是一个非常简洁、轻量级、小于 `2kb` 的很简洁的Javascript库，用来将datetime时间转化成类似于`*** 时间前`的描述字符串，例如：“3小时前”。 
 
- - localization supported.
- - time `ago`, time `in` supported.
- - npm and browser supported.
- - well tesed.
+ - 本地化支持，默认自带中文和英文语言，基本够用；
+ - 之前 xxx 时间前、xxx 时间后；
+ - 支持npm方式和浏览器script方式；
+ - 测试用例完善，执行良好；
 
-中文版说明文档[点这里](README_zh.md)。 Python version here: [timeago](https://github.com/hustcc/timeago).
+关于Python的版本，可以看 [timeago](https://github.com/hustcc/timeago).
 
 [![Build Status](https://travis-ci.org/hustcc/timeago.js.svg?branch=master)](https://travis-ci.org/hustcc/timeago.js) [![npm](https://img.shields.io/npm/v/timeago.js.svg?style=flat-square)](https://www.npmjs.com/package/timeago.js) [![npm](https://img.shields.io/npm/dt/timeago.js.svg?style=flat-square)](https://www.npmjs.com/package/timeago.js) [![npm](https://img.shields.io/npm/l/timeago.js.svg?style=flat-square)](https://www.npmjs.com/package/timeago.js)
 
-Such as
-
 ```
-just now
-12 seconds ago
-3 minutes ago
-2 hours ago
-24 days ago
-6 months ago
-2 years ago
+刚刚
+12秒前
+3分钟前
+2小时前
+24天前
+6月前
+3年前
 
-in 12 seconds
-in 3 minutes
-in 2 hours
-in 24 days
-in 6 months
-in 2 years
+12秒后
+3分钟后
+2小时后
+24天后
+6月后
+3年后
 ```
 
 
-# Usage
+# 使用方法
 
-** 1. Install timeago.js **
+** 1. 下载 timeago.js **
 
 ```sh
 npm install timeago.js
 ```
 
-** 2. import timeago.js **
+** 2. 引入 timeago.js **
 
 
-UMD import is supported, then get global object: `timeago`.
+使用import引入，然后可以得到一个全局变量: `timeago`.
 
 ```js
 import timeago from 'timeago.js';
 
-// or
+// 或者
 
 var timeago = require("timeago.js");
 ```
 
-or link with `script` in html files: 
+或者直接通过 `script` 标签引入到html文件中.
 
 ```js
 <script src="dist/timeago.min.js"></script>
 ```
 
-** 3. use class `timeago` **
+** 3. 使用 `timeago` 类 **
 
 ```js
 var timeago = timeago();
@@ -66,23 +64,23 @@ timeago.format('2016-06-12')
 ```
 
 
-# Detail Usage
+# 高级特性使用
 
-** 1. localization **
+** 1. 本地化 **
 
-Default local is **`en`**, and the library supports `en` and `zh_CN`. 
+默认的语言是英文 **`en`**, 这个库自带语言有 `en` and `zh_CN` （英文和中文）. 
 
 ```js
 var timeago = timeago();
 timeago.format('2016-06-12', 'zh_CN');
 ```
 
-** 2. register local language **
+** 2. 注册本地语言 **
 
-You can `register` you own language. All keys are needed. e.g.
+你可以自己自定义注册 `register` 你自己的语言. 如下所示，所有的键值都必须存在，不然可能会出错. e.g.
 
 ```js
-// the local dict example is below.
+// 本地化的字典样式
 var test_local_dict = {
   'JUST_NOW': ["just now", "a while"],
   'SECOND_AGO': ["%s seconds ago", "in %s seconds"],
@@ -104,16 +102,16 @@ timeago.register('test_local', test_local_dict);
 timeago.format('2016-06-12', 'test_local');
 ```
 
-** 3. set relative date **
+** 3. 设置相对日期 **
 
-`timeago` is relate to current date default. you can set it by yourself.
+`timeago` 默认是相对于当前事件的，当然也可以自己设置相对的时间，如下所示：
 
 ```js
-var timeago = timeago('2016-06-10 12:12:12'); // set the relative date here.
+var timeago = timeago('2016-06-10 12:12:12'); // 在这里设置相对时间
 timeago.format('2016-06-12', 'zh_CN');
 ```
 
-** 4. use timestamp **
+** 4. 格式化时间戳 **
 
 ```
 timeago().format(new Date().getTime() - 11 * 1000 * 60 * 60); // will get '11 hours ago'
@@ -122,7 +120,7 @@ timeago().format(new Date().getTime() - 11 * 1000 * 60 * 60); // will get '11 ho
 
 # TODO
 
- - website page
+ - 一个网站的展示页面
 
 
 # LICENSE
