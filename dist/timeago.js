@@ -69,7 +69,7 @@ var timeago = function(nowDate) {
 
     if (diff < SECONDS)  return localTemp.JUST_NOW[index];
 
-    if (diff < MINUTE_SECONDS) return simpleTemplate(localTemp.SECOND_AGO[index], diff);
+    if (diff < MINUTE_SECONDS) return simpleTemplate(localTemp.SECOND_AGO[index], toInt(diff));
     if (diff < MINUTE_SECONDS * 2) return localTemp.A_MINUTE_AGO[index];
 
     if (diff < HOUR_SECONDS) return simpleTemplate(localTemp.MINUTES_AGO[index], toInt(diff / MINUTE_SECONDS));
