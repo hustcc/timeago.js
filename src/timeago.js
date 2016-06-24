@@ -64,18 +64,18 @@ var timeago = function(nowDate) {
     if (diff < MINUTE_SECONDS) return simpleTemplate(localTemp.SECOND_AGO[index], diff);
     if (diff < MINUTE_SECONDS * 2) return localTemp.A_MINUTE_AGO[index];
 
-    if (diff < HOUR_SECONDS) return simpleTemplate(localTemp.MINUTES_AGO[index], parseInt(diff / MINUTE_SECONDS));
+    if (diff < HOUR_SECONDS) return simpleTemplate(localTemp.MINUTES_AGO[index], toInt(diff / MINUTE_SECONDS));
     if (diff < HOUR_SECONDS * 2) return localTemp.AN_HOUR_AGO[index];
-    if (diff < HOUR_SECONDS * 24) return simpleTemplate(localTemp.HOURS_AGO[index], parseInt(diff / HOUR_SECONDS));
+    if (diff < HOUR_SECONDS * 24) return simpleTemplate(localTemp.HOURS_AGO[index], toInt(diff / HOUR_SECONDS));
 
     if (diff < DAY_SECONDS * 2) return localTemp.A_DAY_AGO[index];
-    if (diff < DAY_SECONDS * 30) return simpleTemplate(localTemp.DAYS_AGO[index], parseInt(diff / DAY_SECONDS));
+    if (diff < DAY_SECONDS * 30) return simpleTemplate(localTemp.DAYS_AGO[index], toInt(diff / DAY_SECONDS));
 
     if (diff < MONTH_SECONDS * 2) return localTemp.A_MONTH_AGO[index];
-    if (diff < MONTH_SECONDS * 12) return simpleTemplate(localTemp.MONTHS_AGO[index], parseInt(diff / MONTH_SECONDS));
+    if (diff < MONTH_SECONDS * 12) return simpleTemplate(localTemp.MONTHS_AGO[index], toInt(diff / MONTH_SECONDS));
 
     if (diff < YEAR_SECONDS * 2) return localTemp.A_YEAR_AGO[index];
-    return simpleTemplate(localTemp.YEARS_AGO[index], parseInt(diff / YEAR_SECONDS));
+    return simpleTemplate(localTemp.YEARS_AGO[index], toInt(diff / YEAR_SECONDS));
   },
   // register a local language
   register = function(local, dict) {
@@ -88,7 +88,7 @@ var timeago = function(nowDate) {
     } else if (!isNaN(input)) {
       return new Date(input);
     } else if (/^\d+$/.test(input)) {
-      return new Date(parseInt(input, 10));
+      return new Date(toInt(input, 10));
     } else {
       var s = (input || '').trim();
       s = s.replace(/\.\d+/, ''); // remove milliseconds
@@ -97,6 +97,9 @@ var timeago = function(nowDate) {
       s = s.replace(/([\+\-]\d\d)\:?(\d\d)/, ' $1$2'); // -04:00 -> -0400
       return new Date(s);
     }
+  },
+  toInt = function(f) {
+    return parseInt(f);
   },
   // 简单的字符串模版
   simpleTemplate = function(str, tmp) {

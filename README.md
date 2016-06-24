@@ -1,9 +1,9 @@
 # timeago.js
 
-> **timeago.js** is a simple library (only `2kb`) to used to format datetime with `*** time ago` statement. eg: '3 hours ago'. 
+> **timeago.js** is a simple library (less then `2kb`) to used to format datetime with `*** time ago` statement. eg: '3 hours ago'. 
 
  - localization supported.
- - time ago, time in supported.
+ - time `ago`, time `in` supported.
  - npm and browser supported.
  - well tesed.
 
@@ -33,13 +33,13 @@ in 2 years
 
 # Usage
 
-**1. Install timeago.js**
+** 1. Install timeago.js **
 
 ```sh
 npm install timeago.js
 ```
 
-**2. import timeago.js**
+** 2. import timeago.js **
 
 
 UMD import is supported, then get global object: `timeago`.
@@ -58,7 +58,7 @@ or link with `script` in html files:
 <script src="dist/timeago.min.js"></script>
 ```
 
-**3. use class `timeago`**
+** 3. use class `timeago` **
 
 ```js
 var timeago = timeago();
@@ -68,7 +68,7 @@ timeago.format('2016-06-12')
 
 # Detail Usage
 
-**1. localization **
+** 1. localization **
 
 Default local is **`en`**, and the library supports `en` and `zh_CN`. 
 
@@ -77,7 +77,7 @@ var timeago = timeago();
 timeago.format('2016-06-12', 'zh_CN');
 ```
 
-**2. register local language **
+** 2. register local language **
 
 You can `register` you own language. All keys are needed. e.g.
 
@@ -104,13 +104,19 @@ timeago.register('test_local', test_local_dict);
 timeago.format('2016-06-12', 'test_local');
 ```
 
-**3. set relative date **
+** 3. set relative date **
 
 `timeago` is relate to current date default. you can set it by yourself.
 
 ```js
 var timeago = timeago('2016-06-10 12:12:12'); // set the relative date here.
 timeago.format('2016-06-12', 'zh_CN');
+```
+
+** 4. use timestamp **
+
+```
+timeago().format(new Date().getTime() - 11 * 1000 * 60 * 60); // will get '11 hours ago'
 ```
 
 
