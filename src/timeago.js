@@ -1,7 +1,8 @@
 var timeago = function(nowDate) {
-  var timers = []; // 当前定时器
+  var timers = {}, // 当前定时器
+  cnt = 0,
   // 已有的local，默认为en
-  var defaultLocal = 'en',
+  defaultLocal = 'en',
   SECONDS = 10,
   MINUTE_SECONDS = 60,
   HOUR_SECONDS = 3600,
@@ -115,12 +116,12 @@ var timeago = function(nowDate) {
     return left_sec(diff, YEAR_SECONDS);
   },
   // 定时处理render
-  do_render = function(node, date, local) {
+  do_render = function(node, date, local, cnt) {
     var diff = diff_sec(date);
     node.innerHTML = format_diff(diff, local);
     // 通过diff来判断下一次执行的时间
-    return setTimeout(function() {
-      do_render(node, date, local);
+    timers['k' + cnt] = setTimeout(function() {
+      do_render(node, date, local, cnt);
     }, next_interval(diff) * 1000);
   },
   // 获得属性值，兼容js和jq
@@ -133,16 +134,16 @@ var timeago = function(nowDate) {
   render = function(nodes, local) {
     if (! isArray(nodes)) nodes = [nodes];
     for (var i = 0; i < nodes.length; i++) {
-      var t = do_render(nodes[i], get_date_attr(nodes[i]), local); // 立即执行
-      if (t) timers.push(t);
+      cnt ++;
+      do_render(nodes[i], get_date_attr(nodes[i]), local, cnt); // 立即执行
     }
   },
   // 取消所有的动态渲染，释放资源
   cancel = function() {
-    for (var i = 0; i < timers.length; i++) {
-      clearTimeout(timers[i]);
+    for (var key in timers) {
+      clearTimeout(timers[key]);
     }
-    timers = [];
+    timers = {};
   };
 
   return {
