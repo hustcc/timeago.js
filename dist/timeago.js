@@ -108,14 +108,19 @@ var timeago = function(nowDate) {
   isArray = function (o) {
     return o.length !== undefined;
   },
+  left_sec = function(diff, unit) {
+    diff = diff % unit;
+    diff = diff ? unit - diff : unit;
+    return diff;
+  },
   // 计算下一次定时时间
   next_interval = function(diff) {
     if (diff < MINUTE_SECONDS) return 1;
-    if (diff < HOUR_SECONDS) return MINUTE_SECONDS;
-    if (diff < DAY_SECONDS) return HOUR_SECONDS;
-    if (diff < MONTH_SECONDS) return DAY_SECONDS;
-    if (diff < YEAR_SECONDS) return MONTH_SECONDS;
-    return YEAR_SECONDS;
+    if (diff < HOUR_SECONDS) return left_sec(diff, MINUTE_SECONDS);
+    if (diff < DAY_SECONDS) return left_sec(diff, HOUR_SECONDS);
+    if (diff < MONTH_SECONDS) return left_sec(diff, DAY_SECONDS);
+    if (diff < YEAR_SECONDS) return left_sec(diff, MONTH_SECONDS);
+    return left_sec(diff, YEAR_SECONDS);
   },
   // 定时处理render
   do_render = function(node, date, local) {
@@ -129,10 +134,8 @@ var timeago = function(nowDate) {
   // 获得属性值，兼容js和jq
   attr = 'data-timeago',
   get_date_attr = function(node) {
-    var d;
-    if (node.getAttribute) d = node.getAttribute(attr);
-    else if(node.attr) d = node.attr(attr);
-    return d;
+    if (node.getAttribute) return node.getAttribute(attr);
+    if(node.attr) return node.attr(attr);
   },
   // 开始动态渲染节点
   render = function(nodes, local) {
