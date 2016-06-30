@@ -1,9 +1,10 @@
 # timeago.js
 
-> **timeago.js** is a simple library (less then `2kb`) to used to format datetime with `*** time ago` statement. eg: '3 hours ago'. 
+> **timeago.js** is a simple library (only `2kb`) to used to format datetime with `*** time ago` statement. eg: '3 hours ago'. 
 
  - localization supported.
  - time `ago`, time `in` supported.
+ - real time render supported.
  - npm and browser supported.
  - well tesed.
 
@@ -68,7 +69,42 @@ timeago.format('2016-06-12')
 
 # Detail Usage
 
-** 1. localization **
+** 1. set relative date **
+
+`timeago` is relate to current date default. you can set it by yourself.
+
+```js
+var timeago = timeago('2016-06-10 12:12:12'); // set the relative date here.
+timeago.format('2016-06-12', 'zh_CN');
+```
+
+** 2. use timestamp **
+
+```
+timeago().format(new Date().getTime() - 11 * 1000 * 60 * 60); // will get '11 hours ago'
+```
+
+** 3. automation render **
+
+HTML code：
+```html
+<div class="need_to_be_rendered" data-timeago="2016-06-30 09:20:00"></div>
+```
+js code
+```js
+// use render to render it realtime
+timeago().render(document.querySelectorAll('.need_to_be_render'));
+// or cancel realtime render
+timeago().cancel()
+```
+
+The input API `render` should be DOM object / array, support pure javascript node and jQuery dom object.
+
+The API `cancel` will clear all the render timer, release all the resource.
+
+the dom object should has attribute `data-timeago` with date formated string.
+
+** 4. localization **
 
 Default local is **`en`**, and the library supports `en` and `zh_CN`. 
 
@@ -77,7 +113,7 @@ var timeago = timeago();
 timeago.format('2016-06-12', 'zh_CN');
 ```
 
-** 2. register local language **
+** 5. register local language **
 
 You can `register` you own language. All keys are needed. e.g.
 
@@ -102,21 +138,6 @@ var timeago = timeago();
 timeago.register('test_local', test_local_dict);
 
 timeago.format('2016-06-12', 'test_local');
-```
-
-** 3. set relative date **
-
-`timeago` is relate to current date default. you can set it by yourself.
-
-```js
-var timeago = timeago('2016-06-10 12:12:12'); // set the relative date here.
-timeago.format('2016-06-12', 'zh_CN');
-```
-
-** 4. use timestamp **
-
-```
-timeago().format(new Date().getTime() - 11 * 1000 * 60 * 60); // will get '11 hours ago'
 ```
 
 
