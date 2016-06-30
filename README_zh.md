@@ -1,6 +1,6 @@
 # timeago.js
 
-> **timeago.js** 是一个非常简洁、轻量级、仅仅 `2kb` 的很简洁的Javascript库，用来将datetime时间转化成类似于`*** 时间前`的描述字符串，例如：“3小时前”。 
+> **timeago.js** 是一个非常简洁、轻量级、仅仅 `2.5kb` 的很简洁的Javascript库，用来将datetime时间转化成类似于`*** 时间前`的描述字符串，例如：“3小时前”。 
 
  - 本地化支持，默认自带中文和英文语言，基本够用；
  - 之前 xxx 时间前、xxx 时间后；
@@ -90,7 +90,7 @@ HTML为：
 ```
 Js代码为：
 ```js
-timeago().render(document.querySelectorAll('.need_to_be_rendered'));
+timeago().render(document.querySelectorAll('.need_to_be_rendered'), 'zh_CN');
 
 // or
 

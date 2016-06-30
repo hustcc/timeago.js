@@ -110,12 +110,12 @@ var timeago = function(nowDate) {
     return YEAR_SECONDS;
   },
   // 定时处理render
-  do_render = function(node, date) {
+  do_render = function(node, date, local) {
     var diff = diff_sec(date);
-    node.innerHTML = format_diff(diff);
+    node.innerHTML = format_diff(diff, local);
     // 通过diff来判断下一次执行的时间
     return setTimeout(function() {
-      do_render(node, date);
+      do_render(node, date, local);
     }, next_interval(diff) * 1000);
   },
   // 获得属性值，兼容js和jq
@@ -130,7 +130,7 @@ var timeago = function(nowDate) {
   render = function(nodes, local) {
     if (! isArray(nodes)) nodes = [nodes];
     for (var i = 0; i < nodes.length; i++) {
-      var t = do_render(nodes[i], get_date_attr(nodes[i])); // 立即执行
+      var t = do_render(nodes[i], get_date_attr(nodes[i]), local); // 立即执行
       if (t) timers.push(t);
     }
   },
