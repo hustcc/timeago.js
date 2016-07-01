@@ -87,7 +87,7 @@ var timeago = function(nowDate) {
     if (input instanceof Date) {
       return input;
     } else if (!isNaN(input)) {
-      return new Date(input);
+      return new Date(toInt(input));
     } else if (/^\d+$/.test(input)) {
       return new Date(toInt(input, 10));
     } else {
