@@ -34,13 +34,13 @@ in 2 years
 
 # Usage
 
-** 1. Install timeago.js **
+**1. Install timeago.js**
 
 ```sh
 npm install timeago.js
 ```
 
-** 2. import timeago.js **
+**2. import timeago.js**
 
 
 UMD import is supported, then get global object: `timeago`.
@@ -59,7 +59,7 @@ or link with `script` in html files:
 <script src="dist/timeago.min.js"></script>
 ```
 
-** 3. use class `timeago` **
+**3. use class `timeago`**
 
 ```js
 var timeago = timeago();
@@ -69,7 +69,7 @@ timeago.format('2016-06-12')
 
 # Detail Usage
 
-** 1. set relative date **
+**1. set relative date**
 
 `timeago` is relate to current date default. you can set it by yourself.
 
@@ -78,13 +78,13 @@ var timeago = timeago('2016-06-10 12:12:12'); // set the relative date here.
 timeago.format('2016-06-12', 'zh_CN');
 ```
 
-** 2. use timestamp **
+**2. use timestamp**
 
 ```
 timeago().format(new Date().getTime() - 11 * 1000 * 60 * 60); // will get '11 hours ago'
 ```
 
-** 3. automation render **
+**3. automation render**
 
 HTML code：
 ```html
@@ -104,7 +104,7 @@ The API `cancel` will clear all the render timer, release all the resource.
 
 the dom object should has attribute `data-timeago` with date formated string.
 
-** 4. localization **
+**4. localization**
 
 Default local is **`en`**, and the library supports `en` and `zh_CN`. 
 
@@ -113,7 +113,7 @@ var timeago = timeago();
 timeago.format('2016-06-12', 'zh_CN');
 ```
 
-** 5. register local language **
+**5. register local language**
 
 You can `register` you own language. All keys are needed. e.g.
 

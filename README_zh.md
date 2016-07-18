@@ -32,13 +32,13 @@
 
 # 使用方法
 
-** 1. 下载 timeago.js **
+**1. 下载 timeago.js**
 
 ```sh
 npm install timeago.js
 ```
 
-** 2. 引入 timeago.js **
+**2. 引入 timeago.js**
 
 
 使用import引入，然后可以得到一个全局变量: `timeago`.
@@ -57,7 +57,7 @@ var timeago = require("timeago.js");
 <script src="dist/timeago.min.js"></script>
 ```
 
-** 3. 使用 `timeago` 类 **
+**3. 使用 `timeago` 类**
 
 ```js
 var timeago = timeago();
@@ -67,7 +67,7 @@ timeago.format('2016-06-12')
 
 # 高级特性使用
 
-** 1. 设置相对日期 **
+**1. 设置相对日期**
 
 `timeago` 默认是相对于当前事件的，当然也可以自己设置相对的时间，如下所示：
 
@@ -76,13 +76,13 @@ var timeago = timeago('2016-06-10 12:12:12'); // 在这里设置相对时间
 timeago.format('2016-06-12', 'zh_CN');
 ```
 
-** 2. 格式化时间戳，字符串 **
+**2. 格式化时间戳，字符串**
 
 ```
 timeago().format(new Date().getTime() - 11 * 1000 * 60 * 60); // will get '11 hours ago'
 ```
 
-** 3. 自动实时渲染 **
+**3. 自动实时渲染**
 
 HTML为：
 ```html
@@ -103,7 +103,7 @@ API方法 `cancel` 调用之后会清除所有的定时器方法，并且释放�
 
 被渲染的节点必须要有`data-timeago`属性，属性值为日期格式的字符串。
 
-** 4. 本地化 **
+**4. 本地化**
 
 默认的语言是英文 **`en`**, 这个库自带语言有 `en` and `zh_CN` （英文和中文）. 
 
@@ -112,7 +112,7 @@ var timeago = timeago();
 timeago.format('2016-06-12', 'zh_CN');
 ```
 
-** 5. 注册本地语言 **
+**5. 注册本地语言**
 
 你可以自己自定义注册 `register` 你自己的语言. 如下所示，所有的键值都必须存在，不然可能会出错. e.g.
 
