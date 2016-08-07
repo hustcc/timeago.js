@@ -13,21 +13,26 @@ test('timeago.js show be tested', function (t) {
 
   // test register local
   var timeago_reg = timeago('2016-06-23');
-  timeago_reg.register('test_local', {
-    'JUST_NOW': ["just xxx", "a while"],
-    'SECOND_AGO': ["%s seconds xxx", "in %s seconds"],
-    'A_MINUTE_AGO': ["1 minute xxx", "in 1 minute"],
-    'MINUTES_AGO': ["%s minutes xxx", "in %s minutes"],
-    'AN_HOUR_AGO': ["1 hour xxx", "in 1 hour"],
-    'HOURS_AGO': ["%s hours xxx", "in %s hours"],
-    'A_DAY_AGO': ["1 day xxx", "in 1 day"],
-    'DAYS_AGO': ["%s days xxx", "in %s days"],
-    'A_MONTH_AGO': ["1 month xxx", "in 1 month"],
-    'MONTHS_AGO': ["%s months xxx", "in %s months"],
-    'A_YEAR_AGO': ["1 year xxx", "in 1 year"],
-    'YEARS_AGO': ["%s years xxx", "in %s years"]
-  });
+  timeago_reg.register('test_local', [
+    ["just xxx", "a while"],
+    ["%s seconds xxx", "in %s seconds"],
+    ["1 minute xxx", "in 1 minute"],
+    ["%s minutes xxx", "in %s minutes"],
+    ["1 hour xxx", "in 1 hour"],
+    ["%s hours xxx", "in %s hours"],
+    ["1 day xxx", "in 1 day"],
+    ["%s days xxx", "in %s days"],
+    ['一周前', '一周后'], 
+    ['%s周前', '%s周后'], 
+    ["1 month xxx", "in 1 month"],
+    ["%s months xxx", "in %s months"],
+    ["1 year xxx", "in 1 year"],
+    ["%s years xxx", "in %s years"]
+  ]);
   t.equal(timeago_reg.format('2016-06-22', 'test_local'), '1 day xxx');
+
+  // test second
+  t.equal(timeago('2016-06-23 12:12:12').format('2016-06-23 12:12:09'), 'just now');
   // test second
   t.equal(timeago('2016-06-23 12:12:12').format('2016-06-23 12:12:01'), '11 seconds ago');
   
@@ -43,8 +48,12 @@ test('timeago.js show be tested', function (t) {
   t.equal(timeago('2016-06-24 13:12:12').format('2016-06-23 12:10:01'), '1 day ago');
   t.equal(timeago('2016-06-25 15:08:12').format('2016-06-23 12:09:01'), '2 days ago');
 
+  // test week
+  t.equal(timeago('2016-06-30 13:12:12').format('2016-06-23 12:10:01'), '1 week ago');
+  t.equal(timeago('2016-07-18 15:08:12').format('2016-06-23 12:09:01'), '3 weeks ago');
+
   // test month
-  t.equal(timeago('2016-07-23 13:12:12').format('2016-06-23 12:10:01'), '1 month ago');
+  t.equal(timeago('2016-07-25 13:12:12').format('2016-06-23 12:10:01'), '1 month ago');
   t.equal(timeago('2016-08-23 15:08:12').format('2016-06-23 12:09:01'), '2 months ago');
 
   // test year
@@ -56,7 +65,8 @@ test('timeago.js show be tested', function (t) {
 
   // timestamp is also can work
   var current = new Date().getTime();
-  t.equal(timeago(current).format(current - 8 * 1000 * 60 * 60 * 24), '8 days ago');
+  t.equal(timeago(current).format(current - 8 * 1000 * 60 * 60 * 24), '1 week ago');
+  t.equal(timeago(current).format(current - 31536000 * 1000 + 1000), '11 months ago');
 
   // test leap year
   t.equal(timeago('2016-03-01 12:00:00').format('2016-02-28 12:00:00'), '2 days ago');

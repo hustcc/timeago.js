@@ -1,6 +1,6 @@
 # timeago.js
 
-> **timeago.js** 是一个非常简洁、轻量级、仅仅 `2.5kb` 的很简洁的Javascript库，用来将datetime时间转化成类似于`*** 时间前`的描述字符串，例如：“3小时前”。 
+> **timeago.js** 是一个非常简洁、轻量级、仅仅 `2.1kb` 的很简洁的Javascript库，用来将datetime时间转化成类似于`*** 时间前`的描述字符串，例如：“3小时前”。 
 
  - 本地化支持，默认自带中文和英文语言，基本够用；
  - 之前 xxx 时间前、xxx 时间后；
@@ -17,7 +17,8 @@
 12秒前
 3分钟前
 2小时前
-24天前
+4天前
+3周前
 6月前
 3年前
 
@@ -119,18 +120,20 @@ timeago.format('2016-06-12', 'zh_CN');
 ```js
 // 本地化的字典样式
 var test_local_dict = {
-  'JUST_NOW': ["just now", "a while"],
-  'SECOND_AGO': ["%s seconds ago", "in %s seconds"],
-  'A_MINUTE_AGO': ["1 minute ago", "in 1 minute"],
-  'MINUTES_AGO': ["%s minutes ago", "in %s minutes"],
-  'AN_HOUR_AGO': ["1 hour ago", "in 1 hour"],
-  'HOURS_AGO': ["%s hours ago", "in %s hours"],
-  'A_DAY_AGO': ["1 day ago", "in 1 day"],
-  'DAYS_AGO': ["%s days ago", "in %s days"],
-  'A_MONTH_AGO': ["1 month ago", "in 1 month"],
-  'MONTHS_AGO': ["%s months ago", "in %s months"],
-  'A_YEAR_AGO': ["1 year ago", "in 1 year"],
-  'YEARS_AGO': ["%s years ago", "in %s years"]
+  ['just now', 'a while'], 
+  ['%s seconds ago', 'in %s seconds'],
+  ['1 minute ago', 'in 1 minute'], 
+  ['%s minutes ago', 'in %s minutes'], 
+  ['1 hour ago', 'in 1 hour'], 
+  ['%s hours ago', 'in %s hours'], 
+  ['1 day ago', 'in 1 day'], 
+  ['%s days ago', 'in %s days'], 
+  ['1 week ago', 'in 1 week'], 
+  ['%s weeks ago', 'in %s weeks'], 
+  ['1 month ago', 'in 1 month'], 
+  ['%s months ago', 'in %s months'], 
+  ['1 year ago', 'in 1 year'], 
+  ['%s years ago', 'in %s years']
 }
 
 var timeago = timeago();
