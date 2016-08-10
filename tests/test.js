@@ -68,6 +68,11 @@ test('timeago.js show be tested', function (t) {
   t.equal(timeago(current).format(current - 8 * 1000 * 60 * 60 * 24), '1 week ago');
   t.equal(timeago(current).format(current - 31536000 * 1000 + 1000), '11 months ago');
 
+  // Date()
+  var current = new Date();
+  t.equal(timeago(current).format(current), 'just now');
+
+
   // test leap year
   t.equal(timeago('2016-03-01 12:00:00').format('2016-02-28 12:00:00'), '2 days ago');
   t.equal(timeago('2015-03-01 12:00:00').format('2015-02-28 12:00:00'), '1 day ago');
