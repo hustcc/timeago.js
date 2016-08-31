@@ -113,6 +113,13 @@ var timeago = timeago();
 timeago.format('2016-06-12', 'zh_CN');
 ```
 
+可以在构造函数中传入默认语言，也可以调用 `setLocal` 方法。
+
+```js
+var timeago = timeago();
+timeago.setLocal('zh_CN');
+```
+
 **5. 注册本地语言**
 
 你可以自己自定义注册 `register` 你自己的语言. 如下所示，所有的键值都必须存在，不然可能会出错. e.g.

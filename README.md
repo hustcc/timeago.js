@@ -114,6 +114,13 @@ var timeago = timeago();
 timeago.format('2016-06-12', 'zh_CN');
 ```
 
+You can change local in constructor, or use `setLocal` method;
+
+```js
+var timeago = timeago();
+timeago.setLocal('zh_CN');
+```
+
 **5. register local language**
 
 You can `register` you own language. All keys are needed. e.g.

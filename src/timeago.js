@@ -6,11 +6,13 @@
     root.timeago = factory(root);
 }(typeof window !== 'undefined' ? window : this, function () {
 
-  var timeago = function(nowDate) {
+  var timeago = function(nowDate, defaultLocal) {
     var timers = {}, // 当前定时器
-    cnt = 0,
+    cnt = 0;
     // 已有的local，默认为en
-    defaultLocal = 'en',
+    if (!defaultLocal) {
+      defaultLocal = 'en';
+    }
     // second, minite, hour, day, week, month, year(365 days)
     SEC_ARRAY = [60, 60, 24, 7, 365/7/12, 12],
     SEC_ARRAY_LEN = 6,
@@ -144,11 +146,16 @@
       timers = {};
     };
 
+    setLocale = function(local) {
+      defaultLocal = local;
+    };
+
     return {
       format: format,
       register: register,
       render: render,
       cancel: cancel,
+      setLocale: setLocale
       // for dev test
       // next_interval: next_interval
     };
