@@ -116,7 +116,8 @@ timeago.format('2016-06-12', 'zh_CN');
 可以在构造函数中传入默认语言，也可以调用 `setLocal` 方法。
 
 ```js
-var timeago = timeago();
+var timeago = timeago(null, 'zh_CN');
+// or
 timeago.setLocal('zh_CN');
 ```
 

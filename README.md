@@ -117,7 +117,8 @@ timeago.format('2016-06-12', 'zh_CN');
 You can change local in constructor, or use `setLocal` method;
 
 ```js
-var timeago = timeago();
+var timeago = timeago(null, 'zh_CN');
+// or
 timeago.setLocal('zh_CN');
 ```
 
