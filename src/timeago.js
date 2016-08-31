@@ -146,11 +146,16 @@
       timers = {};
     };
 
+    setLocale = function(local) {
+      defaultLocal = local;
+    };
+
     return {
       format: format,
       register: register,
       render: render,
       cancel: cancel,
+      setLocale: setLocale
       // for dev test
       // next_interval: next_interval
     };

@@ -80,5 +80,12 @@ test('timeago.js show be tested', function (t) {
   // test default locale
   t.equal(timeago('2016-03-01 12:00:00').format('2016-02-28 12:00:00'), '2 days ago');
   t.equal(timeago('2016-03-01 12:00:00', 'zh_CN').format('2016-02-28 12:00:00'), '2天前');
+
+  // test setLocal
+  var newTimeAgo = timeago('2016-03-01 12:00:00');
+  t.equal(newTimeAgo.format('2016-02-28 12:00:00'), '2 days ago');
+  newTimeAgo.setLocale('zh_CN');
+  t.equal(newTimeAgo.format('2016-02-28 12:00:00'), '2天前');
+
   t.end();
 });
