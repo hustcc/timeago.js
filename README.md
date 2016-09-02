@@ -1,6 +1,6 @@
 # timeago.js
 
-> **timeago.js** is a simple library (less then `2.1 kb`) to used to format datetime with `*** time ago` statement. eg: '3 hours ago'. 
+> **timeago.js** is a simple library (less then `2.1 kb`) to used to format datetime with `*** time ago` statement. eg: '3 hours ago'.
 
  - localization supported.
  - time `ago`, time `in` supported.
@@ -54,7 +54,7 @@ import timeago from 'timeago.js';
 var timeago = require("timeago.js");
 ```
 
-or link with `script` in html files: 
+or link with `script` in html files:
 
 ```js
 <script src="dist/timeago.min.js"></script>
@@ -107,19 +107,19 @@ the dom object should has attribute `data-timeago` with date formated string.
 
 **4. localization**
 
-Default local is **`en`**, and the library supports `en` and `zh_CN`. 
+Default locale is **`en`**, and the library supports `en` and `zh_CN`.
 
 ```js
 var timeago = timeago();
 timeago.format('2016-06-12', 'zh_CN');
 ```
 
-You can change local in constructor, or use `setLocal` method;
+You can change the locale in the constructor, or use the `setLocale` method;
 
 ```js
 var timeago = timeago(null, 'zh_CN');
 // or
-timeago.setLocal('zh_CN');
+timeago.setLocale('zh_CN');
 ```
 
 **5. register local language**
@@ -129,19 +129,19 @@ You can `register` you own language. All keys are needed. e.g.
 ```js
 // the local dict example is below.
 var test_local_dict = {
-  ['just now', 'a while'], 
+  ['just now', 'a while'],
   ['%s seconds ago', 'in %s seconds'],
-  ['1 minute ago', 'in 1 minute'], 
-  ['%s minutes ago', 'in %s minutes'], 
-  ['1 hour ago', 'in 1 hour'], 
-  ['%s hours ago', 'in %s hours'], 
-  ['1 day ago', 'in 1 day'], 
-  ['%s days ago', 'in %s days'], 
-  ['1 week ago', 'in 1 week'], 
-  ['%s weeks ago', 'in %s weeks'], 
-  ['1 month ago', 'in 1 month'], 
-  ['%s months ago', 'in %s months'], 
-  ['1 year ago', 'in 1 year'], 
+  ['1 minute ago', 'in 1 minute'],
+  ['%s minutes ago', 'in %s minutes'],
+  ['1 hour ago', 'in 1 hour'],
+  ['%s hours ago', 'in %s hours'],
+  ['1 day ago', 'in 1 day'],
+  ['%s days ago', 'in %s days'],
+  ['1 week ago', 'in 1 week'],
+  ['%s weeks ago', 'in %s weeks'],
+  ['1 month ago', 'in 1 month'],
+  ['%s months ago', 'in %s months'],
+  ['1 year ago', 'in 1 year'],
   ['%s years ago', 'in %s years']
 }
 

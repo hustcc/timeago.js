@@ -5,13 +5,13 @@ var timeago = require('..');
 
 test('timeago.js show be tested', function (t) {
 
-  // test local, can set the local
+  // test locale, can set the locale
   t.equal(timeago('2016-06-23').format('2016-06-22'), '1 day ago');
   t.equal(timeago('2016-06-23').format('2016-06-25'), 'in 2 days');
   t.equal(timeago('2016-06-23').format('2016-06-22', 'zh_CN'), '1天前');
   t.equal(timeago('2016-06-23').format('2016-06-25', 'zh_CN'), '2天后');
 
-  // test register local
+  // test register locale
   var timeago_reg = timeago('2016-06-23');
   timeago_reg.register('test_local', [
     ["just xxx", "a while"],
@@ -22,8 +22,8 @@ test('timeago.js show be tested', function (t) {
     ["%s hours xxx", "in %s hours"],
     ["1 day xxx", "in 1 day"],
     ["%s days xxx", "in %s days"],
-    ['一周前', '一周后'], 
-    ['%s周前', '%s周后'], 
+    ['一周前', '一周后'],
+    ['%s周前', '%s周后'],
     ["1 month xxx", "in 1 month"],
     ["%s months xxx", "in %s months"],
     ["1 year xxx", "in 1 year"],
@@ -35,7 +35,7 @@ test('timeago.js show be tested', function (t) {
   t.equal(timeago('2016-06-23 12:12:12').format('2016-06-23 12:12:09'), 'just now');
   // test second
   t.equal(timeago('2016-06-23 12:12:12').format('2016-06-23 12:12:01'), '11 seconds ago');
-  
+
   // test minute
   t.equal(timeago('2016-06-23 12:11:12').format('2016-06-23 12:10:01'), '1 minute ago');
   t.equal(timeago('2016-06-23 12:12:12').format('2016-06-23 12:09:01'), '3 minutes ago');
@@ -81,7 +81,7 @@ test('timeago.js show be tested', function (t) {
   t.equal(timeago('2016-03-01 12:00:00').format('2016-02-28 12:00:00'), '2 days ago');
   t.equal(timeago('2016-03-01 12:00:00', 'zh_CN').format('2016-02-28 12:00:00'), '2天前');
 
-  // test setLocal
+  // test setLocale
   var newTimeAgo = timeago('2016-03-01 12:00:00');
   t.equal(newTimeAgo.format('2016-02-28 12:00:00'), '2 days ago');
   newTimeAgo.setLocale('zh_CN');

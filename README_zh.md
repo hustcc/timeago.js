@@ -1,6 +1,6 @@
 # timeago.js
 
-> **timeago.js** 是一个非常简洁、轻量级、仅仅 `2.1kb` 的很简洁的Javascript库，用来将datetime时间转化成类似于`*** 时间前`的描述字符串，例如：“3小时前”。 
+> **timeago.js** 是一个非常简洁、轻量级、仅仅 `2.1kb` 的很简洁的Javascript库，用来将datetime时间转化成类似于`*** 时间前`的描述字符串，例如：“3小时前”。
 
  - 本地化支持，默认自带中文和英文语言，基本够用；
  - 之前 xxx 时间前、xxx 时间后；
@@ -106,19 +106,19 @@ API方法 `cancel` 调用之后会清除所有的定时器方法，并且释放�
 
 **4. 本地化**
 
-默认的语言是英文 **`en`**, 这个库自带语言有 `en` and `zh_CN` （英文和中文）. 
+默认的语言是英文 **`en`**, 这个库自带语言有 `en` and `zh_CN` （英文和中文）.
 
 ```js
 var timeago = timeago();
 timeago.format('2016-06-12', 'zh_CN');
 ```
 
-可以在构造函数中传入默认语言，也可以调用 `setLocal` 方法。
+可以在构造函数中传入默认语言，也可以调用 `setLocale` 方法。
 
 ```js
 var timeago = timeago(null, 'zh_CN');
 // or
-timeago.setLocal('zh_CN');
+timeago.setLocale('zh_CN');
 ```
 
 **5. 注册本地语言**
@@ -128,19 +128,19 @@ timeago.setLocal('zh_CN');
 ```js
 // 本地化的字典样式
 var test_local_dict = {
-  ['just now', 'a while'], 
+  ['just now', 'a while'],
   ['%s seconds ago', 'in %s seconds'],
-  ['1 minute ago', 'in 1 minute'], 
-  ['%s minutes ago', 'in %s minutes'], 
-  ['1 hour ago', 'in 1 hour'], 
-  ['%s hours ago', 'in %s hours'], 
-  ['1 day ago', 'in 1 day'], 
-  ['%s days ago', 'in %s days'], 
-  ['1 week ago', 'in 1 week'], 
-  ['%s weeks ago', 'in %s weeks'], 
-  ['1 month ago', 'in 1 month'], 
-  ['%s months ago', 'in %s months'], 
-  ['1 year ago', 'in 1 year'], 
+  ['1 minute ago', 'in 1 minute'],
+  ['%s minutes ago', 'in %s minutes'],
+  ['1 hour ago', 'in 1 hour'],
+  ['%s hours ago', 'in %s hours'],
+  ['1 day ago', 'in 1 day'],
+  ['%s days ago', 'in %s days'],
+  ['1 week ago', 'in 1 week'],
+  ['%s weeks ago', 'in %s weeks'],
+  ['1 month ago', 'in 1 month'],
+  ['%s months ago', 'in %s months'],
+  ['1 year ago', 'in 1 year'],
   ['%s years ago', 'in %s years']
 }
 
