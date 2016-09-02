@@ -107,7 +107,10 @@ the dom object should has attribute `data-timeago` with date formated string.
 
 **4. localization**
 
-Default locale is **`en`**, and the library supports `en` and `zh_CN`.
+Default locale is **`en`**, and the library supports the following locales:
+- `en`
+- `pt_BR`
+- `zh_CN`
 
 ```js
 var timeago = timeago();

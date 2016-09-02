@@ -34,6 +34,22 @@
         ['1 year ago', 'in 1 year'],
         ['%s years ago', 'in %s years']
       ],
+      'pt_BR': [
+        ['há pouco', 'daqui um pouco'],
+        ['há %s segundos', 'em %s segundos'],
+        ['há um minuto', 'em um minuto'],
+        ['há %s minutos', 'em %s minutos'],
+        ['há uma hora', 'em uma hora'],
+        ['há %s horas', 'em %s horas'],
+        ['há um dia', 'em um dia'],
+        ['há %s dias', 'em %s dias'],
+        ['há uma semana', 'em uma semana'],
+        ['há %s semanas', 'em %s semanas'],
+        ['há um mês', 'em um mês'],
+        ['há %s meses', 'em %s meses'],
+        ['há um ano', 'em um ano'],
+        ['há %s anos', 'em %s anos']
+      ],
       'zh_CN': [
         ['刚刚', '片刻后'],
         ['%s秒前', '%s秒后'],
