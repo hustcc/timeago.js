@@ -1,4 +1,4 @@
-/* jshint expr: true */ 
+/* jshint expr: true */
 !function (root, factory) {
   if (typeof module === 'object' && module.exports)
     module.exports = factory(root);
@@ -6,60 +6,60 @@
     root.timeago = factory(root);
 }(typeof window !== 'undefined' ? window : this, function () {
 
-  var timeago = function(nowDate, defaultLocal) {
+  var timeago = function(nowDate, defaultLocale) {
     var timers = {}, // 当前定时器
     cnt = 0;
-    // 已有的local，默认为en
-    if (!defaultLocal) {
-      defaultLocal = 'en';
+    // 已有的locale，默认为en
+    if (!defaultLocale) {
+      defaultLocale = 'en';
     }
     // second, minite, hour, day, week, month, year(365 days)
     SEC_ARRAY = [60, 60, 24, 7, 365/7/12, 12],
     SEC_ARRAY_LEN = 6,
 
-    locals = {
+    locales = {
       'en': [
-        ['just now', 'a while'], 
+        ['just now', 'a while'],
         ['%s seconds ago', 'in %s seconds'],
-        ['1 minute ago', 'in 1 minute'], 
-        ['%s minutes ago', 'in %s minutes'], 
-        ['1 hour ago', 'in 1 hour'], 
-        ['%s hours ago', 'in %s hours'], 
-        ['1 day ago', 'in 1 day'], 
-        ['%s days ago', 'in %s days'], 
-        ['1 week ago', 'in 1 week'], 
-        ['%s weeks ago', 'in %s weeks'], 
-        ['1 month ago', 'in 1 month'], 
-        ['%s months ago', 'in %s months'], 
-        ['1 year ago', 'in 1 year'], 
+        ['1 minute ago', 'in 1 minute'],
+        ['%s minutes ago', 'in %s minutes'],
+        ['1 hour ago', 'in 1 hour'],
+        ['%s hours ago', 'in %s hours'],
+        ['1 day ago', 'in 1 day'],
+        ['%s days ago', 'in %s days'],
+        ['1 week ago', 'in 1 week'],
+        ['%s weeks ago', 'in %s weeks'],
+        ['1 month ago', 'in 1 month'],
+        ['%s months ago', 'in %s months'],
+        ['1 year ago', 'in 1 year'],
         ['%s years ago', 'in %s years']
       ],
       'zh_CN': [
-        ['刚刚', '片刻后'], 
-        ['%s秒前', '%s秒后'], 
-        ['1分钟前', '1分钟后'], 
-        ['%s分钟前', '%s分钟后'], 
-        ['1小时前', '1小时后'], 
-        ['%s小时前', '%s小时后'], 
-        ['1天前', '1天后'], 
-        ['%s天前', '%s天后'], 
-        ['1周前', '1周后'], 
-        ['%s周前', '%s周后'], 
-        ['1月前', '1月后'], 
-        ['%s月前', '%s月后'], 
-        ['1年前', '1年后'], 
+        ['刚刚', '片刻后'],
+        ['%s秒前', '%s秒后'],
+        ['1分钟前', '1分钟后'],
+        ['%s分钟前', '%s分钟后'],
+        ['1小时前', '1小时后'],
+        ['%s小时前', '%s小时后'],
+        ['1天前', '1天后'],
+        ['%s天前', '%s天后'],
+        ['1周前', '1周后'],
+        ['%s周前', '%s周后'],
+        ['1月前', '1月后'],
+        ['%s月前', '%s月后'],
+        ['1年前', '1年后'],
         ['%s年前', '%s年后']
       ]
     },
-    
+
     diff_sec = function(date) {
       var now = new Date();
       if (nowDate) now = toDate(nowDate);
       return (now.getTime() - toDate(date).getTime()) / 1000;
     },
-    format_diff = function(diff, local) {
-      if (! locals[local]) local = defaultLocal;
-      var localTemp = locals[local],
+    format_diff = function(diff, locale) {
+      if (! locales[locale]) locale = defaultLocale;
+      var localeTemp = locales[locale],
           index = 0, i = 0;
 
       if (diff < 0) index = 1;  // timein
@@ -70,16 +70,16 @@
       }
       diff = toInt(diff);
       i *= 2;
-      
+
       if (diff > (i === 0 ? 9 : 1)) i += 1;
-      return locals[local][i][index].replace('%s', diff);
+      return locales[locale][i][index].replace('%s', diff);
     },
-    format = function(date, local) {
-      return format_diff(diff_sec(date), local);
+    format = function(date, locale) {
+      return format_diff(diff_sec(date), locale);
     },
-    // register a local language
-    register = function(local, dict) {
-      locals[local] = dict;
+    // register a language locale
+    register = function(locale, dict) {
+      locales[locale] = dict;
     },
     // 将字符串、时间戳转日期
     toDate = function(input) {
@@ -116,12 +116,12 @@
       return left_sec(d, rst);
     },
     // 定时处理render
-    do_render = function(node, date, local, cnt) {
+    do_render = function(node, date, locale, cnt) {
       var diff = diff_sec(date);
-      node.innerHTML = format_diff(diff, local);
+      node.innerHTML = format_diff(diff, locale);
       // 通过diff来判断下一次执行的时间
       timers['k' + cnt] = setTimeout(function() {
-        do_render(node, date, local, cnt);
+        do_render(node, date, locale, cnt);
       }, next_interval(diff) * 1000);
     },
     // 获得属性值，兼容js和jq
@@ -131,11 +131,11 @@
       if(node.attr) return node.attr(attr);
     },
     // 开始动态渲染节点
-    render = function(nodes, local) {
+    render = function(nodes, locale) {
       if (nodes.length === undefined) nodes = [nodes];
       for (var i = 0; i < nodes.length; i++) {
         cnt ++;
-        do_render(nodes[i], get_date_attr(nodes[i]), local, cnt); // 立即执行
+        do_render(nodes[i], get_date_attr(nodes[i]), locale, cnt); // 立即执行
       }
     },
     // 取消所有的动态渲染，释放资源
@@ -146,8 +146,8 @@
       timers = {};
     };
 
-    setLocale = function(local) {
-      defaultLocal = local;
+    setLocale = function(locale) {
+      defaultLocale = locale;
     };
 
     return {
