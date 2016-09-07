@@ -104,7 +104,7 @@
     left_sec = function(diff, unit) {
       diff = diff % unit;
       diff = diff ? unit - diff : unit;
-      return toInt(diff);
+      return Math.ceil(diff);
     },
     // 计算下一次定时时间
     next_interval = function(diff) {

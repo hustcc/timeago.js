@@ -92,9 +92,9 @@
       } else {
         var s = (input || '').trim();
         s = s.replace(/\.\d+/, '') // remove milliseconds
-        .replace(/-/, '/').replace(/-/, '/')
-        .replace(/T/, ' ').replace(/Z/, ' UTC')
-        .replace(/([\+\-]\d\d)\:?(\d\d)/, ' $1$2'); // -04:00 -> -0400
+          .replace(/-/, '/').replace(/-/, '/')
+          .replace(/T/, ' ').replace(/Z/, ' UTC')
+          .replace(/([\+\-]\d\d)\:?(\d\d)/, ' $1$2'); // -04:00 -> -0400
         return new Date(s);
       }
     },
@@ -104,7 +104,7 @@
     left_sec = function(diff, unit) {
       diff = diff % unit;
       diff = diff ? unit - diff : unit;
-      return toInt(diff);
+      return Math.ceil(diff);
     },
     // 计算下一次定时时间
     next_interval = function(diff) {

@@ -1,58 +1,164 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8" />
-  <title>timeago.js is a simple library (less then 2kb) to used to format date with `*** time ago` statement. eg: '3 hours ago'.less</title>
-  <meta name="viewport" content="width=device-width, initial-scale=0.45" />
-  <style type="text/css">
-  #wrapper {
-  	width: 90%;
-  	max-width: 1000px;
-  	margin: 0 auto;
-  }
-  </style>
-</head>
-<body>
-  <div id="wrapper">
-  	<h1>timeago.js Example</h1>
-  	<div id="current_timestamp"></div>
-  	<div id="current_date"></div>
-  	<hr />
-  	<div id="open_time"></div>
-  	<div id="repo_time"></div>
-  	<hr />
-  	<div id="born"></div>
-    <hr />
-    <div class="render" data-timeago="2016-06-30 09:20:00"></div>
-    <div class="render" data-timeago="2016-06-30 09:34:00"></div>
-    <div id="testdom" data-timeago="2016-06-30 09:34:00"></div>
-  </div>
-  <script type="text/javascript" src="src/timeago.js"></script>
-  <script type="text/javascript">
-  var now = new Date();
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>timeago: is a tiny(2kb) library used to format date with `*** time ago`. eg: '3 hours ago'. No dependence.</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="keywords" content="timeago, timeago.js, datetime,*** time ago, javascript timeago, react-timeago, jquery-timeago, timeago.org" />
+    <meta name="description" content="timeago.js is a tiny(2kb) library used to format date with `*** time ago`. eg: '3 hours ago'. No dependence. and support automatically updating fuzzy timestamps." />
+    <link rel="shortcut icon" href="demo/clock.png" />
+    <link rel="bookmark" href="demo/clock.png" />
+    <style>
+      * { margin: 0; padding: 0; }
+      body { font-family: Helvetica,Arial,sans-serif; color: #333; background-color: #ccc; font-size: 16px; line-height: 24px; }
+      h1 { margin: 0; font-size: 60px; line-height: 100px; text-align: center; }
+      h2 { margin: -30px 0 40px 50px; font-size: 20px; line-height: 20px; text-align: center; color: #999; }
+      h3 { margin: 24px 0 6px 0; font-size: 18px; line-height: 18px; border-bottom: 1px solid #ccc; }
+      h1 img { vertical-align: middle; }
+      p { margin: 0 0 24px 0; }
+      p.example { margin: 0 0 12px 0; }
+      p.how, p.last { margin: 0; }
+      ul { margin: 0 24px 24px; }
+      li { line-height: 24px; }
+      pre { background-color: #333; color: #fff; margin: 12px 0; font-size: 12px; padding: 0 6px; }
+      pre em { font-style: normal; background-color: #554; }
+      pre, tt { font-family: monaco, "courier new", mono, monospace; }
+      abbr[title], time[title] { border-bottom: 1px dotted #333; }
+      tt { font-size: 14px; }
+      a { color: #06e; padding: 1px; }
+      em { font-style: normal; background-color: #feb; }
+      a:hover { background-color: #06c; color: #fff; text-decoration: none; }
+      #content { margin:0 auto; padding: 24px; width:700px; background-color:#fff; border: 1px solid #999; border-width: 0 1px 1px 1px; }
+      #footer { margin:0 auto 24px; padding: 12px; width:700px; line-height: 24px; }
+      .help { font-size: 14px; color: #888; }
+      .strong {font-weight: bold;}
+    </style>
+  </head>
+  <body>
+    <div id="content">
+      <h1><img src="demo/clock.png" /> timeago.js</h1>
+      <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a tiny / simple library</h2>
 
-  var timeago = timeago();
-  var open_time = new Date();
-  var repo_time = "2016-06-23";
-  function format() {
-  	
-  	document.getElementById('current_timestamp').innerHTML = 'Current Timestamp: ' + now.getTime();
-  	document.getElementById('current_date').innerHTML = 'Current Date String: ' + now;
-  	document.getElementById('open_time').innerHTML = 'You open the page: ' + timeago.format(open_time);
-  	document.getElementById('repo_time').innerHTML = 'The repo Opened: ' + timeago.format(repo_time);
-  	document.getElementById('born').innerHTML = '我出生于: ' + timeago.format('1990-08-01', 'zh_CN');
-  }
-  setInterval(format, 1000);
+      <h3>What ?</h3>
+      <p>
+        <strong>timeago.js</strong> is a tiny(2kb) library used to format date with `*** time ago`. eg: '3 hours ago'. No dependence. and support automatically updating fuzzy timestamps (e.g. "4 minutes ago" or "about 1 day ago").  <a href="https://github.com/hustcc/timeago.js">Download</a>, view the examples, and enjoy.
+      </p>
+     
+      <p class="example">
+        You opened this page <span class="need_to_be_rendered load_time strong">when you opened the page</span>. <span class="help">(This will update automatically. Wait for it.)</span>
+      </p>
+      <p class="example">
+        Hustcc was born <span class="need_to_be_rendered strong" data-timeago="1992-08-01">Aug 01, 1989</span>.
+      </p>
 
-  document.getElementById('testdom').setAttribute('data-timeago', now.getTime());
+      <h3>Why ?</h3>
+      <p>timeago.js was built to format date with `*** time ago` statement.</p>
+      <ul>
+        <li>Avoid timestamps dated "1 minute ago" even though the page was opened 10 minutes ago; <em>timeago refreshes automatically</em>.</li>
+        <li>You can <em>take full advantage of page caching</em> in your web applications, because the timestamps aren't calculated on the server.</li>
+        <li>You get to <em>use standard HTML5 tags</em>.</li>
+        <li>Very tiny(only 2kb), and has <em>no dependence</em>, e.g. jQuery.</li>
+      </ul>
 
-  timeago.render(document.querySelectorAll('.render'));
-  timeago.render(document.getElementById('testdom'), 'zh_CN');
-  // timeago.cancel()
-  </script>
-  <a style="position: fixed;right: 0;top: 0;" target="_blank" href="https://github.com/hustcc/timeago.js" class="github-corner"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
-    <span style="display:none">
-      <script src="http://s4.cnzz.com/stat.php?id=1257060683&web_id=1257060683" language="JavaScript"></script>
-    </span>
+      <h3>How ?</h3>
+      <p class="how">
+        First, load and install <a href="https://github.com/hustcc/timegago.js">timeago.js</a> library:
+      </p>
+      <pre>
+npm install timeago.js</pre>
+      <p class="how">
+        Load timeago.js library file with script tag:
+      </p>
+      <pre>
+&lt;script src=&quot;dest/timeago.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</pre>
+      <p class="how">
+        Or you can use ES6 style:
+      </p>
+      <pre>
+import timeago from 'timeago.js';
+// or
+var timeago = require("timeago.js");</pre>
+      <p class="how">
+        Now, let's attach it to your timestamps on DOM ready:
+      </p>
+      <pre>
+timeago().render(document.querySelectorAll('.need_to_be_rendered'));
+// or use jquery selector
+timeago().render($('.need_to_be_rendered'));</pre>
+      <p class="how">
+        This will turn all <tt>time</tt> elements with a class
+        of <tt>timeago</tt> and an <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> timestamp in the datetime (other datetime styles are also supported):
+      </p>
+      <pre>
+&lt;span class=&quot;<em>need_to_be_rendered</em>&quot; data-timeago=&quot;<em>2016-07-07T09:24:17Z</em>&quot;&gt;July 07, 2016&lt;/span&gt;</pre>
+      <p class="how">
+        You can also use it programmatically:
+      </p>
+      <pre>
+timeago().format(new Date());             //=> &quot;<span id="demo_now"></span>&quot;
+timeago().format("2016-09-07", 'zh_CN');           //=> &quot;<span id="demo_20160907"></span>&quot;
+timeago().format(1473245023718);          //=> &quot;<span id="demo_timestamp"></span>&quot;</pre>
+
+      <h3>Locales register ?</h3>
+      <p>
+        Yes, timeago.js has locale/i18n/language support.  Here are some <a href="https://github.com/hustcc/timeago.js/tree/master/locales">configuration examples</a>.  Please submit a <a href="https://github.com/hustcc/timeago.js">GitHub pull request</a> for corrections or additional languages.
+      </p>
+      <pre>
+var timeago = timeago();
+var locale = [
+  ['há pouco', 'daqui um pouco'],
+  ['há %s segundos', 'em %s segundos'],
+  ['há um minuto', 'em um minuto'],
+  ['há %s minutos', 'em %s minutos'],
+  ['há uma hora', 'em uma hora'],
+  ['há %s horas', 'em %s horas'],
+  ['há um dia', 'em um dia'],
+  ['há %s dias', 'em %s dias'],
+  ['há uma semana', 'em uma semana'],
+  ['há %s semanas', 'em %s semanas'],
+  ['há um mês', 'em um mês'],
+  ['há %s meses', 'em %s meses'],
+  ['há um ano', 'em um ano'],
+  ['há %s anos', 'em %s anos']
+];
+timeago.register('pt_BR', locale);
+// then you can use it
+timeago().format(1473245023718, 'pt_BR');</pre>
+
+      <h3>Where ?</h3>
+      <p>Package is managed with npm. so <em>npm install timeago.js</em> will be the lastest version.</p>
+      <p>
+        The code is hosted on
+        GitHub: <a href="http://github.com/hustcc/timeago.js">http://github.com/hustcc/timeago.js</a>.
+        Go on, live on the edge.
+      </p>
+
+      <h3>Who?</h3>
+      <p>
+        timeago.js was built by <a href="http://www.atool.org">Hustcc</a> while standing on the
+        shoulders of giants. This website is base on jQuery-timeago.
+      </p>
+
+      <h3>What else?</h3>
+      <ul>
+        <li><em>timeago.js for react</em>: timeago-react is <a href="https://github.com/hustcc/timeago-react">here</a></li>
+        <li><em>timeago for python</em>: timeago is <a href="https://github.com/hustcc/timeago">here</a></li>
+      </ul>
+      <p class="example">
+        Other timeago, welcome to pull a request.
+      </p>
+      
+      <h3>Do you use timeago.js ?</h3>
+      <p>
+        Great! Please let me know, and can add into the README</a>.
+      </p>
+
+    </div>
+    <div id="footer">
+      Copyright &copy; 2016 <a href="http://Github.com/hustcc">Hustcc</a>
+    </div>
+    <script src="http://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script src="src/timeago.js" type="text/javascript"></script>
+    <script src="demo/index.js" type="text/javascript"></script>
   </body>
- </html>
+</html>
