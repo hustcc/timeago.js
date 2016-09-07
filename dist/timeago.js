@@ -10,7 +10,7 @@
     var timers = {}, // 当前定时器
     cnt = 0;
     // 已有的locale，默认为en
-    if (!defaultLocale) {
+    if (! defaultLocale) {
       defaultLocale = 'en';
     }
     // second, minite, hour, day, week, month, year(365 days)
@@ -91,10 +91,10 @@
         return new Date(toInt(input, 10));
       } else {
         var s = (input || '').trim();
-        s = s.replace(/\.\d+/, ''); // remove milliseconds
-        s = s.replace(/-/, '/').replace(/-/, '/');
-        s = s.replace(/T/, ' ').replace(/Z/, ' UTC');
-        s = s.replace(/([\+\-]\d\d)\:?(\d\d)/, ' $1$2'); // -04:00 -> -0400
+        s = s.replace(/\.\d+/, '') // remove milliseconds
+        .replace(/-/, '/').replace(/-/, '/')
+        .replace(/T/, ' ').replace(/Z/, ' UTC')
+        .replace(/([\+\-]\d\d)\:?(\d\d)/, ' $1$2'); // -04:00 -> -0400
         return new Date(s);
       }
     },
@@ -144,8 +144,8 @@
         clearTimeout(timers[key]);
       }
       timers = {};
-    };
-
+    },
+    // 设置默认语言
     setLocale = function(locale) {
       defaultLocale = locale;
     };

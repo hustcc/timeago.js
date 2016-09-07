@@ -128,7 +128,7 @@ You can `register` you own language. All keys are needed. e.g.
 
 ```js
 // the local dict example is below.
-var test_local_dict = {
+var test_local_dict = [
   ['just now', 'a while'],
   ['%s seconds ago', 'in %s seconds'],
   ['1 minute ago', 'in 1 minute'],
@@ -143,13 +143,15 @@ var test_local_dict = {
   ['%s months ago', 'in %s months'],
   ['1 year ago', 'in 1 year'],
   ['%s years ago', 'in %s years']
-}
+]
 
 var timeago = timeago();
 timeago.register('test_local', test_local_dict);
 
 timeago.format('2016-06-12', 'test_local');
 ```
+
+You can see [locales](locales) dir for more locales.
 
 
 # TODO

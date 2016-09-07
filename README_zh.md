@@ -127,7 +127,7 @@ timeago.setLocale('zh_CN');
 
 ```js
 // 本地化的字典样式
-var test_local_dict = {
+var test_local_dict = [
   ['just now', 'a while'],
   ['%s seconds ago', 'in %s seconds'],
   ['1 minute ago', 'in 1 minute'],
@@ -142,7 +142,7 @@ var test_local_dict = {
   ['%s months ago', 'in %s months'],
   ['1 year ago', 'in 1 year'],
   ['%s years ago', 'in %s years']
-}
+]
 
 var timeago = timeago();
 timeago.register('test_local', test_local_dict);
