@@ -8,7 +8,7 @@
  - npm and browser supported.
  - well tesed.
 
-中文版说明文档[点这里](README_zh.md)。 React version here: [timeago-react](https://github.com/hustcc/timeago-react). Python version here: [timeago](https://github.com/hustcc/timeago).
+[Official website](http://timeago.org/). 中文版说明文档[点这里](README_zh.md)。 React version here: [timeago-react](https://github.com/hustcc/timeago-react). Python version here: [timeago](https://github.com/hustcc/timeago).
 
 [![Build Status](https://travis-ci.org/hustcc/timeago.js.svg?branch=master)](https://travis-ci.org/hustcc/timeago.js) [![npm](https://img.shields.io/npm/v/timeago.js.svg?style=flat-square)](https://www.npmjs.com/package/timeago.js) [![npm](https://img.shields.io/npm/dt/timeago.js.svg?style=flat-square)](https://www.npmjs.com/package/timeago.js) [![npm](https://img.shields.io/npm/l/timeago.js.svg?style=flat-square)](https://www.npmjs.com/package/timeago.js)
 
@@ -152,11 +152,6 @@ timeago.format('2016-06-12', 'test_local');
 ```
 
 You can see [locales](locales) dir for more locales.
-
-
-# TODO
-
- - website page
 
 
 # LICENSE
