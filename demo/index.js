@@ -7,7 +7,7 @@ function iso8601(date) {
     + ":" + date.getUTCSeconds() + "Z";
 }
 
-$('.load_time').attr('data-timeago', iso8601(new Date()));
+document.querySelector('.load_time').setAttribute('data-timeago', iso8601(new Date()));
 timeago().render(document.querySelectorAll('.need_to_be_rendered'));
 
 // 2. demo
