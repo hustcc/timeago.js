@@ -149,7 +149,7 @@ timeago.register('test_local', test_local_dict);
 
 timeago.format('2016-06-12', 'test_local');
 ```
-
+欢迎发起 PR 添加一些确实的 locale 语言，当然请注意，将 locale 添加到 `tests/locales_test.js` 文件中做一个简单的测试。
 
 # LICENSE
 

@@ -151,7 +151,7 @@ timeago.register('test_local', test_local_dict);
 timeago.format('2016-06-12', 'test_local');
 ```
 
-You can see [locales](locales) dir for more locales.
+You can see [locales](locales) dir for more locales. Please submit a GitHub pull request for corrections or additional languages, and add the locale key into `tests/locales_test.js`.
 
 
 # LICENSE
