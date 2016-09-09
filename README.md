@@ -2,11 +2,11 @@
 
 > **timeago.js** is a simple library (less then `2.1 kb`) to used to format datetime with `*** time ago` statement. eg: '3 hours ago'.
 
- - localization supported.
- - time `ago`, time `in` supported.
- - real time render supported.
+ - Localization supported.
+ - Time `ago` and time `in` supported.
+ - Real-time render supported.
  - npm and browser supported.
- - well tesed.
+ - Well tested.
 
 [Official website](http://timeago.org/). 中文版说明文档[点这里](README_zh.md)。 React version here: [timeago-react](https://github.com/hustcc/timeago-react). Python version here: [timeago](https://github.com/hustcc/timeago).
 
@@ -60,7 +60,7 @@ or link with `script` in html files:
 <script src="dist/timeago.min.js"></script>
 ```
 
-**3. use class `timeago`**
+**3. Use class `timeago`**
 
 ```js
 var timeago = timeago();
@@ -68,9 +68,9 @@ timeago.format('2016-06-12')
 ```
 
 
-# Detail Usage
+# Detailed Usage
 
-**1. set relative date**
+**1. Set relative date**
 
 `timeago` is relate to current date default. you can set it by yourself.
 
@@ -79,13 +79,13 @@ var timeago = timeago('2016-06-10 12:12:12'); // set the relative date here.
 timeago.format('2016-06-12', 'zh_CN');
 ```
 
-**2. use timestamp**
+**2. Use timestamp**
 
 ```
 timeago().format(new Date().getTime() - 11 * 1000 * 60 * 60); // will get '11 hours ago'
 ```
 
-**3. automation render**
+**3. Automatic rendering**
 
 HTML code：
 ```html
@@ -99,13 +99,13 @@ timeago().render(document.querySelectorAll('.need_to_be_render'), 'zh_CN');
 timeago().cancel()
 ```
 
-The input API `render` should be DOM object / array, support pure javascript node and jQuery dom object.
+The input API `render` should be DOM object/array, support pure Javascript, Node, and jQuery DOM object.
 
-The API `cancel` will clear all the render timer, release all the resource.
+The API `cancel` will clear all the render timers and release all the resources.
 
-the dom object should has attribute `data-timeago` with date formated string.
+The DOM object should have the attribute `data-timeago` with date formated string.
 
-**4. localization**
+**4. Localization**
 
 Default locale is **`en`**, and the library supports `en` and `zh_CN`.
 
@@ -114,7 +114,7 @@ var timeago = timeago();
 timeago.format('2016-06-12', 'zh_CN');
 ```
 
-You can change the locale in the constructor, or use the `setLocale` method;
+You can change the locale in the constructor or use the `setLocale` method;
 
 ```js
 var timeago = timeago(null, 'zh_CN');
@@ -122,7 +122,7 @@ var timeago = timeago(null, 'zh_CN');
 timeago.setLocale('zh_CN');
 ```
 
-**5. register local language**
+**5. Register local language**
 
 You can `register` you own language. All keys are needed. e.g.
 
