@@ -16,40 +16,24 @@
     // second, minite, hour, day, week, month, year(365 days)
     SEC_ARRAY = [60, 60, 24, 7, 365/7/12, 12],
     SEC_ARRAY_LEN = 6,
-
+    indexMapEn = ['second', 'minute', 'hour', 'day', 'week', 'month', 'year'],
+    indexMapZh = ['秒', '分钟', '消失', '天', '周', '月', '年'],
     locales = {
-      'en': [
-        ['just now', 'a while'],
-        ['%s seconds ago', 'in %s seconds'],
-        ['1 minute ago', 'in 1 minute'],
-        ['%s minutes ago', 'in %s minutes'],
-        ['1 hour ago', 'in 1 hour'],
-        ['%s hours ago', 'in %s hours'],
-        ['1 day ago', 'in 1 day'],
-        ['%s days ago', 'in %s days'],
-        ['1 week ago', 'in 1 week'],
-        ['%s weeks ago', 'in %s weeks'],
-        ['1 month ago', 'in 1 month'],
-        ['%s months ago', 'in %s months'],
-        ['1 year ago', 'in 1 year'],
-        ['%s years ago', 'in %s years']
-      ],
-      'zh_CN': [
-        ['刚刚', '片刻后'],
-        ['%s秒前', '%s秒后'],
-        ['1分钟前', '1分钟后'],
-        ['%s分钟前', '%s分钟后'],
-        ['1小时前', '1小时后'],
-        ['%s小时前', '%s小时后'],
-        ['1天前', '1天后'],
-        ['%s天前', '%s天后'],
-        ['1周前', '1周后'],
-        ['%s周前', '%s周后'],
-        ['1月前', '1月后'],
-        ['%s月前', '%s月后'],
-        ['1年前', '1年后'],
-        ['%s年前', '%s年后']
-      ]
+      'en': function(number, index) {
+        if (index === 0) return ['just now', 'a while'];
+        else {
+          var unit = indexMapEn[parseInt(index / 2)];
+          if (number > 1) unit += 's';
+          return [number + ' ' + unit + ' ago', 'in ' + number + ' ' + unit];
+        }
+      },
+      'zh_CN': function(number, index) {
+        if (index === 0) return ['刚刚', '片刻后'];
+        else {
+          var unit = indexMapZh[parseInt(index / 2)];
+          return [number + unit + '前', number + unit + '后'];
+        }
+      }
     },
 
     diff_sec = function(date) {
@@ -60,9 +44,9 @@
     format_diff = function(diff, locale) {
       if (! locales[locale]) locale = defaultLocale;
       var localeTemp = locales[locale],
-          index = 0, i = 0;
+          agoin = 0, i = 0;
 
-      if (diff < 0) index = 1;  // timein
+      if (diff < 0) agoin = 1;  // timein
       diff = Math.abs(diff);
 
       for (; diff >= SEC_ARRAY[i] && i < SEC_ARRAY_LEN; i++) {
@@ -72,14 +56,14 @@
       i *= 2;
 
       if (diff > (i === 0 ? 9 : 1)) i += 1;
-      return locales[locale][i][index].replace('%s', diff);
+      return locales[locale](diff, i)[agoin].replace('%s', diff);
     },
     format = function(date, locale) {
       return format_diff(diff_sec(date), locale);
     },
     // register a language locale
-    register = function(locale, dict) {
-      locales[locale] = dict;
+    register = function(locale, localeFunc) {
+      locales[locale] = localeFunc;
     },
     // 将字符串、时间戳转日期
     toDate = function(input) {

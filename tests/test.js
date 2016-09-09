@@ -13,22 +13,24 @@ test('timeago.js show be tested', function (t) {
 
   // test register locale
   var timeago_reg = timeago('2016-06-23');
-  timeago_reg.register('test_local', [
-    ["just xxx", "a while"],
-    ["%s seconds xxx", "in %s seconds"],
-    ["1 minute xxx", "in 1 minute"],
-    ["%s minutes xxx", "in %s minutes"],
-    ["1 hour xxx", "in 1 hour"],
-    ["%s hours xxx", "in %s hours"],
-    ["1 day xxx", "in 1 day"],
-    ["%s days xxx", "in %s days"],
-    ['一周前', '一周后'],
-    ['%s周前', '%s周后'],
-    ["1 month xxx", "in 1 month"],
-    ["%s months xxx", "in %s months"],
-    ["1 year xxx", "in 1 year"],
-    ["%s years xxx", "in %s years"]
-  ]);
+  timeago_reg.register('test_local', function(number, index) {
+    return [
+      ["just xxx", "a while"],
+      ["%s seconds xxx", "in %s seconds"],
+      ["1 minute xxx", "in 1 minute"],
+      ["%s minutes xxx", "in %s minutes"],
+      ["1 hour xxx", "in 1 hour"],
+      ["%s hours xxx", "in %s hours"],
+      ["1 day xxx", "in 1 day"],
+      ["%s days xxx", "in %s days"],
+      ['一周前', '一周后'],
+      ['%s周前', '%s周后'],
+      ["1 month xxx", "in 1 month"],
+      ["%s months xxx", "in %s months"],
+      ["1 year xxx", "in 1 year"],
+      ["%s years xxx", "in %s years"]
+    ][index];
+  });
   t.equal(timeago_reg.format('2016-06-22', 'test_local'), '1 day xxx');
 
   // test second
