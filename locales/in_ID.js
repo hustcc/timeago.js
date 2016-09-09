@@ -1,18 +1,18 @@
-module.export = function(number, index) {
+module.exports = function(number, index) {
   return [
     ['baru saja', 'sebentar'],
-    ['% detik yang lalu', 'dalam % detik'],
+    ['%s detik yang lalu', 'dalam %s detik'],
     ['1 menit yang lalu', 'dalam 1 menit'],
-    ['% menit yang lalu', 'dalam % menit'],
+    ['%s menit yang lalu', 'dalam %s menit'],
     ['1 jam yang lalu', 'dalam 1 jam'],
-    ['% jam yang lalu', 'dalam % jam'],
+    ['%s jam yang lalu', 'dalam %s jam'],
     ['1 hari yang lalu', 'dalam 1 hari'],
-    ['% hari yang lalu', 'dalam % hari'],
+    ['%s hari yang lalu', 'dalam %s hari'],
     ['1 minggu yang lalu', 'dalam 1 minggu'],
-    ['% minggu yang lalu', 'dalam % minggu'],
+    ['%s minggu yang lalu', 'dalam %s minggu'],
     ['1 bulan yang lalu', 'dalam 1 bulan'],
-    ['% bulan yang lalu', 'dalam % bulan'],
+    ['%s bulan yang lalu', 'dalam %s bulan'],
     ['1 tahun yang lalu', 'dalam 1 tahun'],
-    ['% tahun yang lalu', 'dalam % tahun']
+    ['%s tahun yang lalu', 'dalam %s tahun']
   ][index];
 }
