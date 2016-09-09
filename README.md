@@ -154,6 +154,11 @@ timeago.format('2016-06-12', 'test_local');
 You can see [locales](locales) dir for more locales. Please submit a GitHub pull request for corrections or additional languages, and add the locale key into `tests/locales_test.js`.
 
 
+# Contribution
+
+The website is base on [rmm5t/jquery-timeago](https://github.com/rmm5t/jquery-timeago) which is a nice and featured project but depends on jQuery.
+
+
 # LICENSE
 
 MIT
