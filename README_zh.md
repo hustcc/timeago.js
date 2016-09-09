@@ -127,22 +127,26 @@ timeago.setLocale('zh_CN');
 
 ```js
 // 本地化的字典样式
-var test_local_dict = [
-  ['just now', 'a while'],
-  ['%s seconds ago', 'in %s seconds'],
-  ['1 minute ago', 'in 1 minute'],
-  ['%s minutes ago', 'in %s minutes'],
-  ['1 hour ago', 'in 1 hour'],
-  ['%s hours ago', 'in %s hours'],
-  ['1 day ago', 'in 1 day'],
-  ['%s days ago', 'in %s days'],
-  ['1 week ago', 'in 1 week'],
-  ['%s weeks ago', 'in %s weeks'],
-  ['1 month ago', 'in 1 month'],
-  ['%s months ago', 'in %s months'],
-  ['1 year ago', 'in 1 year'],
-  ['%s years ago', 'in %s years']
-]
+var test_local_dict = function(number, index) {
+  // number: xxx 时间前 / 后的数字;
+  // index: 下面数组的索引号;
+  return [
+    ['just now', 'a while'],
+    ['%s seconds ago', 'in %s seconds'],
+    ['1 minute ago', 'in 1 minute'],
+    ['%s minutes ago', 'in %s minutes'],
+    ['1 hour ago', 'in 1 hour'],
+    ['%s hours ago', 'in %s hours'],
+    ['1 day ago', 'in 1 day'],
+    ['%s days ago', 'in %s days'],
+    ['1 week ago', 'in 1 week'],
+    ['%s weeks ago', 'in %s weeks'],
+    ['1 month ago', 'in 1 month'],
+    ['%s months ago', 'in %s months'],
+    ['1 year ago', 'in 1 year'],
+    ['%s years ago', 'in %s years']
+  ][index];
+};
 
 var timeago = timeago();
 timeago.register('test_local', test_local_dict);
