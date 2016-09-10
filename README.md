@@ -1,6 +1,6 @@
 # timeago.js
 
-> **timeago.js** is a simple library (less then `2.1 kb`) to used to format datetime with `*** time ago` statement. eg: '3 hours ago'.
+> **timeago.js** is a simple library (less then `2 kb`) to used to format datetime with `*** time ago` statement. eg: '3 hours ago'.
 
  - Localization supported.
  - Time `ago` and time `in` supported.
