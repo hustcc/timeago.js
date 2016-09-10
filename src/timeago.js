@@ -17,7 +17,7 @@
     SEC_ARRAY = [60, 60, 24, 7, 365/7/12, 12],
     SEC_ARRAY_LEN = 6,
     indexMapEn = ['second', 'minute', 'hour', 'day', 'week', 'month', 'year'],
-    indexMapZh = ['秒', '分钟', '消失', '天', '周', '月', '年'],
+    indexMapZh = ['秒', '分钟', '小时', '天', '周', '月', '年'],
     locales = {
       'en': function(number, index) {
         if (index === 0) return ['just now', 'a while'];
