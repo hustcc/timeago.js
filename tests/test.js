@@ -89,5 +89,36 @@ test('timeago.js show be tested', function (t) {
   newTimeAgo.setLocale('zh_CN');
   t.equal(newTimeAgo.format('2016-02-28 12:00:00'), '2天前');
 
+  // test Chinese
+  // test second
+  t.equal(timeago('2016-06-23 12:12:12', 'zh_CN').format('2016-06-23 12:12:09'), '刚刚');
+  // test second
+  t.equal(timeago('2016-06-23 12:12:12', 'zh_CN').format('2016-06-23 12:12:01'), '11秒前');
+  t.equal(timeago('2016-06-23 12:12:01', 'zh_CN').format('2016-06-23 12:12:12'), '11秒后');
+  // test minute
+  t.equal(timeago('2016-06-23 12:11:12', 'zh_CN').format('2016-06-23 12:10:01'), '1分钟前');
+  t.equal(timeago('2016-06-23 12:12:12', 'zh_CN').format('2016-06-23 12:09:01'), '3分钟前');
+
+  // test hour
+  t.equal(timeago('2016-06-23 13:12:12', 'zh_CN').format('2016-06-23 12:10:01'), '1小时前');
+  t.equal(timeago('2016-06-23 15:08:12', 'zh_CN').format('2016-06-23 12:09:01'), '2小时前');
+
+  // test day
+  t.equal(timeago('2016-06-24 13:12:12', 'zh_CN').format('2016-06-23 12:10:01'), '1天前');
+  t.equal(timeago('2016-06-25 15:08:12', 'zh_CN').format('2016-06-23 12:09:01'), '2天前');
+
+  // test week
+  t.equal(timeago('2016-06-30 13:12:12', 'zh_CN').format('2016-06-23 12:10:01'), '1周前');
+  t.equal(timeago('2016-07-18 15:08:12', 'zh_CN').format('2016-06-23 12:09:01'), '3周前');
+
+  // test month
+  t.equal(timeago('2016-07-25 13:12:12', 'zh_CN').format('2016-06-23 12:10:01'), '1月前');
+  t.equal(timeago('2016-08-23 15:08:12', 'zh_CN').format('2016-06-23 12:09:01'), '2月前');
+
+  // test year
+  t.equal(timeago('2017-06-23 13:12:12', 'zh_CN').format('2016-06-23 12:10:01'), '1年前');
+  t.equal(timeago('2020-06-23 15:08:12', 'zh_CN').format('2016-06-23 12:09:01'), '4年前');
+
+
   t.end();
 });
