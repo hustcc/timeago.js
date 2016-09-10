@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2016 hustcc
+ * License: MIT 
+ * https://github.com/hustcc/pys
+**/
 /* jshint expr: true */
 !function (root, factory) {
   if (typeof module === 'object' && module.exports)
@@ -6,18 +11,30 @@
     root.timeago = factory(root);
 }(typeof window !== 'undefined' ? window : this, function () {
 
+  /**
+   * timeago: the function to get `timeagp` instance.
+   * - nowDate: the relative date, default is new Date().
+   * - defaultLocale: the default locale, default is en. if your set it, then the `locale` parameter of format is not needed of you.
+   *
+   * How to use it?
+   * var timeagoLib = require('timeago.js');
+   * var timeago = timeagoLib(); // all use default.
+   * var timeago = timeagoLib('2016-09-10'); // the relative date is 2106-09-10, so the 2016-09-11 will be 1 day ago.
+   * var timeago = timeagoLib('2016-09-10', 'zh_CN'); // the relative date is 2106-09-10, and locale is zh_CN, so the 2016-09-11 will be 1天前.
+  **/
   var timeago = function(nowDate, defaultLocale) {
-    var timers = {}, // 当前定时器
-    cnt = 0;
-    // 已有的locale，默认为en
+    // if do not set the defaultLocale, set it with `en`
     if (! defaultLocale) {
       defaultLocale = 'en';
     }
+    var timers = {}, // real-time render timers
+    cnt = 0, // the time counter, for time key
     // second, minite, hour, day, week, month, year(365 days)
     SEC_ARRAY = [60, 60, 24, 7, 365/7/12, 12],
     SEC_ARRAY_LEN = 6,
     indexMapEn = ['second', 'minute', 'hour', 'day', 'week', 'month', 'year'],
     indexMapZh = ['秒', '分钟', '小时', '天', '周', '月', '年'],
+    // build-in locales: en & zh_CN
     locales = {
       'en': function(number, index) {
         if (index === 0) return ['just now', 'a while'];
@@ -35,12 +52,13 @@
         }
       }
     },
-
+    // calculate the diff second between date to be formated an now date.
     diff_sec = function(date) {
       var now = new Date();
       if (nowDate) now = toDate(nowDate);
       return (now.getTime() - toDate(date).getTime()) / 1000;
     },
+    // format the diff second to *** time ago, with setting locale
     format_diff = function(diff, locale) {
       if (! locales[locale]) locale = defaultLocale;
       var localeTemp = locales[locale],
@@ -58,14 +76,36 @@
       if (diff > (i === 0 ? 9 : 1)) i += 1;
       return locales[locale](diff, i)[agoin].replace('%s', diff);
     },
+    /**
+     * format: format the date to *** time ago, with setting or default locale
+     * - date: the date / string / timestamp to be formated
+     * - locale: the formated string's locale name, e.g. en / zh_CN
+     *
+     * How to use it?
+     * var timeago = require('timeago.js')();
+     * timeago.format(new Date(), 'pl'); // Date instance
+     * timeago.format('2016-09-10', 'fr'); // formated date string
+     * timeago.format(1473473400269); // timestamp with ms
+    **/
     format = function(date, locale) {
       return format_diff(diff_sec(date), locale);
     },
     // register a language locale
+    /**
+     * register: register a new language locale
+     * - locale: locale name, e.g. en / zh_CN, notice the standard.
+     * - localeFunc: the locale process function
+     *
+     * How to use it?
+     * var timeago = require('timeago.js')();
+     *
+     * // timeago.register('the locale name', the_locale_func);
+     * timeago.register('pl', require('timeago.js/locales/pl'));
+    **/
     register = function(locale, localeFunc) {
       locales[locale] = localeFunc;
     },
-    // 将字符串、时间戳转日期
+    // format Date / string / timestamp to Date instance.
     toDate = function(input) {
       if (input instanceof Date) {
         return input;
@@ -82,6 +122,7 @@
         return new Date(s);
       }
     },
+    // change f into int, remove Decimal. just for code compression
     toInt = function(f) {
       return parseInt(f);
     },
@@ -90,7 +131,15 @@
       diff = diff ? unit - diff : unit;
       return Math.ceil(diff);
     },
-    // 计算下一次定时时间
+    /**
+     * next_interval: calculate the next interval time.
+     * - diff: the diff sec between now and date to be formated.
+     *
+     * What's the meaning?
+     * diff = 61 then return 59 
+     * diff = 3601 (an hour + 1 second), then return 3599
+     * make the interval with high performace.
+    **/
     next_interval = function(diff) {
       var rst = 1, i = 0, d = diff;
       for (; diff >= SEC_ARRAY[i] && i < SEC_ARRAY_LEN; i++) {
@@ -99,7 +148,7 @@
       }
       return left_sec(d, rst);
     },
-    // 定时处理render
+    // what the timer will do
     do_render = function(node, date, locale, cnt) {
       var diff = diff_sec(date);
       node.innerHTML = format_diff(diff, locale);
@@ -114,7 +163,20 @@
       if (node.getAttribute) return node.getAttribute(attr);
       if(node.attr) return node.attr(attr);
     },
-    // 开始动态渲染节点
+    /**
+     * render: render the DOM real-time.
+     * - nodes: which nodes will be rendered.
+     * - locale: the locale name used to format date.
+     *
+     * How to use it?
+     * var timeago = require('timeago.js')();
+     * // 1. javascript selector
+     * timeago.render(document.querySelectorAll('.need_to_be_rendered'));
+     * // 2. use jQuery selector
+     * timeago.render($('.need_to_be_rendered'), 'pl');
+     *
+     * Notice: please be sure the dom has attribute `data-timeago`.
+    **/
     render = function(nodes, locale) {
       if (nodes.length === undefined) nodes = [nodes];
       for (var i = 0; i < nodes.length; i++) {
@@ -122,18 +184,31 @@
         do_render(nodes[i], get_date_attr(nodes[i]), locale, cnt); // 立即执行
       }
     },
-    // 取消所有的动态渲染，释放资源
+    /**
+     * cancel: cancel all the timers which are doing real-time render.
+     *
+     * How to use it?
+     * var timeago = require('timeago.js')();
+     * timeago.render(document.querySelectorAll('.need_to_be_rendered'));
+     * timeago.cancel();
+    **/
     cancel = function() {
       for (var key in timers) {
         clearTimeout(timers[key]);
       }
       timers = {};
     },
-    // 设置默认语言
+    /**
+     * setLocale: set the default locale name.
+     *
+     * How to use it?
+     * var timeago = require('timeago.js')();
+     * timeago.setLocale('fr');
+    **/
     setLocale = function(locale) {
       defaultLocale = locale;
     };
-
+    // return all the APIs
     return {
       format: format,
       register: register,
