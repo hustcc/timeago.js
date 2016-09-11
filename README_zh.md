@@ -118,7 +118,7 @@ timeago.format('2016-06-12', 'zh_CN');
 ```js
 var timeago = timeago(null, 'zh_CN');
 // or
-timeago.setLocale('zh_CN');
+timeago().setLocale('zh_CN');
 ```
 
 **5. 注册本地语言**

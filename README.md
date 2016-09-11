@@ -119,7 +119,7 @@ You can change the locale in the constructor or use the `setLocale` method;
 ```js
 var timeago = timeago(null, 'zh_CN');
 // or
-timeago.setLocale('zh_CN');
+timeago().setLocale('zh_CN');
 ```
 
 **5. Register local language**
