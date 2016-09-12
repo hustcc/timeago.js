@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2016 hustcc
- * License: MIT 
+ * License: MIT
  * https://github.com/hustcc/timeago.js
 **/
 /* jshint expr: true */
@@ -12,7 +12,7 @@
 }(typeof window !== 'undefined' ? window : this, function () {
 
   /**
-   * timeago: the function to get `timeagp` instance.
+   * timeago: the function to get `timeago` instance.
    * - nowDate: the relative date, default is new Date().
    * - defaultLocale: the default locale, default is en. if your set it, then the `locale` parameter of format is not needed of you.
    *
@@ -136,7 +136,7 @@
      * - diff: the diff sec between now and date to be formated.
      *
      * What's the meaning?
-     * diff = 61 then return 59 
+     * diff = 61 then return 59
      * diff = 3601 (an hour + 1 second), then return 3599
      * make the interval with high performace.
     **/
