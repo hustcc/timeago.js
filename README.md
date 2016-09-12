@@ -33,7 +33,7 @@ in 2 years
 ```
 
 
-# Usage
+# 1. Usage
 
 **1. Install timeago.js**
 
@@ -68,7 +68,7 @@ timeago.format('2016-06-12')
 ```
 
 
-# Detailed Usage
+# 2. Detailed Usage
 
 **1. Set relative date**
 
@@ -158,11 +158,16 @@ timeago.format('2016-06-12', 'test_local');
 You can see [locales](locales) dir for more locales. Please submit a GitHub pull request for corrections or additional languages, and add the locale key into `tests/locales_test.js`.
 
 
-# Contribution
+# 3. Contributions
 
-The website is base on [rmm5t/jquery-timeago](https://github.com/rmm5t/jquery-timeago) which is a nice and featured project but depends on jQuery.
+1. The website is base on [rmm5t/jquery-timeago](https://github.com/rmm5t/jquery-timeago) which is a nice and featured project but depends on jQuery.
+
+2. **locale translations**: The library need the locale translations. You can:
+
+ - Open an issue to write the locale translations, how to ? see [here](https://github.com/hustcc/timeago.js/blob/master/locales/en.js).
+ - Or pull a request, please **test** it before by exec `npm test` or `node tests/locales_test.js`.
 
 
-# LICENSE
+# 4. LICENSE
 
 MIT
