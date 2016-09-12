@@ -7,22 +7,23 @@ var seconds = formatAndPrint('%s секунду', '%s секунды', '%s се�
   years = formatAndPrint('%s год', '%s года', '%s лет');
 
 module.exports = function(number, index) {
-  return [
-    ['только что', 'через несколько секунд'],
-    [seconds(number, ' назад'), seconds(number, 'через ', true)],
-    ['минуту назад', 'через минуту'],
-    [minutes(number, ' назад'), minutes(number, 'через ', true)],
-    ['час назад', 'через час'],
-    [hours(number, ' назад'), hours(number, 'через ', true)],
-    ['вчера', 'завтра'],
-    [days(number, ' назад'), days(number, 'через ', true)],
-    ['неделю назад', 'через неделю'],
-    [weeks(number, ' назад'), weeks(number, 'через ', true)],
-    ['месяц назад', 'через месяц'],
-    [months(number, ' назад'), months(number, 'через ', true)],
-    ['год назад', 'через год'],
-    [years(number, ' назад'), years(number, 'через ', true)]
-  ][index];
+  switch(index) {
+    case 0: return ['только что', 'через несколько секунд'];
+    case 1: return [seconds(number, ' назад'), seconds(number, 'через ', true)];
+    case 2: return ['минуту назад', 'через минуту'];
+    case 3: return [minutes(number, ' назад'), minutes(number, 'через ', true)];
+    case 4: return ['час назад', 'через час'];
+    case 5: return [hours(number, ' назад'), hours(number, 'через ', true)];
+    case 6: return ['вчера', 'завтра'];
+    case 7: return [days(number, ' назад'), days(number, 'через ', true)];
+    case 8: return ['неделю назад', 'через неделю'];
+    case 9: return [weeks(number, ' назад'), weeks(number, 'через ', true)];
+    case 10: return ['месяц назад', 'через месяц'];
+    case 11: return [months(number, ' назад'), months(number, 'через ', true)];
+    case 12: return ['год назад', 'через год'];
+    case 13: return [years(number, ' назад'), years(number, 'через ', true)];
+    default: return ['', '']
+  }
 };
 
 function formatAndPrint(f, s, t) {
