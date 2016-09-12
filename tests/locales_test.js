@@ -4,7 +4,7 @@ var fs = require('fs');
 var test = require('tape');
 var timeago = require('..');
 
-var tobeTested = ['en', 'zh_CN', 'fr', 'nl_BE', 'pt_BR', 'da', 'in_ID', 'es', 'pl', 'zh_TW', 'sv']; // when add a new locale, add locale's name here
+var tobeTested = ['en', 'zh_CN', 'fr', 'nl_BE', 'pt_BR', 'da', 'in_ID', 'es', 'pl', 'zh_TW', 'sv', 'el_GR']; // when add a new locale, add locale's name here
 
 test('Testing locales', function (t) {
   for (var i = 0; i < tobeTested.length ; i++) {
