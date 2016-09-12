@@ -94,7 +94,7 @@ HTML code：
 js code
 ```js
 // use render to render it realtime
-timeago().render(document.querySelectorAll('.need_to_be_render'), 'zh_CN');
+timeago().render(document.querySelectorAll('.need_to_be_rendered'), 'zh_CN');
 // or cancel realtime render
 timeago().cancel()
 ```
