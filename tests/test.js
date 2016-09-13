@@ -35,12 +35,7 @@ test('timeago.js show be tested', function (t) {
 
   // locale tests #################################################################
 
-<<<<<<< HEAD
-  // 1. Test EN locale
-=======
   // 1. Test en locale
->>>>>>> 7fb909e77858a5267435599ef48d1baa771045e8
-  // test second
   t.equal(timeago('2016-06-23 12:12:12').format('2016-06-23 12:12:09'), 'just now');
   t.equal(timeago('2016-06-23 12:12:12').format('2016-06-23 12:12:01'), '11 seconds ago');
 
@@ -70,41 +65,7 @@ test('timeago.js show be tested', function (t) {
 
   // end en locale test ---------------------------------------------------------
 
-
-  // 2. Test BE locale
-  var be = timeago('2016-06-23 12:12:12');
-  be.register('be', require('../locales/be'));
-
-  t.equal(be.format('2016-06-23 12:12:09', 'be'), 'толькі што');
-  t.equal(be.format('2016-06-23 12:12:01', 'be'), '11 секунд таму');
-
-  // test minute
-  t.equal(be.format('2016-06-23 12:11:01', 'be'), 'хвіліну таму');
-  t.equal(be.format('2016-06-23 12:09:01', 'be'), '3 хвіліны таму');
-
-  // test hour
-  t.equal(be.format('2016-06-23 11:10:01', 'be'), 'гадзіну таму');
-  t.equal(be.format('2016-06-23 14:13:01', 'be'), 'праз 2 гадзіны');
-
-  // test day
-  t.equal(be.format('2016-06-22 12:10:01', 'be'), 'дзень таму');
-  t.equal(be.format('2016-06-21 12:09:01', 'be'), '2 дні таму');
-
-  // test week
-  t.equal(be.format('2016-06-16 12:10:01', 'be'), 'тыдзень таму');
-  t.equal(be.format('2016-06-01 12:09:01', 'be'), '3 тыдні таму');
-
-  // test month
-  t.equal(be.format('2016-05-23 12:10:01', 'be'), 'месяц таму');
-  t.equal(be.format('2016-08-24 12:09:01', 'be'), 'праз 2 месяцы');
-
-  // test year
-  t.equal(be.format('2017-07-23 12:10:01', 'be'), 'праз год');
-  t.equal(be.format('2012-06-23 12:09:01', 'be'), '4 гады таму');
-
-  // end be locale test ---------------------------------------------------------
-
-  // 3. Test zh_CN locale
+  // 2. Test zh_CN locale
   // test second
   t.equal(timeago('2016-06-23 12:12:12', 'zh_CN').format('2016-06-23 12:12:09'), '刚刚');
   t.equal(timeago('2016-06-23 12:12:12', 'zh_CN').format('2016-06-23 12:12:01'), '11秒前');
@@ -136,9 +97,13 @@ test('timeago.js show be tested', function (t) {
 
   // end zh_CN locale test ---------------------------------------------------------
 
-  // 2. Test ru locale
+  // 3. Test ru locale
   require('./locales/ru')(t);
   // end ru locale test ---------------------------------------------------------
+
+  // 4. Test be locale
+  require('./locales/be')(t);
+  // end be locale test ---------------------------------------------------------
 
   // end locale tests #################################################################
 
