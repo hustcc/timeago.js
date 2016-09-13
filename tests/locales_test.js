@@ -48,7 +48,3 @@ fs.readdir('locales', function(err, files) {
   // test them
   test_locales(files);
 });
-
-
-
-

@@ -35,7 +35,11 @@ test('timeago.js show be tested', function (t) {
 
   // locale tests #################################################################
 
+<<<<<<< HEAD
   // 1. Test EN locale
+=======
+  // 1. Test en locale
+>>>>>>> 7fb909e77858a5267435599ef48d1baa771045e8
   // test second
   t.equal(timeago('2016-06-23 12:12:12').format('2016-06-23 12:12:09'), 'just now');
   t.equal(timeago('2016-06-23 12:12:12').format('2016-06-23 12:12:01'), '11 seconds ago');
@@ -131,6 +135,10 @@ test('timeago.js show be tested', function (t) {
   t.equal(timeago('2020-06-23 15:08:12', 'zh_CN').format('2016-06-23 12:09:01'), '4年前');
 
   // end zh_CN locale test ---------------------------------------------------------
+
+  // 2. Test ru locale
+  require('./locales/ru')(t);
+  // end ru locale test ---------------------------------------------------------
 
   // end locale tests #################################################################
 
