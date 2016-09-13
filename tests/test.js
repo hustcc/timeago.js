@@ -34,7 +34,7 @@ test('timeago.js show be tested', function (t) {
   t.equal(timeago_reg.format('2016-06-22', 'test_local'), '1 day xxx');
 
   // locale tests #################################################################
-  
+
   // 1. Test en locale
   // test second
   t.equal(timeago('2016-06-23 12:12:12').format('2016-06-23 12:12:09'), 'just now');
@@ -98,6 +98,10 @@ test('timeago.js show be tested', function (t) {
   t.equal(timeago('2020-06-23 15:08:12', 'zh_CN').format('2016-06-23 12:09:01'), '4年前');
 
   // end zh_CN locale test ---------------------------------------------------------
+
+  // 2. Test ru locale
+  require('./locales/ru')(t);
+  // end ru locale test ---------------------------------------------------------
 
   // end locale tests #################################################################
 
