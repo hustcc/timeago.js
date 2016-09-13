@@ -33,6 +33,9 @@ test('timeago.js show be tested', function (t) {
   });
   t.equal(timeago_reg.format('2016-06-22', 'test_local'), '1 day xxx');
 
+  // locale tests #################################################################
+  
+  // 1. Test en locale
   // test second
   t.equal(timeago('2016-06-23 12:12:12').format('2016-06-23 12:12:09'), 'just now');
   // test second
@@ -62,34 +65,9 @@ test('timeago.js show be tested', function (t) {
   t.equal(timeago('2017-06-23 13:12:12').format('2016-06-23 12:10:01'), '1 year ago');
   t.equal(timeago('2020-06-23 15:08:12').format('2016-06-23 12:09:01'), '4 years ago');
 
-  // relative now
-  t.equal(timeago().format(new Date().getTime() - 11 * 1000 * 60 * 60), '11 hours ago');
+  // end en locale test ---------------------------------------------------------
 
-  // timestamp is also can work
-  var current = new Date().getTime();
-  t.equal(timeago(current).format(current - 8 * 1000 * 60 * 60 * 24), '1 week ago');
-  t.equal(timeago(current).format(current - 31536000 * 1000 + 1000), '11 months ago');
-
-  // Date()
-  var current = new Date();
-  t.equal(timeago(current).format(current), 'just now');
-
-
-  // test leap year
-  t.equal(timeago('2016-03-01 12:00:00').format('2016-02-28 12:00:00'), '2 days ago');
-  t.equal(timeago('2015-03-01 12:00:00').format('2015-02-28 12:00:00'), '1 day ago');
-
-  // test default locale
-  t.equal(timeago('2016-03-01 12:00:00').format('2016-02-28 12:00:00'), '2 days ago');
-  t.equal(timeago('2016-03-01 12:00:00', 'zh_CN').format('2016-02-28 12:00:00'), '2天前');
-
-  // test setLocale
-  var newTimeAgo = timeago('2016-03-01 12:00:00');
-  t.equal(newTimeAgo.format('2016-02-28 12:00:00'), '2 days ago');
-  newTimeAgo.setLocale('zh_CN');
-  t.equal(newTimeAgo.format('2016-02-28 12:00:00'), '2天前');
-
-  // test Chinese
+  // 2. Test zh_CN locale
   // test second
   t.equal(timeago('2016-06-23 12:12:12', 'zh_CN').format('2016-06-23 12:12:09'), '刚刚');
   // test second
@@ -119,6 +97,36 @@ test('timeago.js show be tested', function (t) {
   t.equal(timeago('2017-06-23 13:12:12', 'zh_CN').format('2016-06-23 12:10:01'), '1年前');
   t.equal(timeago('2020-06-23 15:08:12', 'zh_CN').format('2016-06-23 12:09:01'), '4年前');
 
+  // end zh_CN locale test ---------------------------------------------------------
 
+  // end locale tests #################################################################
+
+  // testcase for other points
+  // relative now
+  t.equal(timeago().format(new Date().getTime() - 11 * 1000 * 60 * 60), '11 hours ago');
+
+  // timestamp is also can work
+  var current = new Date().getTime();
+  t.equal(timeago(current).format(current - 8 * 1000 * 60 * 60 * 24), '1 week ago');
+  t.equal(timeago(current).format(current - 31536000 * 1000 + 1000), '11 months ago');
+
+  // Date()
+  var current = new Date();
+  t.equal(timeago(current).format(current), 'just now');
+
+
+  // test leap year
+  t.equal(timeago('2016-03-01 12:00:00').format('2016-02-28 12:00:00'), '2 days ago');
+  t.equal(timeago('2015-03-01 12:00:00').format('2015-02-28 12:00:00'), '1 day ago');
+
+  // test default locale
+  t.equal(timeago('2016-03-01 12:00:00').format('2016-02-28 12:00:00'), '2 days ago');
+  t.equal(timeago('2016-03-01 12:00:00', 'zh_CN').format('2016-02-28 12:00:00'), '2天前');
+
+  // test setLocale
+  var newTimeAgo = timeago('2016-03-01 12:00:00');
+  t.equal(newTimeAgo.format('2016-02-28 12:00:00'), '2 days ago');
+  newTimeAgo.setLocale('zh_CN');
+  t.equal(newTimeAgo.format('2016-02-28 12:00:00'), '2天前');
   t.end();
 });
