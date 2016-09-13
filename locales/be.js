@@ -14,13 +14,13 @@ module.exports = function(number, index) {
     case 3: return [minutes(number) + ' таму', 'праз ' + minutes(number)];
     case 4:
     case 5: return [hours(number) + ' таму', 'праз ' + hours(number)];
-    case 6: return ['учора', 'заўтра'];
+    case 6: 
     case 7: return [days(number) + ' таму', 'праз ' + days(number)];
     case 8:
     case 9: return [weeks(number) + ' таму', 'праз ' + weeks(number)];
     case 10:
     case 11: return [months(number) + ' таму', 'праз ' + months(number)];
-    case 12: 
+    case 12:
     case 13: return [years(number) + ' таму', 'праз ' + years(number)];
     default: return ['', '']
   }
