@@ -23,8 +23,8 @@ module.exports = function(t) {
   t.equal(tm.format('2016-06-20 12:32:00'), 'праз 2 хвіліны');
   t.equal(tm.format('2016-06-20 12:35:00'), 'праз 5 хвілін');
   t.equal(tm.format('2016-06-20 12:51:00'), 'праз 21 хвіліну');
-  //
-  // // test hour
+  
+  // test hour
   t.equal(tm.format('2016-06-20 11:30:00'), 'гадзіну таму');
   t.equal(tm.format('2016-06-20 10:30:00'), '2 гадзіны таму');
   t.equal(tm.format('2016-06-20 7:30:00'), '5 гадзін таму');
