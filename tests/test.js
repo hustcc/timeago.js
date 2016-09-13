@@ -3,7 +3,23 @@
 var test = require('tape');
 var timeago = require('..');
 
+var fs = require('fs');
+var pys = require('pys');
+
 test('timeago.js show be tested', function (t) {
+  // locale tests #################################################################
+  // read all the locales test in `tests/locales` dir
+  fs.readdir('tests/locales', function(err, files) {
+    var locale = '';
+    for (var i = 0; i < files.length ; i++) {
+      locale = pys(files[i])('0:-3');
+      console.log('\nLocale testcase for ['+ locale +']');
+      // require in the locales testcases
+      require('./locales/' + locale)(t);
+    }
+  });
+  // end locale tests #############################################################
+
 
   // test locale, can set the locale
   t.equal(timeago('2016-06-23').format('2016-06-22'), '1 day ago');
@@ -32,78 +48,6 @@ test('timeago.js show be tested', function (t) {
     ][index];
   });
   t.equal(timeago_reg.format('2016-06-22', 'test_local'), '1 day xxx');
-
-  // locale tests #################################################################
-
-  // 1. Test en locale
-  // test second
-  t.equal(timeago('2016-06-23 12:12:12').format('2016-06-23 12:12:09'), 'just now');
-  // test second
-  t.equal(timeago('2016-06-23 12:12:12').format('2016-06-23 12:12:01'), '11 seconds ago');
-
-  // test minute
-  t.equal(timeago('2016-06-23 12:11:12').format('2016-06-23 12:10:01'), '1 minute ago');
-  t.equal(timeago('2016-06-23 12:12:12').format('2016-06-23 12:09:01'), '3 minutes ago');
-
-  // test hour
-  t.equal(timeago('2016-06-23 13:12:12').format('2016-06-23 12:10:01'), '1 hour ago');
-  t.equal(timeago('2016-06-23 15:08:12').format('2016-06-23 12:09:01'), '2 hours ago');
-
-  // test day
-  t.equal(timeago('2016-06-24 13:12:12').format('2016-06-23 12:10:01'), '1 day ago');
-  t.equal(timeago('2016-06-25 15:08:12').format('2016-06-23 12:09:01'), '2 days ago');
-
-  // test week
-  t.equal(timeago('2016-06-30 13:12:12').format('2016-06-23 12:10:01'), '1 week ago');
-  t.equal(timeago('2016-07-18 15:08:12').format('2016-06-23 12:09:01'), '3 weeks ago');
-
-  // test month
-  t.equal(timeago('2016-07-25 13:12:12').format('2016-06-23 12:10:01'), '1 month ago');
-  t.equal(timeago('2016-08-23 15:08:12').format('2016-06-23 12:09:01'), '2 months ago');
-
-  // test year
-  t.equal(timeago('2017-06-23 13:12:12').format('2016-06-23 12:10:01'), '1 year ago');
-  t.equal(timeago('2020-06-23 15:08:12').format('2016-06-23 12:09:01'), '4 years ago');
-
-  // end en locale test ---------------------------------------------------------
-
-  // 2. Test zh_CN locale
-  // test second
-  t.equal(timeago('2016-06-23 12:12:12', 'zh_CN').format('2016-06-23 12:12:09'), '刚刚');
-  // test second
-  t.equal(timeago('2016-06-23 12:12:12', 'zh_CN').format('2016-06-23 12:12:01'), '11秒前');
-  t.equal(timeago('2016-06-23 12:12:01', 'zh_CN').format('2016-06-23 12:12:12'), '11秒后');
-  // test minute
-  t.equal(timeago('2016-06-23 12:11:12', 'zh_CN').format('2016-06-23 12:10:01'), '1分钟前');
-  t.equal(timeago('2016-06-23 12:12:12', 'zh_CN').format('2016-06-23 12:09:01'), '3分钟前');
-
-  // test hour
-  t.equal(timeago('2016-06-23 13:12:12', 'zh_CN').format('2016-06-23 12:10:01'), '1小时前');
-  t.equal(timeago('2016-06-23 15:08:12', 'zh_CN').format('2016-06-23 12:09:01'), '2小时前');
-
-  // test day
-  t.equal(timeago('2016-06-24 13:12:12', 'zh_CN').format('2016-06-23 12:10:01'), '1天前');
-  t.equal(timeago('2016-06-25 15:08:12', 'zh_CN').format('2016-06-23 12:09:01'), '2天前');
-
-  // test week
-  t.equal(timeago('2016-06-30 13:12:12', 'zh_CN').format('2016-06-23 12:10:01'), '1周前');
-  t.equal(timeago('2016-07-18 15:08:12', 'zh_CN').format('2016-06-23 12:09:01'), '3周前');
-
-  // test month
-  t.equal(timeago('2016-07-25 13:12:12', 'zh_CN').format('2016-06-23 12:10:01'), '1月前');
-  t.equal(timeago('2016-08-23 15:08:12', 'zh_CN').format('2016-06-23 12:09:01'), '2月前');
-
-  // test year
-  t.equal(timeago('2017-06-23 13:12:12', 'zh_CN').format('2016-06-23 12:10:01'), '1年前');
-  t.equal(timeago('2020-06-23 15:08:12', 'zh_CN').format('2016-06-23 12:09:01'), '4年前');
-
-  // end zh_CN locale test ---------------------------------------------------------
-
-  // 2. Test ru locale
-  require('./locales/ru')(t);
-  // end ru locale test ---------------------------------------------------------
-
-  // end locale tests #################################################################
 
   // testcase for other points
   // relative now

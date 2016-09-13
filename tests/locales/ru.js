@@ -2,7 +2,7 @@ var timeago = require('../../');
 
 module.exports = function(t) {
   var tm = timeago('2016-06-20 12:30:00', 'ru');
-    tm.register('ru', require('../../locales/ru'));
+  tm.register('ru', require('../../locales/ru'));
 
   // test second
   t.equal(tm.format('2016-06-20 12:30:00'), 'только что');
