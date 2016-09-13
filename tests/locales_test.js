@@ -3,7 +3,7 @@
 var fs = require('fs');
 var test = require('tape');
 var timeago = require('..');
-var psy = require('pys');
+var pys = require('pys');
 
 // all the locales code, if missing, please add them.
 var all_locales = require('../locales/locales.js'); 
@@ -11,7 +11,7 @@ var all_locales = require('../locales/locales.js');
 function test_locales(tobeTested) {
   test('Testing locales', function (t) {
     for (var i = 0; i < tobeTested.length ; i++) {
-      var locale_name = psy(tobeTested[i])('0:-3');
+      var locale_name = pys(tobeTested[i])('0:-3');
       t.ok(all_locales.indexOf(locale_name) >= 0, 'locale [' + locale_name + ']');
 
       console.log('\nTesting locales [' + locale_name + ']');
