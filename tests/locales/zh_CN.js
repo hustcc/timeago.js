@@ -2,7 +2,7 @@ var timeago = require('../../');
 
 module.exports = function(t) {
   var tm = timeago('2016-06-20 12:30:00', 'zh_CN');
-    tm.register('zh_CN', require('../../locales/zh_CN'));
+  tm.register('zh_CN', require('../../locales/zh_CN'));
 
   // test second
   t.equal(tm.format('2016-06-20 12:30:00'), '刚刚');
@@ -23,8 +23,8 @@ module.exports = function(t) {
   t.equal(tm.format('2016-06-20 12:32:00'), '2分钟后');
   t.equal(tm.format('2016-06-20 12:35:00'), '5分钟后');
   t.equal(tm.format('2016-06-20 12:51:00'), '21分钟后');
-  //
-  // // test hour
+  
+  // test hour
   t.equal(tm.format('2016-06-20 11:30:00'), '1小时前');
   t.equal(tm.format('2016-06-20 10:30:00'), '2小时前');
   t.equal(tm.format('2016-06-20 7:30:00'), '5小时前');

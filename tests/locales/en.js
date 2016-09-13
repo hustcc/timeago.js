@@ -2,7 +2,7 @@ var timeago = require('../../');
 
 module.exports = function(t) {
   var tm = timeago('2016-06-20 12:30:00', 'en');
-    tm.register('en', require('../../locales/en'));
+  tm.register('en', require('../../locales/en'));
 
   // test second
   t.equal(tm.format('2016-06-20 12:30:00'), 'just now');
@@ -23,8 +23,8 @@ module.exports = function(t) {
   t.equal(tm.format('2016-06-20 12:32:00'), 'in 2 minutes');
   t.equal(tm.format('2016-06-20 12:35:00'), 'in 5 minutes');
   t.equal(tm.format('2016-06-20 12:51:00'), 'in 21 minutes');
-  //
-  // // test hour
+  
+  // test hour
   t.equal(tm.format('2016-06-20 11:30:00'), '1 hour ago');
   t.equal(tm.format('2016-06-20 10:30:00'), '2 hours ago');
   t.equal(tm.format('2016-06-20 7:30:00'), '5 hours ago');
