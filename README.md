@@ -157,12 +157,12 @@ timeago.format('2016-06-12', 'test_local');
 
 You can see [locales](locales) dir for more locales. 
 
-Please submit a GitHub pull request for corrections or additional languages, add locale key into `locales/localse.js`, and add the locale testcases into `tests/locales` dir.
+Please submit a GitHub pull request for corrections or additional languages, add locale key into `locales/locales.js`, and add the locale testcases into `tests/locales` dir.
 
 
 # 3. Contributions
 
-1. The website is base on [rmm5t/jquery-timeago](https://github.com/rmm5t/jquery-timeago) which is a nice and featured project but depends on jQuery.
+1. The website is based on [rmm5t/jquery-timeago](https://github.com/rmm5t/jquery-timeago) which is a nice and featured project but depends on jQuery.
 
 2. **locale translations**: The library need the locale translations. You can:
 
