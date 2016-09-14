@@ -5,7 +5,7 @@
  - Localization supported.
  - Time `ago` and time `in` supported.
  - Real-time render supported.
- - npm and browser supported.
+ - Nodejs and browserjs supported.
  - Well tested.
 
 [Official website](http://timeago.org/). 中文版说明文档[点这里](README_zh.md)。 React version here: [timeago-react](https://github.com/hustcc/timeago-react). Python version here: [timeago](https://github.com/hustcc/timeago).
@@ -44,7 +44,7 @@ npm install timeago.js
 **2. import timeago.js**
 
 
-UMD import is supported, then get global object: `timeago`.
+ES6 style is supported, then get global object: `timeago`.
 
 ```js
 import timeago from 'timeago.js';
@@ -155,7 +155,9 @@ timeago.register('test_local', test_local_dict);
 timeago.format('2016-06-12', 'test_local');
 ```
 
-You can see [locales](locales) dir for more locales. Please submit a GitHub pull request for corrections or additional languages, and add the locale key into `tests/locales_test.js`.
+You can see [locales](locales) dir for more locales. 
+
+Please submit a GitHub pull request for corrections or additional languages, add locale key into `locales/localse.js`, and add the locale testcases into `tests/locales` dir.
 
 
 # 3. Contributions
