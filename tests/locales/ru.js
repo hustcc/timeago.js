@@ -1,6 +1,4 @@
-var tb = require('../test-builder')(Date.now()).register('ru', require('../../locales/ru'), true);
-
-module.exports = function(t) {
+module.exports = function(t, tb) {
   // test seconds
   t.equal(tb.subSeconds(1), 'только что');
   t.equal(tb.subSeconds(10), '10 секунд назад');

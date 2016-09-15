@@ -15,7 +15,8 @@ test('timeago.js show be tested', function (t) {
       locale = pys(files[i])('0:-3');
       console.log('\nLocale testcase for ['+ locale +']');
       // require in the locales testcases
-      require('./locales/' + locale)(t);
+      var tb = require('./test-builder')(Date.now()).register(locale, require('../locales/' + locale), true);
+      require('./locales/' + locale)(t, tb);
     }
   });
   // end locale tests #############################################################
