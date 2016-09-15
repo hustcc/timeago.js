@@ -1,6 +1,6 @@
 module.exports = function(number, index) {
   return [
-    ['ara mateix', 'd\'aquí un moment'],
+    ['fa un moment', 'd\'aquí un moment'],
     ['fa %s segons', 'd\'aquí %s segons'],
     ['fa 1 minut', 'd\'aquí 1 minut'],
     ['fa %s minuts', 'd\'aquí %s minuts'],
