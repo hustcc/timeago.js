@@ -16,7 +16,7 @@ test('timeago.js next interval show be tested', function (t) {
   // 3 days
   t.true(timeago().next_interval(60 * 60 * 24 * 3 + 100), 3600 * 24 -100);
 
-  // 2 weenk
+  // 2 weeks
   t.true(timeago().next_interval(60 * 60 * 24 * 15 + 100),  3600 * 24 * 6 - 100);
 
   // 10 years
