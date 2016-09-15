@@ -1,6 +1,6 @@
 # timeago.js
 
-> **timeago.js** is a simple library (less then `2 kb`) to used to format datetime with `*** time ago` statement. eg: '3 hours ago'.
+> **timeago.js** is a simple library (less then `2 kb`) that is used to format datetime with `*** time ago` statement. eg: '3 hours ago'.
 
  - Localization supported.
  - Time `ago` and time `in` supported.
@@ -72,7 +72,7 @@ timeago.format('2016-06-12')
 
 **1. Set relative date**
 
-`timeago` is relate to current date default. you can set it by yourself.
+`timeago` is relative to the current date default. You can set it yourself.
 
 ```js
 var timeago = timeago('2016-06-10 12:12:12'); // set the relative date here.
@@ -93,7 +93,7 @@ HTML code：
 ```
 js code
 ```js
-// use render to render it realtime
+// use render to render it in realtime
 timeago().render(document.querySelectorAll('.need_to_be_rendered'), 'zh_CN');
 // or cancel realtime render
 timeago().cancel()
@@ -101,7 +101,7 @@ timeago().cancel()
 
 The input API `render` should be DOM object/array, support pure Javascript, Node, and jQuery DOM object.
 
-The API `cancel` will clear all the render timers and release all the resources.
+The API `cancel` will clear all the render timers and release all resources.
 
 The DOM object should have the attribute `data-timeago` with date formated string.
 
@@ -124,7 +124,7 @@ timeago().setLocale('zh_CN');
 
 **5. Register local language**
 
-You can `register` you own language. All keys are needed. e.g.
+You can `register` your own language. All keys are needed. e.g.
 
 ```js
 // the local dict example is below.
@@ -164,7 +164,7 @@ Please submit a GitHub pull request for corrections or additional languages, add
 
 1. The website is based on [rmm5t/jquery-timeago](https://github.com/rmm5t/jquery-timeago) which is a nice and featured project but depends on jQuery.
 
-2. **locale translations**: The library need the locale translations. You can:
+2. **locale translations**: The library needs locale translations. You can:
 
  - Open an issue to write the locale translations, how to ? see [here](https://github.com/hustcc/timeago.js/blob/master/locales/en.js).
  - Or pull a request, please **test** it before by exec `npm test` or `node tests/locales_test.js`.
