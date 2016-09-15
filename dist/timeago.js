@@ -19,8 +19,8 @@
    * How to use it?
    * var timeagoLib = require('timeago.js');
    * var timeago = timeagoLib(); // all use default.
-   * var timeago = timeagoLib('2016-09-10'); // the relative date is 2106-09-10, so the 2016-09-11 will be 1 day ago.
-   * var timeago = timeagoLib('2016-09-10', 'zh_CN'); // the relative date is 2106-09-10, and locale is zh_CN, so the 2016-09-11 will be 1天前.
+   * var timeago = timeagoLib('2016-09-10'); // the relative date is 2016-09-10, so the 2016-09-11 will be 1 day ago.
+   * var timeago = timeagoLib('2016-09-10', 'zh_CN'); // the relative date is 2016-09-10, and locale is zh_CN, so the 2016-09-11 will be 1天前.
   **/
   var timeago = function(nowDate, defaultLocale) {
     // if do not set the defaultLocale, set it with `en`
@@ -29,7 +29,7 @@
     }
     var timers = {}, // real-time render timers
     cnt = 0, // the time counter, for time key
-    // second, minite, hour, day, week, month, year(365 days)
+    // second, minute, hour, day, week, month, year(365 days)
     SEC_ARRAY = [60, 60, 24, 7, 365/7/12, 12],
     SEC_ARRAY_LEN = 6,
     indexMapEn = ['second', 'minute', 'hour', 'day', 'week', 'month', 'year'],
