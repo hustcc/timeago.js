@@ -20,17 +20,18 @@ module.exports = function(number, index) {
         case 13: timeType = 6; break;
     }
 
-    return ['منذ' + ' ' + formatTime(timeType, number), 'بعد' + ' ' + formatTime(timeType, number)];
+    var timeStr = formatTime(timeType, number);
+    return ['منذ' + ' ' + timeStr, 'بعد' + ' ' + timeStr];
 }
 
 var timeTypes = [
-    [ 'ثانية', 'ثانيتين', '%s ثوان', '%s ثانية' ],   // Seconds
-    [ 'دقيقة', 'دقيقتين', '%s دقائق', '%s دقيقة' ],  // Minutes
-    [ 'ساعة', 'ساعتين', '%s ساعات', '%s ساعة' ],     // Hours
-    [ 'يوم', 'يومين', '%s أيام', '%s يوم' ],         // Days
-    [ 'أسبوع', 'أسبوعين', '%s أسابيع', '%s أسبوع' ], // Weeks
-    [ 'شهر', 'شهرين', '%s أشهر', '%s شهر' ],         // Months
-    [ 'سنة', 'سنتين', '%s سنين', '%s سنة' ]          // Years
+    [ 'ثانية', 'ثانيتين', '%s ثوان', '%s ثانية' ],    // Seconds
+    [ 'دقيقة', 'دقيقتين', '%s دقائق', '%s دقيقة' ],   // Minutes
+    [ 'ساعة', 'ساعتين', '%s ساعات', '%s ساعة' ],      // Hours
+    [ 'يوم', 'يومين', '%s أيام', '%s يوماً' ],         // Days
+    [ 'أسبوع', 'أسبوعين', '%s أسابيع', '%s أسبوعاً' ], // Weeks
+    [ 'شهر', 'شهرين', '%s أشهر', '%s شهراً' ],         // Months
+    [ 'عام', 'عامين', '%s أعوام', '%s عاماً' ]         // Years
 ];
 
 function formatTime(type, n) {
