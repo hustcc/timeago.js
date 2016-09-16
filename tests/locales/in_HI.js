@@ -1,7 +1,7 @@
 module.exports = function(t, tb) {
   // test second
   t.equal(tb.subSeconds(1), 'अभी');
-  t.equal(tb.subSeconds(10), '10 सेकंड पहलेेे');
+  t.equal(tb.subSeconds(10), '10 सेकंड पहले');
   t.equal(tb.subSeconds(21), '21 सेकंड पहले');
   t.equal(tb.subSeconds(22), '22 सेकंड पहले');
   t.equal(tb.addSeconds(1), 'कुछ समय');
