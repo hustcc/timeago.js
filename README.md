@@ -1,6 +1,6 @@
 # timeago.js
 
-> **timeago.js** is a simple library (less then `2 kb`) that is used to format datetime with `*** time ago` statement. eg: '3 hours ago'.
+> **timeago.js** is a simple library (less than `2 kb`) that is used to format datetime with `*** time ago` statement. eg: '3 hours ago'.
 
  - Localization supported.
  - Time `ago` and time `in` supported.
@@ -93,7 +93,7 @@ HTML code：
 ```
 js code
 ```js
-// use render to render it in realtime
+// use render to render it in real time
 timeago().render(document.querySelectorAll('.need_to_be_rendered'), 'zh_CN');
 // or cancel realtime render
 timeago().cancel()
@@ -157,7 +157,7 @@ timeago.format('2016-06-12', 'test_local');
 
 You can see [locales](locales) dir for more locales. 
 
-[Locale contributions](#3-contributions) are welcome, thank you for submiting a GitHub pull request for corrections or additional languages. ^_^~
+[Locale contributions](#3-contributions) are welcome, thank you for submitting a GitHub pull request for corrections or additional languages. ^_^~
 
 
 # 3. Contributions
@@ -167,7 +167,7 @@ You can see [locales](locales) dir for more locales.
 2. **locale translations**: The library needs more locale translations. You can:
 
  - Open an issue to write the locale translations, or submit a pull request. How to ? see [en's translation](locales/en.js). 
- - Please **test** the locale by exec `npm test` or `node tests/locales_test.js`. How to write testcase, see [en's testcases](tests/locales/en.js).
+ - Please **test** the locale by exec `npm test` or `node tests/locales_test.js`. How to write testcase, see [en's test cases](tests/locales/en.js).
 
 
 # 4. LICENSE
