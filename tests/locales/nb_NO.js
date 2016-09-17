@@ -1,68 +1,63 @@
-var timeago = require('../../');
-
-module.exports = function(t) {
-  var tm = timeago('2016-06-20 12:30:00', 'nb_NO');
-  tm.register('nb_NO', require('../../locales/nb_NO'));
-
+module.exports = function(t, tb) {
   // test second
-  t.equal(tm.format('2016-06-20 12:30:00'), 'akkurat nå');
-  t.equal(tm.format('2016-06-20 12:29:50'), '10 sekunder siden');
-  t.equal(tm.format('2016-06-20 12:29:39'), '21 sekunder siden');
-  t.equal(tm.format('2016-06-20 12:29:38'), '22 sekunder siden');
-  t.equal(tm.format('2016-06-20 12:30:01'), 'om litt');
-  t.equal(tm.format('2016-06-20 12:30:10'), 'om 10 sekunder');
-  t.equal(tm.format('2016-06-20 12:30:21'), 'om 21 sekunder');
-  t.equal(tm.format('2016-06-20 12:30:22'), 'om 22 sekunder');
+  t.equal(tb.subSeconds(1), 'akkurat nå');
+  t.equal(tb.subSeconds(10), '10 sekunder siden');
+  t.equal(tb.subSeconds(21), '21 sekunder siden');
+  t.equal(tb.subSeconds(22), '22 sekunder siden');
+  t.equal(tb.addSeconds(1), 'om litt');
+  t.equal(tb.addSeconds(10), 'om 10 sekunder');
+  t.equal(tb.addSeconds(21), 'om 21 sekunder');
+  t.equal(tb.addSeconds(22), 'om 22 sekunder');
 
   // test minute
-  t.equal(tm.format('2016-06-20 12:29:00'), '1 minutt siden');
-  t.equal(tm.format('2016-06-20 12:28:00'), '2 minutter siden');
-  t.equal(tm.format('2016-06-20 12:25:00'), '5 minutter siden');
-  t.equal(tm.format('2016-06-20 12:9:00'), '21 minutter siden');
-  t.equal(tm.format('2016-06-20 12:31:00'), 'om 1 minutt');
-  t.equal(tm.format('2016-06-20 12:32:00'), 'om 2 minutter');
-  t.equal(tm.format('2016-06-20 12:35:00'), 'om 5 minutter');
-  t.equal(tm.format('2016-06-20 12:51:00'), 'om 21 minutter');
-  
+  t.equal(tb.subMinutes(1), '1 minutt siden');
+  t.equal(tb.subMinutes(2), '2 minutter siden');
+  t.equal(tb.subMinutes(5), '5 minutter siden');
+  t.equal(tb.subMinutes(21), '21 minutter siden');
+  t.equal(tb.addMinutes(1), 'om 1 minutt');
+  t.equal(tb.addMinutes(2), 'om 2 minutter');
+  t.equal(tb.addMinutes(5), 'om 5 minutter');
+  t.equal(tb.addMinutes(21), 'om 21 minutter');
+
   // test hour
-  t.equal(tm.format('2016-06-20 11:30:00'), '1 time siden');
-  t.equal(tm.format('2016-06-20 10:30:00'), '2 timer siden');
-  t.equal(tm.format('2016-06-20 7:30:00'), '5 timer siden');
-  t.equal(tm.format('2016-06-19 15:30:00'), '21 timer siden');
-  t.equal(tm.format('2016-06-20 13:30:00'), 'om 1 time');
-  t.equal(tm.format('2016-06-20 14:30:00'), 'om 2 timer');
-  t.equal(tm.format('2016-06-20 17:30:00'), 'om 5 timer');
-  t.equal(tm.format('2016-06-21 9:30:00'), 'om 21 timer');
+  t.equal(tb.subHours(1), '1 time siden');
+  t.equal(tb.subHours(2), '2 timer siden');
+  t.equal(tb.subHours(5), '5 timer siden');
+  t.equal(tb.subHours(21), '21 timer siden');
+  t.equal(tb.addHours(1), 'om 1 time');
+  t.equal(tb.addHours(2), 'om 2 timer');
+  t.equal(tb.addHours(5), 'om 5 timer');
+  t.equal(tb.addHours(21), 'om 21 timer');
 
   // test day
-  t.equal(tm.format('2016-06-19 12:30:00'), '1 dag siden');
-  t.equal(tm.format('2016-06-18 12:30:00'), '2 dager siden');
-  t.equal(tm.format('2016-06-15 12:30:00'), '5 dager siden');
-  t.equal(tm.format('2016-06-21 12:30:00'), 'om 1 dag');
-  t.equal(tm.format('2016-06-22 12:30:00'), 'om 2 dager');
-  t.equal(tm.format('2016-06-25 12:30:00'), 'om 5 dager');
+  t.equal(tb.subDays(1), '1 dag siden');
+  t.equal(tb.subDays(2), '2 dager siden');
+  t.equal(tb.subDays(5), '5 dager siden');
+  t.equal(tb.addDays(1), 'om 1 dag');
+  t.equal(tb.addDays(2), 'om 2 dager');
+  t.equal(tb.addDays(5), 'om 5 dager');
 
   // test week
-  t.equal(tm.format('2016-06-13 12:30:00'), '1 uke siden');
-  t.equal(tm.format('2016-06-06 12:30:00'), '2 uker siden');
-  t.equal(tm.format('2016-06-27 12:30:00'), 'om 1 uke');
-  t.equal(tm.format('2016-07-04 12:30:00'), 'om 2 uker');
+  t.equal(tb.subWeeks(1), '1 uke siden');
+  t.equal(tb.subWeeks(2), '2 uker siden');
+  t.equal(tb.addWeeks(1), 'om 1 uke');
+  t.equal(tb.addWeeks(2), 'om 2 uker');
 
   // test month
-  t.equal(tm.format('2016-05-20 12:30:00'), '1 måned siden');
-  t.equal(tm.format('2016-04-20 12:30:00'), '2 måneder siden');
-  t.equal(tm.format('2016-01-19 12:30:00'), '5 måneder siden');
-  t.equal(tm.format('2016-07-21 12:30:00'), 'om 1 måned');
-  t.equal(tm.format('2016-08-20 12:30:00'), 'om 2 måneder');
-  t.equal(tm.format('2016-11-20 12:30:00'), 'om 5 måneder');
+  t.equal(tb.subMonths(1), '1 måned siden');
+  t.equal(tb.subMonths(2), '2 måneder siden');
+  t.equal(tb.subMonths(5), '5 måneder siden');
+  t.equal(tb.addMonths(1), 'om 1 måned');
+  t.equal(tb.addMonths(2), 'om 2 måneder');
+  t.equal(tb.addMonths(5), 'om 5 måneder');
 
   // test year
-  t.equal(tm.format('2015-06-20 12:30:00'), '1 år siden');
-  t.equal(tm.format('2014-06-20 12:30:00'), '2 år siden');
-  t.equal(tm.format('2011-06-20 12:30:00'), '5 år siden');
-  t.equal(tm.format('1995-06-20 12:30:00'), '21 år siden');
-  t.equal(tm.format('2017-06-20 12:30:00'), 'om 1 år');
-  t.equal(tm.format('2018-06-20 12:30:00'), 'om 2 år');
-  t.equal(tm.format('2021-06-20 12:30:00'), 'om 5 år');
-  t.equal(tm.format('2037-06-20 12:30:00'), 'om 21 år');
+  t.equal(tb.subYears(1), '1 år siden');
+  t.equal(tb.subYears(2), '2 år siden');
+  t.equal(tb.subYears(5), '5 år siden');
+  t.equal(tb.subYears(21), '21 år siden');
+  t.equal(tb.addYears(1), 'om 1 år');
+  t.equal(tb.addYears(2), 'om 2 år');
+  t.equal(tb.addYears(5), 'om 5 år');
+  t.equal(tb.addYears(21), 'om 21 år');
 };

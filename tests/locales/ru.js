@@ -1,5 +1,5 @@
 module.exports = function(t, tb) {
-  // test seconds
+  // test second
   t.equal(tb.subSeconds(1), 'только что');
   t.equal(tb.subSeconds(10), '10 секунд назад');
   t.equal(tb.subSeconds(21), '21 секунду назад');
@@ -9,7 +9,7 @@ module.exports = function(t, tb) {
   t.equal(tb.addSeconds(21), 'через 21 секунду');
   t.equal(tb.addSeconds(22), 'через 22 секунды');
 
-  // test minutes
+  // test minute
   t.equal(tb.subMinutes(1), 'минуту назад');
   t.equal(tb.subMinutes(2), '2 минуты назад');
   t.equal(tb.subMinutes(5), '5 минут назад');
@@ -19,7 +19,7 @@ module.exports = function(t, tb) {
   t.equal(tb.addMinutes(5), 'через 5 минут');
   t.equal(tb.addMinutes(21), 'через 21 минуту');
 
-  // test hours
+  // test hour
   t.equal(tb.subHours(1), 'час назад');
   t.equal(tb.subHours(2), '2 часа назад');
   t.equal(tb.subHours(5), '5 часов назад');
@@ -29,7 +29,7 @@ module.exports = function(t, tb) {
   t.equal(tb.addHours(5), 'через 5 часов');
   t.equal(tb.addHours(21), 'через 21 час');
 
-  // test days
+  // test day
   t.equal(tb.subDays(1), 'вчера');
   t.equal(tb.subDays(2), '2 дня назад');
   t.equal(tb.subDays(5), '5 дней назад');
@@ -37,13 +37,13 @@ module.exports = function(t, tb) {
   t.equal(tb.addDays(2), 'через 2 дня');
   t.equal(tb.addDays(5), 'через 5 дней');
 
-  // test weeks
+  // test week
   t.equal(tb.subWeeks(1), 'неделю назад');
   t.equal(tb.subWeeks(2), '2 недели назад');
   t.equal(tb.addWeeks(1), 'через неделю');
   t.equal(tb.addWeeks(2), 'через 2 недели');
 
-  // test months
+  // test month
   t.equal(tb.subMonths(1), 'месяц назад');
   t.equal(tb.subMonths(2), '2 месяца назад');
   t.equal(tb.subMonths(5), '5 месяцев назад');
@@ -51,7 +51,7 @@ module.exports = function(t, tb) {
   t.equal(tb.addMonths(2), 'через 2 месяца');
   t.equal(tb.addMonths(5), 'через 5 месяцев');
 
-  // test years
+  // test year
   t.equal(tb.subYears(1), 'год назад');
   t.equal(tb.subYears(2), '2 года назад');
   t.equal(tb.subYears(5), '5 лет назад');
