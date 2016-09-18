@@ -150,7 +150,7 @@
     node.innerHTML = this.formatDiff(diff, this.validateAndGetLocale(locale));
     // 通过diff来判断下一次执行的时间
     this.timers['k' + cnt] = setTimeout(function() {
-      self.doRender(node, date, locale, cnt); // TODO this?
+      self.doRender(node, date, locale, cnt);
     }, nextInterval(diff) * 1000);
   };
   // returns now date if it was set, otherwise - current date
