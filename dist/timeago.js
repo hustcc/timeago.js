@@ -35,7 +35,7 @@
   // second, minute, hour, day, week, month, year(365 days)
   SEC_ARRAY = [60, 60, 24, 7, 365/7/12, 12],
   SEC_ARRAY_LEN = 6,
-  attr_datetime = 'datetime',
+  attr_datetime = 'datetime';
   
   /**
    * timeago: the function to get `timeago` instance.
@@ -49,7 +49,7 @@
    * var timeago = timeagoLib(null, '2016-09-10'); // the relative date is 2016-09-10, so the 2016-09-11 will be 1 day ago.
    * var timeago = timeagoLib('zh_CN', '2016-09-10'); // the relative date is 2016-09-10, and locale is zh_CN, so the 2016-09-11 will be 1天前.
   **/
-  timeago = function(defaultLocale, nowDate) {
+  function Timeago(defaultLocale, nowDate) {
     var timers = {}; // real-time render timers
     // if do not set the defaultLocale, set it with `en`
     if (! defaultLocale) {
@@ -196,7 +196,12 @@
       defaultLocale = locale;
     };
     return this;
-  };
+  }
+
+  function timeagoFactory(defaultLocale, nowDate) {
+    return new Timeago(defaultLocale, nowDate);
+  }
+
   /**
    * register: register a new language locale
    * - locale: locale name, e.g. en / zh_CN, notice the standard.
@@ -208,10 +213,10 @@
    * timeagoLib.register('the locale name', the_locale_func);
    * // or
    * timeagoLib.register('pl', require('timeago.js/locales/pl'));
-  **/
-  timeago.register = function(locale, localeFunc) {
+   **/
+  timeagoFactory.register = function(locale, localeFunc) {
     locales[locale] = localeFunc;
   };
 
-  return timeago;
+  return timeagoFactory;
 });
