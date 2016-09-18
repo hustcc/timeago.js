@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>timeago.js: is a tiny(2kb) library used to format date with `*** time ago`. eg: '3 hours ago'. No dependence.</title>
+    <title>timeago.js: is a tiny(2kb) library used to format date with `*** time ago`. eg: '3 hours ago'. No dependency.</title>
     <meta name="keywords" content="timeago, timeago.js, datetime,*** time ago, javascript timeago, react-timeago, jquery-timeago, timeago.org" />
     <meta name="description" content="timeago.js is a tiny(2kb) library used to format date with `*** time ago`. eg: '3 hours ago'. No dependence. and support automatically updating fuzzy timestamps." />
     <link rel="shortcut icon" href="demo/clock.png" />
@@ -40,7 +40,7 @@
 
       <h3>What ?</h3>
       <p>
-        <strong>timeago.js</strong> is a tiny(2kb) library used to format date with `*** time ago`. eg: '3 hours ago'. No dependence. and support automatically updating fuzzy timestamps (e.g. "4 minutes ago" or "about 1 day ago").  <a href="https://github.com/hustcc/timeago.js">Download</a>, view the examples, and enjoy.
+        <strong>timeago.js</strong> is a tiny(2kb) library used to format date with `*** time ago`. eg: '3 hours ago'. No dependency. and support automatically updating fuzzy timestamps (e.g. "4 minutes ago" or "about 1 day ago").  <a href="https://github.com/hustcc/timeago.js">Download</a>, view the examples, and enjoy.
       </p>
      
       <p class="example">
@@ -55,7 +55,7 @@
       <ul>
         <li>Avoid timestamps dated "1 minute ago" even though the page was opened 10 minutes ago; <em>timeago refreshes automatically</em>.</li>
         <li>You can <em>take full advantage of page caching</em> in your web applications, because the timestamps aren't calculated on the server.</li>
-        <li>Very tiny(~2kb), and has <em>no dependence</em>, e.g. jQuery.</li>
+        <li>Very tiny(~2kb), and has <em>no dependency</em>, e.g. jQuery.</li>
       </ul>
 
       <h3>How ?</h3>
@@ -87,7 +87,7 @@ new timeago().render($('.need_to_be_rendered'));</pre>
         This will realtime render all <tt>selected</tt>(javascript DOM selector, or jQuery selector all are supported) elements with a class of <tt>need_to_be_rendered</tt>.
       </p>
       <pre>
-&lt;span class=&quot;<em>need_to_be_rendered</em>&quot; data-timeago=&quot;<em>2016-07-07T09:24:17Z</em>&quot;&gt;July 07, 2016&lt;/span&gt;</pre>
+&lt;span class=&quot;<em>need_to_be_rendered</em>&quot; datetime=&quot;<em>2016-07-07T09:24:17Z</em>&quot;&gt;July 07, 2016&lt;/span&gt;</pre>
       <p class="how">
         You can also use it programmatically:
       </p>

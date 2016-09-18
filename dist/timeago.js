@@ -36,7 +36,6 @@
   SEC_ARRAY = [60, 60, 24, 7, 365/7/12, 12],
   SEC_ARRAY_LEN = 6,
   attr_datetime = 'datetime',
-  attr_data_timeago = 'data-timeago',
   
   /**
    * timeago: the function to get `timeago` instance.
@@ -148,8 +147,8 @@
     }
     // get the datetime attribute, jQuery and DOM
     function get_date_attr(node) {
-      if (node.getAttribute) return node.getAttribute(attr_datetime) || node.getAttribute(attr_data_timeago);
-      if(node.attr) return node.attr(attr_datetime) || node.attr(attr_data_timeago);
+      if (node.getAttribute) return node.getAttribute(attr_datetime);
+      if(node.attr) return node.attr(attr_datetime);
     }
     /**
      * render: render the DOM real-time.
