@@ -1,6 +1,6 @@
 'use strict';
 
-const timeago = require('../'),
+const timeagoLib = require('../'),
   HOURS_IN_MONTH = 24*7*(365/7/12),
   DAYS_IN_WEEK = 7;
 
@@ -12,7 +12,7 @@ class TimeagoBuilder {
     this.nowDate = new Date(nowDate);
 
     /** @private */
-    this.timeago = timeago(nowDate);
+    this.timeago = new timeagoLib(null, nowDate);
 
     this.useLocale(defaultLocale);
   }
@@ -26,7 +26,7 @@ class TimeagoBuilder {
    */
   register(code, fn, use) {
     use = use || false;
-    this.timeago.register(code, fn);
+    timeagoLib.register(code, fn);
 
     if (use) {
       this.timeago.setLocale(code);

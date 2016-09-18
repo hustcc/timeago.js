@@ -63,68 +63,69 @@ or link with `script` in html files:
 **3. Use class `timeago`**
 
 ```js
-var timeago = timeago();
-timeago.format('2016-06-12')
+var timeagoInstance = new timeago();
+timeagoInstance.format('2016-06-12');
 ```
 
 
 # 2. Detailed Usage
 
-**1. Set relative date**
-
-`timeago` is relative to the current date default. You can set it yourself.
-
-```js
-var timeago = timeago('2016-06-10 12:12:12'); // set the relative date here.
-timeago.format('2016-06-12', 'zh_CN');
-```
-
-**2. Use timestamp**
-
-```
-timeago().format(new Date().getTime() - 11 * 1000 * 60 * 60); // will get '11 hours ago'
-```
-
-**3. Automatic rendering**
-
-HTML code：
-```html
-<div class="need_to_be_rendered" data-timeago="2016-06-30 09:20:00"></div>
-```
-js code
-```js
-// use render to render it in real time
-timeago().render(document.querySelectorAll('.need_to_be_rendered'), 'zh_CN');
-// or cancel realtime render
-timeago().cancel()
-```
-
-The input API `render` should be DOM object/array, support pure Javascript, Node, and jQuery DOM object.
-
-The API `cancel` will clear all the render timers and release all resources.
-
-The DOM object should have the attribute `data-timeago` with date formated string.
-
-**4. Localization**
+**1. Localization**
 
 Default locale is **`en`**, and the library supports `en` and `zh_CN`.
 
 ```js
-var timeago = timeago();
-timeago.format('2016-06-12', 'zh_CN');
+var timeagoInstance = new timeago();
+timeagoInstance.format('2016-06-12', 'zh_CN');
 ```
 
 You can change the locale in the constructor or use the `setLocale` method;
 
 ```js
-var timeago = timeago(null, 'zh_CN');
+var timeagoInstance = new timeago('zh_CN');
 // or
-timeago().setLocale('zh_CN');
+new timeago().setLocale('zh_CN');
 ```
+
+**2. Set relative date**
+
+`timeago` is relative to the current date default. You can set it yourself.
+
+```js
+var timeagoInstance = new timeago(null, '2016-06-10 12:12:12'); // set the relative date here.
+timeagoInstance.format('2016-06-12', 'zh_CN');
+```
+
+**3. Use timestamp**
+
+```
+new timeago().format(new Date().getTime() - 11 * 1000 * 60 * 60); // will get '11 hours ago'
+```
+
+**4. Automatic rendering**
+
+HTML code：
+```html
+<div class="need_to_be_rendered" datetime="2016-06-30 09:20:00"></div>
+```
+js code
+```js
+var timeagoInstance = new timeago();
+// use render to render it in real time
+timeagoInstance.render(document.querySelectorAll('.need_to_be_rendered'), 'zh_CN');
+// or cancel real-time render
+timeagoInstance.cancel()
+```
+
+The input API `render` should be DOM object/array, pure javascript DOM node, and jQuery DOM object supported.
+
+The API `cancel` will clear all the render timers and release all resources of the instance.
+
+The DOM object should have the attribute `datetime` or `data-timeago` with date formated string.
 
 **5. Register local language**
 
-You can `register` your own language. Like below, e.g.
+You can `register` your own language, this is a class static method. Like below, e.g.
 
 ```js
 // the local dict example is below.
@@ -148,16 +149,16 @@ var test_local_dict = function(number, index) {
     ['%s years ago', 'in %s years']
   ][index];
 };
-
-var timeago = timeago();
+// register your locale with timeago
 timeago.register('test_local', test_local_dict);
-
-timeago.format('2016-06-12', 'test_local');
+// use the locale with timeago instance 
+var timeagoInstance = new timeago();
+timeagoInstance.format('2016-06-12', 'test_local');
 ```
 
 You can see [locales](locales) dir for more locales. 
 
-[Locale contributions](#3-contributions) are welcome, thank you for submitting a GitHub pull request for corrections or additional languages. ^_^~
+[Locale contributions](#3-contributions) are welcomed, thank you for submitting a GitHub pull request for corrections or additional languages. ^_^~
 
 
 # 3. Contributions

@@ -7,10 +7,10 @@ function iso8601(date) {
     + ":" + date.getUTCSeconds() + "Z";
 }
 
-document.querySelector('.load_time').setAttribute('data-timeago', iso8601(new Date()));
-timeago().render(document.querySelectorAll('.need_to_be_rendered'));
+document.querySelector('.load_time').setAttribute('datetime', iso8601(new Date()));
+new timeago().render(document.querySelectorAll('.need_to_be_rendered'));
 
 // 2. demo
-document.getElementById('demo_now').innerHTML = timeago().format(new Date());
-document.getElementById('demo_20160907').innerHTML = timeago().format("2016-09-07", 'zh_CN');
-document.getElementById('demo_timestamp').innerHTML = timeago().format(1473245023718); 
+document.getElementById('demo_now').innerHTML = new timeago().format(new Date());
+document.getElementById('demo_20160907').innerHTML = new timeago('zh_CN').format('2016-09-07');
+document.getElementById('demo_timestamp').innerHTML = new timeago().format(1473245023718); 
