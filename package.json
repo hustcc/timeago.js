@@ -1,7 +1,7 @@
 {
   "name": "timeago.js",
   "officialName": "timeago.js",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "summary": "timeago.js is a simple library (less than 2kb) to used to format datetime with `*** time ago` statement. eg: '3 hours ago'.",
   "description": "timeago.js is a simple library (only 2kb) to used to format datetime with `*** time ago` statement. eg: '3 hours ago'. localization supported.",
   "author": {
@@ -34,7 +34,7 @@
   },
   "scripts": {
     "lint": "jshint src/timeago.js",
-    "test": "npm run lint && node tests/test.js && node tests/locales_test.js",
+    "test": "npm run lint && node tests/locales_test.js && node tests/test.js",
     "test_dev": "npm run lint && node tests/test_dev.js",
     "build": "gulp mini && npm run test"
   },

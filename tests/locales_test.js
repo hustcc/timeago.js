@@ -18,19 +18,19 @@ function test_locales(tobeTested) {
 
       var locale = require('../locales/' + locale_name);
       // test locales
-      var newTimeAgo = timeago('2016-06-23');
-      newTimeAgo.register(locale_name, locale);
+      var newTimeAgo = timeago(null, '2016-06-23');
+      timeago.register(locale_name, locale);
       t.equal(newTimeAgo.format('2016-06-22', locale_name), locale(1, 6)[0]);
       t.equal(newTimeAgo.format('2016-06-25', locale_name), locale(2, 7)[1].replace('%s', '2'));
 
       // test default locale
-      var newTimeAgo = timeago('2016-03-01 12:00:00', locale_name);
-      newTimeAgo.register(locale_name, locale);
+      var newTimeAgo = timeago(locale_name, '2016-03-01 12:00:00');
+      timeago.register(locale_name, locale);
       t.equal(newTimeAgo.format('2016-02-28 12:00:00'), locale(2, 7)[0].replace('%s', '2'));
 
       // test setLocale
-      var newTimeAgo = timeago('2016-03-01 12:00:00');
-      newTimeAgo.register(locale_name, locale);
+      var newTimeAgo = timeago(null, '2016-03-01 12:00:00');
+      timeago.register(locale_name, locale);
       newTimeAgo.setLocale(locale_name);
       t.equal(newTimeAgo.format('2016-02-28 12:00:00'), locale(2, 7)[0].replace('%s', '2'));
     }

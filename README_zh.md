@@ -61,26 +61,43 @@ var timeago = require("timeago.js");
 **3. 使用 `timeago` 类**
 
 ```js
-var timeago = timeago();
+var timeago = new timeago();
 timeago.format('2016-06-12')
 ```
 
 
 # 高级特性使用
 
+**1. 本地化**
+
+默认的语言是英文 **`en`**, 这个库自带语言有 `en` and `zh_CN` （英文和中文）.
+
+```js
+var timeagoInstance = new timeago();
+timeagoInstance.format('2016-06-12', 'zh_CN');
+```
+
+可以在构造函数中传入默认语言，也可以调用 `setLocale` 方法。
+
+```js
+var timeagoInstance = new timeago('zh_CN');
+// or
+new timeago().setLocale('zh_CN');
+```
+
 **1. 设置相对日期**
 
 `timeago` 默认是相对于当前事件的，当然也可以自己设置相对的时间，如下所示：
 
 ```js
-var timeago = timeago('2016-06-10 12:12:12'); // 在这里设置相对时间
-timeago.format('2016-06-12', 'zh_CN');
+var timeagoInstance = new timeago(null, '2016-06-10 12:12:12'); // 在这里设置相对时间
+timeagoInstance.format('2016-06-12', 'zh_CN');
 ```
 
 **2. 格式化时间戳，字符串**
 
 ```
-timeago().format(new Date().getTime() - 11 * 1000 * 60 * 60); // will get '11 hours ago'
+new timeago().format(new Date().getTime() - 11 * 1000 * 60 * 60); // will get '11 hours ago'
 ```
 
 **3. 自动实时渲染**
@@ -91,35 +108,20 @@ HTML为：
 ```
 Js代码为：
 ```js
-timeago().render(document.querySelectorAll('.need_to_be_rendered'), 'zh_CN');
+var timeagoInstance = new timeago();
+timeagoInstance.render(document.querySelectorAll('.need_to_be_rendered'), 'zh_CN');
 
 // or
 
-timeago().cancel()
+timeagoInstance.cancel()
 ```
 
 API方法 `render` 可以传入一个DOM节点或者数据，标示需要实时渲染这些节点。
 
 API方法 `cancel` 调用之后会清除所有的定时器方法，并且释放所有定时器资源。
 
-被渲染的节点必须要有`data-timeago`属性，属性值为日期格式的字符串。
+被渲染的节点必须要有 `datetime` 或者 `data-timeago` 属性，属性值为日期格式的字符串。
 
-**4. 本地化**
-
-默认的语言是英文 **`en`**, 这个库自带语言有 `en` and `zh_CN` （英文和中文）.
-
-```js
-var timeago = timeago();
-timeago.format('2016-06-12', 'zh_CN');
-```
-
-可以在构造函数中传入默认语言，也可以调用 `setLocale` 方法。
-
-```js
-var timeago = timeago(null, 'zh_CN');
-// or
-timeago().setLocale('zh_CN');
-```
 
 **5. 注册本地语言**
 
@@ -148,12 +150,12 @@ var test_local_dict = function(number, index) {
   ][index];
 };
 
-var timeago = timeago();
 timeago.register('test_local', test_local_dict);
 
-timeago.format('2016-06-12', 'test_local');
+var timeagoInstance = new timeago();
+timeagoInstance.format('2016-06-12', 'test_local');
 ```
-欢迎发起 PR 添加一些确实的 locale 语言，当然请注意，将 locale 添加到 `tests/locales_test.js` 文件中做一个简单的测试。
+欢迎发起 PR 添加一些确实的 locale 语言，当然请注意，在 `tests/locales` 目录中添加对应的测试用例。
 
 # LICENSE
 

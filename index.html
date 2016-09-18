@@ -47,7 +47,7 @@
         You opened this page <span class="need_to_be_rendered load_time strong">when you opened the page</span>. <span class="help">(This will update automatically. Wait for it.)</span>
       </p>
       <p class="example">
-        Hustcc was born <span class="need_to_be_rendered strong" data-timeago="1992-08-01">Aug 01, 1989</span>.
+        Hustcc was born <span class="need_to_be_rendered strong" datetime="1992-08-01">Aug 01, 1989</span>.
       </p>
 
       <h3>Why ?</h3>
@@ -80,9 +80,9 @@ var timeago = require("timeago.js");</pre>
         Now, let's attach it to your timestamps on DOM ready:
       </p>
       <pre>
-timeago().render(document.querySelectorAll('.need_to_be_rendered'));
+new timeago().render(document.querySelectorAll('.need_to_be_rendered'));
 // or use jquery selector
-timeago().render($('.need_to_be_rendered'));</pre>
+new timeago().render($('.need_to_be_rendered'));</pre>
       <p class="how">
         This will realtime render all <tt>selected</tt>(javascript DOM selector, or jQuery selector all are supported) elements with a class of <tt>need_to_be_rendered</tt>.
       </p>
@@ -92,16 +92,16 @@ timeago().render($('.need_to_be_rendered'));</pre>
         You can also use it programmatically:
       </p>
       <pre>
-timeago().format(new Date());             //=> &quot;<span id="demo_now"></span>&quot;
-timeago().format("2016-09-07", 'zh_CN');           //=> &quot;<span id="demo_20160907"></span>&quot;
-timeago().format(1473245023718);          //=> &quot;<span id="demo_timestamp"></span>&quot;</pre>
+new timeago().format(new Date());             //=> &quot;<span id="demo_now"></span>&quot;
+new timeago('zh_CN').format('2016-09-07')           //=> &quot;<span id="demo_20160907"></span>&quot;
+new timeago().format(1473245023718);          //=> &quot;<span id="demo_timestamp"></span>&quot;</pre>
 
       <h3>Locales register ?</h3>
       <p>
         Yes, timeago.js has locale/i18n/language support.  Here are some <a href="https://github.com/hustcc/timeago.js/tree/master/locales">configuration examples</a>.  Please submit a <a href="https://github.com/hustcc/timeago.js">GitHub pull request</a> for corrections or additional languages.
       </p>
       <pre>
-var timeago = timeago();
+
 var locale = function(number, index) {
   // number: the timeago / timein number;
   // index: the index of array below;
@@ -123,8 +123,9 @@ var locale = function(number, index) {
   ][index];
 };
 timeago.register('pt_BR', locale);
+var timeagoInstance = timeago();
 // then you can use it
-timeago.format(1473245023718, 'pt_BR');</pre>
+timeagoInstance.format(1473245023718, 'pt_BR');</pre>
 
       <h3>Where ?</h3>
       <p>Package is managed with npm. so <em>npm install timeago.js</em> will be the latest version.</p>
