@@ -6,7 +6,7 @@ const fs = require('fs');
 const pys = require('pys');
 const testBuilder = require('./test-builder');
 
-test('timeago.js show be tested', t => {
+test('timeago.js should be tested', t => {
   // locale tests #################################################################
   // read all the locales test in `tests/locales` dir
   fs.readdir('tests/locales', (err, files) => {
@@ -27,8 +27,8 @@ test('timeago.js show be tested', t => {
   t.equal(timeago(null, '2016-06-23').format('2016-06-25', 'zh_CN'), '2天后');
 
   // test register locale
-  const timeagoReg = timeago('2016-06-23');
-  timeagoReg.register('test_local', (number, index) => [
+  const timeagoReg = timeago(null, '2016-06-23');
+  timeago.register('test_local', (number, index) => [
       ["just xxx", "a while"],
       ["%s seconds xxx", "in %s seconds"],
       ["1 minute xxx", "in 1 minute"],
