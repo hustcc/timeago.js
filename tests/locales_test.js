@@ -1,50 +1,52 @@
 'use strict';
 
-var fs = require('fs');
-var test = require('tape');
-var timeago = require('..');
-var pys = require('pys');
+const fs = require('fs');
+const test = require('tape');
+const timeago = require('..');
+const pys = require('pys');
 
 // all the locales code, if missing, please add them.
-var all_locales = require('../locales/locales.js'); 
+const allLocales = require('../locales/locales.js');
 
-function test_locales(tobeTested) {
-  test('Testing locales', function (t) {
-    for (var i = 0; i < tobeTested.length ; i++) {
-      var locale_name = pys(tobeTested[i])('0:-3');
-      t.ok(all_locales.indexOf(locale_name) >= 0, 'locale [' + locale_name + ']');
+function testLocales(tobeTested) {
+  test('Testing locales', t => {
+    tobeTested.forEach(file => {
+      const localeName = pys(file)('0:-3');
+      t.ok(allLocales.indexOf(localeName) >= 0, 'locale [' + localeName + ']');
 
-      console.log('\nTesting locales [' + locale_name + ']');
+      console.log('\nTesting locales [' + localeName + ']');
 
-      var locale = require('../locales/' + locale_name);
+      const localeFn = require('../locales/' + localeName);
       // test locales
-      var newTimeAgo = timeago(null, '2016-06-23');
-      timeago.register(locale_name, locale);
-      t.equal(newTimeAgo.format('2016-06-22', locale_name), locale(1, 6)[0]);
-      t.equal(newTimeAgo.format('2016-06-25', locale_name), locale(2, 7)[1].replace('%s', '2'));
+      let newTimeAgo = timeago(null, '2016-06-23');
+      newTimeAgo.register(localeName, localeFn);
+      t.equal(newTimeAgo.format('2016-06-22', localeName), localeFn(1, 6)[0]);
+      t.equal(newTimeAgo.format('2016-06-25', localeName), localeFn(2, 7)[1].replace('%s', '2'));
 
       // test default locale
-      var newTimeAgo = timeago(locale_name, '2016-03-01 12:00:00');
-      timeago.register(locale_name, locale);
-      t.equal(newTimeAgo.format('2016-02-28 12:00:00'), locale(2, 7)[0].replace('%s', '2'));
+      newTimeAgo = timeago(localeName, '2016-03-01 12:00:00');
+      newTimeAgo.register(localeName, localeFn);
+      t.equal(newTimeAgo.format('2016-02-28 12:00:00'), localeFn(2, 7)[0].replace('%s', '2'));
 
       // test setLocale
-      var newTimeAgo = timeago(null, '2016-03-01 12:00:00');
-      timeago.register(locale_name, locale);
-      newTimeAgo.setLocale(locale_name);
-      t.equal(newTimeAgo.format('2016-02-28 12:00:00'), locale(2, 7)[0].replace('%s', '2'));
-    }
+      newTimeAgo = timeago(null, '2016-03-01 12:00:00');
+      newTimeAgo.register(localeName, localeFn);
+      newTimeAgo.setLocale(localeName);
+      t.equal(newTimeAgo.format('2016-02-28 12:00:00'), localeFn(2, 7)[0].replace('%s', '2'));
+    });
+
     t.end();
   });
 }
 
 // read all the locales in `locales` dir
-fs.readdir('locales', function(err, files) {
+fs.readdir('locales', (err, files) => {
   // rm locales.js file
-  var index = files.indexOf('locales.js');
+  const index = files.indexOf('locales.js');
+
   if (index > -1) {
     files.splice(index, 1);
   }
   // test them
-  test_locales(files);
+  testLocales(files);
 });

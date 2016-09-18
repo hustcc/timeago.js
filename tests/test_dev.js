@@ -1,9 +1,9 @@
 'use strict';
 
-var test = require('tape');
-var timeago = require('..');
+const test = require('tape');
+const timeago = require('..');
 
-test('timeago.js next interval show be tested', function (t) {
+test('timeago.js next interval show be tested', t => {
   t.true(timeago().next_interval(0.134), 1);
   t.true(timeago().next_interval(8), 1);
   t.true(timeago().next_interval(59), 1);
