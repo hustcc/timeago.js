@@ -35,8 +35,8 @@
   // second, minute, hour, day, week, month, year(365 days)
   SEC_ARRAY = [60, 60, 24, 7, 365/7/12, 12],
   SEC_ARRAY_LEN = 6,
-  attr_datetime = 'datetime';
-  
+  attrDatetime = 'datetime';
+
   /**
    * timeago: the function to get `timeago` instance.
    * - nowDate: the relative date, default is new Date().
@@ -55,14 +55,16 @@
     if (! defaultLocale) {
       defaultLocale = 'en'; // use default build-in locale
     }
-    // calculate the diff second between date to be formated an now date.
-    function diff_sec(date) {
-      var now = new Date();
-      if (nowDate) now = toDate(nowDate);
-      return (now.getTime() - toDate(date).getTime()) / 1000;
+    // returns now date if it was set, otherwise - current date
+    function getNowDate() {
+      return nowDate ? toDate(nowDate) : new Date();
+    }
+    // calculate the diff second between provided dates
+    function diffSec(now, date) {
+      return (toDate(now) - toDate(date).getTime()) / 1000;
     }
     // format the diff second to *** time ago, with setting locale
-    function format_diff(diff, locale) {
+    function formatDiff(diff, locale) {
       if (! locales[locale]) locale = defaultLocale;
       var agoin = 0, i = 0;
 
@@ -90,7 +92,7 @@
      * timeago.format(1473473400269); // timestamp with ms
     **/
     this.format = function(date, locale) {
-      return format_diff(diff_sec(date), locale);
+      return formatDiff(diffSec(getNowDate(), date), locale);
     };
     // format Date / string / timestamp to Date instance.
     function toDate(input) {
@@ -113,13 +115,13 @@
     function toInt(f) {
       return parseInt(f);
     }
-    function left_sec(diff, unit) {
+    function leftSec(diff, unit) {
       diff = diff % unit;
       diff = diff ? unit - diff : unit;
       return Math.ceil(diff);
     }
     /**
-     * next_interval: calculate the next interval time.
+     * nextInterval: calculate the next interval time.
      * - diff: the diff sec between now and date to be formated.
      *
      * What's the meaning?
@@ -127,28 +129,28 @@
      * diff = 3601 (an hour + 1 second), then return 3599
      * make the interval with high performace.
     **/
-    // this.next_interval = function(diff) { // for dev test
-    function next_interval(diff) {
+    // this.nextInterval = function(diff) { // for dev test
+    function nextInterval(diff) {
       var rst = 1, i = 0, d = diff;
       for (; diff >= SEC_ARRAY[i] && i < SEC_ARRAY_LEN; i++) {
         diff /= SEC_ARRAY[i];
         rst *= SEC_ARRAY[i];
       }
-      return left_sec(d, rst);
+      return leftSec(d, rst);
     }
     // what the timer will do
-    function do_render(node, date, locale, cnt) {
-      var diff = diff_sec(date);
-      node.innerHTML = format_diff(diff, locale);
+    function doRender(node, date, locale, cnt) {
+      var diff = diffSec(getNowDate(), date);
+      node.innerHTML = formatDiff(diff, locale);
       // 通过diff来判断下一次执行的时间
       timers['k' + cnt] = setTimeout(function() {
-        do_render(node, date, locale, cnt);
-      }, next_interval(diff) * 1000);
+        doRender(node, date, locale, cnt);
+      }, nextInterval(diff) * 1000);
     }
     // get the datetime attribute, jQuery and DOM
-    function get_date_attr(node) {
-      if (node.getAttribute) return node.getAttribute(attr_datetime);
-      if(node.attr) return node.attr(attr_datetime);
+    function getDateAttr(node) {
+      if (node.getAttribute) return node.getAttribute(attrDatetime);
+      if(node.attr) return node.attr(attrDatetime);
     }
     /**
      * render: render the DOM real-time.
@@ -167,7 +169,7 @@
     this.render = function(nodes, locale) {
       if (nodes.length === undefined) nodes = [nodes];
       for (var i = 0; i < nodes.length; i++) {
-        do_render(nodes[i], get_date_attr(nodes[i]), locale, ++ cnt); // render item
+        doRender(nodes[i], getDateAttr(nodes[i]), locale, ++ cnt); // render item
       }
     };
     /**

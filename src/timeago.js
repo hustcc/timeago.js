@@ -36,7 +36,7 @@
   SEC_ARRAY = [60, 60, 24, 7, 365/7/12, 12],
   SEC_ARRAY_LEN = 6,
   attrDatetime = 'datetime';
-  
+
   /**
    * timeago: the function to get `timeago` instance.
    * - nowDate: the relative date, default is new Date().
@@ -55,11 +55,13 @@
     if (! defaultLocale) {
       defaultLocale = 'en'; // use default build-in locale
     }
-    // calculate the diff second between date to be formated an now date.
-    function diffSec(date) {
-      var now = new Date();
-      if (nowDate) now = toDate(nowDate);
-      return (now.getTime() - toDate(date).getTime()) / 1000;
+    // returns now date if it was set, otherwise - current date
+    function getNowDate() {
+      return nowDate ? toDate(nowDate) : new Date();
+    }
+    // calculate the diff second between provided dates
+    function diffSec(now, date) {
+      return (toDate(now) - toDate(date).getTime()) / 1000;
     }
     // format the diff second to *** time ago, with setting locale
     function formatDiff(diff, locale) {
@@ -90,7 +92,7 @@
      * timeago.format(1473473400269); // timestamp with ms
     **/
     this.format = function(date, locale) {
-      return formatDiff(diffSec(date), locale);
+      return formatDiff(diffSec(getNowDate(), date), locale);
     };
     // format Date / string / timestamp to Date instance.
     function toDate(input) {
@@ -138,7 +140,7 @@
     }
     // what the timer will do
     function doRender(node, date, locale, cnt) {
-      var diff = diffSec(date);
+      var diff = diffSec(getNowDate(), date);
       node.innerHTML = formatDiff(diff, locale);
       // 通过diff来判断下一次执行的时间
       timers['k' + cnt] = setTimeout(function() {
