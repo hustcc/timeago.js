@@ -37,6 +37,23 @@
     SEC_ARRAY_LEN = 6,
     attrDatetime = 'datetime';
 
+  // format the diff second to *** time ago, with setting locale
+  function formatDiff(diff, locale) {
+    var agoin = 0, i = 0;
+
+    if (diff < 0) agoin = 1;  // timein
+    diff = Math.abs(diff);
+
+    for (; diff >= SEC_ARRAY[i] && i < SEC_ARRAY_LEN; i++) {
+      diff /= SEC_ARRAY[i];
+    }
+    diff = toInt(diff);
+    i *= 2;
+
+    if (diff > (i === 0 ? 9 : 1)) i += 1;
+
+    return locales[locale](diff, i)[agoin].replace('%s', diff);
+  }
   // format Date / string / timestamp to Date instance.
   function toDate(input) {
     if (input instanceof Date) {
@@ -101,11 +118,22 @@
    * var timeago = timeagoLib('zh_CN'); // set default locale is `zh_CN`.
    * var timeago = timeagoLib(null, '2016-09-10'); // the relative date is 2016-09-10, so the 2016-09-11 will be 1 day ago.
    * var timeago = timeagoLib('zh_CN', '2016-09-10'); // the relative date is 2016-09-10, and locale is zh_CN, so the 2016-09-11 will be 1天前.
-   **/
+   *
+   * @param defaultLocale
+   * @param nowDate
+   * @constructor
+   */
   function Timeago(defaultLocale, nowDate) {
+    /** @private */
     this.timers = Object.create(null); // real-time render timers
-    // if do not set the defaultLocale, set it with default `en`
+
+    /**
+     * if do not set the defaultLocale, set it with default `en`
+     * @private
+     */
     this.defaultLocale = defaultLocale || 'en';
+
+    /** @private */
     this.nowDate = nowDate;
   }
   /**
@@ -142,42 +170,7 @@
       this.doRender(nodes[i], getDateAttr(nodes[i]), locale, ++ cnt); // render item
     }
   };
-  // what the timer will do
-  Timeago.prototype.doRender = function(node, date, locale, cnt) {
-    var diff = diffSec(this.getNowDate(), date),
-      self = this;
-
-    node.innerHTML = this.formatDiff(diff, this.validateAndGetLocale(locale));
-    // 通过diff来判断下一次执行的时间
-    this.timers['k' + cnt] = setTimeout(function() {
-      self.doRender(node, date, locale, cnt);
-    }, nextInterval(diff) * 1000);
-  };
-  // returns now date if it was set, otherwise - current date
-  Timeago.prototype.getNowDate = function() {
-    return this.nowDate ? toDate(this.nowDate) : new Date();
-  };
-  Timeago.prototype.validateAndGetLocale = function(locale) {
-    return !locales[locale] ? this.defaultLocale : locale;
-  };
-  // format the diff second to *** time ago, with setting locale
-  Timeago.prototype.formatDiff = function(diff, locale) {
-    var agoin = 0, i = 0;
-
-    if (diff < 0) agoin = 1;  // timein
-    diff = Math.abs(diff);
-
-    for (; diff >= SEC_ARRAY[i] && i < SEC_ARRAY_LEN; i++) {
-      diff /= SEC_ARRAY[i];
-    }
-    diff = toInt(diff);
-    i *= 2;
-
-    if (diff > (i === 0 ? 9 : 1)) i += 1;
-
-    return locales[locale](diff, i)[agoin].replace('%s', diff);
-  };
-  /**
+    /**
    * format: format the date to *** time ago, with setting or default locale
    * - date: the date / string / timestamp to be formated
    * - locale: the formated string's locale name, e.g. en / zh_CN
@@ -189,9 +182,8 @@
    * timeago.format(1473473400269); // timestamp with ms
    **/
   Timeago.prototype.format = function(date, locale) {
-    return this.formatDiff(diffSec(this.getNowDate(), date), this.validateAndGetLocale(locale));
+    return formatDiff(diffSec(this.getNowDate(), date), this.validateAndGetLocale(locale));
   };
-
   /**
    * setLocale: sets the default locale name.
    *
@@ -202,6 +194,44 @@
    **/
   Timeago.prototype.setLocale = function(locale) {
     this.defaultLocale = locale;
+  };
+  /**
+   * what the timer will do
+   *
+   * @param node
+   * @param date
+   * @param locale
+   * @param cnt
+   *
+   * @private
+   */
+  Timeago.prototype.doRender = function(node, date, locale, cnt) {
+    var diff = diffSec(this.getNowDate(), date),
+      self = this;
+
+    node.innerHTML = formatDiff(diff, this.validateAndGetLocale(locale));
+    // 通过diff来判断下一次执行的时间
+    this.timers['k' + cnt] = setTimeout(function() {
+      self.doRender(node, date, locale, cnt);
+    }, nextInterval(diff) * 1000);
+  };
+  /**
+   * returns now date if it was set, otherwise - current date
+   *
+   * @private
+   * @returns {Date}
+   */
+  Timeago.prototype.getNowDate = function() {
+    return this.nowDate ? toDate(this.nowDate) : new Date();
+  };
+  /**
+   * @param locale
+   *
+   * @private
+   * @returns {string}
+   */
+  Timeago.prototype.validateAndGetLocale = function(locale) {
+    return !locales[locale] ? this.defaultLocale : locale;
   };
 
   /**
