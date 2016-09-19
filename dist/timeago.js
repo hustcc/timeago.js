@@ -37,6 +37,76 @@ function () {
     SEC_ARRAY_LEN = 6,
     ATTR_DATETIME = 'datetime';
   
+  // format Date / string / timestamp to Date instance.
+  function toDate(input) {
+    if (input instanceof Date) {
+      return input;
+    } else if (!isNaN(input)) {
+      return new Date(toInt(input));
+    } else if (/^\d+$/.test(input)) {
+      return new Date(toInt(input, 10));
+    } else {
+      var s = (input || '').trim();
+      s = s.replace(/\.\d+/, '') // remove milliseconds
+        .replace(/-/, '/').replace(/-/, '/')
+        .replace(/T/, ' ').replace(/Z/, ' UTC')
+        .replace(/([\+\-]\d\d)\:?(\d\d)/, ' $1$2'); // -04:00 -> -0400
+      return new Date(s);
+    }
+  }
+  // change f into int, remove Decimal. just for code compression
+  function toInt(f) {
+    return parseInt(f);
+  }
+  // format the diff second to *** time ago, with setting locale
+  function formatDiff(diff, locale, defaultLocale) {
+    if (! locales[locale]) locale = defaultLocale;
+    var i = 0;
+      agoin = diff < 0 ? 1 : 0, // timein or timeago
+      diff = Math.abs(diff);
+
+    for (; diff >= SEC_ARRAY[i] && i < SEC_ARRAY_LEN; i++) {
+      diff /= SEC_ARRAY[i];
+    }
+    diff = toInt(diff);
+    i *= 2;
+
+    if (diff > (i === 0 ? 9 : 1)) i += 1;
+    return locales[locale](diff, i)[agoin].replace('%s', diff);
+  }
+  // calculate the diff second between date to be formated an now date.
+  function diffSec(date, nowDate) {
+    nowDate = nowDate ? toDate(nowDate) : new Date();
+    return (nowDate - toDate(date)) / 1000;
+  }
+  /**
+   * nextInterval: calculate the next interval time.
+   * - diff: the diff sec between now and date to be formated.
+   *
+   * What's the meaning?
+   * diff = 61 then return 59
+   * diff = 3601 (an hour + 1 second), then return 3599
+   * make the interval with high performace.
+  **/
+  // this.nextInterval = function(diff) { // for dev test
+  function nextInterval(diff) {
+    var rst = 1, i = 0, d = diff;
+    for (; diff >= SEC_ARRAY[i] && i < SEC_ARRAY_LEN; i++) {
+      diff /= SEC_ARRAY[i];
+      rst *= SEC_ARRAY[i];
+    }
+    // return leftSec(d, rst);
+    d = d % rst;
+    d = d ? rst - d : rst;
+    return Math.ceil(d);
+  // }; // for dev test
+  }
+  
+  // get the datetime attribute, jQuery and DOM
+  function getDateAttr(node) {
+    if (node.getAttribute) return node.getAttribute(ATTR_DATETIME);
+    if(node.attr) return node.attr(ATTR_DATETIME);
+  }
   /**
    * timeago: the function to get `timeago` instance.
    * - nowDate: the relative date, default is new Date().
@@ -53,27 +123,14 @@ function () {
     var timers = {}; // real-time render timers
     // if do not set the defaultLocale, set it with `en`
     if (! defaultLocale) defaultLocale = 'en'; // use default build-in locale
-    // calculate the diff second between date to be formated an now date.
-    function diffSec(date) {
-      var now = new Date();
-      if (nowDate) now = toDate(nowDate);
-      return (now - toDate(date)) / 1000;
-    }
-    // format the diff second to *** time ago, with setting locale
-    function formatDiff(diff, locale) {
-      if (! locales[locale]) locale = defaultLocale;
-      var i = 0;
-        agoin = diff < 0 ? 1 : 0, // timein or timeago
-        diff = Math.abs(diff);
-
-      for (; diff >= SEC_ARRAY[i] && i < SEC_ARRAY_LEN; i++) {
-        diff /= SEC_ARRAY[i];
-      }
-      diff = toInt(diff);
-      i *= 2;
-
-      if (diff > (i === 0 ? 9 : 1)) i += 1;
-      return locales[locale](diff, i)[agoin].replace('%s', diff);
+    // what the timer will do
+    function doRender(node, date, locale, cnt) {
+      var diff = diffSec(date, nowDate);
+      node.innerHTML = formatDiff(diff, locale, defaultLocale);
+      // waiting %s seconds, do the next render
+      timers['k' + cnt] = setTimeout(function() {
+        doRender(node, date, locale, cnt);
+      }, nextInterval(diff) * 1000);
     }
     /**
      * format: format the date to *** time ago, with setting or default locale
@@ -87,70 +144,8 @@ function () {
      * timeago.format(1473473400269); // timestamp with ms
     **/
     this.format = function(date, locale) {
-      return formatDiff(diffSec(date), locale);
+      return formatDiff(diffSec(date, nowDate), locale, defaultLocale);
     };
-    // format Date / string / timestamp to Date instance.
-    function toDate(input) {
-      if (input instanceof Date) {
-        return input;
-      } else if (!isNaN(input)) {
-        return new Date(toInt(input));
-      } else if (/^\d+$/.test(input)) {
-        return new Date(toInt(input, 10));
-      } else {
-        var s = (input || '').trim();
-        s = s.replace(/\.\d+/, '') // remove milliseconds
-          .replace(/-/, '/').replace(/-/, '/')
-          .replace(/T/, ' ').replace(/Z/, ' UTC')
-          .replace(/([\+\-]\d\d)\:?(\d\d)/, ' $1$2'); // -04:00 -> -0400
-        return new Date(s);
-      }
-    }
-    // change f into int, remove Decimal. just for code compression
-    function toInt(f) {
-      return parseInt(f);
-    }
-    // function leftSec(diff, unit) {
-    //   diff = diff % unit;
-    //   diff = diff ? unit - diff : unit;
-    //   return Math.ceil(diff);
-    // }
-    /**
-     * nextInterval: calculate the next interval time.
-     * - diff: the diff sec between now and date to be formated.
-     *
-     * What's the meaning?
-     * diff = 61 then return 59
-     * diff = 3601 (an hour + 1 second), then return 3599
-     * make the interval with high performace.
-    **/
-    // this.nextInterval = function(diff) { // for dev test
-    function nextInterval(diff) {
-      var rst = 1, i = 0, d = diff;
-      for (; diff >= SEC_ARRAY[i] && i < SEC_ARRAY_LEN; i++) {
-        diff /= SEC_ARRAY[i];
-        rst *= SEC_ARRAY[i];
-      }
-      // return leftSec(d, rst);
-      d = d % rst;
-      d = d ? rst - d : rst;
-      return Math.ceil(d);
-    // }; // for dev test
-    }
-    // what the timer will do
-    function doRender(node, date, locale, cnt) {
-      var diff = diffSec(date);
-      node.innerHTML = formatDiff(diff, locale);
-      // waiting %s seconds, do the next render
-      timers['k' + cnt] = setTimeout(function() {
-        doRender(node, date, locale, cnt);
-      }, nextInterval(diff) * 1000);
-    }
-    // get the datetime attribute, jQuery and DOM
-    function getDateAttr(node) {
-      if (node.getAttribute) return node.getAttribute(ATTR_DATETIME);
-      if(node.attr) return node.attr(ATTR_DATETIME);
-    }
     /**
      * render: render the DOM real-time.
      * - nodes: which nodes will be rendered.
