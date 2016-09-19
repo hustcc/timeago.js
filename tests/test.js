@@ -1,23 +1,22 @@
 'use strict';
 
-var test = require('tape');
-var timeago = require('..');
+const test = require('tape');
+const timeago = require('..');
+const fs = require('fs');
+const pys = require('pys');
+const testBuilder = require('./test-builder');
 
-var fs = require('fs');
-var pys = require('pys');
-
-test('timeago.js should be tested', function (t) {
+test('timeago.js should be tested', t => {
   // locale tests #################################################################
   // read all the locales test in `tests/locales` dir
-  fs.readdir('tests/locales', function(err, files) {
-    var locale = '';
-    for (var i = 0; i < files.length ; i++) {
-      locale = pys(files[i])('0:-3');
+  fs.readdir('tests/locales', (err, files) => {
+    files.forEach(file => {
+      const locale = pys(file)('0:-3');
       console.log('\nLocale testcase for ['+ locale +']');
       // require in the locales testcases
-      var tb = require('./test-builder')(Date.now()).register(locale, require('../locales/' + locale), true);
+      const tb = testBuilder(Date.now()).register(locale, require('../locales/' + locale), true);
       require('./locales/' + locale)(t, tb);
-    }
+    })
   });
   // end locale tests #############################################################
 
@@ -28,9 +27,8 @@ test('timeago.js should be tested', function (t) {
   t.equal(timeago(null, '2016-06-23').format('2016-06-25', 'zh_CN'), '2天后');
 
   // test register locale
-  var timeago_reg = new timeago(null, '2016-06-23');
-  timeago.register('test_local', function(number, index) {
-    return [
+  const timeagoReg = timeago(null, '2016-06-23');
+  timeago.register('test_local', (number, index) => [
       ["just xxx", "a while"],
       ["%s seconds xxx", "in %s seconds"],
       ["1 minute xxx", "in 1 minute"],
@@ -45,19 +43,21 @@ test('timeago.js should be tested', function (t) {
       ["%s months xxx", "in %s months"],
       ["1 year xxx", "in 1 year"],
       ["%s years xxx", "in %s years"]
-    ][index];
-  });
-  t.equal(timeago_reg.format('2016-06-22', 'test_local'), '1 day xxx');
+    ][index]
+  );
+  t.equal(timeagoReg.format('2016-06-22', 'test_local'), '1 day xxx');
+
   // testcase for other points
   // relative now
-  t.equal(timeago().format(new Date().getTime() - 11 * 1000 * 60 * 60), '11 hours ago');
+  t.equal(timeago().format(Date.now() - 11 * 1000 * 60 * 60), '11 hours ago');
 
   // timestamp is also can work
-  var current = new Date().getTime();
+  let current = Date.now();
   t.equal(timeago(null, current).format(current - 8 * 1000 * 60 * 60 * 24), '1 week ago');
   t.equal(timeago(null, current).format(current - 31536000 * 1000 + 1000), '11 months ago');
+
   // Date()
-  var current = new Date();
+  current = new Date();
   t.equal(timeago(null, current).format(current), 'just now');
 
 
@@ -70,7 +70,7 @@ test('timeago.js should be tested', function (t) {
   t.equal(timeago('zh_CN', '2016-03-01 12:00:00').format('2016-02-28 12:00:00'), '2天前');
 
   // test setLocale
-  var newTimeAgo = timeago(null, '2016-03-01 12:00:00');
+  const newTimeAgo = timeago(null, '2016-03-01 12:00:00');
   t.equal(newTimeAgo.format('2016-02-28 12:00:00'), '2 days ago');
   newTimeAgo.setLocale('zh_CN');
   t.equal(newTimeAgo.format('2016-02-28 12:00:00'), '2天前');
