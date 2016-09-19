@@ -41,7 +41,7 @@ in 2 years
 npm install timeago.js
 ```
 
-**2. import timeago.js**
+**2. Import timeago.js**
 
 
 ES6 style is supported, then get global object: `timeago`.
