@@ -6,7 +6,7 @@ var timeago = require('..');
 var fs = require('fs');
 var pys = require('pys');
 
-test('timeago.js show be tested', function (t) {
+test('timeago.js should be tested', function (t) {
   // locale tests #################################################################
   // read all the locales test in `tests/locales` dir
   fs.readdir('tests/locales', function(err, files) {
