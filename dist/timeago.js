@@ -18,18 +18,14 @@ function () {
     locales = {
       'en': function(number, index) {
         if (index === 0) return ['just now', 'a while'];
-        else {
-          var unit = indexMapEn[parseInt(index / 2)];
-          if (number > 1) unit += 's';
-          return [number + ' ' + unit + ' ago', 'in ' + number + ' ' + unit];
-        }
+        var unit = indexMapEn[parseInt(index / 2)];
+        if (number > 1) unit += 's';
+        return [number + ' ' + unit + ' ago', 'in ' + number + ' ' + unit];
       },
       'zh_CN': function(number, index) {
         if (index === 0) return ['刚刚', '片刻后'];
-        else {
-          var unit = indexMapZh[parseInt(index / 2)];
-          return [number + unit + '前', number + unit + '后'];
-        }
+        var unit = indexMapZh[parseInt(index / 2)];
+        return [number + unit + '前', number + unit + '后'];
       }
     },
     // second, minute, hour, day, week, month, year(365 days)
@@ -39,20 +35,15 @@ function () {
   
   // format Date / string / timestamp to Date instance.
   function toDate(input) {
-    if (input instanceof Date) {
-      return input;
-    } else if (!isNaN(input)) {
-      return new Date(toInt(input));
-    } else if (/^\d+$/.test(input)) {
-      return new Date(toInt(input, 10));
-    } else {
-      var s = (input || '').trim();
-      s = s.replace(/\.\d+/, '') // remove milliseconds
-        .replace(/-/, '/').replace(/-/, '/')
-        .replace(/T/, ' ').replace(/Z/, ' UTC')
-        .replace(/([\+\-]\d\d)\:?(\d\d)/, ' $1$2'); // -04:00 -> -0400
-      return new Date(s);
-    }
+    if (input instanceof Date) return input;
+    if (!isNaN(input)) return new Date(toInt(input));
+    if (/^\d+$/.test(input)) return new Date(toInt(input, 10));
+    input = (input || '').trim();
+    input = input.replace(/\.\d+/, '') // remove milliseconds
+      .replace(/-/, '/').replace(/-/, '/')
+      .replace(/T/, ' ').replace(/Z/, ' UTC')
+      .replace(/([\+\-]\d\d)\:?(\d\d)/, ' $1$2'); // -04:00 -> -0400
+    return new Date(input);
   }
   // change f into int, remove Decimal. just for code compression
   function toInt(f) {
@@ -62,8 +53,8 @@ function () {
   function formatDiff(diff, locale, defaultLocale) {
     if (! locales[locale]) locale = defaultLocale;
     var i = 0;
-      agoin = diff < 0 ? 1 : 0, // timein or timeago
-      diff = Math.abs(diff);
+      agoin = diff < 0 ? 1 : 0; // timein or timeago
+    diff = Math.abs(diff);
 
     for (; diff >= SEC_ARRAY[i] && i < SEC_ARRAY_LEN; i++) {
       diff /= SEC_ARRAY[i];
@@ -119,7 +110,7 @@ function () {
    * var timeago = timeagoLib(null, 'zh_CN'); // set default locale is `zh_CN`.
    * var timeago = timeagoLib('2016-09-10', 'zh_CN'); // the relative date is 2016-09-10, and locale is zh_CN, so the 2016-09-11 will be 1天前.
   **/
-  function timeago(nowDate, defaultLocale) {
+  function Timeago(nowDate, defaultLocale) {
     var timers = {}; // real-time render timers
     // if do not set the defaultLocale, set it with `en`
     if (! defaultLocale) defaultLocale = 'en'; // use default build-in locale
@@ -206,7 +197,7 @@ function () {
    * var timeago = timeagoLib('2016-09-10', 'zh_CN'); // the relative date is 2016-09-10, and locale is zh_CN, so the 2016-09-11 will be 1天前.
    **/
   function timeagoFactory(nowDate, defaultLocale) {
-    return new timeago(nowDate, defaultLocale);
+    return new Timeago(nowDate, defaultLocale);
   }
   /**
    * register: register a new language locale
