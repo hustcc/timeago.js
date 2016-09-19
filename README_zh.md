@@ -80,7 +80,7 @@ timeagoInstance.format('2016-06-12', 'zh_CN');
 
 **2. 格式化时间戳，字符串**
 
-```
+```js
 new timeago().format(new Date().getTime() - 11 * 1000 * 60 * 60); // will get '11 hours ago'
 ```
 
