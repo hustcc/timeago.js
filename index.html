@@ -55,7 +55,7 @@
       <ul>
         <li>Avoid timestamps dated "1 minute ago" even though the page was opened 10 minutes ago; <em>timeago refreshes automatically</em>.</li>
         <li>You can <em>take full advantage of page caching</em> in your web applications, because the timestamps aren't calculated on the server.</li>
-        <li>Very tiny(~2kb), and has <em>no dependency</em>, e.g. jQuery.</li>
+        <li>Very tiny(less than 2kb), and has <em>no dependency</em>, e.g. jQuery.</li>
       </ul>
 
       <h3>How ?</h3>
@@ -93,7 +93,7 @@ new timeago().render($('.need_to_be_rendered'));</pre>
       </p>
       <pre>
 new timeago().format(new Date());             //=> &quot;<span id="demo_now"></span>&quot;
-new timeago('zh_CN').format('2016-09-07')           //=> &quot;<span id="demo_20160907"></span>&quot;
+new timeago(null, 'zh_CN').format('2016-09-07')           //=> &quot;<span id="demo_20160907"></span>&quot;
 new timeago().format(1473245023718);          //=> &quot;<span id="demo_timestamp"></span>&quot;</pre>
 
       <h3>Locales register ?</h3>

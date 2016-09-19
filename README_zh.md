@@ -68,22 +68,6 @@ timeago.format('2016-06-12')
 
 # 高级特性使用
 
-**1. 本地化**
-
-默认的语言是英文 **`en`**, 这个库自带语言有 `en` and `zh_CN` （英文和中文）.
-
-```js
-var timeagoInstance = new timeago();
-timeagoInstance.format('2016-06-12', 'zh_CN');
-```
-
-可以在构造函数中传入默认语言，也可以调用 `setLocale` 方法。
-
-```js
-var timeagoInstance = new timeago('zh_CN');
-// or
-new timeago().setLocale('zh_CN');
-```
 
 **1. 设置相对日期**
 
@@ -122,6 +106,22 @@ API方法 `cancel` 调用之后会清除所有的定时器方法，并且释放�
 
 被渲染的节点必须要有 `datetime` 或者 `data-timeago` 属性，属性值为日期格式的字符串。
 
+**4. 本地化**
+
+默认的语言是英文 **`en`**, 这个库自带语言有 `en` and `zh_CN` （英文和中文）.
+
+```js
+var timeagoInstance = new timeago();
+timeagoInstance.format('2016-06-12', 'zh_CN');
+```
+
+可以在构造函数中传入默认语言，也可以调用 `setLocale` 方法。
+
+```js
+var timeagoInstance = new timeago(currentDate, 'zh_CN');
+// or
+new timeago().setLocale('zh_CN');
+```
 
 **5. 注册本地语言**
 

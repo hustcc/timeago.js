@@ -12,5 +12,5 @@ new timeago().render(document.querySelectorAll('.need_to_be_rendered'));
 
 // 2. demo
 document.getElementById('demo_now').innerHTML = new timeago().format(new Date());
-document.getElementById('demo_20160907').innerHTML = new timeago('zh_CN').format('2016-09-07');
+document.getElementById('demo_20160907').innerHTML = new timeago(null, 'zh_CN').format('2016-09-07');
 document.getElementById('demo_timestamp').innerHTML = new timeago().format(1473245023718); 

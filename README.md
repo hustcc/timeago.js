@@ -70,39 +70,22 @@ timeagoInstance.format('2016-06-12');
 
 # 2. Detailed Usage
 
-**1. Localization**
-
-Default locale is **`en`**, and the library supports `en` and `zh_CN`.
-
-```js
-var timeagoInstance = new timeago();
-timeagoInstance.format('2016-06-12', 'zh_CN');
-```
-
-You can change the locale in the constructor or use the `setLocale` method;
-
-```js
-var timeagoInstance = new timeago('zh_CN');
-// or
-new timeago().setLocale('zh_CN');
-```
-
-**2. Set relative date**
+**1. Set relative date**
 
 `timeago` is relative to the current date default. You can set it yourself.
 
 ```js
-var timeagoInstance = new timeago(null, '2016-06-10 12:12:12'); // set the relative date here.
+var timeagoInstance = new timeago('2016-06-10 12:12:12'); // set the relative date here.
 timeagoInstance.format('2016-06-12', 'zh_CN');
 ```
 
-**3. Use timestamp**
+**2. Use timestamp**
 
 ```
 new timeago().format(new Date().getTime() - 11 * 1000 * 60 * 60); // will get '11 hours ago'
 ```
 
-**4. Automatic rendering**
+**3. Automatic rendering**
 
 HTML code：
 ```html
@@ -122,6 +105,23 @@ The input API `render` should be DOM object/array, pure javascript DOM node, and
 The API `cancel` will clear all the render timers and release all resources of the instance.
 
 The DOM object should have the attribute `datetime` or `data-timeago` with date formated string.
+
+**4. Localization**
+
+Default locale is **`en`**, and the library supports `en` and `zh_CN`.
+
+```js
+var timeagoInstance = new timeago();
+timeagoInstance.format('2016-06-12', 'zh_CN');
+```
+
+You can change the locale in the constructor or use the `setLocale` method;
+
+```js
+var timeagoInstance = new timeago(currentDate, 'zh_CN');
+// or
+new timeago().setLocale('zh_CN');
+```
 
 **5. Register local language**
 

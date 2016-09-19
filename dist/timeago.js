@@ -35,7 +35,7 @@ function () {
     // second, minute, hour, day, week, month, year(365 days)
     SEC_ARRAY = [60, 60, 24, 7, 365/7/12, 12],
     SEC_ARRAY_LEN = 6,
-    ATTR_DATETIME = 'datetime',
+    ATTR_DATETIME = 'datetime';
   
   /**
    * timeago: the function to get `timeago` instance.
@@ -45,21 +45,19 @@ function () {
    * How to use it?
    * var timeagoLib = require('timeago.js');
    * var timeago = timeagoLib(); // all use default.
-   * var timeago = timeagoLib('zh_CN'); // set default locale is `zh_CN`.
-   * var timeago = timeagoLib(null, '2016-09-10'); // the relative date is 2016-09-10, so the 2016-09-11 will be 1 day ago.
-   * var timeago = timeagoLib('zh_CN', '2016-09-10'); // the relative date is 2016-09-10, and locale is zh_CN, so the 2016-09-11 will be 1天前.
+   * var timeago = timeagoLib('2016-09-10'); // the relative date is 2016-09-10, so the 2016-09-11 will be 1 day ago.
+   * var timeago = timeagoLib(null, 'zh_CN'); // set default locale is `zh_CN`.
+   * var timeago = timeagoLib('2016-09-10', 'zh_CN'); // the relative date is 2016-09-10, and locale is zh_CN, so the 2016-09-11 will be 1天前.
   **/
-  timeago = function(defaultLocale, nowDate) {
+  function timeago(nowDate, defaultLocale) {
     var timers = {}; // real-time render timers
     // if do not set the defaultLocale, set it with `en`
-    if (! defaultLocale) {
-      defaultLocale = 'en'; // use default build-in locale
-    }
+    if (! defaultLocale) defaultLocale = 'en'; // use default build-in locale
     // calculate the diff second between date to be formated an now date.
     function diffSec(date) {
       var now = new Date();
       if (nowDate) now = toDate(nowDate);
-      return (now.getTime() - toDate(date).getTime()) / 1000;
+      return (now - toDate(date)) / 1000;
     }
     // format the diff second to *** time ago, with setting locale
     function formatDiff(diff, locale) {
@@ -136,14 +134,14 @@ function () {
       // return leftSec(d, rst);
       d = d % rst;
       d = d ? rst - d : rst;
-      return Math.ceil(diff);
+      return Math.ceil(d);
     // }; // for dev test
     }
     // what the timer will do
     function doRender(node, date, locale, cnt) {
       var diff = diffSec(date);
       node.innerHTML = formatDiff(diff, locale);
-      // 通过diff来判断下一次执行的时间
+      // waiting %s seconds, do the next render
       timers['k' + cnt] = setTimeout(function() {
         doRender(node, date, locale, cnt);
       }, nextInterval(diff) * 1000);
@@ -165,7 +163,7 @@ function () {
      * // 2. use jQuery selector
      * timeago.render($('.need_to_be_rendered'), 'pl');
      *
-     * Notice: please be sure the dom has attribute `data-timeago`.
+     * Notice: please be sure the dom has attribute `datetime`.
     **/
     this.render = function(nodes, locale) {
       if (nodes.length === undefined) nodes = [nodes];
@@ -199,7 +197,22 @@ function () {
       defaultLocale = locale;
     };
     return this;
-  };
+  }
+  /**
+   * timeago: the function to get `timeago` instance.
+   * - nowDate: the relative date, default is new Date().
+   * - defaultLocale: the default locale, default is en. if your set it, then the `locale` parameter of format is not needed of you.
+   *
+   * How to use it?
+   * var timeagoLib = require('timeago.js');
+   * var timeago = timeagoLib(); // all use default.
+   * var timeago = timeagoLib('2016-09-10'); // the relative date is 2016-09-10, so the 2016-09-11 will be 1 day ago.
+   * var timeago = timeagoLib(null, 'zh_CN'); // set default locale is `zh_CN`.
+   * var timeago = timeagoLib('2016-09-10', 'zh_CN'); // the relative date is 2016-09-10, and locale is zh_CN, so the 2016-09-11 will be 1天前.
+   **/
+  function timeagoFactory(nowDate, defaultLocale) {
+    return new timeago(nowDate, defaultLocale);
+  }
   /**
    * register: register a new language locale
    * - locale: locale name, e.g. en / zh_CN, notice the standard.
@@ -211,10 +224,10 @@ function () {
    * timeagoLib.register('the locale name', the_locale_func);
    * // or
    * timeagoLib.register('pl', require('timeago.js/locales/pl'));
-  **/
-  timeago.register = function(locale, localeFunc) {
+   **/
+  timeagoFactory.register = function(locale, localeFunc) {
     locales[locale] = localeFunc;
   };
 
-  return timeago;
+  return timeagoFactory;
 });

@@ -12,7 +12,7 @@ class TimeagoBuilder {
     this.nowDate = new Date(nowDate);
 
     /** @private */
-    this.timeago = new timeagoLib(null, nowDate);
+    this.timeago = new timeagoLib(nowDate);
 
     this.useLocale(defaultLocale);
   }
