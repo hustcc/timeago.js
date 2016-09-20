@@ -30,13 +30,14 @@
     "jshint": "^2.9.2",
     "gulp-rename": "^1.2.2",
     "tape": "^3.6.1",
-    "pys": "^1.0.2"
+    "pys": "^1.0.2",
+    "webpack": "^1.12.9"
   },
   "scripts": {
     "lint": "jshint src/timeago.js",
     "test": "npm run lint && node tests/locales_test.js && node tests/test.js",
     "test_dev": "npm run lint && node tests/test_dev.js",
-    "build": "gulp mini && npm run test"
+    "build": "gulp mini && webpack && npm run test"
   },
   "dependencies": {
   }

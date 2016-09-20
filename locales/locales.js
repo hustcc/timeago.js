@@ -3,4 +3,4 @@
  * 1. please sort by dictionary.
  * 2. please ensure the accuracy.
  */
-module.exports = ['ar', 'az', 'az', 'be', 'bg', 'bs', 'ca', 'cs', 'cy', 'da', 'de', 'dv', 'el', 'en', 'en_short', 'es', 'et', 'eu', 'fa', 'fi', 'fr', 'gl', 'he', 'hr', 'hu', 'hy', 'id', 'in_HI', 'in_BG', 'in_ID', 'is', 'it', 'ja', 'jv', 'ko', 'ky', 'lt', 'lv', 'mk', 'ml' , 'nb_NO', 'nl', 'nn_NO', 'no', 'pl', 'pt', 'pt_BR', 'ro', 'rs', 'ru', 'rw', 'si', 'sk', 'sl', 'sr', 'sv', 'ta','th', 'tr', 'uk', 'uz', 'vi', 'zh_CN', 'zh_TW'];
+module.exports = [ 'ar', 'be', 'bg', 'ca', 'da', 'de', 'el', 'en', 'en_short', 'es', 'eu', 'fr', 'hu', 'in_BG', 'in_HI', 'in_ID', 'it', 'ja', 'ko', 'ml', 'nb_NO', 'nl', 'nn_NO', 'pl', 'pt_BR', 'ru', 'sv', 'ta', 'th', 'uk', 'vi', 'zh_CN', 'zh_TW' ];

@@ -12,8 +12,8 @@
 }(typeof window !== 'undefined' ? window : this, 
 function () {
   var cnt = 0, // the timer counter, for timer key
-    indexMapEn = ['second', 'minute', 'hour', 'day', 'week', 'month', 'year'],
-    indexMapZh = ['秒', '分钟', '小时', '天', '周', '月', '年'],
+    indexMapEn = 'second_minute_hour_day_week_month_year'.split('_'),
+    indexMapZh = '秒_分钟_小时_天_周_月_年'.split('_'),
     // build-in locales: en & zh_CN
     locales = {
       'en': function(number, index) {
@@ -38,8 +38,7 @@ function () {
     if (input instanceof Date) return input;
     if (!isNaN(input)) return new Date(toInt(input));
     if (/^\d+$/.test(input)) return new Date(toInt(input, 10));
-    input = (input || '').trim();
-    input = input.replace(/\.\d+/, '') // remove milliseconds
+    input = (input || '').trim().replace(/\.\d+/, '') // remove milliseconds
       .replace(/-/, '/').replace(/-/, '/')
       .replace(/T/, ' ').replace(/Z/, ' UTC')
       .replace(/([\+\-]\d\d)\:?(\d\d)/, ' $1$2'); // -04:00 -> -0400
