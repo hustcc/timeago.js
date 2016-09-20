@@ -74,5 +74,10 @@ test('timeago.js should be tested', t => {
   t.equal(newTimeAgo.format('2016-02-28 12:00:00'), '2 days ago');
   newTimeAgo.setLocale('zh_CN');
   t.equal(newTimeAgo.format('2016-02-28 12:00:00'), '2天前');
+
+  const newTimeAgoDefaultLocale = timeago('2016-03-01 12:00:00', 'pl');
+  t.equal(newTimeAgoDefaultLocale.format('2016-02-28 12:00:00'), '2 days ago');
+  t.equal(newTimeAgoDefaultLocale.format('2016-02-28 12:00:00', 'hahah'), '2 days ago');
+  t.equal(newTimeAgoDefaultLocale.format('2016-02-28 12:00:00', 'zh_CN'), '2天前');
   t.end();
 });

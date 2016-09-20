@@ -51,7 +51,11 @@ function () {
   }
   // format the diff second to *** time ago, with setting locale
   function formatDiff(diff, locale, defaultLocale) {
-    if (! locales[locale]) locale = defaultLocale;
+    // if locale is not exist, use defaultLocale.
+    // if defaultLocale is not exist, use build-in `en`.
+    // be sure of no error when locale is not exist.
+    locale = locales[locale] ? locale : (locales[defaultLocale] ? defaultLocale : 'en');
+    // if (! locales[locale]) locale = defaultLocale;
     var i = 0;
       agoin = diff < 0 ? 1 : 0; // timein or timeago
     diff = Math.abs(diff);
