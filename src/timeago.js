@@ -82,9 +82,8 @@ function () {
    * diff = 3601 (an hour + 1 second), then return 3599
    * make the interval with high performace.
   **/
-  // this.nextInterval = function(diff) { // for dev test
   function nextInterval(diff) {
-    var rst = 1, i = 0, d = diff;
+    var rst = 1, i = 0, d = Math.abs(diff);
     for (; diff >= SEC_ARRAY[i] && i < SEC_ARRAY_LEN; i++) {
       diff /= SEC_ARRAY[i];
       rst *= SEC_ARRAY[i];
@@ -93,9 +92,7 @@ function () {
     d = d % rst;
     d = d ? rst - d : rst;
     return Math.ceil(d);
-  // }; // for dev test
   }
-  
   // get the datetime attribute, jQuery and DOM
   function getDateAttr(node) {
     if (node.getAttribute) return node.getAttribute(ATTR_DATETIME);
@@ -126,6 +123,26 @@ function () {
         doRender(node, date, locale, cnt);
       }, nextInterval(diff) * 1000);
     }
+    /**
+     * nextInterval: calculate the next interval time.
+     * - diff: the diff sec between now and date to be formated.
+     *
+     * What's the meaning?
+     * diff = 61 then return 59
+     * diff = 3601 (an hour + 1 second), then return 3599
+     * make the interval with high performace.
+    **/
+    // this.nextInterval = function(diff) { // for dev test
+    //   var rst = 1, i = 0, d = Math.abs(diff);
+    //   for (; diff >= SEC_ARRAY[i] && i < SEC_ARRAY_LEN; i++) {
+    //     diff /= SEC_ARRAY[i];
+    //     rst *= SEC_ARRAY[i];
+    //   }
+    //   // return leftSec(d, rst);
+    //   d = d % rst;
+    //   d = d ? rst - d : rst;
+    //   return Math.ceil(d);
+    // }; // for dev test
     /**
      * format: format the date to *** time ago, with setting or default locale
      * - date: the date / string / timestamp to be formated
