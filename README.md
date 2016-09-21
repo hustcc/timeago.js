@@ -133,7 +133,7 @@ var test_local_dict = function(number, index) {
   // number: the timeago / timein number;
   // index: the index of array below;
   return [
-    ['just now', 'a while'],
+    ['just now', 'right now'],
     ['%s seconds ago', 'in %s seconds'],
     ['1 minute ago', 'in 1 minute'],
     ['%s minutes ago', 'in %s minutes'],

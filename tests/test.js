@@ -29,7 +29,7 @@ test('timeago.js should be tested', t => {
   // test register locale
   const timeagoReg = timeago('2016-06-23');
   timeago.register('test_local', (number, index) => [
-      ["just xxx", "a while"],
+      ["just xxx", "right now"],
       ["%s seconds xxx", "in %s seconds"],
       ["1 minute xxx", "in 1 minute"],
       ["%s minutes xxx", "in %s minutes"],

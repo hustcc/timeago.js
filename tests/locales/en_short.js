@@ -4,7 +4,7 @@ module.exports = function(t, tb) {
   t.equal(tb.subSeconds(10), '10s ago');
   t.equal(tb.subSeconds(21), '21s ago');
   t.equal(tb.subSeconds(22), '22s ago');
-  t.equal(tb.addSeconds(1), 'a while');
+  t.equal(tb.addSeconds(1), 'right now');
   t.equal(tb.addSeconds(10), 'in 10s');
   t.equal(tb.addSeconds(21), 'in 21s');
   t.equal(tb.addSeconds(22), 'in 22s');

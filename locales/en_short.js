@@ -1,6 +1,6 @@
 module.exports = function(number, index) {
   return [
-    ['just now', 'a while'],
+    ['just now', 'right now'],
     ['%ss ago', 'in %ss'],
     ['1m ago', 'in 1m'],
     ['%sm ago', 'in %sm'],
