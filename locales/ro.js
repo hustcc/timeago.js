@@ -1,4 +1,5 @@
 var timeTypes = [
+    ['chiar acum',  'imediat'],
     ['o secundă',   '%s secunde',   '%s de secunde'],   // Seconds
     ['un minut',    '%s minute',    '%s de minute' ],   // Minutes
     ['o oră',       '%s ore',       '%s de ore'],       // Hours
@@ -18,9 +19,8 @@ function formatTime(type, number) {
 }
 
 module.exports = function(number, index) {
-    if (index === 0) {
-      return ['chiar acum', 'imediat'];
-    }
+    if (index === 0)
+        return timeTypes[0];
 
     var timeType;
     switch (index) {
