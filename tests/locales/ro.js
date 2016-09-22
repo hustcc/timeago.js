@@ -40,7 +40,7 @@ module.exports = function(t, tb) {
   // test week
   t.equal(tb.subWeeks(1), 'acum o săptămână');
   t.equal(tb.subWeeks(2), 'acum 2 săptămâni');
-  t.equal(tb.addWeeks(1), 'peste o săptămâni');
+  t.equal(tb.addWeeks(1), 'peste o săptămână');
   t.equal(tb.addWeeks(2), 'peste 2 săptămâni');
 
   // test month
