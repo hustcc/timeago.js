@@ -8,7 +8,7 @@ var timeTypes = [
     ['un an',       '%s ani',       '%s de ani']        // Years
 ];
 
-function formatTime(type, n) {
+function formatTime(type, number) {
     if (number == 1)
         return timeTypes[type][0];
     else if (number % 100 >= 20 || (number >= 100 && number % 100 === 0))
