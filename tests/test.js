@@ -23,8 +23,6 @@ test('timeago.js should be tested', t => {
   // test locale, can set the locale
   t.equal(timeago('2016-06-23').format('2016-06-22'), '1 day ago');
   t.equal(timeago('2016-06-23').format('2016-06-25'), 'in 2 days');
-  t.equal(timeago('2016-06-23').format('2016-06-22', 'zh_CN'), '1天前');
-  t.equal(timeago('2016-06-23').format('2016-06-25', 'zh_CN'), '2天后');
 
   // test register locale
   const timeagoReg = timeago('2016-06-23');
@@ -67,17 +65,13 @@ test('timeago.js should be tested', t => {
 
   // test default locale
   t.equal(timeago('2016-03-01 12:00:00').format('2016-02-28 12:00:00'), '2 days ago');
-  t.equal(timeago('2016-03-01 12:00:00', 'zh_CN').format('2016-02-28 12:00:00'), '2天前');
 
   // test setLocale
   const newTimeAgo = timeago('2016-03-01 12:00:00');
   t.equal(newTimeAgo.format('2016-02-28 12:00:00'), '2 days ago');
-  newTimeAgo.setLocale('zh_CN');
-  t.equal(newTimeAgo.format('2016-02-28 12:00:00'), '2天前');
 
   const newTimeAgoDefaultLocale = timeago('2016-03-01 12:00:00', 'pl');
   t.equal(newTimeAgoDefaultLocale.format('2016-02-28 12:00:00'), '2 days ago');
   t.equal(newTimeAgoDefaultLocale.format('2016-02-28 12:00:00', 'hahah'), '2 days ago');
-  t.equal(newTimeAgoDefaultLocale.format('2016-02-28 12:00:00', 'zh_CN'), '2天前');
   t.end();
 });
