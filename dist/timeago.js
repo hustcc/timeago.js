@@ -13,19 +13,13 @@
 function () {
   var cnt = 0, // the timer counter, for timer key
     indexMapEn = 'second_minute_hour_day_week_month_year'.split('_'),
-    indexMapZh = '秒_分钟_小时_天_周_月_年'.split('_'),
-    // build-in locales: en & zh_CN
+    // build-in locales: en
     locales = {
       'en': function(number, index) {
         if (index === 0) return ['just now', 'right now'];
         var unit = indexMapEn[parseInt(index / 2)];
         if (number > 1) unit += 's';
         return [number + ' ' + unit + ' ago', 'in ' + number + ' ' + unit];
-      },
-      'zh_CN': function(number, index) {
-        if (index === 0) return ['刚刚', '片刻后'];
-        var unit = indexMapZh[parseInt(index / 2)];
-        return [number + unit + '前', number + unit + '后'];
       }
     },
     // second, minute, hour, day, week, month, year(365 days)

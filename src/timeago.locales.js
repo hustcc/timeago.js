@@ -7,6 +7,6 @@ var allLocales = require('../locales/locales.js');
 var locale = null;
 for (var i = allLocales.length - 1; i >= 0; i--) {
   locale = allLocales[i];
-  if (locale != 'en' && locale != 'zh_CN')
+  if (locale != 'en')
     timeago.register(locale, require('../locales/' + locale));
 };
