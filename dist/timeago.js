@@ -1,6 +1,7 @@
 /**
  * Copyright (c) 2016 hustcc
  * License: MIT
+ * Version: v2.0.2
  * https://github.com/hustcc/timeago.js
 **/
 /* jshint expr: true */
