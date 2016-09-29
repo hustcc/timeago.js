@@ -26,11 +26,12 @@
   },
   "devDependencies": {
     "gulp": "^3.9.0",
+    "gulp-inject-version": "^1.0.1",
+    "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.5.3",
     "jshint": "^2.9.2",
-    "gulp-rename": "^1.2.2",
-    "tape": "^3.6.1",
     "pys": "^1.0.2",
+    "tape": "^3.6.1",
     "webpack": "^1.12.9"
   },
   "scripts": {
@@ -39,6 +40,5 @@
     "test_dev": "npm run lint && node tests/test_dev.js",
     "build": "gulp mini && webpack && npm run test"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
