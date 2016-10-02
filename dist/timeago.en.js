@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2016 hustcc
  * License: MIT
- * Version: %%GULP_INJECT_VERSION%%
+ * Version: v2.0.2
  * https://github.com/hustcc/timeago.js
 **/
 /* jshint expr: true */
@@ -14,9 +14,6 @@
 function () {
   var cnt = 0, // the timer counter, for timer key
     indexMapEn = 'second_minute_hour_day_week_month_year'.split('_'),
-    /* chinese-locale */
-    indexMapZh = '秒_分钟_小时_天_周_月_年'.split('_'),
-    /* end-chinese-locale */
 
     // build-in locales: en & zh_CN
     locales = {
@@ -26,13 +23,6 @@ function () {
         if (number > 1) unit += 's';
         return [number + ' ' + unit + ' ago', 'in ' + number + ' ' + unit];
       },
-      /* chinese-locale */
-      'zh_CN': function(number, index) {
-        if (index === 0) return ['刚刚', '片刻后'];
-        var unit = indexMapZh[parseInt(index / 2)];
-        return [number + unit + '前', number + unit + '后'];
-      }
-      /* end-chinese-locale */
     },
     // second, minute, hour, day, week, month, year(365 days)
     SEC_ARRAY = [60, 60, 24, 7, 365/7/12, 12],
