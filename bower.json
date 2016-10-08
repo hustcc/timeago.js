@@ -1,0 +1,22 @@
+{
+  "name": "timeago.js",
+  "description": "timeago.js is a simple library (only 2kb) to used to format datetime with `*** time ago` statement. eg: '3 hours ago'. localization supported.",
+  "main": "dist/timeago.min.js",
+  "authors": [
+    "Hustcc <i@hust.cc>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "timeago",
+    "datetime",
+    "*** time ago",
+    "date",
+    "javascript timeago"
+  ],
+  "homepage": "https://github.com/hustcc/timeago.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ]
+}
