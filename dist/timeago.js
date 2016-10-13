@@ -10,7 +10,7 @@
     module.exports = factory(root);
   else
     root.timeago = factory(root);
-}(typeof window !== 'undefined' ? window : this, 
+}(typeof window !== 'undefined' ? window : this,
 function () {
   var cnt = 0, // the timer counter, for timer key
     indexMapEn = 'second_minute_hour_day_week_month_year'.split('_'),
@@ -33,7 +33,7 @@ function () {
     SEC_ARRAY = [60, 60, 24, 7, 365/7/12, 12],
     SEC_ARRAY_LEN = 6,
     ATTR_DATETIME = 'datetime';
-  
+
   // format Date / string / timestamp to Date instance.
   function toDate(input) {
     if (input instanceof Date) return input;
@@ -56,7 +56,7 @@ function () {
     // be sure of no error when locale is not exist.
     locale = locales[locale] ? locale : (locales[defaultLocale] ? defaultLocale : 'en');
     // if (! locales[locale]) locale = defaultLocale;
-    var i = 0;
+    var i = 0,
       agoin = diff < 0 ? 1 : 0; // timein or timeago
     diff = Math.abs(diff);
 
