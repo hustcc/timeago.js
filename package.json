@@ -1,7 +1,7 @@
 {
   "name": "timeago.js",
   "officialName": "timeago.js",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "summary": "timeago.js is a simple library (less than 2kb) to used to format datetime with `*** time ago` statement. eg: '3 hours ago'.",
   "description": "timeago.js is a simple library (only 2kb) to used to format datetime with `*** time ago` statement. eg: '3 hours ago'. localization supported.",
   "author": {
@@ -28,10 +28,10 @@
     "gulp": "^3.9.0",
     "gulp-inject-version": "^1.0.1",
     "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^1.5.3",
+    "gulp-uglify": "^2.0.0",
     "jshint": "^2.9.2",
-    "pys": "^1.0.2",
-    "tape": "^3.6.1",
+    "pys": "^1.0.3",
+    "tape": "^4.6.2",
     "webpack": "^1.12.9"
   },
   "scripts": {
