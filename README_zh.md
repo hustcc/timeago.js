@@ -71,7 +71,7 @@ timeago.format('2016-06-12')
 
 **1. 设置相对日期**
 
-`timeago` 默认是相对于当前事件的，当然也可以自己设置相对的时间，如下所示：
+`timeago` 默认是相对于当前时间的，当然也可以自己设置相对的时间，如下所示：
 
 ```js
 var timeagoInstance = new timeago(null, '2016-06-10 12:12:12'); // 在这里设置相对时间
@@ -155,7 +155,7 @@ timeago.register('test_local', test_local_dict);
 var timeagoInstance = new timeago();
 timeagoInstance.format('2016-06-12', 'test_local');
 ```
-欢迎发起 PR 添加一些确实的 locale 语言，当然请注意，在 `tests/locales` 目录中添加对应的测试用例。
+欢迎发起 PR 添加一些缺失的 locale 语言，当然请注意，在 `tests/locales` 目录中添加对应的测试用例。
 
 # LICENSE
 
