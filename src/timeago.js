@@ -38,7 +38,7 @@ function () {
   function toDate(input) {
     if (input instanceof Date) return input;
     if (!isNaN(input)) return new Date(toInt(input));
-    if (/^\d+$/.test(input)) return new Date(toInt(input, 10));
+    if (/^\d+$/.test(input)) return new Date(toInt(input));
     input = (input || '').trim().replace(/\.\d+/, '') // remove milliseconds
       .replace(/-/, '/').replace(/-/, '/')
       .replace(/T/, ' ').replace(/Z/, ' UTC')
