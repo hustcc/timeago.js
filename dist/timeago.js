@@ -96,9 +96,8 @@ function () {
   }
   // get the datetime attribute, jQuery and DOM
   function getDateAttr(node) {
-    if(node.dataset.timeago) return node.dataset.timeago;
+    if (node.dataset.timeago) return node.dataset.timeago;
     if (node.getAttribute) return node.getAttribute(ATTR_DATETIME);
-    if(node.attr) return node.attr(ATTR_DATETIME);
   }
   /**
    * timeago: the function to get `timeago` instance.
