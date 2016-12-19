@@ -3,24 +3,7 @@ module.exports = function(number, index) {
         return [ 'منذ لحظات', 'بعد لحظات' ];
     }
 
-    var timeType;
-    switch (index) {
-        case 1: timeType = 0; break;
-        case 2:
-        case 3: timeType = 1; break;
-        case 4:
-        case 5: timeType = 2; break;
-        case 6:
-        case 7: timeType = 3; break;
-        case 8:
-        case 9: timeType = 4; break;
-        case 10:
-        case 11: timeType = 5; break;
-        case 12:
-        case 13: timeType = 6; break;
-    }
-
-    var timeStr = formatTime(timeType, number);
+    var timeStr = formatTime(Math.floor(index/2), number);
     return ['منذ' + ' ' + timeStr, 'بعد' + ' ' + timeStr];
 }
 
@@ -35,10 +18,8 @@ var timeTypes = [
 ];
 
 function formatTime(type, n) {
-    if (n === 1)
-        return timeTypes[type][0];
-    else if (n == 2)
-        return timeTypes[type][1];
+    if (n < 3)
+        return timeTypes[type][n-1];
     else if (n >= 3 && n <= 10)
         return timeTypes[type][2];
     else
