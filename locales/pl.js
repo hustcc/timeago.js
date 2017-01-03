@@ -1,35 +1,34 @@
+// 0-13 alternately: single unit of time,
+// genitive plural form for all other numbers excluding cases below:
+// 14-20: nominative plural form for the numbers 2,3,4 
+// and all other numbers higher than 21 which end in 2,3,4
+var l = [
+  ['w tej chwili', 'za chwilę'],
+  ['%s sekund temu', 'za %s sekund'],
+  ['1 minutę temu', 'za 1 minutę'],
+  ['%s minut temu', 'za %s minut'],
+  ['1 godzinę temu', 'za 1 godzinę'],
+  ['%s godzin temu', 'za %s godzin'],
+  ['1 dzień temu', 'za 1 dzień'], // ['wczoraj', 'jutro'],
+  ['%s dni temu', 'za %s dni'],
+  ['1 tydzień temu', 'za 1 tydzień'],
+  ['%s tygodni temu', 'za %s tygodni'],
+  ['1 miesiąc temu', 'za 1 miesiąc'],
+  ['%s miesięcy temu', 'za %s miesięcy'],
+  ['1 rok temu', 'za 1 rok'],
+  ['%s lat temu', 'za %s lat'],
+  ['%s sekundy temu', 'za %s sekundy'],
+  ['%s minuty temu', 'za %s minuty'],
+  ['%s godziny temu', 'za %s godziny'],
+  ['%s dni temu', 'za %s dni'],
+  ['%s tygodnie temu', 'za %s tygodnie'],
+  ['%s miesiące temu', 'za %s miesiące'],
+  ['%s lata temu', 'za %s lata']
+];
 
 module.exports = function(number, index) {
-  var locale = [
-    ['w tej chwili', 'za chwilę'],
-    ['%s sekund temu', 'za %s sekund'],
-    ['1 minutę temu', 'za 1 minutę'],
-    ['%s minut temu', 'za %s minut'],
-    ['1 godzina temu', 'za 1 godzinę'],
-    ['%s godzin temu', 'za %s godzin'],
-    ['1 dzień temu', 'za 1 dzień'],
-    ['%s dni temu', 'za %s dni'],
-    ['1 tydzień temu', 'za 1 tydzień'],
-    ['%s tygodni temu', 'za %s tygodni'],
-    ['1 miesiąc temu', 'za 1 miesiąc'],
-    ['%s miesiące temu', 'za %s miesiące'],
-    ['1 rok temu', 'za 1 rok'],
-    ['%s lata temu', 'za %s lata']
-  ];
-  var str = number.toString();
-  if (index == 1 && ((str.length == 2 && str[0] == "1" && str[1] != '0') || [2,3,4].indexOf(number % 10) != -1 || [2,3,4].indexOf(number) != -1)) {
-    return ['%s sekundy temu', 'za %s sekundy'];
-  } else if (index == 3 && ([2,3,4].indexOf(number % 10) != -1 || [2,3,4].indexOf(number) != -1)) {
-    return ['%s minuty temu', 'za %s minuty'];
-  } else if (index == 5 && ([2,3,4].indexOf(number % 10) != -1 || [2,3,4].indexOf(number) != -1)) {
-    return ['%s godziny temu', 'za %s godziny'];
-  } else if (index == 9 && [2,3,4].indexOf(number) != -1) {
-    return ['%s tygodnie temu', 'za %s tygodnie'];
-  } else if (index == 11 && (number % 10 == 0 || (str.length == 2 && str[0] == "1") || [1,5,6,7,8,9].indexOf(number % 10) != -1)) {
-    return ['%s miesięcy temu', 'za %s miesięcy'];
-  } else if (index == 13 && (number % 10 == 0 || (str.length == 2 && str[0] == "1") || [1,5,6,7,8,9].indexOf(number % 10) != -1)) {
-    return ['%s lat temu', 'za %s lat'];
-  } else {
-    return locale[index];
-  }
+  // to determine which plural form must be used check the last 2 digits
+  // and calculate new index value to get the nominative form (14-20)
+  // for all other cases use index value as it is (0-13)
+  return l[index&1?(number%10>4||number%10<2||1===~~(number/10)%10?index:++index/2+13):index];
 };
