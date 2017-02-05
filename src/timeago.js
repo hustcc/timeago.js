@@ -123,7 +123,7 @@ function () {
       // waiting %s seconds, do the next render
       timers['k' + cnt] = setTimeout(function() {
         doRender(node, date, locale, cnt);
-      }, nextInterval(diff) * 1000);
+      }, Math.min(nextInterval(diff) * 1000, 0x7FFFFFFF));
     }
     /**
      * nextInterval: calculate the next interval time.
