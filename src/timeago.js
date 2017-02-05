@@ -41,7 +41,7 @@ function () {
     if (/^\d+$/.test(input)) return new Date(toInt(input));
     input = (input || '').trim().replace(/\.\d+/, '') // remove milliseconds
       .replace(/-/, '/').replace(/-/, '/')
-      .replace(/T/, ' ').replace(/Z/, ' UTC')
+      .replace(/(\d)T(\d)/, '$1 $2').replace(/Z/, ' UTC') // 2017-2-5T3:57:52Z -> 2017-2-5 3:57:52UTC
       .replace(/([\+\-]\d\d)\:?(\d\d)/, ' $1$2'); // -04:00 -> -0400
     return new Date(input);
   }
