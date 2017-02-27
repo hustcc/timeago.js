@@ -24,6 +24,9 @@
   "bugs": {
     "url": "https://github.com/hustcc/timeago.js/issues"
   },
+  "dependencies": {
+    "@types/jquery": "^2.0.40"
+  },
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-inject-version": "^1.0.1",
@@ -40,5 +43,5 @@
     "test_dev": "npm run lint && node tests/test_dev.js",
     "build": "gulp mini && webpack && npm run test"
   },
-  "dependencies": {}
+  "typings": "./timeago.d.ts"
 }
