@@ -35,14 +35,9 @@ function () {
     timers = {}; // real-time render timers
 
   function findTimeoutByNode(node) {
-    var result, key;
-    for (key in timers) {
-      if (timers[key] === node) {
-        result = key;
-        break;
-      }
+    for (var key in timers) {
+      if (timers[key] === node) return key;
     }
-    return result;
   }
   // format Date / string / timestamp to Date instance.
   function toDate(input) {
@@ -258,9 +253,7 @@ function () {
       clearTimeout(timeoutId);
       delete timers[timeoutId];
     } else {
-      for (var key in timers) {
-        clearTimeout(key);
-      }
+      for (var key in timers) clearTimeout(key);
       timers = {};
     }
   };
