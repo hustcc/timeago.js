@@ -12,8 +12,7 @@
     root.timeago = factory(root);
 }(typeof window !== 'undefined' ? window : this,
 function () {
-  var cnt = 0, // the timer counter, for timer key
-    indexMapEn = 'second_minute_hour_day_week_month_year'.split('_'),
+  var indexMapEn = 'second_minute_hour_day_week_month_year'.split('_'),
     indexMapZh = '秒_分钟_小时_天_周_月_年'.split('_'),
     // build-in locales: en & zh_CN
     locales = {
@@ -33,7 +32,7 @@ function () {
     SEC_ARRAY = [60, 60, 24, 7, 365/7/12, 12],
     SEC_ARRAY_LEN = 6,
     ATTR_DATETIME = 'datetime',
-    timers = {}; // real-time render timers
+    timers = []; // real-time render timers
 
   // format Date / string / timestamp to Date instance.
   function toDate(input) {
@@ -139,13 +138,14 @@ function () {
     // }; // for dev test
   }
   // what the timer will do
-  Timeago.prototype.doRender = function(node, date, locale, cnt) {
-    var diff = diffSec(date, this.nowDate);
+  Timeago.prototype.doRender = function(node, date, locale) {
+    var diff = diffSec(date, this.nowDate),
+      self = this;
     node.innerHTML = formatDiff(diff, locale, this.defaultLocale);
     // waiting %s seconds, do the next render
-    timers['k' + cnt] = setTimeout(function() {
-      this.doRender(node, date, locale, cnt);
-    }, Math.min(nextInterval(diff) * 1000, 0x7FFFFFFF));
+    timers.push(setTimeout(function() {
+      self.doRender(node, date, locale);
+    }, Math.min(nextInterval(diff) * 1000, 0x7FFFFFFF)));
   };
   /**
    * format: format the date to *** time ago, with setting or default locale
@@ -177,8 +177,8 @@ function () {
   **/
   Timeago.prototype.render = function(nodes, locale) {
     if (nodes.length === undefined) nodes = [nodes];
-    for (var i = 0; i < nodes.length; i++) {
-      this.doRender(nodes[i], getDateAttr(nodes[i]), locale, ++ cnt); // render item
+    for (var i = 0, len = nodes.length; i < len; i++) {
+      this.doRender(nodes[i], getDateAttr(nodes[i]), locale); // render item
     }
   };
   /**
@@ -190,10 +190,10 @@ function () {
    * timeago.cancel(); // will stop all the timer, stop render in real time.
   **/
   Timeago.prototype.cancel = function() {
-    for (var key in timers) {
-      clearTimeout(timers[key]);
+    for (var i = 0, len = timers.length; i < len; i++) {
+      clearTimeout(timers[i]);
     }
-    timers = {};
+    timers = [];
   };
   /**
    * setLocale: set the default locale name.

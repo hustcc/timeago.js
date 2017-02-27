@@ -12,8 +12,7 @@
     root.timeago = factory(root);
 }(typeof window !== 'undefined' ? window : this,
 function () {
-  var cnt = 0, // the timer counter, for timer key
-    indexMapEn = 'second_minute_hour_day_week_month_year'.split('_'),
+  var indexMapEn = 'second_minute_hour_day_week_month_year'.split('_'),
     indexMapZh = '秒_分钟_小时_天_周_月_年'.split('_'),
     // build-in locales: en & zh_CN
     locales = {
@@ -32,7 +31,8 @@ function () {
     // second, minute, hour, day, week, month, year(365 days)
     SEC_ARRAY = [60, 60, 24, 7, 365/7/12, 12],
     SEC_ARRAY_LEN = 6,
-    ATTR_DATETIME = 'datetime';
+    ATTR_DATETIME = 'datetime',
+    timers = []; // real-time render timers
 
   // format Date / string / timestamp to Date instance.
   function toDate(input) {
@@ -113,18 +113,9 @@ function () {
    * var timeago = timeagoLib('2016-09-10', 'zh_CN'); // the relative date is 2016-09-10, and locale is zh_CN, so the 2016-09-11 will be 1天前.
   **/
   function Timeago(nowDate, defaultLocale) {
-    var timers = {}; // real-time render timers
+    this.nowDate = nowDate;
     // if do not set the defaultLocale, set it with `en`
-    if (! defaultLocale) defaultLocale = 'en'; // use default build-in locale
-    // what the timer will do
-    function doRender(node, date, locale, cnt) {
-      var diff = diffSec(date, nowDate);
-      node.innerHTML = formatDiff(diff, locale, defaultLocale);
-      // waiting %s seconds, do the next render
-      timers['k' + cnt] = setTimeout(function() {
-        doRender(node, date, locale, cnt);
-      }, Math.min(nextInterval(diff) * 1000, 0x7FFFFFFF));
-    }
+    this.defaultLocale = defaultLocale || 'en'; // use default build-in locale
     /**
      * nextInterval: calculate the next interval time.
      * - diff: the diff sec between now and date to be formated.
@@ -145,67 +136,76 @@ function () {
     //   d = d ? rst - d : rst;
     //   return Math.ceil(d);
     // }; // for dev test
-    /**
-     * format: format the date to *** time ago, with setting or default locale
-     * - date: the date / string / timestamp to be formated
-     * - locale: the formated string's locale name, e.g. en / zh_CN
-     *
-     * How to use it?
-     * var timeago = require('timeago.js')();
-     * timeago.format(new Date(), 'pl'); // Date instance
-     * timeago.format('2016-09-10', 'fr'); // formated date string
-     * timeago.format(1473473400269); // timestamp with ms
-    **/
-    this.format = function(date, locale) {
-      return formatDiff(diffSec(date, nowDate), locale, defaultLocale);
-    };
-    /**
-     * render: render the DOM real-time.
-     * - nodes: which nodes will be rendered.
-     * - locale: the locale name used to format date.
-     *
-     * How to use it?
-     * var timeago = new require('timeago.js')();
-     * // 1. javascript selector
-     * timeago.render(document.querySelectorAll('.need_to_be_rendered'));
-     * // 2. use jQuery selector
-     * timeago.render($('.need_to_be_rendered'), 'pl');
-     *
-     * Notice: please be sure the dom has attribute `datetime`.
-    **/
-    this.render = function(nodes, locale) {
-      if (nodes.length === undefined) nodes = [nodes];
-      for (var i = 0; i < nodes.length; i++) {
-        doRender(nodes[i], getDateAttr(nodes[i]), locale, ++ cnt); // render item
-      }
-    };
-    /**
-     * cancel: cancel all the timers which are doing real-time render.
-     *
-     * How to use it?
-     * var timeago = new require('timeago.js')();
-     * timeago.render(document.querySelectorAll('.need_to_be_rendered'));
-     * timeago.cancel(); // will stop all the timer, stop render in real time.
-    **/
-    this.cancel = function() {
-      for (var key in timers) {
-        clearTimeout(timers[key]);
-      }
-      timers = {};
-    };
-    /**
-     * setLocale: set the default locale name.
-     *
-     * How to use it?
-     * var timeago = require('timeago.js');
-     * timeago = new timeago();
-     * timeago.setLocale('fr');
-    **/
-    this.setLocale = function(locale) {
-      defaultLocale = locale;
-    };
-    return this;
   }
+  // what the timer will do
+  Timeago.prototype.doRender = function(node, date, locale) {
+    var diff = diffSec(date, this.nowDate),
+      self = this;
+    node.innerHTML = formatDiff(diff, locale, this.defaultLocale);
+    // waiting %s seconds, do the next render
+    timers.push(setTimeout(function() {
+      self.doRender(node, date, locale);
+    }, Math.min(nextInterval(diff) * 1000, 0x7FFFFFFF)));
+  };
+  /**
+   * format: format the date to *** time ago, with setting or default locale
+   * - date: the date / string / timestamp to be formated
+   * - locale: the formated string's locale name, e.g. en / zh_CN
+   *
+   * How to use it?
+   * var timeago = require('timeago.js')();
+   * timeago.format(new Date(), 'pl'); // Date instance
+   * timeago.format('2016-09-10', 'fr'); // formated date string
+   * timeago.format(1473473400269); // timestamp with ms
+  **/
+  Timeago.prototype.format = function(date, locale) {
+    return formatDiff(diffSec(date, this.nowDate), locale, this.defaultLocale);
+  };
+  /**
+   * render: render the DOM real-time.
+   * - nodes: which nodes will be rendered.
+   * - locale: the locale name used to format date.
+   *
+   * How to use it?
+   * var timeago = new require('timeago.js')();
+   * // 1. javascript selector
+   * timeago.render(document.querySelectorAll('.need_to_be_rendered'));
+   * // 2. use jQuery selector
+   * timeago.render($('.need_to_be_rendered'), 'pl');
+   *
+   * Notice: please be sure the dom has attribute `datetime`.
+  **/
+  Timeago.prototype.render = function(nodes, locale) {
+    if (nodes.length === undefined) nodes = [nodes];
+    for (var i = 0, len = nodes.length; i < len; i++) {
+      this.doRender(nodes[i], getDateAttr(nodes[i]), locale); // render item
+    }
+  };
+  /**
+   * cancel: cancel all the timers which are doing real-time render.
+   *
+   * How to use it?
+   * var timeago = new require('timeago.js')();
+   * timeago.render(document.querySelectorAll('.need_to_be_rendered'));
+   * timeago.cancel(); // will stop all the timer, stop render in real time.
+  **/
+  Timeago.prototype.cancel = function() {
+    for (var i = 0, len = timers.length; i < len; i++) {
+      clearTimeout(timers[i]);
+    }
+    timers = [];
+  };
+  /**
+   * setLocale: set the default locale name.
+   *
+   * How to use it?
+   * var timeago = require('timeago.js');
+   * timeago = new timeago();
+   * timeago.setLocale('fr');
+  **/
+  Timeago.prototype.setLocale = function(locale) {
+    this.defaultLocale = locale;
+  };
   /**
    * timeago: the function to get `timeago` instance.
    * - nowDate: the relative date, default is new Date().

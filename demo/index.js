@@ -8,7 +8,8 @@ function iso8601(date) {
 }
 
 document.querySelector('.load_time').setAttribute('datetime', iso8601(new Date()));
-new timeago(null, navigator.language.replace('-', '_')).render(document.querySelectorAll('.need_to_be_rendered'));
+var timeagoInstance = new timeago(null, navigator.language.replace('-', '_'));
+timeagoInstance.render(document.querySelectorAll('.need_to_be_rendered'));
 
 // 2. demo
 document.getElementById('demo_now').innerHTML = new timeago().format(new Date());
