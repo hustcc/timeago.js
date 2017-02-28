@@ -1,17 +1,22 @@
 /// <reference types="jquery" />
-export interface TimeAgoConstructor {
-    new ();
-    new (nowDate: string, defaultLocale?: string);
+declare var timeago: timeago.TimeagoFactory;
+
+export = timeago;
+export as namespace timeago;
+
+declare namespace timeago {
+  export interface TimeAgoConstructor {
+    ();
+    (nowDate: string, defaultLocale?: string);
     format(dateInstance: Date | string | number, locale?: string): string;
     render<T>(nodes: Node | NodeList | JQuery, locale?: string): void;
     cancel(): void;
     setLocale(locale: string): void;
-}
-export interface TimeagoFactory {
+  }
+  export interface TimeagoFactory {
     (): TimeAgoConstructor;
-    (nowDate: any): TimeAgoConstructor;
-    (nowDate: any, defaultLocale: any): TimeAgoConstructor;
-    register(locale: any, localeFunc: any): any;
+    (nowDate: string): TimeAgoConstructor;
+    (nowDate: string, defaultLocale: string): TimeAgoConstructor;
+    register(locale: string, localeFunc: Function): void;
+  }
 }
-declare let timeagoFactory: TimeagoFactory;
-export default timeagoFactory;
