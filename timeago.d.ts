@@ -9,9 +9,9 @@ export interface TimeAgoConstructor {
 }
 export interface TimeagoFactory {
     (): TimeAgoConstructor;
-    (nowDate: any): TimeAgoConstructor;
-    (nowDate: any, defaultLocale: any): TimeAgoConstructor;
-    register(locale: any, localeFunc: any): any;
+    (nowDate: string): TimeAgoConstructor;
+    (nowDate: string, defaultLocale: string): TimeAgoConstructor;
+    register(locale: string, localeFunc: Function): void;
 }
 declare let timeagoFactory: TimeagoFactory;
 export default timeagoFactory;

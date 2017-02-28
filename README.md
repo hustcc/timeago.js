@@ -60,6 +60,15 @@ or link with `script` in html files:
 <script src="dist/timeago.min.js"></script>
 ```
 
+or import to a typescript file
+```ts
+impor timeago from 'timeago.js';
+
+// or
+
+import timeago = require("timeago.js");
+```
+
 **3. Use class `timeago`**
 
 ```js
@@ -151,12 +160,12 @@ var test_local_dict = function(number, index) {
 };
 // register your locale with timeago
 timeago.register('test_local', test_local_dict);
-// use the locale with timeago instance 
+// use the locale with timeago instance
 var timeagoInstance = new timeago();
 timeagoInstance.format('2016-06-12', 'test_local');
 ```
 
-You can see [locales](locales) dir for more locales. 
+You can see [locales](locales) dir for more locales.
 
 [Locale contributions](#3-contributions) are welcomed, thank you for submitting a GitHub pull request for corrections or additional languages. ^_^~
 
@@ -167,7 +176,7 @@ You can see [locales](locales) dir for more locales.
 
 2. **locale translations**: The library needs more locale translations. You can:
 
- - Open an issue to write the locale translations, or submit a pull request. How to ? see [en's translation](locales/en.js). 
+ - Open an issue to write the locale translations, or submit a pull request. How to ? see [en's translation](locales/en.js).
  - Please **test** the locale by exec `npm test` or `node tests/locales_test.js`. How to write testcase, see [en's test cases](tests/locales/en.js).
 
 
