@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2016 hustcc
  * License: MIT
- * Version: v2.0.5
+ * Version: v3.0.0
  * https://github.com/hustcc/timeago.js
 **/
 /* jshint expr: true */
@@ -34,18 +34,9 @@ function () {
     SEC_ARRAY = [60, 60, 24, 7, 365/7/12, 12],
     SEC_ARRAY_LEN = 6,
     ATTR_DATETIME = 'datetime',
+    ATTR_DATA_TID = 'data-tid',
     timers = {}; // real-time render timers
 
-  function findTimeoutByNode(node) {
-    var result, key;
-    for (key in timers) {
-      if (timers[key] === node) {
-        result = key;
-        break;
-      }
-    }
-    return result;
-  }
   // format Date / string / timestamp to Date instance.
   function toDate(input) {
     if (input instanceof Date) return input;
@@ -108,9 +99,19 @@ function () {
   }
   // get the datetime attribute, jQuery and DOM
   function getDateAttr(node) {
-    if(node.dataset.timeago) return node.dataset.timeago;
-    if (node.getAttribute) return node.getAttribute(ATTR_DATETIME);
-    if(node.attr) return node.attr(ATTR_DATETIME);
+    if(node.dataset.timeago) return node.dataset.timeago; // data-timeago supported
+    return getAttr(node, ATTR_DATETIME);
+  }
+  function getAttr(node, name) {
+    if(node.getAttribute) return node.getAttribute(name); // native
+    if(node.attr) return node.attr(name); // jquery
+  }
+  function setTidAttr(node, val) {
+    if(node.setAttribute) return node.setAttribute(ATTR_DATA_TID, val); // native
+    if(node.attr) return node.attr(ATTR_DATA_TID, val); // jquery
+  }
+  function getTidFromNode(node) {
+    return getAttr(node, ATTR_DATA_TID);
   }
   /**
    * timeago: the function to get `timeago` instance.
@@ -152,13 +153,17 @@ function () {
   // what the timer will do
   Timeago.prototype.doRender = function(node, date, locale) {
     var diff = diffSec(date, this.nowDate),
-      self = this;
-    delete timers[findTimeoutByNode(node)]; // delete previously assigned timeout's id to node
+      self = this,
+      tid;
+    // delete previously assigned timeout's id to node
+    //delete timers[getTimeoutId(node)]; // if delete it from object, then `cancel()` may can not cancel all the timer.
     node.innerHTML = formatDiff(diff, locale, this.defaultLocale);
     // waiting %s seconds, do the next render
-    timers[setTimeout(function() {
+    timers[tid = setTimeout(function() {
       self.doRender(node, date, locale);
-    }, Math.min(nextInterval(diff) * 1000, 0x7FFFFFFF))] = node;
+    }, Math.min(nextInterval(diff) * 1000, 0x7FFFFFFF))] = 0; // there is no need to save node in object.
+    // set attribute date-tid
+    setTidAttr(node, tid);
   };
   /**
    * format: format the date to *** time ago, with setting or default locale
@@ -254,15 +259,13 @@ function () {
    * timeagoFactory.cancel(nodes[0]); // will clear a timer attached to the first node, stop render in real time.
    **/
   timeagoFactory.cancel = function(node) {
-    var timeoutId;
+    var tid;
     // assigning in if statement to save space
-    if (node && (timeoutId = findTimeoutByNode(node))) {
-      clearTimeout(timeoutId);
-      delete timers[timeoutId];
+    if (node && (tid = getTidFromNode(node))) {
+      clearTimeout(tid);
+      delete timers[tid];
     } else {
-      for (var key in timers) {
-        clearTimeout(key);
-      }
+      for (tid in timers) clearTimeout(tid);
       timers = {};
     }
   };
