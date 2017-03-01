@@ -34,12 +34,11 @@ function () {
     SEC_ARRAY = [60, 60, 24, 7, 365/7/12, 12],
     SEC_ARRAY_LEN = 6,
     ATTR_DATETIME = 'datetime',
+    ATTR_DATA_TID = 'data-tid',
     timers = {}; // real-time render timers
 
-  function findTimeoutByNode(node) {
-    for (var key in timers) {
-      if (timers[key] === node) return key;
-    }
+  function getTimeoutId(node) {
+    return getAttr(node, ATTR_DATA_TID);
   }
   // format Date / string / timestamp to Date instance.
   function toDate(input) {
@@ -104,8 +103,15 @@ function () {
   // get the datetime attribute, jQuery and DOM
   function getDateAttr(node) {
     if(node.dataset.timeago) return node.dataset.timeago;
-    if (node.getAttribute) return node.getAttribute(ATTR_DATETIME);
-    if(node.attr) return node.attr(ATTR_DATETIME);
+    return getAttr(node, ATTR_DATETIME);
+  }
+  function getAttr(node, name) {
+    if(node.getAttribute) return node.getAttribute(name); // native
+    if(node.attr) return node.attr(name); // jquery
+  }
+  function setAttr(node, name, val) {
+    if(node.setAttribute) return node.setAttribute(name, val); // native
+    if(node.attr) return node.attr(name, val); // jquery
   }
   /**
    * timeago: the function to get `timeago` instance.
@@ -147,13 +153,15 @@ function () {
   // what the timer will do
   Timeago.prototype.doRender = function(node, date, locale) {
     var diff = diffSec(date, this.nowDate),
-      self = this;
-    delete timers[findTimeoutByNode(node)]; // delete previously assigned timeout's id to node
+      self = this,
+      tid;
+    delete timers[getTimeoutId(node)]; // delete previously assigned timeout's id to node
     node.innerHTML = formatDiff(diff, locale, this.defaultLocale);
     // waiting %s seconds, do the next render
-    timers[setTimeout(function() {
+    timers[tid = setTimeout(function() {
       self.doRender(node, date, locale);
     }, Math.min(nextInterval(diff) * 1000, 0x7FFFFFFF))] = node;
+    setAttr(node, ATTR_DATA_TID, tid);
   };
   /**
    * format: format the date to *** time ago, with setting or default locale
@@ -251,7 +259,7 @@ function () {
   timeagoFactory.cancel = function(node) {
     var timeoutId;
     // assigning in if statement to save space
-    if (node && (timeoutId = findTimeoutByNode(node))) {
+    if (node && (timeoutId = getTimeoutId(node))) {
       clearTimeout(timeoutId);
       delete timers[timeoutId];
     } else {
