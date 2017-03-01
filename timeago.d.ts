@@ -5,12 +5,12 @@ export interface TimeAgoConstructor {
     new (nowDate: TDate, defaultLocale?: string);
     format(date: TDate, locale?: string): string;
     render<T>(nodes: Node | NodeList | JQuery, locale?: string): void;
-    cancel(): void;
     setLocale(locale: string): void;
 }
 export interface TimeagoFactory {
     (): TimeAgoConstructor;
     (nowDate: TDate, defaultLocale?: string): TimeAgoConstructor;
+    cancel(node?: Node | JQuery): void;
     register(locale: string, localeFunc: Function): void;
 }
 declare let timeagoFactory: TimeagoFactory;
