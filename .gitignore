@@ -4,4 +4,5 @@
 .DS_Store
 
 node_modules/*
+tests/test_ts.js
 

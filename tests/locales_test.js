@@ -3,7 +3,7 @@
 const fs = require('fs');
 const test = require('tape');
 const timeago = require('..');
-const pys = require('pys');
+const slice = require('slice.js');
 
 // all the locales code, if missing, please add them.
 const allLocales = require('../locales/locales.js');
@@ -11,7 +11,7 @@ const allLocales = require('../locales/locales.js');
 function testLocales(tobeTested) {
   test('Testing locales', t => {
     tobeTested.forEach(file => {
-      const localeName = pys(file)('0:-3');
+      const localeName = slice(file)('0:-3');
       t.ok(allLocales.indexOf(localeName) >= 0, 'locale [' + localeName + ']');
 
       console.log('\nTesting locales [' + localeName + ']');

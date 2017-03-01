@@ -6,8 +6,10 @@
 **/
 /* jshint expr: true */
 !function (root, factory) {
-  if (typeof module === 'object' && module.exports)
-    module.exports = factory(root);
+  if (typeof module === 'object' && module.exports) {
+    module.exports = factory(root); // nodejs support
+    module.exports['default'] = module.exports; // es6 support
+  }
   else
     root.timeago = factory(root);
 }(typeof window !== 'undefined' ? window : this,

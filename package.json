@@ -33,13 +33,14 @@
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^2.0.0",
     "jshint": "^2.9.2",
-    "pys": "^1.0.3",
+    "slice.js": "^1.0.3",
     "tape": "^4.6.2",
-    "webpack": "^1.12.9"
+    "webpack": "^1.12.9",
+    "typescript": "^2.2.1"
   },
   "scripts": {
     "lint": "jshint src/timeago.js",
-    "test": "npm run lint && node tests/locales_test.js && node tests/test.js",
+    "test": "npm run lint && node tests/locales_test.js && node tests/test.js && tsc tests/test_ts.ts && node tests/test_ts.js",
     "test_dev": "npm run lint && node tests/test_dev.js",
     "build": "gulp mini && webpack && npm run test"
   },
