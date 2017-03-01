@@ -54,13 +54,14 @@ import timeago from 'timeago.js';
 var timeago = require("timeago.js");
 ```
 
-or link with `script` in html files:
+or link with `script` in html files.
 
 ```js
 <script src="dist/timeago.min.js"></script>
 ```
 
-or import to a typescript file
+or import to a typescript file.
+
 ```ts
 impor timeago from 'timeago.js';
 

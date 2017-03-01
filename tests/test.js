@@ -3,7 +3,7 @@
 const test = require('tape');
 const timeago = require('..');
 const fs = require('fs');
-const pys = require('pys');
+const slice = require('slice.js');
 const testBuilder = require('./test-builder');
 
 test('timeago.js should be tested', t => {
@@ -11,7 +11,7 @@ test('timeago.js should be tested', t => {
   // read all the locales test in `tests/locales` dir
   fs.readdir('tests/locales', (err, files) => {
     files.forEach(file => {
-      const locale = pys(file)('0:-3');
+      const locale = slice(file)('0:-3');
       console.log('\nLocale testcase for ['+ locale +']');
       // require in the locales testcases
       const tb = testBuilder(Date.now()).register(locale, require('../locales/' + locale), true);

@@ -41,7 +41,6 @@ npm install timeago.js
 
 **2. 引入 timeago.js**
 
-
 使用import引入，然后可以得到一个全局变量: `timeago`.
 
 ```js
@@ -56,6 +55,16 @@ var timeago = require("timeago.js");
 
 ```js
 <script src="dist/timeago.min.js"></script>
+```
+
+或者在 typescript 文件中引入.
+
+```ts
+impor timeago from 'timeago.js';
+
+// or
+
+import timeago = require("timeago.js");
 ```
 
 **3. 使用 `timeago` 类**
