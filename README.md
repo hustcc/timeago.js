@@ -44,7 +44,7 @@ npm install timeago.js
 **2. Import timeago.js**
 
 
-ES6 style is supported, then get global object: `timeago`.
+ES6 (and TS) import style is supported, then get global object: `timeago`.
 
 ```js
 import timeago from 'timeago.js';
@@ -104,10 +104,13 @@ HTML code：
 js code
 ```js
 var timeagoInstance = new timeago();
-// use render to render it in real time
-timeagoInstance.render(document.querySelectorAll('.need_to_be_rendered'), 'zh_CN');
-// or cancel real-time render
-timeagoInstance.cancel()
+var nodes = document.querySelectorAll('.need_to_be_rendered');
+// use render to render nodes in real time
+timeagoInstance.render(nodes, 'zh_CN');
+// cancel real-time render for every node
+timeago.cancel()
+// or for the specific one
+timeago.cancel(nodes[0])
 ```
 
 The input API `render` should be DOM object/array, pure javascript DOM node, and jQuery DOM object supported.
@@ -130,7 +133,7 @@ You can change the locale in the constructor or use the `setLocale` method;
 ```js
 var timeagoInstance = new timeago(currentDate, 'zh_CN');
 // or
-new timeago().setLocale('zh_CN');
+new timeago(currentDate).setLocale('zh_CN');
 ```
 
 **5. Register local language**
