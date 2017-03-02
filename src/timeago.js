@@ -129,26 +129,8 @@ function () {
     this.nowDate = nowDate;
     // if do not set the defaultLocale, set it with `en`
     this.defaultLocale = defaultLocale || 'en'; // use default build-in locale
-    /**
-     * nextInterval: calculate the next interval time.
-     * - diff: the diff sec between now and date to be formated.
-     *
-     * What's the meaning?
-     * diff = 61 then return 59
-     * diff = 3601 (an hour + 1 second), then return 3599
-     * make the interval with high performace.
-    **/
-    // this.nextInterval = function(diff) { // for dev test
-    //   var rst = 1, i = 0, d = Math.abs(diff);
-    //   for (; diff >= SEC_ARRAY[i] && i < SEC_ARRAY_LEN; i++) {
-    //     diff /= SEC_ARRAY[i];
-    //     rst *= SEC_ARRAY[i];
-    //   }
-    //   // return leftSec(d, rst);
-    //   d = d % rst;
-    //   d = d ? rst - d : rst;
-    //   return Math.ceil(d);
-    // }; // for dev test
+    // for dev test
+    // this.nextInterval = nextInterval;
   }
   // what the timer will do
   Timeago.prototype.doRender = function(node, date, locale) {
