@@ -43,24 +43,23 @@ npm install timeago.js
 
 **2. Import timeago.js**
 
-
-ES6 (and TS) import style is supported, then get global object: `timeago`.
+ES6/commonjs import style is supported.
 
 ```js
+// ES6
 import timeago from 'timeago.js';
 
-// or
-
+// commonjs
 var timeago = require("timeago.js");
 ```
 
-or link with `script` in html files.
+or link as a `script` in an html file and access global variable `timeago`.
 
 ```js
 <script src="dist/timeago.min.js"></script>
 ```
 
-or import to a typescript file.
+or import in a typescript file.
 
 ```ts
 impor timeago from 'timeago.js';
@@ -70,10 +69,10 @@ impor timeago from 'timeago.js';
 import timeago = require("timeago.js");
 ```
 
-**3. Use class `timeago`**
+**3. Use `timeago` factory to create a new instance**
 
 ```js
-var timeagoInstance = new timeago();
+var timeagoInstance = timeago();
 timeagoInstance.format('2016-06-12');
 ```
 
@@ -82,30 +81,30 @@ timeagoInstance.format('2016-06-12');
 
 **1. Set relative date**
 
-`timeago` is relative to the current date default. You can set it yourself.
+`timeago` is relative to the current date by default. You can set it yourself.
 
 ```js
-var timeagoInstance = new timeago('2016-06-10 12:12:12'); // set the relative date here.
+var timeagoInstance = timeago('2016-06-10 12:12:12'); // set the relative date here.
 timeagoInstance.format('2016-06-12', 'zh_CN');
 ```
 
 **2. Use timestamp**
 
 ```js
-new timeago().format(new Date().getTime() - 11 * 1000 * 60 * 60); // will get '11 hours ago'
+timeago().format(Date.now() - 11 * 1000 * 60 * 60); // returns '11 hours ago'
 ```
 
 **3. Automatic rendering**
 
 HTML code：
 ```html
-<div class="need_to_be_rendered" datetime="2016-06-30 09:20:00"></div>
+<div class="needs_to_be_rendered" datetime="2016-06-30 09:20:00"></div>
 ```
 js code
 ```js
-var timeagoInstance = new timeago();
-var nodes = document.querySelectorAll('.need_to_be_rendered');
-// use render to render nodes in real time
+var timeagoInstance = timeago();
+var nodes = document.querySelectorAll('.needs_to_be_rendered');
+// use render method to render nodes in real time
 timeagoInstance.render(nodes, 'zh_CN');
 // cancel real-time render for every node
 timeago.cancel()
@@ -113,32 +112,32 @@ timeago.cancel()
 timeago.cancel(nodes[0])
 ```
 
-The input API `render` should be DOM object/array, pure javascript DOM node, and jQuery DOM object supported.
+The input for `render` method should be DOM object/array, pure javascript DOM node or jQuery DOM object.
 
-The API `cancel` will clear all the render timers and release all resources of the instance.
+The `cancel` method clears all the render timers and release all resources of the instance. Optionally it accepts a single node to cancel timer just for it.
 
-The DOM object should have the attribute `datetime` or `data-timeago` with date formated string.
+The DOM object should have the attribute `datetime` or `data-timeago` with date formatted string.
 
 **4. Localization**
 
 Default locale is **`en`**, and the library supports `en` and `zh_CN`.
 
 ```js
-var timeagoInstance = new timeago();
+var timeagoInstance = timeago();
 timeagoInstance.format('2016-06-12', 'zh_CN');
 ```
 
-You can change the locale in the constructor or use the `setLocale` method;
+You can change the locale in the constructor or use the `setLocale` method:
 
 ```js
-var timeagoInstance = new timeago(currentDate, 'zh_CN');
+var timeagoInstance = timeago(currentDate, 'zh_CN');
 // or
-new timeago(currentDate).setLocale('zh_CN');
+timeago(currentDate).setLocale('zh_CN');
 ```
 
 **5. Register local language**
 
-You can `register` your own language, this is a class static method. Like below, e.g.
+You can register your own language via a static method `register`. Usage example:
 
 ```js
 // the local dict example is below.
@@ -165,18 +164,18 @@ var test_local_dict = function(number, index) {
 // register your locale with timeago
 timeago.register('test_local', test_local_dict);
 // use the locale with timeago instance
-var timeagoInstance = new timeago();
+var timeagoInstance = timeago();
 timeagoInstance.format('2016-06-12', 'test_local');
 ```
 
-You can see [locales](locales) dir for more locales.
+Check out more [locales](locales).
 
 [Locale contributions](#3-contributions) are welcomed, thank you for submitting a GitHub pull request for corrections or additional languages. ^_^~
 
 
 # 3. Contributions
 
-1. The website is based on [rmm5t/jquery-timeago](https://github.com/rmm5t/jquery-timeago) which is a nice and featured project but depends on jQuery.
+1. The website is based on [rmm5t/jquery-timeago](https://github.com/rmm5t/jquery-timeago) which is a nice and featured project but it depends on jQuery.
 
 2. **locale translations**: The library needs more locale translations. You can:
 

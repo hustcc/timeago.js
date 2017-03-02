@@ -70,7 +70,7 @@ import timeago = require("timeago.js");
 **3. 使用 `timeago` 类**
 
 ```js
-var timeago = new timeago();
+var timeago = timeago();
 timeago.format('2016-06-12')
 ```
 
@@ -83,14 +83,14 @@ timeago.format('2016-06-12')
 `timeago` 默认是相对于当前时间的，当然也可以自己设置相对的时间，如下所示：
 
 ```js
-var timeagoInstance = new timeago(null, '2016-06-10 12:12:12'); // 在这里设置相对时间
+var timeagoInstance = timeago(null, '2016-06-10 12:12:12'); // 在这里设置相对时间
 timeagoInstance.format('2016-06-12', 'zh_CN');
 ```
 
 **2. 格式化时间戳，字符串**
 
 ```js
-new timeago().format(new Date().getTime() - 11 * 1000 * 60 * 60); // will get '11 hours ago'
+timeago().format(Date.now() - 11 * 1000 * 60 * 60); // will get '11 hours ago'
 ```
 
 **3. 自动实时渲染**
@@ -101,7 +101,7 @@ HTML为：
 ```
 Js代码为：
 ```js
-var timeagoInstance = new timeago();
+var timeagoInstance = timeago();
 timeagoInstance.render(document.querySelectorAll('.need_to_be_rendered'), 'zh_CN');
 
 // or
@@ -120,16 +120,16 @@ API方法 `cancel` 调用之后会清除所有的定时器方法，并且释放�
 默认的语言是英文 **`en`**, 这个库自带语言有 `en` and `zh_CN` （英文和中文）.
 
 ```js
-var timeagoInstance = new timeago();
+var timeagoInstance = timeago();
 timeagoInstance.format('2016-06-12', 'zh_CN');
 ```
 
 可以在构造函数中传入默认语言，也可以调用 `setLocale` 方法。
 
 ```js
-var timeagoInstance = new timeago(currentDate, 'zh_CN');
+var timeagoInstance = timeago(currentDate, 'zh_CN');
 // or
-new timeago().setLocale('zh_CN');
+timeago().setLocale('zh_CN');
 ```
 
 **5. 注册本地语言**
@@ -161,7 +161,7 @@ var test_local_dict = function(number, index) {
 
 timeago.register('test_local', test_local_dict);
 
-var timeagoInstance = new timeago();
+var timeagoInstance = timeago();
 timeagoInstance.format('2016-06-12', 'test_local');
 ```
 欢迎发起 PR 添加一些缺失的 locale 语言，当然请注意，在 `tests/locales` 目录中添加对应的测试用例。
