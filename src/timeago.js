@@ -156,11 +156,11 @@ function () {
       self = this,
       tid;
     // delete previously assigned timeout's id to node
-    //delete timers[getTimeoutId(node)]; // if delete it from object, then `cancel()` may can not cancel all the timer.
     node.innerHTML = formatDiff(diff, locale, this.defaultLocale);
     // waiting %s seconds, do the next render
     timers[tid = setTimeout(function() {
       self.doRender(node, date, locale);
+      delete timers[tid];
     }, Math.min(nextInterval(diff) * 1000, 0x7FFFFFFF))] = 0; // there is no need to save node in object.
     // set attribute date-tid
     setTidAttr(node, tid);
