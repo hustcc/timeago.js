@@ -60,7 +60,7 @@ var timeago = require("timeago.js");
 或者在 typescript 文件中引入.
 
 ```ts
-impor timeago from 'timeago.js';
+import timeago from 'timeago.js';
 
 // or
 

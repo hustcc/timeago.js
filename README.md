@@ -62,7 +62,7 @@ or link as a `script` in an html file and access global variable `timeago`.
 or import in a typescript file.
 
 ```ts
-impor timeago from 'timeago.js';
+import timeago from 'timeago.js';
 
 // or
 
