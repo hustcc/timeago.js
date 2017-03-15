@@ -141,9 +141,10 @@ You can register your own language via a static method `register`. Usage example
 
 ```js
 // the local dict example is below.
-var test_local_dict = function(number, index) {
+var test_local_dict = function(number, index, total_sec) {
   // number: the timeago / timein number;
   // index: the index of array below;
+  // total_sec: total seconds between date to be formatted and today's date
   return [
     ['just now', 'right now'],
     ['%s seconds ago', 'in %s seconds'],
