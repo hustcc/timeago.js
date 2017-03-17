@@ -113,9 +113,10 @@ new timeago().format(1473245023718);          //=> &quot;<span id="demo_timestam
       </p>
       <pre>
 
-var locale = function(number, index) {
+var locale = function(number, index, total_sec) {
   // number: the timeago / timein number;
   // index: the index of array below;
+  // total_sec: total seconds between date to be formatted and today's date;
   return [
     ['just now', 'right now'],
     ['%s seconds ago', 'in %s seconds'],
