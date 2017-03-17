@@ -134,13 +134,14 @@ timeago().setLocale('zh_CN');
 
 **5. 注册本地语言**
 
-你可以自己自定义注册 `register` 你自己的语言. 如下所示，所有的键值都必须存在，不然可能会出错. e.g.
+你可以自己自定义注册 `register` 你自己的语言。 如下所示，所有的键值都必须存在，不然可能会出错。 e.g.
 
 ```js
 // 本地化的字典样式
-var test_local_dict = function(number, index) {
-  // number: xxx 时间前 / 后的数字;
-  // index: 下面数组的索引号;
+var test_local_dict = function(number, index, total_sec) {
+  // number：xxx 时间前 / 后的数字；
+  // index：下面数组的索引号；
+  // total_sec：时间间隔的总秒数；
   return [
     ['just now', 'a while'],
     ['%s seconds ago', 'in %s seconds'],
@@ -168,4 +169,4 @@ timeagoInstance.format('2016-06-12', 'test_local');
 
 # LICENSE
 
-MIT
+MIT@[https://github.com/hustcc](hustcc)

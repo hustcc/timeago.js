@@ -186,4 +186,4 @@ Check out more [locales](locales).
 
 # 4. LICENSE
 
-MIT
+MIT@[https://github.com/hustcc](hustcc)

@@ -60,8 +60,8 @@ function () {
     locale = locales[locale] ? locale : (locales[defaultLocale] ? defaultLocale : 'en');
     // if (! locales[locale]) locale = defaultLocale;
     var i = 0,
-      agoin = diff < 0 ? 1 : 0; // timein or timeago
-    diff = Math.abs(diff);
+      agoin = diff < 0 ? 1 : 0, // timein or timeago
+      total_sec = diff = Math.abs(diff);
 
     for (; diff >= SEC_ARRAY[i] && i < SEC_ARRAY_LEN; i++) {
       diff /= SEC_ARRAY[i];
@@ -70,7 +70,7 @@ function () {
     i *= 2;
 
     if (diff > (i === 0 ? 9 : 1)) i += 1;
-    return locales[locale](diff, i)[agoin].replace('%s', diff);
+    return locales[locale](diff, i, total_sec)[agoin].replace('%s', diff);
   }
   // calculate the diff second between date to be formated an now date.
   function diffSec(date, nowDate) {
@@ -129,26 +129,8 @@ function () {
     this.nowDate = nowDate;
     // if do not set the defaultLocale, set it with `en`
     this.defaultLocale = defaultLocale || 'en'; // use default build-in locale
-    /**
-     * nextInterval: calculate the next interval time.
-     * - diff: the diff sec between now and date to be formated.
-     *
-     * What's the meaning?
-     * diff = 61 then return 59
-     * diff = 3601 (an hour + 1 second), then return 3599
-     * make the interval with high performace.
-    **/
-    // this.nextInterval = function(diff) { // for dev test
-    //   var rst = 1, i = 0, d = Math.abs(diff);
-    //   for (; diff >= SEC_ARRAY[i] && i < SEC_ARRAY_LEN; i++) {
-    //     diff /= SEC_ARRAY[i];
-    //     rst *= SEC_ARRAY[i];
-    //   }
-    //   // return leftSec(d, rst);
-    //   d = d % rst;
-    //   d = d ? rst - d : rst;
-    //   return Math.ceil(d);
-    // }; // for dev test
+    // for dev test
+    // this.nextInterval = nextInterval;
   }
   // what the timer will do
   Timeago.prototype.doRender = function(node, date, locale) {
@@ -156,11 +138,11 @@ function () {
       self = this,
       tid;
     // delete previously assigned timeout's id to node
-    //delete timers[getTimeoutId(node)]; // if delete it from object, then `cancel()` may can not cancel all the timer.
     node.innerHTML = formatDiff(diff, locale, this.defaultLocale);
     // waiting %s seconds, do the next render
     timers[tid = setTimeout(function() {
       self.doRender(node, date, locale);
+      delete timers[tid];
     }, Math.min(nextInterval(diff) * 1000, 0x7FFFFFFF))] = 0; // there is no need to save node in object.
     // set attribute date-tid
     setTidAttr(node, tid);

@@ -60,8 +60,8 @@ function () {
     locale = locales[locale] ? locale : (locales[defaultLocale] ? defaultLocale : 'en');
     // if (! locales[locale]) locale = defaultLocale;
     var i = 0,
-      total_sec = diff = Math.abs(diff),
-      agoin = diff < 0 ? 1 : 0; // timein or timeago
+      agoin = diff < 0 ? 1 : 0, // timein or timeago
+      total_sec = diff = Math.abs(diff);
 
     for (; diff >= SEC_ARRAY[i] && i < SEC_ARRAY_LEN; i++) {
       diff /= SEC_ARRAY[i];
