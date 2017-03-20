@@ -48,7 +48,7 @@ function () {
       .replace(/([\+\-]\d\d)\:?(\d\d)/, ' $1$2'); // -04:00 -> -0400
     return new Date(input);
   }
-  // change f into int, remove Decimal. just for code compression
+  // change f into int, remove decimal. Just for code compression
   function toInt(f) {
     return parseInt(f);
   }
@@ -167,7 +167,7 @@ function () {
    * - locale: the locale name used to format date.
    *
    * How to use it?
-   * var timeago = new require('timeago.js')();
+   * var timeago = require('timeago.js')();
    * // 1. javascript selector
    * timeago.render(document.querySelectorAll('.need_to_be_rendered'));
    * // 2. use jQuery selector
@@ -185,8 +185,7 @@ function () {
    * setLocale: set the default locale name.
    *
    * How to use it?
-   * var timeago = require('timeago.js');
-   * timeago = new timeago();
+   * var timeago = require('timeago.js')();
    * timeago.setLocale('fr');
   **/
   Timeago.prototype.setLocale = function(locale) {
@@ -198,11 +197,11 @@ function () {
    * - defaultLocale: the default locale, default is en. if your set it, then the `locale` parameter of format is not needed of you.
    *
    * How to use it?
-   * var timeagoLib = require('timeago.js');
-   * var timeago = timeagoLib(); // all use default.
-   * var timeago = timeagoLib('2016-09-10'); // the relative date is 2016-09-10, so the 2016-09-11 will be 1 day ago.
-   * var timeago = timeagoLib(null, 'zh_CN'); // set default locale is `zh_CN`.
-   * var timeago = timeagoLib('2016-09-10', 'zh_CN'); // the relative date is 2016-09-10, and locale is zh_CN, so the 2016-09-11 will be 1天前.
+   * var timeagoFactory = require('timeago.js');
+   * var timeago = timeagoFactory(); // all use default.
+   * var timeago = timeagoFactory('2016-09-10'); // the relative date is 2016-09-10, so the 2016-09-11 will be 1 day ago.
+   * var timeago = timeagoFactory(null, 'zh_CN'); // set default locale is `zh_CN`.
+   * var timeago = timeagoFactory('2016-09-10', 'zh_CN'); // the relative date is 2016-09-10, and locale is zh_CN, so the 2016-09-11 will be 1天前.
    **/
   function timeagoFactory(nowDate, defaultLocale) {
     return new Timeago(nowDate, defaultLocale);
@@ -213,11 +212,11 @@ function () {
    * - localeFunc: the locale process function
    *
    * How to use it?
-   * var timeagoLib = require('timeago.js');
+   * var timeagoFactory = require('timeago.js');
    *
-   * timeagoLib.register('the locale name', the_locale_func);
+   * timeagoFactory.register('the locale name', the_locale_func);
    * // or
-   * timeagoLib.register('pl', require('timeago.js/locales/pl'));
+   * timeagoFactory.register('pl', require('timeago.js/locales/pl'));
    **/
   timeagoFactory.register = function(locale, localeFunc) {
     locales[locale] = localeFunc;
@@ -243,9 +242,12 @@ function () {
   timeagoFactory.cancel = function(node) {
     var tid;
     // assigning in if statement to save space
-    if (node && (tid = getTidFromNode(node))) {
-      clearTimeout(tid);
-      delete timers[tid];
+    if (node) {
+      tid = getTidFromNode(node);
+      if (tid) {
+        clearTimeout(tid);
+        delete timers[tid];
+      }
     } else {
       for (tid in timers) clearTimeout(tid);
       timers = {};
