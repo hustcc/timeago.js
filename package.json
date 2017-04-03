@@ -40,8 +40,9 @@
   },
   "scripts": {
     "lint": "jshint src/timeago.js",
-    "test": "npm run lint && node tests/locales_test.js && node tests/test.js && tsc tests/test_ts.ts && node tests/test_ts.js",
+    "test": "npm run lint && node tests/locales_test.js && node tests/test.js && node tests/test_ts.js && npm run test_ts",
     "test_dev": "npm run lint && node tests/test_dev.js",
+    "test_ts": "tsc tests/test_ts.ts --noImplicitAny",
     "build": "gulp mini && webpack && npm run test"
   },
   "typings": "./timeago.d.ts"
