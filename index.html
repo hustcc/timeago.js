@@ -91,9 +91,9 @@ var timeago = require("timeago.js");</pre>
         Now, let's attach it to your timestamps on DOM ready:
       </p>
       <pre>
-new timeago().render(document.querySelectorAll('.need_to_be_rendered'));
+timeago().render(document.querySelectorAll('.need_to_be_rendered'));
 // or use jquery selector
-new timeago().render($('.need_to_be_rendered'));</pre>
+timeago().render($('.need_to_be_rendered'));</pre>
       <p class="how">
         This will realtime render all <tt>selected</tt>(javascript DOM selector, or jQuery selector all are supported) elements with a class of <tt>need_to_be_rendered</tt>.
       </p>
@@ -103,9 +103,9 @@ new timeago().render($('.need_to_be_rendered'));</pre>
         You can also use it programmatically:
       </p>
       <pre>
-new timeago().format(new Date());             //=> &quot;<span id="demo_now"></span>&quot;
-new timeago(null, 'zh_CN').format('2016-09-07')           //=> &quot;<span id="demo_20160907"></span>&quot;
-new timeago().format(1473245023718);          //=> &quot;<span id="demo_timestamp"></span>&quot;</pre>
+timeago().format(new Date());             //=> &quot;<span id="demo_now"></span>&quot;
+timeago(null, 'zh_CN').format('2016-09-07')           //=> &quot;<span id="demo_20160907"></span>&quot;
+timeago().format(1473245023718);          //=> &quot;<span id="demo_timestamp"></span>&quot;</pre>
 
       <h3>Locales register ?</h3>
       <p>
