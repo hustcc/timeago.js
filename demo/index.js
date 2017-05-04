@@ -8,10 +8,10 @@ function iso8601(date) {
 }
 
 document.querySelector('.load_time').setAttribute('datetime', iso8601(new Date()));
-var timeagoInstance = new timeago(null, navigator.language.replace('-', '_'));
+var timeagoInstance = timeago(null, navigator.language.replace('-', '_'));
 timeagoInstance.render(document.querySelectorAll('.need_to_be_rendered'));
 
 // 2. demo
-document.getElementById('demo_now').innerHTML = new timeago().format(new Date());
-document.getElementById('demo_20160907').innerHTML = new timeago(null, 'zh_CN').format('2016-09-07');
-document.getElementById('demo_timestamp').innerHTML = new timeago().format(1473245023718); 
+document.getElementById('demo_now').innerHTML = timeago().format(new Date());
+document.getElementById('demo_20160907').innerHTML = timeago(null, 'zh_CN').format('2016-09-07');
+document.getElementById('demo_timestamp').innerHTML = timeago().format(1473245023718); 
