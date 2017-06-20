@@ -103,17 +103,13 @@ function () {
   }
   // get the node attribute, native DOM and jquery supported.
   function getAttr(node, name) {
-    var attrFunc = node.getAttribute || node.attr; // navice / jquery
-    return attrFunc && attrFunc(name);
-    // if(node.getAttribute) return node.getAttribute(name); // native
-    // if(node.attr) return node.attr(name); // jquery
+    if(node.getAttribute) return node.getAttribute(name); // native
+    if(node.attr) return node.attr(name); // jquery
   }
   // set the node attribute, native DOM and jquery supported.
   function setTidAttr(node, val) {
-    var attrFunc = node.setAttribute || node.attr; // navice / jquery
-    return attrFunc && attrFunc(ATTR_DATA_TID, val);
-    // if(node.setAttribute) return node.setAttribute(ATTR_DATA_TID, val); // native
-    // if(node.attr) return node.attr(ATTR_DATA_TID, val); // jquery
+    if(node.setAttribute) return node.setAttribute(ATTR_DATA_TID, val); // native
+    if(node.attr) return node.attr(ATTR_DATA_TID, val); // jquery
   }
   function getTidFromNode(node) {
     return getAttr(node, ATTR_DATA_TID);
