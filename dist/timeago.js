@@ -111,9 +111,11 @@ function () {
     if(node.setAttribute) return node.setAttribute(ATTR_DATA_TID, val); // native
     if(node.attr) return node.attr(ATTR_DATA_TID, val); // jquery
   }
-  function getTidFromNode(node) {
-    return getAttr(node, ATTR_DATA_TID);
-  }
+  // get the timer id of node.
+  // remove the function, can save some bytes.
+  // function getTidFromNode(node) {
+  //   return getAttr(node, ATTR_DATA_TID);
+  // }
   /**
    * timeago: the function to get `timeago` instance.
    * - nowDate: the relative date, default is new Date().
@@ -244,7 +246,7 @@ function () {
     var tid;
     // assigning in if statement to save space
     if (node) {
-      tid = getTidFromNode(node);
+      tid = getAttr(node, ATTR_DATA_TID); // get the timer of DOM node(native / jq).
       if (tid) {
         clearTimeout(tid);
         delete timers[tid];
