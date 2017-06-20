@@ -10,7 +10,7 @@
 
 [Official website](http://timeago.org/)。关于Python的版本，可以看 [timeago](https://github.com/hustcc/timeago).
 
-[![Build Status](https://travis-ci.org/hustcc/timeago.js.svg?branch=master)](https://travis-ci.org/hustcc/timeago.js) [![npm](https://img.shields.io/npm/v/timeago.js.svg?style=flat-square)](https://www.npmjs.com/package/timeago.js) [![npm](https://img.shields.io/npm/dt/timeago.js.svg?style=flat-square)](https://www.npmjs.com/package/timeago.js) [![npm](https://img.shields.io/npm/l/timeago.js.svg?style=flat-square)](https://www.npmjs.com/package/timeago.js)
+[![Build Status](https://img.shields.io/travis/hustcc/timeago.js.svg?style=flat-square)](https://travis-ci.org/hustcc/timeago.js) [![CDNJS](https://img.shields.io/cdnjs/v/timeago.js.svg?style=flat-square)](https://cdnjs.com/libraries/timeago.js) [![npm](https://img.shields.io/npm/v/timeago.js.svg?style=flat-square)](https://www.npmjs.com/package/timeago.js) [![npm](https://img.shields.io/npm/dt/timeago.js.svg?style=flat-square)](https://www.npmjs.com/package/timeago.js) [![npm](https://img.shields.io/npm/l/timeago.js.svg?style=flat-square)](https://www.npmjs.com/package/timeago.js)
 
 ```
 刚刚
