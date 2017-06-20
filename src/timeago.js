@@ -33,7 +33,7 @@ function () {
     // second, minute, hour, day, week, month, year(365 days)
     SEC_ARRAY = [60, 60, 24, 7, 365/7/12, 12],
     SEC_ARRAY_LEN = 6,
-    ATTR_DATETIME = 'datetime',
+    // ATTR_DATETIME = 'datetime',
     ATTR_DATA_TID = 'data-tid',
     timers = {}; // real-time render timers
 
@@ -97,18 +97,23 @@ function () {
     d = d ? rst - d : rst;
     return Math.ceil(d);
   }
-  // get the datetime attribute, jQuery and DOM
+  // get the datetime attribute, `data-timeagp` / `datetime` are supported.
   function getDateAttr(node) {
-    if(node.getAttribute('data-timeago')) return node.getAttribute('data-timeago'); // data-timeago supported
-    return getAttr(node, ATTR_DATETIME);
+    return getAttr(node, 'data-timeago') || getAttr(node, 'datetime');
   }
+  // get the node attribute, native DOM and jquery supported.
   function getAttr(node, name) {
-    if(node.getAttribute) return node.getAttribute(name); // native
-    if(node.attr) return node.attr(name); // jquery
+    var attrFunc = node.getAttribute || node.attr; // navice / jquery
+    return attrFunc && attrFunc(name);
+    // if(node.getAttribute) return node.getAttribute(name); // native
+    // if(node.attr) return node.attr(name); // jquery
   }
+  // set the node attribute, native DOM and jquery supported.
   function setTidAttr(node, val) {
-    if(node.setAttribute) return node.setAttribute(ATTR_DATA_TID, val); // native
-    if(node.attr) return node.attr(ATTR_DATA_TID, val); // jquery
+    var attrFunc = node.setAttribute || node.attr; // navice / jquery
+    return attrFunc && attrFunc(ATTR_DATA_TID, val);
+    // if(node.setAttribute) return node.setAttribute(ATTR_DATA_TID, val); // native
+    // if(node.attr) return node.attr(ATTR_DATA_TID, val); // jquery
   }
   function getTidFromNode(node) {
     return getAttr(node, ATTR_DATA_TID);
