@@ -52,12 +52,12 @@ module.exports = function(t, tb) {
   t.equal(tb.addMonths(5), 'حدود 5 ماه پیش');
 
   // test year
-  t.equal(tb.subYears(1), '1 ماه پیش');
-  t.equal(tb.subYears(2), '2 ماه پیش');
-  t.equal(tb.subYears(5), '5 ماه پیش');
-  t.equal(tb.subYears(21), '21 ماه پیش');
-  t.equal(tb.addYears(1), 'حدود 1 ماه پیش');
-  t.equal(tb.addYears(2), 'حدود 2 ماه پیش');
-  t.equal(tb.addYears(5), 'حدود 5 ماه پیش');
-  t.equal(tb.addYears(21), 'حدود 21 ماه پیش');
+  t.equal(tb.subYears(1), '1 سال پیش');
+  t.equal(tb.subYears(2), '2 سال پیش');
+  t.equal(tb.subYears(5), '5 سال پیش');
+  t.equal(tb.subYears(21), '21 سال پیش');
+  t.equal(tb.addYears(1), 'حدود 1 سال پیش');
+  t.equal(tb.addYears(2), 'حدود 2 سال پیش');
+  t.equal(tb.addYears(5), 'حدود 5 سال پیش');
+  t.equal(tb.addYears(21), 'حدود 21 سال پیش');
 };
