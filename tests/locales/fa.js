@@ -4,7 +4,7 @@ module.exports = function(t, tb) {
   t.equal(tb.subSeconds(10),  '10 ثانیه پیش');
   t.equal(tb.subSeconds(21), '21 ثانیه پیش');
   t.equal(tb.subSeconds(22), '22 ثانیه پیش');
-  t.equal(tb.addSeconds(1), 'همین الآن');
+  t.equal(tb.addSeconds(1), 'لحظاتی پیش');
   t.equal(tb.addSeconds(10), 'حدود 10 ثانیه پیش');
   t.equal(tb.addSeconds(21), 'حدود 21 ثانیه پیش');
   t.equal(tb.addSeconds(22), 'حدود 22 ثانیه پیش');
