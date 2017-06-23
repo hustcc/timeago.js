@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>timeago.js: testcases.</title>
+	<meta name="keywords" content="timeago, timeago.js, datetime,*** time ago, javascript timeago, react-timeago, jquery-timeago, timeago.org" />
+	<meta name="description" content="timeago.js is a tiny(2kb) library used to format date with `*** time ago`. eg: '3 hours ago'. No dependence. and support automatically updating fuzzy timestamps." />
+	<link rel="shortcut icon" href="clock.png" />
+	<link rel="bookmark" href="clock.png" />
+	<style>
+		* { margin: 0; padding: 0; }
+		body { font-family: Helvetica,Arial,sans-serif; color: #333; background-color: #ccc; font-size: 16px; line-height: 24px; }
+		h1 { margin: 0; font-size: 60px; line-height: 100px; text-align: center; }
+		h2 { margin: -30px 0 40px 50px; font-size: 20px; line-height: 20px; text-align: center; color: #999; }
+		h3 { margin: 24px 0 6px 0; font-size: 18px; line-height: 18px; border-bottom: 1px solid #ccc; }
+		h1 img { vertical-align: middle; }
+		p { margin: 0 0 24px 0; }
+		p.example { margin: 0 0 12px 0; }
+		p.how, p.last { margin: 0; }
+		ul { margin: 0 24px 24px; }
+		li { line-height: 24px; }
+		input {margin: 5px;}
+		abbr[title], time[title] { border-bottom: 1px dotted #333; }
+		tt { font-size: 14px; }
+		a { color: #06e; padding: 1px; }
+		em { font-style: normal; background-color: #feb; }
+		a:hover { background-color: #06c; color: #fff; text-decoration: none; }
+		#content { margin:0 auto; padding: 24px; width:700px; background-color:#fff; border: 1px solid #999; border-width: 0 1px 1px 1px; }
+		#footer { margin:0 auto 24px; padding: 12px; width:700px; line-height: 24px; }
+		.help { font-size: 14px; color: #888; }
+		.strong {font-weight: bold;}
+	</style>
+</head>
+<body>
+<div id="content">
+	<h1><img src="clock.png" /> timeago.js</h1>
+	<h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a tiny / simple library</h2>
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- sorry for ad -->
+	<ins class="adsbygoogle"
+	     style="display:block"
+	     data-ad-client="ca-pub-7292810486004926"
+	     data-ad-slot="7806394673"
+	     data-ad-format="auto"></ins>
+	<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+
+	<h3>What ?</h3>
+	<p>
+		<strong>timeago.js</strong> is a tiny(2kb) library used to format date with `*** time ago`. eg: '3 hours ago'. No dependency. and support automatically updating fuzzy timestamps (e.g. "4 minutes ago" or "about 1 day ago").  <a href="https://github.com/hustcc/timeago.js">Download</a>, view the examples, and enjoy.
+	</p>
+	<div>
+		<input type="button" onclick="javascript:start_render_all(true);" value="Auto-render all by native." />
+		<input type="button" onclick="javascript:start_render_all(false);" value="Auto-render all by jquery." />
+
+		<input type="button" onclick="javascript:stop_render_all();" value="Stop all Auto-render." />
+	</div>
+	<h3>Test for native DOM</h3>
+	<p class="native example">
+		You opened this page <time class="strong single">when you opened the page</time>
+		<input type="button" onclick="javascript:start_single_native();" value="Start." />
+		<input type="button" onclick="javascript:stop_single_native();" value="Stop." />
+	</p>
+	<p class="native example">
+		You opened this page <time class="strong">when you opened the page</time>.
+	</p>
+
+	<h3>Test for Jquery DOM ?</h3>
+	<p class="jquery example">
+		You opened this page <time class="strong single">when you opened the page</time>.
+		<input type="button" onclick="javascript:start_single_jquery();" value="Start." />
+		<input type="button" onclick="javascript:stop_single_jquery();" value="Stop." />
+	</p>
+	<p class="jquery example">
+		You opened this page <time class="strong">when you opened the page</time>.
+	</p>
+</div>
+<div id="footer">
+	Copyright &copy; 2016 How to user it, see <a href="http://timeago.org/" target="_blank" rel="nofollow">timeago.js</a>.
+	Updated by <a href="http://Github.com/hustcc">Hustcc</a>
+</div>
+<script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+<script src="../dist/timeago.min.js" type="text/javascript"></script>
+<script src="../dist/timeago.locales.min.js" type="text/javascript"></script>
+<script src="./index.js" type="text/javascript"></script>
+<script type="text/javascript">
+	init_test_page(); // 初始化标签上的时间
+
+	function start_render_all(native) {
+	  var nodes = [];
+		if (native) {
+			nodes = document.querySelectorAll('.example time');
+		} else {
+		  nodes = $('.example time');
+		}
+		timeago().render(nodes);
+	}
+	function stop_render_all(native) {
+    timeago.cancel(); // cancel all.
+	}
+
+	function start_single_native() {
+		timeago().render(document.querySelector('.native .single', 'zh_CN'));
+	}
+
+	function stop_single_native() {
+    timeago.cancel(document.querySelector('.native .single'));
+	}
+
+  function start_single_jquery() {
+    new timeago().render($('.jquery .single'));
+  }
+
+  function stop_single_jquery() {
+		timeago.cancel($('.jquery .single'));
+  }
+</script>
+</body>
+</html>
