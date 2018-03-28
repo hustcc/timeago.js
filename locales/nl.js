@@ -5,7 +5,7 @@ module.exports = function(number, index) {
     ['1 minuut geleden', 'binnen 1 minuut'],
     ['%s minuten geleden', 'binnen %s minuten'],
     ['1 uur geleden', 'binnen 1 uur'],
-    ['%s uren geleden', 'binnen %s uren'],
+    ['%s uur geleden', 'binnen %s uren'],
     ['1 dag geleden', 'binnen 1 dag'],
     ['%s dagen geleden', 'binnen %s dagen'],
     ['1 week geleden', 'binnen 1 week'],
