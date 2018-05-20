@@ -7,7 +7,8 @@ import {
   formatDiff,
   diffSec,
   nextInterval,
-  setTidAttr
+  setTidAttr,
+  getDateAttr,
 } from './helper';
 
 import { run } from './timer';
@@ -29,8 +30,9 @@ export class TimeAgo {
    * @param locale
    */
   doRender(node, date, locale) {
-    // delete previously assigned timeout's id to node
-    node.innerHTML = this.format(date, locale);
+    const diff = diffSec(date, this.nowDate);
+    // render
+    node.innerHTML = formatDiff(diff, locale, this.defaultLocale);
 
     // waiting %s seconds, do the next render
     const tid = run(() => {
@@ -56,10 +58,10 @@ export class TimeAgo {
    * Notice: please be sure the dom has attribute `datetime`.
    */
   render(nodes, locale) {
-    const nodeArr = Array.isArray(nodes) ? nodes : [nodes];
-
-    for (const node of nodeArr) {
-      this.doRender(node, getDateAttr(node), locale); // render item
+    // by .length
+    if (nodes.length === undefined) nodes = [nodes];
+    for (let i = 0, len = nodes.length; i < len; i ++) {
+      this.doRender(nodes[i], getDateAttr(nodes[i]), locale); // render item
     }
   }
 

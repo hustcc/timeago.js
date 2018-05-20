@@ -4,7 +4,7 @@
  */
 
 import timeago from '.';
-import AllLocales from '../locales';
+import * as AllLocales from '../locales/index.js';
 
 for (const locale of AllLocales) {
   timeago.register(locale, require('../locales/' + locale));

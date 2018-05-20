@@ -3,7 +3,8 @@
  * Contract: i@hust.cc
  */
 
-import { SEC_ARRAY } from './constant';
+import { SEC_ARRAY, ATTR_DATA_TID } from './constant';
+import { Locales } from './locales';
 
 
 /**
@@ -40,7 +41,7 @@ export const formatDiff = (diff, locale, defaultLocale) => {
   // if locale is not exist, use defaultLocale.
   // if defaultLocale is not exist, use build-in `en`.
   // be sure of no error when locale is not exist.
-  locale = locales[locale] ? locale : (locales[defaultLocale] ? defaultLocale : 'en');
+  locale = Locales[locale] ? locale : (Locales[defaultLocale] ? defaultLocale : 'en');
   let i = 0,
     agoin = diff < 0 ? 1 : 0, // timein or timeago
     total_sec = diff = Math.abs(diff);
@@ -52,7 +53,7 @@ export const formatDiff = (diff, locale, defaultLocale) => {
   i *= 2;
 
   if (diff > (i === 0 ? 9 : 1)) i += 1;
-  return locales[locale](diff, i, total_sec)[agoin].replace('%s', diff);
+  return Locales[locale](diff, i, total_sec)[agoin].replace('%s', diff);
 };
 
 /**
@@ -93,10 +94,10 @@ export const nextInterval = diff => {
  * @param name
  * @returns {*}
  */
-export const getAttr = (node, name) => (
-  node.getAttribute ? node.getAttribute(name) : // native dom
-    node.attr ? node.attr(name) : undefined // jquery dom
-);
+export const getAttr = (node, name) => {
+  if (node.getAttribute) return node.getAttribute(name); // native dom
+  if (node.attr) return node.attr(name); // jquery dom
+};
 
 /**
  * get the datetime attribute, `data-timeagp` / `datetime` are supported.
@@ -111,8 +112,7 @@ export const getDateAttr = node => getAttr(node, 'data-timeago') || getAttr(node
  * @param val
  * @returns {*}
  */
-export const setTidAttr = (node, val) => (
-  (node.setAttribute ? node.setAttribute : // native dom
-    node.attr ? node.attr : () => {}) // jquery
-  (ATTR_DATA_TID, val)
-);
+export const setTidAttr = (node, val) => {
+  if (node.setAttribute) return node.setAttribute(ATTR_DATA_TID, val);
+  if (node.attr) return node.attr(ATTR_DATA_TID, val);
+};

@@ -25,8 +25,10 @@ export const cancel = node => {
     }
   } else {
     // 清空所有的 timer
-    for (tid in Timers) clearTimeout(tid);
-    timers = {};
+    for (tid in Timers) {
+      clearTimeout(tid);
+      delete Timers[tid];
+    }
   }
 };
 
@@ -36,7 +38,7 @@ export const cancel = node => {
  * @param delay
  */
 export const run = (func, delay) => {
-  const tid = setTimeout(() => {
+  const tid = setTimeout(function() {
     // 执行目标方法
     func();
     // 从 Timer 中删除
