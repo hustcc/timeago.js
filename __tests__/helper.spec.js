@@ -27,8 +27,8 @@ describe('helper', () => {
 
   test('diffSec', () => {
     const now = new Date();
-    expect(diffSec(now)).toEqual(0);
-    expect(diffSec(now - 10000, now)).toEqual(10);
+    expect(diffSec(now)).toBeApproximate(0);
+    expect(diffSec(now - 10000, now)).toBeApproximate(10);
   });
 
   test('nextInterval', () => {

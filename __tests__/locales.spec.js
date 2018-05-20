@@ -61,7 +61,8 @@ describe('locales', () => {
   });
 
   test('register', () => {
-    register('fr', () => {});
+    register('fr', () => 'test');
     expect(Locales).toContainKey('fr');
+    expect(Locales.fr()).toBe('test');
   });
 });

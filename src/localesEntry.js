@@ -1,0 +1,10 @@
+/**
+ * Created by hustcc on 18/5/20.
+ * Contract: i@hust.cc
+ */
+
+import Languages from './lang';
+
+for (const locale of Object.keys(Languages)) {
+  timeago.register(locale, Languages[locale]);
+}

@@ -21,5 +21,6 @@ function init_index_page() {
 function init_test_page() {
   $('.native time').attr('datetime', iso8601(new Date()));
   $('.jquery time').attr('data-timeago', iso8601(new Date()));
+  $('.locales time').attr('data-timeago', iso8601(new Date()));
 }
 

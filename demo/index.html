@@ -55,6 +55,13 @@
 	<p class="jquery example">
 		You opened this page <time class="strong">when you opened the page</time>.
 	</p>
+
+	<h3>Test for Locales ?</h3>
+	<p class="locales example">
+		You opened this page <time class="strong single vi">when you opened the page</time>.
+		<input type="button" onclick="javascript:start_vi();" value="Start." />
+		<input type="button" onclick="javascript:stop_vi();" value="Stop." />
+	</p>
 </div>
 <div id="footer">
 	Copyright &copy; 2016 How to user it, see <a href="http://timeago.org/" target="_blank" rel="nofollow">timeago.js</a>.
@@ -62,6 +69,7 @@
 </div>
 <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
 <script src="../dist/timeago.min.js" type="text/javascript"></script>
+<script src="../dist/timeago.locales.min.js" type="text/javascript"></script>
 <script src="./index.js" type="text/javascript"></script>
 <script type="text/javascript">
 	init_test_page(); // 初始化标签上的时间
@@ -93,6 +101,14 @@
 
   function stop_single_jquery() {
 		timeago.cancel($('.jquery .single'));
+  }
+
+  function start_vi() {
+    timeago().render($('.vi.single'), 'vi');
+  }
+
+  function stop_vi() {
+    timeago.cancel($('.vi.single'));
   }
 </script>
 </body>

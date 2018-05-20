@@ -5,15 +5,16 @@
 
 import uglify from 'rollup-plugin-uglify';
 import babel from 'rollup-plugin-babel';
+import resolve from 'rollup-plugin-node-resolve';
 
 export default {
-  input: 'src/index.js',
+  input: 'src/localesEntry.js',
   output: {
-    file: 'dist/timeago.min.js',
-    name: 'timeago',
-    format: 'umd',
+    file: 'dist/timeago.locales.min.js',
+    format: 'iife',
   },
   plugins: [
+    resolve(),
     babel({
       exclude: 'node_modules/**',
     }),
