@@ -9,27 +9,20 @@ import { ATTR_DATA_TID } from './constant'
 // 所有的定时器
 export const Timers = [];
 
+const clear = tid => {
+  if (tid) {
+    clearTimeout(tid);
+    delete Timers[tid];
+  }
+};
+
 /**
  * 取消定时器
  * @param node
  */
 export const cancel = node => {
-  let tid;
-  // assigning in if statement to save space
-  if (node) {
-    // 仅仅清空当前节点的 timer
-    tid = getAttr(node, ATTR_DATA_TID); // get the timer of DOM node(native / jq).
-    if (tid) {
-      clearTimeout(tid);
-      delete Timers[tid];
-    }
-  } else {
-    // 清空所有的 timer
-    for (tid in Timers) {
-      clearTimeout(tid);
-      delete Timers[tid];
-    }
-  }
+  if (node) clear(getAttr(node, ATTR_DATA_TID)); // get the timer of DOM node(native / jq).
+  else for (const tid in Timers) clear(tid);
 };
 
 /**
@@ -42,7 +35,7 @@ export const run = (func, delay) => {
     // 执行目标方法
     func();
     // 从 Timer 中删除
-    delete Timers[tid];
+    clear(tid);
   }, delay);
 
   // there is no need to save node in object. Just save the key

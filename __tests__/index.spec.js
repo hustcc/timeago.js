@@ -4,7 +4,7 @@
  */
 
 import timeago from '../src';
-// import { TimeAgo } from '../src/TimeAgo';
+import { TimeAgo } from '../src/TimeAgo';
 
 import timeagoLib from '..';
 
@@ -14,7 +14,7 @@ describe('index', () => {
     expect(timeago.register).toBeFunction();
     expect(timeago.cancel).toBeFunction();
 
-    // expect(timeago() instanceof TimeAgo).toBe(true);
+    expect(timeago() instanceof TimeAgo).toBe(true);
   });
 
   test('timeagoLib', () => {

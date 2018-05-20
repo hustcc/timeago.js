@@ -5,6 +5,7 @@
 
 import { TimeAgo } from '../src/TimeAgo';
 
+// TODO fill all test cases
 describe('TimeAgo', () => {
   test('class', () => {
     expect(TimeAgo).toBeDefined();

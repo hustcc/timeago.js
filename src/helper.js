@@ -57,7 +57,7 @@ export const formatDiff = (diff, locale, defaultLocale) => {
 };
 
 /**
- * calculate the diff second between date to be formated an now date.
+ * calculate the diff second between date to be formatted an now date.
  * @param date
  * @param nowDate
  * @returns {number}
@@ -69,12 +69,12 @@ export const diffSec = (date, nowDate) => {
 
 /**
  * nextInterval: calculate the next interval time.
- * - diff: the diff sec between now and date to be formated.
+ * - diff: the diff sec between now and date to be formatted.
  *
  * What's the meaning?
  * diff = 61 then return 59
  * diff = 3601 (an hour + 1 second), then return 3599
- * make the interval with high performace.
+ * make the interval with high performance.
  **/
 export const nextInterval = diff => {
   let rst = 1, i = 0, d = Math.abs(diff);
@@ -82,7 +82,6 @@ export const nextInterval = diff => {
     diff /= SEC_ARRAY[i];
     rst *= SEC_ARRAY[i];
   }
-  // return leftSec(d, rst);
   d = d % rst;
   d = d ? rst - d : rst;
   return Math.ceil(d);
