@@ -32,10 +32,10 @@ export const cancel = node => {
  */
 export const run = (func, delay) => {
   const tid = setTimeout(function() {
-    // 执行目标方法
-    func();
     // 从 Timer 中删除
     clear(tid);
+    // 执行目标方法
+    func();
   }, delay);
 
   // there is no need to save node in object. Just save the key

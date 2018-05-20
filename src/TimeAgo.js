@@ -11,7 +11,7 @@ import {
   getDateAttr,
 } from './helper';
 
-import { run } from './timer';
+import { run, cancel } from './timer';
 
 export class TimeAgo {
   constructor(nowDate, defaultLocale = 'en') {
@@ -60,8 +60,13 @@ export class TimeAgo {
   render(nodes, locale) {
     // by .length
     if (nodes.length === undefined) nodes = [nodes];
+
+    let node;
     for (let i = 0, len = nodes.length; i < len; i ++) {
-      this.doRender(nodes[i], getDateAttr(nodes[i]), locale); // render item
+      node = nodes[i];
+      // clear node's timer
+      cancel(node);
+      this.doRender(node, getDateAttr(node), locale); // render item
     }
   }
 
