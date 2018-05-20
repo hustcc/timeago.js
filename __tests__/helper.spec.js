@@ -16,7 +16,6 @@ import {
 
 describe('helper', () => {
   test('toInt', () => {
-    expect(toInt('1')).toBe(1);
     expect(toInt('a')).toBeNaN();
   });
 

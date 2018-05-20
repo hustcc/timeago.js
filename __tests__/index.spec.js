@@ -3,7 +3,7 @@
  * Contract: i@hust.cc
  */
 
-import timeago from '../src';
+import timeago from '../src/index';
 import { TimeAgo } from '../src/TimeAgo';
 
 import timeagoLib from '..';
