@@ -1,8 +1,4 @@
-.project
-.settings
-.idea/*
-.DS_Store
-
-node_modules/*
-tests/test_ts.js
-
+node_modules/
+npm-debug.*
+.idea
+coverage
