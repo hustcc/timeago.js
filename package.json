@@ -58,6 +58,9 @@
   "size-limit": [{
     "limit": "2 KB",
     "path": "dist/timeago.min.js"
+  }, {
+    "limit": "10 KB",
+    "path": "dist/timeago.locales.min.js"
   }],
   "jest": {
     "setupFiles": [],

@@ -3,9 +3,8 @@
  * Contract: i@hust.cc
  */
 
-import { SEC_ARRAY, ATTR_DATA_TID } from './constant';
+import { SEC_ARRAY, ATTR_DATA_TID, ATTR_TIMEAGO, ATTR_DATETIME } from './constant';
 import { Locales } from './locales';
-
 
 /**
  * change f into int, remove decimal. Just for code compression
@@ -103,7 +102,7 @@ export const getAttr = (node, name) => {
  * @param node
  * @returns {*}
  */
-export const getDateAttr = node => getAttr(node, 'data-timeago') || getAttr(node, 'datetime');
+export const getDateAttr = node => getAttr(node, ATTR_TIMEAGO) || getAttr(node, ATTR_DATETIME);
 
 /**
  * set the node attribute, native DOM and jquery supported.

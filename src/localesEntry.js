@@ -5,6 +5,8 @@
 
 import Languages from './lang';
 
-for (const locale of Object.keys(Languages)) {
-  timeago.register(locale, Languages[locale]);
+for (locale in Languages) {
+  if (Languages.hasOwnProperty(locale)) {
+    timeago.register(locale, Languages[locale]);
+  }
 }
