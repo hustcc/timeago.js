@@ -20,8 +20,7 @@ export const toInt = f => parseInt(f);
  */
 export const toDate = input => {
   if (input instanceof Date) return input;
-  if (!isNaN(input)) return new Date(toInt(input));
-  if (/^\d+$/.test(input)) return new Date(toInt(input));
+  if (!isNaN(input) || /^\d+$/.test(input)) return new Date(toInt(input));
   input = (input || '').trim().replace(/\.\d+/, '') // remove milliseconds
     .replace(/-/, '/').replace(/-/, '/')
     .replace(/(\d)T(\d)/, '$1 $2').replace(/Z/, ' UTC') // 2017-2-5T3:57:52Z -> 2017-2-5 3:57:52UTC
@@ -61,10 +60,7 @@ export const formatDiff = (diff, locale, defaultLocale) => {
  * @param nowDate
  * @returns {number}
  */
-export const diffSec = (date, nowDate) => {
-  nowDate = nowDate ? toDate(nowDate) : new Date();
-  return (nowDate - toDate(date)) / 1000;
-};
+export const diffSec = (date, nowDate) => (nowDate - toDate(date)) / 1000;
 
 /**
  * nextInterval: calculate the next interval time.

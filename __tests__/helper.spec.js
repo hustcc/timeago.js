@@ -23,12 +23,17 @@ describe('helper', () => {
   test('toDate', () => {
     expect(toDate('1992-08-01') instanceof Date).toEqual(true);
     expect(toDate(712627200000) instanceof Date).toEqual(true);
+
+    expect(toDate('2017-2-5 3:57:52UTC') instanceof Date).toEqual(true);
+    expect(toDate('2017-2-5T3:57:52Z') instanceof Date).toEqual(true);
+
+    expect(toDate() instanceof Date).toEqual(true);
   });
 
   test('diffSec', () => {
     const now = new Date();
-    expect(diffSec(now)).toBeApproximate(0);
-    expect(diffSec(now - 10000, now)).toBeApproximate(10);
+    expect(diffSec(now, now)).toBeApproximate(0);
+    expect(diffSec(new Date(now - 10000), now)).toBeApproximate(10);
   });
 
   test('nextInterval', () => {
@@ -45,6 +50,12 @@ describe('helper', () => {
   test('formatDiff', () => {
     expect(formatDiff(100, 'en')).toEqual('1 minute ago');
     expect(formatDiff(-1000, 'en')).toEqual('in 16 minutes');
+
+    expect(formatDiff(-1000, 'en', 'zh_CN')).toEqual('in 16 minutes');
+    expect(formatDiff(-1000, 'x', 'en')).toEqual('in 16 minutes');
+    expect(formatDiff(-1000, 'x', 'y')).toEqual('in 16 minutes');
+
+    expect(formatDiff(8)).toEqual('just now');
   });
 
   test('getAttr', () => {
