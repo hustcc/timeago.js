@@ -32,6 +32,7 @@ describe('helper', () => {
 
   test('diffSec', () => {
     const now = new Date();
+    expect(diffSec(now)).toBeApproximate(0);
     expect(diffSec(now, now)).toBeApproximate(0);
     expect(diffSec(new Date(now - 10000), now)).toBeApproximate(10);
   });

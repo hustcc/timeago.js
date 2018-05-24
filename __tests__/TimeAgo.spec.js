@@ -13,11 +13,11 @@ describe('TimeAgo', () => {
 
     let timeago = new TimeAgo();
     expect(timeago.defaultLocale).toBe('en');
-    expect(timeago.nowDate instanceof Date).toBe(true);
+    expect(timeago.nowDate).toBe(undefined);
 
     timeago = new TimeAgo(712627200000, 'zh_CN');
     expect(timeago.defaultLocale).toBe('zh_CN');
-    expect(timeago.nowDate instanceof Date).toBe(true);
+    expect(timeago.nowDate).toBe(712627200000);
   });
 
   test('setLocale', () => {

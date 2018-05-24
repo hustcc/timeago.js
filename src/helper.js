@@ -60,7 +60,10 @@ export const formatDiff = (diff, locale, defaultLocale) => {
  * @param nowDate
  * @returns {number}
  */
-export const diffSec = (date, nowDate) => (nowDate - toDate(date)) / 1000;
+export const diffSec = (date, nowDate) => {
+  nowDate = nowDate ? toDate(nowDate) : new Date();
+  return (nowDate - toDate(date)) / 1000;
+};
 
 /**
  * nextInterval: calculate the next interval time.

@@ -16,7 +16,7 @@ import { run, cancel } from './timer';
 
 export class TimeAgo {
   constructor(nowDate, defaultLocale) {
-    this.nowDate = nowDate ? toDate(nowDate) : new Date();
+    this.nowDate = nowDate;
     this.defaultLocale = defaultLocale || 'en';
   }
 
