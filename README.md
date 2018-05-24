@@ -8,7 +8,7 @@
  - Nodejs and browserjs supported.
  - Well tested.
 
-[Official website](http://timeago.org/). 中文版说明文档[点这里](README_zh.md)。 React version here: [timeago-react](https://github.com/hustcc/timeago-react). Python version here: [timeago](https://github.com/hustcc/timeago).
+[Official website](https://timeago.org/). 中文版说明文档[点这里](README_zh.md)。 React version here: [timeago-react](https://github.com/hustcc/timeago-react). Python version here: [timeago](https://github.com/hustcc/timeago).
 
 [![Build Status](https://img.shields.io/travis/hustcc/timeago.js.svg)](https://travis-ci.org/hustcc/timeago.js)
 [![Coverage Status](https://coveralls.io/repos/github/hustcc/timeago.js/badge.svg?branch=master)](https://coveralls.io/github/hustcc/timeago.js?branch=master)
@@ -175,7 +175,7 @@ var timeagoInstance = timeago();
 timeagoInstance.format('2016-06-12', 'test_local');
 ```
 
-Check out more [locales](locales).
+Check out more [locales](src/lang).
 
 [Locale contributions](#3-contributions) are welcomed, thank you for submitting a GitHub pull request for corrections or additional languages. ^_^~
 
@@ -186,8 +186,8 @@ Check out more [locales](locales).
 
 2. **locale translations**: The library needs more locale translations. You can:
 
- - Open an issue to write the locale translations, or submit a pull request. How to ? see [en's translation](locales/en.js).
- - Please **test** the locale by exec `npm test` or `node tests/locales_test.js`. How to write testcase, see [en's test cases](tests/locales/en.js).
+ - Open an issue to write the locale translations, or submit a pull request. How to ? see [en's translation](src/lang/en.js).
+ - Please **test** the locale by exec `npm test`. How to write testcase, see [en's test cases](__tests__/lang/en.spec.js).
 
 
 # 4. LICENSE
