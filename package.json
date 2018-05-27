@@ -46,6 +46,7 @@
     "coveralls": "^3.0.0",
     "cross-env": "^5.1.3",
     "jest": "^22.4.2",
+    "jest-date-mock": "^1.0.0",
     "jest-expect": "^0.0.1",
     "jsdom": "^11.5.1",
     "mitt": "^1.1.3",
@@ -55,13 +56,16 @@
     "rollup-plugin-uglify": "^3.0.0",
     "size-limit": "^0.18.0"
   },
-  "size-limit": [{
-    "limit": "2 KB",
-    "path": "dist/timeago.min.js"
-  }, {
-    "limit": "10 KB",
-    "path": "dist/timeago.locales.min.js"
-  }],
+  "size-limit": [
+    {
+      "limit": "2 KB",
+      "path": "dist/timeago.min.js"
+    },
+    {
+      "limit": "10 KB",
+      "path": "dist/timeago.locales.min.js"
+    }
+  ],
   "jest": {
     "setupFiles": [],
     "setupTestFrameworkScriptFile": "jest-expect",
