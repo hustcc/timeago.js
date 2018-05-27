@@ -3,9 +3,13 @@ coverage
 __tests__
 demo
 src
+npm-debug.*
+.idea
+package-lock.json
 .gitignore
 .travis.yml
 .babelrc
 .eslintrc
 .eslintignore
 index.html
+
