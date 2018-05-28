@@ -2,7 +2,7 @@
  * Created by hustccon 18/5/24.
  * Contract: i@hust.cc
  */
-import { advanceBy, advanceTo } from 'jest-date-mock';
+import { advanceBy, advanceTo, clear } from 'jest-date-mock';
 import Timeago from '../../src';
 import en from '../../src/lang/en';
 
@@ -12,10 +12,11 @@ const timeago = Timeago();
 let date = new Date();
 
 beforeEach(() => {
+  advanceTo(0);
   date = new Date();
 });
 afterEach(() => {
-  advanceTo();
+  clear();
 });
 describe('en', () => {
   test('time ago', () => {
