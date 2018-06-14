@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "@types/jquery": "^2.0.40",
+    "jest-date-mock": "^1.0.2",
     "rollup-plugin-node-resolve": "^3.3.0"
   },
   "devDependencies": {
