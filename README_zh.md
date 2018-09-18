@@ -8,7 +8,7 @@
  - 支持npm方式和浏览器script方式；
  - 测试用例完善，执行良好；
 
-[Official website](http://timeago.org/)。关于Python的版本，可以看 [timeago](https://github.com/hustcc/timeago).
+[Official website](https://timeago.org/)。关于Python的版本，可以看 [timeago](https://github.com/hustcc/timeago).
 
 [![Build Status](https://img.shields.io/travis/hustcc/timeago.js.svg)](https://travis-ci.org/hustcc/timeago.js)
 [![Coverage Status](https://coveralls.io/repos/github/hustcc/timeago.js/badge.svg?branch=master)](https://coveralls.io/github/hustcc/timeago.js?branch=master)
@@ -171,7 +171,7 @@ timeago.register('test_local', test_local_dict);
 var timeagoInstance = timeago();
 timeagoInstance.format('2016-06-12', 'test_local');
 ```
-欢迎发起 PR 添加一些缺失的 locale 语言，当然请注意，在 `tests/locales` 目录中添加对应的测试用例。
+欢迎发起 PR 添加一些缺失的 locale 语言，当然请注意，在 `__tests__/lang` 目录中添加对应的测试用例。
 
 # LICENSE
 

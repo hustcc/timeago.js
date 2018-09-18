@@ -2,3 +2,5 @@ node_modules/
 npm-debug.*
 .idea
 coverage
+package-lock.json
+lib
