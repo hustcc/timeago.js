@@ -35,8 +35,7 @@
     "url": "https://github.com/hustcc/timeago.js/issues"
   },
   "dependencies": {
-    "@types/jquery": "^2.0.40",
-    "rollup-plugin-node-resolve": "^3.3.0"
+    "@types/jquery": "^2.0.40"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -55,6 +54,7 @@
     "rimraf": "^2.6.2",
     "rollup": "^0.58.1",
     "rollup-plugin-babel": "^3.0.4",
+    "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-uglify": "^3.0.0",
     "size-limit": "^0.18.0"
   },
