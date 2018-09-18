@@ -1,86 +1,41 @@
-
-import ar from './ar';
-import be from './be';
-import bg from './bg';
-import ca from './ca';
-import de from './de';
-import el from './el';
-import en from './en';
-import en_short from './en_short';
-import es from './es';
-import eu from './eu';
-import fa from './fa';
-import fi from './fi';
-import fr from './fr';
-import gl from './gl';
-import he from './he';
-import hu from './hu';
-import in_BG from './in_BG';
-import in_HI from './in_HI';
-import in_ID from './in_ID';
-import it from './it';
-import ja from './ja';
-import ko from './ko';
-import ml from './ml';
-import my from './my';
-import nb_NO from './nb_NO';
-import nl from './nl';
-import nn_NO from './nn_NO';
-import pl from './pl';
-import pt_BR from './pt_BR';
-import ro from './ro';
-import ru from './ru';
-import sq from './sq';
-import sr from './sr';
-import sv from './sv';
-import ta from './ta';
-import th from './th';
-import tr from './tr';
-import uk from './uk';
-import vi from './vi';
-import zh_CN from './zh_CN';
-import zh_TW from './zh_TW';
-
-export default {
-  ar,
-  be,
-  bg,
-  ca,
-  de,
-  el,
-  en,
-  en_short,
-  es,
-  eu,
-  fa,
-  fi,
-  fr,
-  gl,
-  he,
-  hu,
-  in_BG,
-  in_HI,
-  in_ID,
-  it,
-  ja,
-  ko,
-  ml,
-  my,
-  nb_NO,
-  nl,
-  nn_NO,
-  pl,
-  pt_BR,
-  ro,
-  ru,
-  sq,
-  sr,
-  sv,
-  ta,
-  th,
-  tr,
-  uk,
-  vi,
-  zh_CN,
-  zh_TW
-};
+export { default as ar } from './ar';
+export { default as be } from './be';
+export { default as bg } from './bg';
+export { default as ca } from './ca';
+export { default as de } from './de';
+export { default as el } from './el';
+export { default as en } from './en';
+export { default as en_short } from './en_short';
+export { default as es } from './es';
+export { default as eu } from './eu';
+export { default as fa } from './fa';
+export { default as fi } from './fi';
+export { default as fr } from './fr';
+export { default as gl } from './gl';
+export { default as he } from './he';
+export { default as hu } from './hu';
+export { default as in_BG } from './in_BG';
+export { default as in_HI } from './in_HI';
+export { default as in_ID } from './in_ID';
+export { default as it } from './it';
+export { default as ja } from './ja';
+export { default as ko } from './ko';
+export { default as ml } from './ml';
+export { default as my } from './my';
+export { default as nb_NO } from './nb_NO';
+export { default as nl } from './nl';
+export { default as nn_NO } from './nn_NO';
+export { default as pl } from './pl';
+export { default as pt_BR } from './pt_BR';
+export { default as ro } from './ro';
+export { default as ru } from './ru';
+export { default as sq } from './sq';
+export { default as sr } from './sr';
+export { default as sv } from './sv';
+export { default as ta } from './ta';
+export { default as th } from './th';
+export { default as tr } from './tr';
+export { default as uk } from './uk';
+export { default as vi } from './vi';
+export { default as zh_CN } from './zh_CN';
+export { default as zh_TW } from './zh_TW';

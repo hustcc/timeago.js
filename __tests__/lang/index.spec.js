@@ -3,7 +3,7 @@
  * Contract: i@hust.cc
  */
 
-import langs from '../../src/lang';
+import * as langs from '../../src/lang';
 
 describe('langs', () => {
   test('locales shoule be in dict order', () => {

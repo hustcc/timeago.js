@@ -1,7 +1,7 @@
 node_modules
 coverage
 __tests__
-demo
+gh-pages
 src
 npm-debug.*
 .idea
@@ -11,5 +11,5 @@ package-lock.json
 .babelrc
 .eslintrc
 .eslintignore
-index.html
-
+rollup.config.js
+rollup.config.locales.js

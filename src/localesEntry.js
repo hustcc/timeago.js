@@ -3,10 +3,8 @@
  * Contract: i@hust.cc
  */
 
-import Languages from './lang';
+import * as Languages from './lang';
 
 for (const locale in Languages) {
-  if (Languages.hasOwnProperty(locale)) {
-    timeago.register(locale, Languages[locale]);
-  }
+  timeago.register(locale, Languages[locale]);
 }

@@ -9,7 +9,6 @@ import {
   nextInterval,
   setTidAttr,
   getDateAttr,
-  toDate,
 } from './helper';
 
 import { run, cancel } from './timer';

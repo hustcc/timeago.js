@@ -4,7 +4,7 @@
  */
 
 import { TimeAgo } from './TimeAgo';
-import { Locales, register } from './locales'
+import { register } from './locales'
 import { cancel } from './timer';
 
 // 入口函数
