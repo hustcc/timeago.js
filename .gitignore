@@ -3,3 +3,4 @@ npm-debug.*
 .idea
 coverage
 package-lock.json
+lib
