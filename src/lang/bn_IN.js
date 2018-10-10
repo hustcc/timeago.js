@@ -1,3 +1,4 @@
+// Bangla (India)
 export default function(number, index) {
   return [
   [ 'এইমাত্র' , 'একটা সময়'] ,

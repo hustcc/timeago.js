@@ -1,6 +1,6 @@
 /**
- * Created by hustccon 18/5/24.
- * Contract: i@hust.cc
+ * Created by hustcc on 18/5/24.
+ * Contact: i@hust.cc
  */
 
 import * as langs from '../../src/lang';

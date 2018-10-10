@@ -1,3 +1,4 @@
+// Indonesian (Indonesia)
 export default function(number, index) {
   return [
     ['baru saja', 'sebentar'],

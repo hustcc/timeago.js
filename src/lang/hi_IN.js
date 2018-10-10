@@ -1,3 +1,4 @@
+// Hindi (India)
 export default function(number, index) {
   return [
     ['अभी', 'कुछ समय'],

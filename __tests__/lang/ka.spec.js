@@ -1,6 +1,6 @@
 /**
- * Created by hustccon 18/5/24.
- * Contract: i@hust.cc
+ * Created by hustcc on 18/5/24.
+ * Contact: i@hust.cc
  */
 import { advanceBy, advanceTo, clear } from 'jest-date-mock';
 import Timeago from '../../src';
