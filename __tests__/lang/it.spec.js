@@ -75,7 +75,7 @@ describe('it', () => {
     expect(timeago.format(date, 'it')).toEqual('fra un\'ora');
 
     advanceTo(-1000 * 60 * 60 * 8);
-    expect(timeago.format(date, 'it')).toEqual('fra 8 hours');
+    expect(timeago.format(date, 'it')).toEqual('fra 8 ore');
 
     advanceTo(-1000 * 60 * 60 * 24);
     expect(timeago.format(date, 'it')).toEqual('fra un giorno');
