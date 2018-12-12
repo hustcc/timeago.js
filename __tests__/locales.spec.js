@@ -26,8 +26,8 @@ describe('locales', () => {
     expect(Locales.zh_CN(1, 8)).toEqual(['1 周前', '1 周后']);
     expect(Locales.zh_CN(1, 9)).toEqual(['1 周前', '1 周后']);
 
-    expect(Locales.zh_CN(1, 10)).toEqual(['1 月前', '1 月后']);
-    expect(Locales.zh_CN(1, 11)).toEqual(['1 月前', '1 月后']);
+    expect(Locales.zh_CN(1, 10)).toEqual(['1 个月前', '1 个月后']);
+    expect(Locales.zh_CN(1, 11)).toEqual(['1 个月前', '1 个月后']);
 
     expect(Locales.zh_CN(1, 12)).toEqual(['1 年前', '1 年后']);
     expect(Locales.zh_CN(1, 13)).toEqual(['1 年前', '1 年后']);

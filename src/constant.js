@@ -5,7 +5,7 @@
 
 export const IndexMapEn = 'second_minute_hour_day_week_month_year'.split('_');
 
-export const IndexMapZH = '秒_分钟_小时_天_周_月_年'.split('_');
+export const IndexMapZH = '秒_分钟_小时_天_周_个月_年'.split('_');
 
 export const ATTR_DATA_TID = 'data-tid';
 

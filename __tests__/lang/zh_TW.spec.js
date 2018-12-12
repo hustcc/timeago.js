@@ -51,10 +51,10 @@ describe('zh_TW', () => {
     expect(timeago.format(date, 'zh_TW')).toEqual('3 週前');
 
     advanceTo(1000 * 60 * 60 * 24 * 31);
-    expect(timeago.format(date, 'zh_TW')).toEqual('1 月前');
+    expect(timeago.format(date, 'zh_TW')).toEqual('1 個月前');
 
     advanceTo(1000 * 60 * 60 * 24 * 31 * 4);
-    expect(timeago.format(date, 'zh_TW')).toEqual('4 月前');
+    expect(timeago.format(date, 'zh_TW')).toEqual('4 個月前');
 
     advanceTo(1000 * 60 * 60 * 24 * 366);
     expect(timeago.format(date, 'zh_TW')).toEqual('1 年前');
@@ -94,10 +94,10 @@ describe('zh_TW', () => {
     expect(timeago.format(date, 'zh_TW')).toEqual('3 週後');
 
     advanceTo(-1000 * 60 * 60 * 24 * 31);
-    expect(timeago.format(date, 'zh_TW')).toEqual('1 月後');
+    expect(timeago.format(date, 'zh_TW')).toEqual('1 個月後');
 
     advanceTo(-1000 * 60 * 60 * 24 * 31 * 4);
-    expect(timeago.format(date, 'zh_TW')).toEqual('4 月後');
+    expect(timeago.format(date, 'zh_TW')).toEqual('4 個月後');
 
     advanceTo(-1000 * 60 * 60 * 24 * 366);
     expect(timeago.format(date, 'zh_TW')).toEqual('1 年後');

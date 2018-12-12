@@ -17,7 +17,7 @@ describe('const', () => {
   });
 
   test('IndexMapZH', () => {
-    expect(IndexMapZH).toEqual('秒_分钟_小时_天_周_月_年'.split('_'));
+    expect(IndexMapZH).toEqual('秒_分钟_小时_天_周_个月_年'.split('_'));
   });
 
   test('ATTR_DATA_TID', () => {
