@@ -3,8 +3,7 @@
  * Contract: i@hust.cc
  */
 
-import { SEC_ARRAY, ATTR_DATA_TID, ATTR_TIMEAGO, ATTR_DATETIME } from './constant';
-import { Locales } from './locales';
+const SEC_ARRAY = [60, 60, 24, 7, 365/7/12, 12];
 
 /**
  * change f into int, remove decimal. Just for code compression
@@ -31,15 +30,13 @@ export const toDate = input => {
 /**
  * format the diff second to *** time ago, with setting locale
  * @param diff
- * @param locale
- * @param defaultLocale
+ * @param localeFunc
  * @returns {string | void | *}
  */
-export const formatDiff = (diff, locale, defaultLocale) => {
+export const formatDiff = (diff, localeFunc) => {
   // if locale is not exist, use defaultLocale.
   // if defaultLocale is not exist, use build-in `en`.
   // be sure of no error when locale is not exist.
-  locale = Locales[locale] ? locale : (Locales[defaultLocale] ? defaultLocale : 'en');
   let i = 0,
     agoin = diff < 0 ? 1 : 0, // timein or timeago
     total_sec = diff = Math.abs(diff);
@@ -51,7 +48,7 @@ export const formatDiff = (diff, locale, defaultLocale) => {
   i *= 2;
 
   if (diff > (i === 0 ? 9 : 1)) i += 1;
-  return Locales[locale](diff, i, total_sec)[agoin].replace('%s', diff);
+  return localeFunc(diff, i, total_sec)[agoin].replace('%s', diff);
 };
 
 /**
@@ -83,33 +80,4 @@ export const nextInterval = diff => {
   d = d % rst;
   d = d ? rst - d : rst;
   return Math.ceil(d);
-};
-
-/**
- * get the node attribute, native DOM and jquery supported.
- * @param node
- * @param name
- * @returns {*}
- */
-export const getAttr = (node, name) => {
-  if (node.getAttribute) return node.getAttribute(name); // native dom
-  if (node.attr) return node.attr(name); // jquery dom
-};
-
-/**
- * get the datetime attribute, `data-timeagp` / `datetime` are supported.
- * @param node
- * @returns {*}
- */
-export const getDateAttr = node => getAttr(node, ATTR_TIMEAGO) || getAttr(node, ATTR_DATETIME);
-
-/**
- * set the node attribute, native DOM and jquery supported.
- * @param node
- * @param val
- * @returns {*}
- */
-export const setTidAttr = (node, val) => {
-  if (node.setAttribute) return node.setAttribute(ATTR_DATA_TID, val);
-  if (node.attr) return node.attr(ATTR_DATA_TID, val);
 };

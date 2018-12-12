@@ -68,8 +68,8 @@
 	Updated by <a href="http://Github.com/hustcc">Hustcc</a>
 </div>
 <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
-<script src="https://unpkg.com/timeago.js/dist/timeago.min.js"></script>
-<script src="https://unpkg.com/timeago.js/dist/timeago.locales.min.js"></script>
+<script src="../dist/timeago.min.js"></script>
+<script src="../dist/timeago.locales.min.js"></script>
 <script src="./index.js" type="text/javascript"></script>
 <script type="text/javascript">
 	init_test_page(); // 初始化标签上的时间
@@ -81,34 +81,34 @@
 		} else {
 		  nodes = $('.example time');
 		}
-		timeago().render(nodes);
+		TimeAgo.render(nodes);
 	}
 	function stop_render_all(native) {
-    timeago.cancel(); // cancel all.
+    TimeAgo.cancel(); // cancel all.
 	}
 
 	function start_single_native() {
-		timeago().render(document.querySelector('.native .single', 'zh_CN'));
+		TimeAgo.render(document.querySelector('.native .single', 'zh_CN'));
 	}
 
 	function stop_single_native() {
-    timeago.cancel(document.querySelector('.native .single'));
+    TimeAgo.cancel(document.querySelector('.native .single'));
 	}
 
   function start_single_jquery() {
-	  timeago().render($('.jquery .single'));
+    TimeAgo.render($('.jquery .single'));
   }
 
   function stop_single_jquery() {
-		timeago.cancel($('.jquery .single'));
+    TimeAgo.cancel($('.jquery .single'));
   }
 
   function start_vi() {
-    timeago().render($('.vi.single'), 'vi');
+    TimeAgo.render($('.vi.single'), 'vi');
   }
 
   function stop_vi() {
-    timeago.cancel($('.vi.single'));
+    TimeAgo.cancel($('.vi.single'));
   }
 </script>
 </body>

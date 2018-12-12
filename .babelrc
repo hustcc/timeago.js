@@ -3,21 +3,21 @@
     "rollup": {
       "presets": [
         [
-          "env",
+          "@babel/env",
           {
             "modules": false
           }
         ]
       ],
       "plugins": [
-        "transform-class-properties"
+        "version"
       ]
     },
     "babel": {
-      "presets": ["env"],
+      "presets": ["@babel/env"],
       "plugins": [
-        "transform-class-properties",
-        "add-module-exports"
+        "add-module-exports",
+        "version"
       ]
     }
   }

@@ -3,12 +3,12 @@
  * Contact: i@hust.cc
  */
 import { advanceBy, advanceTo, clear } from 'jest-date-mock';
-import Timeago from '../../src';
+import { format, register } from '../../src';
 import en from '../../src/lang/en';
 
-Timeago.register('en', en);
+register('en', en);
 
-const timeago = Timeago();
+
 let date = new Date();
 
 beforeEach(() => {
@@ -21,88 +21,88 @@ afterEach(() => {
 describe('en', () => {
   test('time ago', () => {
     advanceTo(9 * 1000);
-    expect(timeago.format(date, 'en')).toEqual('just now');
+    expect(format(date, 'en')).toEqual('just now');
 
     advanceTo(30 * 1000);
-    expect(timeago.format(date, 'en')).toEqual('30 seconds ago');
+    expect(format(date, 'en')).toEqual('30 seconds ago');
 
     advanceTo(1000 * 60);
-    expect(timeago.format(date, 'en')).toEqual('1 minute ago');
+    expect(format(date, 'en')).toEqual('1 minute ago');
 
     advanceTo(1000 * 60 * 30);
-    expect(timeago.format(date, 'en')).toEqual('30 minutes ago');
+    expect(format(date, 'en')).toEqual('30 minutes ago');
 
     advanceTo(1000 * 60 * 60);
-    expect(timeago.format(date, 'en')).toEqual('1 hour ago');
+    expect(format(date, 'en')).toEqual('1 hour ago');
 
     advanceTo(1000 * 60 * 60 * 8);
-    expect(timeago.format(date, 'en')).toEqual('8 hours ago');
+    expect(format(date, 'en')).toEqual('8 hours ago');
 
     advanceTo(1000 * 60 * 60 * 24);
-    expect(timeago.format(date, 'en')).toEqual('1 day ago');
+    expect(format(date, 'en')).toEqual('1 day ago');
 
     advanceTo(1000 * 60 * 60 * 24 * 3);
-    expect(timeago.format(date, 'en')).toEqual('3 days ago');
+    expect(format(date, 'en')).toEqual('3 days ago');
 
     advanceTo(1000 * 60 * 60 * 24 * 7);
-    expect(timeago.format(date, 'en')).toEqual('1 week ago');
+    expect(format(date, 'en')).toEqual('1 week ago');
 
     advanceTo(1000 * 60 * 60 * 24 * 7 * 3);
-    expect(timeago.format(date, 'en')).toEqual('3 weeks ago');
+    expect(format(date, 'en')).toEqual('3 weeks ago');
 
     advanceTo(1000 * 60 * 60 * 24 * 31);
-    expect(timeago.format(date, 'en')).toEqual('1 month ago');
+    expect(format(date, 'en')).toEqual('1 month ago');
 
     advanceTo(1000 * 60 * 60 * 24 * 31 * 4);
-    expect(timeago.format(date, 'en')).toEqual('4 months ago');
+    expect(format(date, 'en')).toEqual('4 months ago');
 
     advanceTo(1000 * 60 * 60 * 24 * 366);
-    expect(timeago.format(date, 'en')).toEqual('1 year ago');
+    expect(format(date, 'en')).toEqual('1 year ago');
 
     advanceTo(1000 * 60 * 60 * 24 * 366 * 10);
-    expect(timeago.format(date, 'en')).toEqual('10 years ago');
+    expect(format(date, 'en')).toEqual('10 years ago');
   });
   test('time in', () => {
     advanceTo(-9 * 1000);
-    expect(timeago.format(date, 'en')).toEqual('right now');
+    expect(format(date, 'en')).toEqual('right now');
 
     advanceTo(-30 * 1000);
-    expect(timeago.format(date, 'en')).toEqual('in 30 seconds');
+    expect(format(date, 'en')).toEqual('in 30 seconds');
 
     advanceTo(-1000 * 60);
-    expect(timeago.format(date, 'en')).toEqual('in 1 minute');
+    expect(format(date, 'en')).toEqual('in 1 minute');
 
     advanceTo(-1000 * 60 * 30);
-    expect(timeago.format(date, 'en')).toEqual('in 30 minutes');
+    expect(format(date, 'en')).toEqual('in 30 minutes');
 
     advanceTo(-1000 * 60 * 60);
-    expect(timeago.format(date, 'en')).toEqual('in 1 hour');
+    expect(format(date, 'en')).toEqual('in 1 hour');
 
     advanceTo(-1000 * 60 * 60 * 8);
-    expect(timeago.format(date, 'en')).toEqual('in 8 hours');
+    expect(format(date, 'en')).toEqual('in 8 hours');
 
     advanceTo(-1000 * 60 * 60 * 24);
-    expect(timeago.format(date, 'en')).toEqual('in 1 day');
+    expect(format(date, 'en')).toEqual('in 1 day');
 
     advanceTo(-1000 * 60 * 60 * 24 * 3);
-    expect(timeago.format(date, 'en')).toEqual('in 3 days');
+    expect(format(date, 'en')).toEqual('in 3 days');
 
     advanceTo(-1000 * 60 * 60 * 24 * 7);
-    expect(timeago.format(date, 'en')).toEqual('in 1 week');
+    expect(format(date, 'en')).toEqual('in 1 week');
 
     advanceTo(-1000 * 60 * 60 * 24 * 7 * 3);
-    expect(timeago.format(date, 'en')).toEqual('in 3 weeks');
+    expect(format(date, 'en')).toEqual('in 3 weeks');
 
     advanceTo(-1000 * 60 * 60 * 24 * 31);
-    expect(timeago.format(date, 'en')).toEqual('in 1 month');
+    expect(format(date, 'en')).toEqual('in 1 month');
 
     advanceTo(-1000 * 60 * 60 * 24 * 31 * 4);
-    expect(timeago.format(date, 'en')).toEqual('in 4 months');
+    expect(format(date, 'en')).toEqual('in 4 months');
 
     advanceTo(-1000 * 60 * 60 * 24 * 366);
-    expect(timeago.format(date, 'en')).toEqual('in 1 year');
+    expect(format(date, 'en')).toEqual('in 1 year');
 
     advanceTo(-1000 * 60 * 60 * 24 * 366 * 10);
-    expect(timeago.format(date, 'en')).toEqual('in 10 years');
+    expect(format(date, 'en')).toEqual('in 10 years');
   });
 });

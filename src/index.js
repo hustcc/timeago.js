@@ -3,21 +3,8 @@
  * Contract: i@hust.cc
  */
 
-import { TimeAgo } from './TimeAgo';
-import { register } from './locales'
-import { cancel } from './timer';
+export { format } from './format';
+export { render, cancel } from './realtime';
+export { register } from './locales';
 
-// 入口函数
-const factory = (nowDate, locale) => new TimeAgo(nowDate, locale);
-
-/**
- * 注册语言
- */
-factory.register = register;
-
-/**
- * 终止定时器
- */
-factory.cancel = cancel;
-
-export default factory;
+export const version = __VERSION__;

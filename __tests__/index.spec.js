@@ -3,15 +3,45 @@
  * Contract: i@hust.cc
  */
 
-import timeago from '../src/index';
-import { TimeAgo } from '../src/TimeAgo';
+import pkg from '../package.json';
+import { format, render, cancel, register, version } from '../src/';
+
+jest.useFakeTimers();
 
 describe('index', () => {
-  test('timeago', () => {
-    expect(timeago).toBeFunction();
-    expect(timeago.register).toBeFunction();
-    expect(timeago.cancel).toBeFunction();
+  test('all', () => {
+    expect(format).toBeFunction();
+    expect(render).toBeFunction();
+    expect(cancel).toBeFunction();
+    expect(register).toBeFunction();
 
-    expect(timeago() instanceof TimeAgo).toBe(true);
+    expect(version).toBe(pkg.version);
+  });
+
+  test('format', () => {
+    expect(format(new Date() - 7000)).toBe('just now');
+
+    expect(format(new Date() - 1000 * 1000, 'zh_CN')).toBe('16 分钟前');
+  });
+
+  test('render', () => {
+    // render array
+    render([{}]);
+    jest.advanceTimersByTime(30000);
+
+    // render node
+    render({});
+    jest.advanceTimersByTime(30000);
+    expect(format(new Date() - 1000 * 1000, 'zh_CN')).toBe('16 分钟前');
+  });
+
+  test('cancel', () => {
+    cancel();
+
+    const node = {
+      getAttribute: () => 1,
+    };
+
+    cancel(node);
   });
 });

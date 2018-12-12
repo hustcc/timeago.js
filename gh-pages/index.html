@@ -80,9 +80,9 @@ timeago().render($('.need_to_be_rendered'));</pre>
         You can also use it programmatically:
       </p>
       <pre>
-timeago().format(new Date());             //=> &quot;<span id="demo_now"></span>&quot;
-timeago(null, 'zh_CN').format('2016-09-07')           //=> &quot;<span id="demo_20160907"></span>&quot;
-timeago().format(1473245023718);          //=> &quot;<span id="demo_timestamp"></span>&quot;</pre>
+TimeAgo.format(new Date());             //=> &quot;<span id="demo_now"></span>&quot;
+TimeAgo.format('2016-09-07', 'zh_CN')           //=> &quot;<span id="demo_20160907"></span>&quot;
+TimeAgo.format(1473245023718);          //=> &quot;<span id="demo_timestamp"></span>&quot;</pre>
 
       <h3>Locales register ?</h3>
       <p>
@@ -126,7 +126,7 @@ timeagoInstance.format(1473245023718, 'pt_BR');</pre>
 
       <h3>Who ?</h3>
       <p>
-        timeago.js was built by <a href="http://www.atool.org">Hustcc</a> while standing on the
+        timeago.js was built by <a href="https://atool.vip">Hustcc</a> while standing on the
         shoulders of giants.
       </p>
 
@@ -149,7 +149,7 @@ timeagoInstance.format(1473245023718, 'pt_BR');</pre>
       Copyright &copy; 2016 Theme from <a href="http://timeago.yarp.com/" target="_blank" rel="nofollow">jQuery-timeago</a>.
       Updated by <a href="http://Github.com/hustcc">Hustcc</a>
     </div>
-    <script src="https://unpkg.com/timeago.js/dist/timeago.min.js"></script>
+    <script src="../dist/timeago.min.js"></script>
     <script src="./index.js" type="text/javascript"></script>
     <script type="text/javascript">
       init_index_page();
