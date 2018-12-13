@@ -1,18 +1,18 @@
 export default function(number, index) {
   return [
-    ['poco fa', 'tra poco'],
-    ['%s secondi fa', '%s secondi da ora'],
-    ['un minuto fa', 'un minuto da ora'],
-    ['%s minuti fa', '%s minuti da ora'],
-    ['un\'ora fa', 'un\'ora da ora'],
-    ['%s ore fa', '%s ore da ora'],
-    ['un giorno fa', 'un giorno da ora'],
-    ['%s giorni fa', '%s giorni da ora'],
-    ['una settimana fa', 'una settimana da ora'],
-    ['%s settimane fa', '%s settimane da ora'],
-    ['un mese fa', 'un mese da ora'],
-    ['%s mesi fa', '%s mesi da ora'],
-    ['un anno fa', 'un anno da ora'],
-    ['%s anni fa', '%s anni da ora']
+    ['poco fa', 'fra poco'],
+    ['%s secondi fa', 'fra %s secondi'],
+    ['un minuto fa', 'fra un minuto'],
+    ['%s minuti fa', 'fra %s minuti'],
+    ['un\'ora fa', 'fra un\'ora'],
+    ['%s ore fa', 'fra %s ore'],
+    ['un giorno fa', 'fra un giorno'],
+    ['%s giorni fa', 'fra %s giorni'],
+    ['una settimana fa', 'fra una settimana'],
+    ['%s settimane fa', 'fra %s settimane'],
+    ['un mese fa', 'fra un mese'],
+    ['%s mesi fa', 'fra %s mesi'],
+    ['un anno fa', 'fra un anno'],
+    ['%s anni fa', 'fra %s anni']
   ][index];
 }
