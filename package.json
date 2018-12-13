@@ -1,12 +1,12 @@
 {
   "name": "timeago.js",
   "officialName": "timeago.js",
-  "version": "4.0.0-beta.1",
+  "version": "4.0.0-beta.2",
   "summary": "timeago.js is a simple library (less than 2kb) to used to format datetime with `*** time ago` statement. eg: '3 hours ago'.",
   "description": "timeago.js is a simple library (only 2kb) to used to format datetime with `*** time ago` statement. eg: '3 hours ago'. localization supported.",
   "main": "lib/index.js",
   "scripts": {
-    "test": "NODE_ENV=babel jest && npm run size",
+    "test": "NODE_ENV=babel jest --no-cache && npm run size && lint-md ./",
     "size": "size-limit",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "build:umd": "rimraf ./dist && cross-env NODE_ENV=rollup rollup -c && cross-env NODE_ENV=rollup rollup -c rollup.config.all.js",
@@ -53,6 +53,7 @@
     "jest-date-mock": "^1.0.5",
     "jest-expect": "^0.0.1",
     "jsdom": "^11.5.1",
+    "lint-md": "^0.0.6",
     "rimraf": "^2.6.2",
     "rollup": "^0.67.4",
     "rollup-plugin-babel": "^4.0.3",

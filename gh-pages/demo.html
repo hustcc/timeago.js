@@ -81,34 +81,34 @@
 		} else {
 		  nodes = $('.example time');
 		}
-		TimeAgo.render(nodes);
+		timeago.render(nodes);
 	}
 	function stop_render_all(native) {
-    TimeAgo.cancel(); // cancel all.
+    timeago.cancel(); // cancel all.
 	}
 
 	function start_single_native() {
-		TimeAgo.render(document.querySelector('.native .single', 'zh_CN'));
+		timeago.render(document.querySelector('.native .single', 'zh_CN'));
 	}
 
 	function stop_single_native() {
-    TimeAgo.cancel(document.querySelector('.native .single'));
+    timeago.cancel(document.querySelector('.native .single'));
 	}
 
   function start_single_jquery() {
-    TimeAgo.render($('.jquery .single'));
+    timeago.render($('.jquery .single'));
   }
 
   function stop_single_jquery() {
-    TimeAgo.cancel($('.jquery .single'));
+    timeago.cancel($('.jquery .single'));
   }
 
   function start_vi() {
-    TimeAgo.render($('.vi.single'), 'vi');
+    timeago.render($('.vi.single'), 'vi');
   }
 
   function stop_vi() {
-    TimeAgo.cancel($('.vi.single'));
+    timeago.cancel($('.vi.single'));
   }
 </script>
 </body>

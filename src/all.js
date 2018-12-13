@@ -6,5 +6,5 @@
 import * as Languages from './lang';
 
 for (const locale in Languages) {
-  TimeAgo.register(locale, Languages[locale]);
+  timeago.register(locale, Languages[locale]);
 }

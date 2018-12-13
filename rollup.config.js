@@ -11,7 +11,7 @@ export default {
   input: 'src/index.js',
   output: {
     file: 'dist/timeago.min.js',
-    name: 'TimeAgo',
+    name: 'timeago',
     format: 'umd',
   },
   plugins: [

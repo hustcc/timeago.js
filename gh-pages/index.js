@@ -10,12 +10,12 @@ function iso8601(date) {
 function init_index_page() {
   document.querySelector('.load_time').setAttribute('datetime', iso8601(new Date()));
   var locale = navigator.language.replace('-', '_');
-  TimeAgo.render(document.querySelectorAll('.need_to_be_rendered'), locale);
+  timeago.render(document.querySelectorAll('.need_to_be_rendered'), locale);
 
 // 2. demo
-  document.getElementById('demo_now').innerHTML = TimeAgo.format(new Date());
-  document.getElementById('demo_20160907').innerHTML = TimeAgo.format('2016-09-07');
-  document.getElementById('demo_timestamp').innerHTML = TimeAgo.format(1473245023718);
+  document.getElementById('demo_now').innerHTML = timeago.format(new Date());
+  document.getElementById('demo_20160907').innerHTML = timeago.format('2016-09-07');
+  document.getElementById('demo_timestamp').innerHTML = timeago.format(1473245023718);
 }
 
 function init_test_page() {

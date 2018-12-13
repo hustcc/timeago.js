@@ -5,7 +5,6 @@ export { default as bn_IN } from './bn_IN';
 export { default as ca } from './ca';
 export { default as de } from './de';
 export { default as el } from './el';
-export { default as en } from './en';
 export { default as en_short } from './en_short';
 export { default as es } from './es';
 export { default as eu } from './eu';

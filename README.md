@@ -1,6 +1,6 @@
 # timeago.js
 
-> **timeago.js** is a simple library (less than `2 kb`) that is used to format datetime with `*** time ago` statement. eg: '3 hours ago'.
+> **timeago.js** is a simple library (less than `1 kb`) that is used to format datetime with `*** time ago` statement. eg: '3 hours ago'.
 
  - Localization supported.
  - Time `ago` and time `in` supported.
@@ -20,7 +20,7 @@
 
 Such as
 
-```
+```plain
 just now
 12 seconds ago
 3 minutes ago
@@ -39,115 +39,116 @@ in 2 years
 ```
 
 
-# 1. Usage
 
-**1. Install timeago.js**
+## Usage
 
-```sh
+ - Install
+
+```bash
 npm install timeago.js
 ```
 
-**2. Import timeago.js**
-
-ES6/commonjs import style is supported.
+ - Import
 
 ```js
 // ES6
-import timeago from 'timeago.js';
+import { format, render, cancel, register } from 'timeago.js';
 
 // commonjs
-var timeago = require("timeago.js");
+const { format, render, cancel, register } = require('timeago.js');
 ```
 
-or link as a `script` in an html file and access global variable `timeago`.
+or import with `script` in html file and access global variable `timeago`.
 
-```js
+```html
 <script src="dist/timeago.min.js"></script>
 ```
 
-or import in a typescript file.
-
-```ts
-import timeago from 'timeago.js';
-
-// or
-
-import timeago = require("timeago.js");
-```
-
-**3. Use `timeago` factory to create a new instance**
+ - Usage
 
 ```js
-var timeagoInstance = timeago();
-timeagoInstance.format('2016-06-12');
+// format the time with locale
+format('2016-06-12', 'en_US');
 ```
 
 
-# 2. Detailed Usage
 
-**1. Set relative date**
+## API
 
-`timeago` is relative to the current date by default. You can set it yourself.
+There only 4 API:
+
+ - **format(date[, locale = 'en_US', relativeDate = new Date()])**: format a Date instance / timestamp / date string to string.
+ - **render(dom[, locale = 'en_US', relativeDate = new Date()])**: make a dom automatic rendering.
+ - **cancel([dom])**: cancel automatic rendering.
+ - **register(locale, localeFunc)**: register a new locale, build-in locale contains: `en_US`, `zh_CN`.
+
+
+## Case
+
+ - format
+
+Just format date into a string.
 
 ```js
-var timeagoInstance = timeago('2016-06-10 12:12:12'); // set the relative date here.
-timeagoInstance.format('2016-06-12', 'zh_CN');
-```
+import { format, render, cancel, register } from 'timeago.js';
 
-**2. Use timestamp**
+// format timestamp
+format(1544666010224);
+// format date instance
+format(new Date(1544666010224));
+// format date string
+format('2018-12-12');
 
-```js
-timeago().format(Date.now() - 11 * 1000 * 60 * 60); // returns '11 hours ago'
-```
+// format with locale
+format(1544666010224, 'zh_CN');
 
-**3. Automatic rendering**
+// format with locale and relative date
+format(1544666010224, 'zh_CN', '2018-11-11');
 
-HTML code：
+// e.g.
+format(Date.now() - 11 * 1000 * 60 * 60); // returns '11 hours ago'
+``` 
+
+
+ - render & cancel
+ 
+You can `render` a dom node with automatic rendering.
+
+HTML code:
+
 ```html
 <div class="needs_to_be_rendered" datetime="2016-06-30 09:20:00"></div>
 ```
-js code
+
+Javascript code:
+
 ```js
-var timeagoInstance = timeago();
 var nodes = document.querySelectorAll('.needs_to_be_rendered');
+
 // use render method to render nodes in real time
-timeagoInstance.render(nodes, 'zh_CN');
-// cancel real-time render for every node
-timeago.cancel()
-// or for the specific one
+timeago.render(nodes, 'zh_CN');
+
+// cancel all real-time render task
+timeago.cancel();
+
+// or cancel for the specific one
 timeago.cancel(nodes[0])
 ```
 
-The input for `render` method should be DOM object/array, pure javascript DOM node or jQuery DOM object.
+The input for `render` method should be DOM object / array, pure javascript DOM node or jQuery DOM object supported.
 
 The `cancel` method clears all the render timers and release all resources of the instance. Optionally it accepts a single node to cancel timer just for it.
 
-The DOM object should have the attribute `datetime` or `data-timeago` with date formatted string.
+> The DOM object should have the attribute `datetime` with date formatted string.
 
-**4. Localization**
 
-Default locale is **`en`**, and the library supports `en` and `zh_CN`.
+ - register
 
-```js
-var timeagoInstance = timeago();
-timeagoInstance.format('2016-06-12', 'zh_CN');
-```
-
-You can change the locale in the constructor or use the `setLocale` method:
-
-```js
-var timeagoInstance = timeago(currentDate, 'zh_CN');
-// or
-timeago(currentDate).setLocale('zh_CN');
-```
-
-**5. Register local language**
-
-You can register your own language via a static method `register`. Usage example:
+Default locale is **`en_US`**, and the library supports `en_US` and `zh_CN`. You can register your own language with `register`.
 
 ```js
 // the local dict example is below.
-var test_local_dict = function(number, index, total_sec) {
+const localeFunc = (number, index, total_sec) => {
   // number: the timeago / timein number;
   // index: the index of array below;
   // total_sec: total seconds between date to be formatted and today's date;
@@ -169,27 +170,27 @@ var test_local_dict = function(number, index, total_sec) {
   ][index];
 };
 // register your locale with timeago
-timeago.register('test_local', test_local_dict);
-// use the locale with timeago instance
-var timeagoInstance = timeago();
-timeagoInstance.format('2016-06-12', 'test_local');
+register('my-locale', localeFunc);
+
+// use it
+format('2016-06-12', 'my-locale');
 ```
 
 Check out more [locales](src/lang).
 
-[Locale contributions](#3-contributions) are welcomed, thank you for submitting a GitHub pull request for corrections or additional languages. ^_^~
 
 
-# 3. Contributions
+## Contributions
 
 1. The website is based on [rmm5t/jquery-timeago](https://github.com/rmm5t/jquery-timeago) which is a nice and featured project but it depends on jQuery.
 
 2. **locale translations**: The library needs more locale translations. You can:
 
- - Open an issue to write the locale translations, or submit a pull request. How to ? see [en's translation](src/lang/en.js).
- - Please **test** the locale by exec `npm test`. How to write testcase, see [en's test cases](__tests__/lang/en.spec.js).
+ - Open an issue to write the locale translations, or submit a pull request. How to ? see [locales translation](src/lang/).
+ - Please **test** the locale by exec `npm test`. How to write testcase, see [locales test cases](__tests__/lang/).
 
 
-# 4. LICENSE
+
+# LICENSE
 
 MIT@[https://github.com/hustcc](hustcc)
