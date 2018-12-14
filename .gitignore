@@ -4,3 +4,4 @@ npm-debug.*
 coverage
 package-lock.json
 lib
+dist
