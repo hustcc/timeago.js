@@ -32,7 +32,7 @@
 3 分钟后
 2 小时后
 24 天后
-6 月后
+6 个月后
 3 年后
 ```
 
@@ -65,7 +65,7 @@ const { format, render, cancel, register } = require('timeago.js');
  - 使用
 
 ```js
-// 格式话日期
+// 格式化日期
 format('2016-06-12', 'en_US');
 ```
 
