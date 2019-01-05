@@ -78,7 +78,7 @@ format('2016-06-12', 'en_US');
 There only 4 API:
 
  - **format(date[, locale = 'en_US', relativeDate = new Date()])**: format a Date instance / timestamp / date string to string.
- - **render(dom[, locale = 'en_US', relativeDate = new Date()])**: make a dom automatic rendering.
+ - **render(dom[, locale = 'en_US', relativeDate = new Date(), minInt = 1])**: make a dom automatic rendering.
  - **cancel([dom])**: cancel automatic rendering.
  - **register(locale, localeFunc)**: register a new locale, build-in locale contains: `en_US`, `zh_CN`.
 

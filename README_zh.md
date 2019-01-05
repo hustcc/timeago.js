@@ -76,7 +76,7 @@ format('2016-06-12', 'en_US');
 总共只有 4 个 API：
 
  - **format(date[, locale = 'en_US', relativeDate = new Date()])**: 格式化日期实例 / 时间戳 / 时间格式字符串。
- - **render(dom[, locale = 'en_US', relativeDate = new Date()])**: 实时渲染格式化一个 dom 元素。
+ - **render(dom[, locale = 'en_US', relativeDate = new Date(), minInt = 1])**: 实时渲染格式化一个 dom 元素。
  - **cancel([dom])**: 取消实时渲染。
  - **register(locale, localeFunc)**: 注册一个新的本地语言，目前内置语言包括：`en_US`, `zh_CN`。
 

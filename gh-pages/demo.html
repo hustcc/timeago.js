@@ -62,6 +62,13 @@
 		<input type="button" onclick="javascript:start_vi();" value="Start." />
 		<input type="button" onclick="javascript:stop_vi();" value="Stop." />
 	</p>
+
+	<h3>Test refreshing with minimal interval (every 5 second update) ?</h3>
+	<p class="minint example">
+		You opened this page <time class="strong single minint">when you opened the page</time>.
+		<input type="button" onclick="javascript:start_minint();" value="Start." />
+		<input type="button" onclick="javascript:stop_minint();" value="Stop." />
+	</p>
 </div>
 <div id="footer">
 	Copyright &copy; 2016 How to user it, see <a href="https://timeago.org/" target="_blank" rel="nofollow">timeago.js</a>.
@@ -109,6 +116,14 @@
 
   function stop_vi() {
     timeago.cancel($('.vi.single'));
+  }
+
+  function start_minint() {
+    timeago.render(document.querySelector('.minint.single'), undefined, undefined, 5);
+  }
+
+  function stop_minint() {
+    timeago.cancel(document.querySelector('.minint.single'));
   }
 </script>
 </body>

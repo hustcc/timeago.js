@@ -11,7 +11,7 @@ const clear = tid => {
 };
 
 // 定时运行
-const run = (node, date, localeFunc, nowDate) => {
+const run = (node, date, localeFunc, nowDate, minInt) => {
   // 先清理掉之前的
   clear(getTimerId(node));
 
@@ -21,8 +21,8 @@ const run = (node, date, localeFunc, nowDate) => {
   node.innerHTML = formatDiff(diff, localeFunc);
 
   const tid = setTimeout(() => {
-    run(node, date, localeFunc, nowDate);
-  }, nextInterval(diff) * 1000, 0x7FFFFFFF);
+    run(node, date, localeFunc, nowDate, minInt);
+  }, Math.max(nextInterval(diff), minInt) * 1000, 0x7FFFFFFF);
 
   // there is no need to save node in object. Just save the key
   TimerPool[tid] = 0;
@@ -36,7 +36,7 @@ export const cancel = node => {
 };
 
 // 实时渲染一系列节点
-export const render = (nodes, locale, nowDate) => {
+export const render = (nodes, locale, nowDate, minInt = 1) => {
   // by .length
   if (nodes.length === undefined) nodes = [nodes];
 
@@ -46,7 +46,7 @@ export const render = (nodes, locale, nowDate) => {
 
     const date = getDateAttribute(node);
     const localeFunc = getLocale(locale);
-    run(node, date, localeFunc, nowDate);
+    run(node, date, localeFunc, nowDate, minInt);
   }
 
   return nodes;
