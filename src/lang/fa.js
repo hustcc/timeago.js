@@ -1,18 +1,32 @@
-export default function(number, index) {
-  return [
-    ['همین الآن', 'لحظاتی پیش'],
-    ['%s ثانیه پیش', 'حدود %s ثانیه پیش'],
-    ['1 دقیقه پیش', 'حدود 1 دقیقه پیش'],
-    ['%s دقیقه پیش', 'حدود %s دقیقه پیش'],
-    ['1 ساعت پیش', 'حدود 1 ساعت پیش'],
-    ['%s ساعت پیش', 'حدود %s ساعت پیش'],
-    ['1 روز پیش', 'حدود 1 روز پیش'],
-    ['%s روز پیش', 'حدود %s روز پیش'],
-    ['1 هفته پیش', 'حدود 1 هفته پیش'],
-    ['%s هفته پیش', 'حدود %s هفته پیش'],
-    ['1 ماه پیش', 'حدود 1 ماه پیش'],
-    ['%s ماه پیش', 'حدود %s ماه پیش'],
-    ['1 سال پیش', 'حدود 1 سال پیش'],
-    ['%s سال پیش', 'حدود %s سال پیش']
+export default function (number, index) {
+  var formattedString = [
+    ['لحظاتی پیش', 'همین حالا'],
+    ['%s ثانیه پیش', '%s ثانیه دیگر'],
+    ['۱ دقیقه پیش', '۱ دقیقه دیگر'],
+    ['%s دقیقه پیش', '%s دقیقه دیگر'],
+    ['۱ ساعت پیش', '۱ ساعت دیگر'],
+    ['%s ساعت پیش', '%s ساعت دیگر'],
+    ['۱ روز پیش', '۱ روز دیگر'],
+    ['%s روز پیش', '%s روز دیگر'],
+    ['۱ هفته پیش', '۱ هفته دیگر'],
+    ['%s هفته پیش', '%s هفته دیگر'],
+    ['۱ ماه پیش', '۱ ماه دیگر'],
+    ['%s ماه پیش', '%s ماه دیگر'],
+    ['۱ سال پیش', '۱ سال دیگر'],
+    ['%s سال پیش', '%s سال دیگر']
   ][index];
+
+  // We convert regular numbers (%s) to standard persian numbers using toPersianNumber function
+  return [formattedString[0].replace('%s', toPersianNumber(number)), formattedString[1].replace('%s', toPersianNumber(number))];
+}
+
+// As persian language has different number symbols we need to replace regular numbers
+// to standard persian numbres.
+function toPersianNumber(number) {
+  // List of standard persian numbers from 0 to 9
+  const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+
+  return number
+    .toString()
+    .replace(/\d/g, x => persianDigits[x]);
 }
