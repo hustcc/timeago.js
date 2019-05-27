@@ -16,4 +16,3 @@ module.exports = function(number, index) {
       ['před %s lety', 'za %s let']
     ][index];
   }
-  
