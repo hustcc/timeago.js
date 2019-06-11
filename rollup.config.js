@@ -19,9 +19,6 @@ export default {
     babel({
       exclude: 'node_modules/**',
     }),
-    uglify({
-      output: { comments: false },
-      compress: { warnings: false }
-    }),
+    uglify(),
   ],
 };
