@@ -18,7 +18,7 @@ const run = (node, date, localeFunc, nowDate) => {
   // get diff seconds
   const diff = diffSec(date, nowDate);
   // render
-  node.innerHTML = formatDiff(diff, localeFunc);
+  node.innerText = formatDiff(diff, localeFunc);
 
   const tid = setTimeout(() => {
     run(node, date, localeFunc, nowDate);
