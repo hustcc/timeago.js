@@ -14,90 +14,150 @@ afterEach(() => {
   clear();
 });
 describe('cs', () => {
-  test('time ago', () => {
-    advanceTo(9 * 1000);
-    expect(format(date, 'cs')).toEqual('právě teď');
+  describe('time ago', () => {
+    test('just now', () => {
+      advanceTo(9 * 1000);
+      expect(format(date, 'cs')).toEqual('právě teď');
+    });
 
-    advanceTo(30 * 1000);
-    expect(format(date, 'cs')).toEqual('před 30 vteřinami');
+    test('seconds', () => {
+      advanceTo(30 * 1000);
+      expect(format(date, 'cs')).toEqual('před 30 vteřinami');
+    });
 
-    advanceTo(1000 * 60);
-    expect(format(date, 'cs')).toEqual('před minutou');
+    test('minute', () => {
+      advanceTo(1000 * 60);
+      expect(format(date, 'cs')).toEqual('před minutou');
 
-    advanceTo(1000 * 60 * 30);
-    expect(format(date, 'cs')).toEqual('před 30 minutami');
+    });
 
-    advanceTo(1000 * 60 * 60);
-    expect(format(date, 'cs')).toEqual('před hodinou');
+    test('minutes', () => {
+      advanceTo(1000 * 60 * 30);
+      expect(format(date, 'cs')).toEqual('před 30 minutami');
+    });
 
-    advanceTo(1000 * 60 * 60 * 8);
-    expect(format(date, 'cs')).toEqual('před 8 hodinami');
+    test('hour', () => {
+      advanceTo(1000 * 60 * 60);
+      expect(format(date, 'cs')).toEqual('před hodinou');
+    });
 
-    advanceTo(1000 * 60 * 60 * 24);
-    expect(format(date, 'cs')).toEqual('včera');
+    test('hours', () => {
+      advanceTo(1000 * 60 * 60 * 8);
+      expect(format(date, 'cs')).toEqual('před 8 hodinami');
+    });
 
-    advanceTo(1000 * 60 * 60 * 24 * 3);
-    expect(format(date, 'cs')).toEqual('před 3 dny');
+    test('yesterday', () => {
+      advanceTo(1000 * 60 * 60 * 24);
+      expect(format(date, 'cs')).toEqual('včera');
 
-    advanceTo(1000 * 60 * 60 * 24 * 7);
-    expect(format(date, 'cs')).toEqual('minulý týden');
+    });
 
-    advanceTo(1000 * 60 * 60 * 24 * 7 * 3);
-    expect(format(date, 'cs')).toEqual('před 3 týdny');
+    test('days', () => {
+      advanceTo(1000 * 60 * 60 * 24 * 3);
+      expect(format(date, 'cs')).toEqual('před 3 dny');
+    });
 
-    advanceTo(1000 * 60 * 60 * 24 * 31);
-    expect(format(date, 'cs')).toEqual('minulý měsíc');
+    test('last week', () => {
+      advanceTo(1000 * 60 * 60 * 24 * 7);
+      expect(format(date, 'cs')).toEqual('minulý týden');
 
-    advanceTo(1000 * 60 * 60 * 24 * 31 * 4);
-    expect(format(date, 'cs')).toEqual('před 4 měsíci');
+    });
 
-    advanceTo(1000 * 60 * 60 * 24 * 366);
-    expect(format(date, 'cs')).toEqual('vloni');
+    test('weeks', () => {
+      advanceTo(1000 * 60 * 60 * 24 * 7 * 3);
+      expect(format(date, 'cs')).toEqual('před 3 týdny');
+    });
 
-    advanceTo(1000 * 60 * 60 * 24 * 366 * 10);
-    expect(format(date, 'cs')).toEqual('před 10 lety');
+    test('last month', () => {
+      advanceTo(1000 * 60 * 60 * 24 * 31);
+      expect(format(date, 'cs')).toEqual('minulý měsíc');
+    });
+
+    test('months', () => {
+      advanceTo(1000 * 60 * 60 * 24 * 31 * 4);
+      expect(format(date, 'cs')).toEqual('před 4 měsíci');
+    });
+
+    test('last year', () => {
+      advanceTo(1000 * 60 * 60 * 24 * 366);
+      expect(format(date, 'cs')).toEqual('vloni');
+    });
+
+    test('years', () => {
+      advanceTo(1000 * 60 * 60 * 24 * 366 * 10);
+      expect(format(date, 'cs')).toEqual('před 10 lety');
+    });
   });
-  test('time in', () => {
-    advanceTo(-9 * 1000);
-    expect(format(date, 'cs')).toEqual('právě teď');
 
-    advanceTo(-30 * 1000);
-    expect(format(date, 'cs')).toEqual('za 30 vteřin');
+  describe('time in', () => {
+    test('just now', () => {
+      advanceTo(-9 * 1000);
+      expect(format(date, 'cs')).toEqual('právě teď');
+    });
 
-    advanceTo(-1000 * 60);
-    expect(format(date, 'cs')).toEqual('za minutu');
+    test('seconds', () => {
+      advanceTo(-30 * 1000);
+      expect(format(date, 'cs')).toEqual('za 30 vteřin');
+    });
 
-    advanceTo(-1000 * 60 * 30);
-    expect(format(date, 'cs')).toEqual('za 30 minut');
+    test('minute', () => {
+      advanceTo(-1000 * 60);
+      expect(format(date, 'cs')).toEqual('za minutu');
+    });
 
-    advanceTo(-1000 * 60 * 60);
-    expect(format(date, 'cs')).toEqual('za hodinu');
+    test('minutes', () => {
+      advanceTo(-1000 * 60 * 30);
+      expect(format(date, 'cs')).toEqual('za 30 minut');
+    });
 
-    advanceTo(-1000 * 60 * 60 * 8);
-    expect(format(date, 'cs')).toEqual('za 8 hodin');
+    test('hour', () => {
+      advanceTo(-1000 * 60 * 60);
+      expect(format(date, 'cs')).toEqual('za hodinu');
+    });
 
-    advanceTo(-1000 * 60 * 60 * 24);
-    expect(format(date, 'cs')).toEqual('zítra');
+    test('hours', () => {
+      advanceTo(-1000 * 60 * 60 * 8);
+      expect(format(date, 'cs')).toEqual('za 8 hodin');
+    });
 
-    advanceTo(-1000 * 60 * 60 * 24 * 3);
-    expect(format(date, 'cs')).toEqual('za 3 dny');
+    test('tomorrow', () => {
+      advanceTo(-1000 * 60 * 60 * 24);
+      expect(format(date, 'cs')).toEqual('zítra');
+    });
 
-    advanceTo(-1000 * 60 * 60 * 24 * 7);
-    expect(format(date, 'cs')).toEqual('příští týden');
+    test('days', () => {
+      advanceTo(-1000 * 60 * 60 * 24 * 3);
+      expect(format(date, 'cs')).toEqual('za 3 dny');
+    });
 
-    advanceTo(-1000 * 60 * 60 * 24 * 7 * 3);
-    expect(format(date, 'cs')).toEqual('za 3 týdnů');
+    test('next week', () => {
+      advanceTo(-1000 * 60 * 60 * 24 * 7);
+      expect(format(date, 'cs')).toEqual('příští týden');
+    });
 
-    advanceTo(-1000 * 60 * 60 * 24 * 31);
-    expect(format(date, 'cs')).toEqual('přístí měsíc');
+    test('weeks', () => {
+      advanceTo(-1000 * 60 * 60 * 24 * 7 * 3);
+      expect(format(date, 'cs')).toEqual('za 3 týdnů');
+    });
 
-    advanceTo(-1000 * 60 * 60 * 24 * 31 * 5);
-    expect(format(date, 'cs')).toEqual('za 5 měsíců');
+    test('next month', () => {
+      advanceTo(-1000 * 60 * 60 * 24 * 31);
+      expect(format(date, 'cs')).toEqual('přístí měsíc');
+    });
 
-    advanceTo(-1000 * 60 * 60 * 24 * 366);
-    expect(format(date, 'cs')).toEqual('přístí rok');
+    test('months', () => {
+      advanceTo(-1000 * 60 * 60 * 24 * 31 * 5);
+      expect(format(date, 'cs')).toEqual('za 5 měsíců');
+    });
 
-    advanceTo(-1000 * 60 * 60 * 24 * 366 * 10);
-    expect(format(date, 'cs')).toEqual('za 10 let');
+    test('next year', () => {
+      advanceTo(-1000 * 60 * 60 * 24 * 366);
+      expect(format(date, 'cs')).toEqual('přístí rok');
+    });
+
+    test('years', () => {
+      advanceTo(-1000 * 60 * 60 * 24 * 366 * 10);
+      expect(format(date, 'cs')).toEqual('za 10 let');
+    });
   });
 });
