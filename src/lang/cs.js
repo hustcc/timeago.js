@@ -4,6 +4,7 @@ module.exports = function(number, index) {
     ['před %s vteřinami', 'za %s vteřin'],
     ['před minutou', 'za minutu'],
     ['před %s minutami', 'za %s minut'],
+    ['před hodinou', 'za hodinu'],
     ['před %s hodinami', 'za %s hodin'],
     ['včera', 'zítra'],
     ['před %s dny', 'za %s dny'],
