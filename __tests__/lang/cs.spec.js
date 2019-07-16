@@ -105,9 +105,14 @@ describe('cs', () => {
       expect(format(date, 'cs')).toEqual('za minutu');
     });
 
-    test('minutes', () => {
-      advanceTo(-1000 * 60 * 30);
-      expect(format(date, 'cs')).toEqual('za 30 minut');
+    test('4 minutes', () => {
+      advanceTo(-1000 * 60 * 4);
+      expect(format(date, 'cs')).toEqual('za 4 minuty');
+    });
+
+    test('5 minutes', () => {
+      advanceTo(-1000 * 60 * 5);
+      expect(format(date, 'cs')).toEqual('za 5 minut');
     });
 
     test('hour', () => {
@@ -115,9 +120,14 @@ describe('cs', () => {
       expect(format(date, 'cs')).toEqual('za hodinu');
     });
 
-    test('hours', () => {
-      advanceTo(-1000 * 60 * 60 * 8);
-      expect(format(date, 'cs')).toEqual('za 8 hodin');
+    test('4 hours', () => {
+      advanceTo(-1000 * 60 * 60 * 4);
+      expect(format(date, 'cs')).toEqual('za 4 hodiny');
+    });
+
+    test('5 hours', () => {
+      advanceTo(-1000 * 60 * 60 * 5);
+      expect(format(date, 'cs')).toEqual('za 5 hodin');
     });
 
     test('tomorrow', () => {
@@ -125,9 +135,14 @@ describe('cs', () => {
       expect(format(date, 'cs')).toEqual('zítra');
     });
 
-    test('days', () => {
-      advanceTo(-1000 * 60 * 60 * 24 * 3);
-      expect(format(date, 'cs')).toEqual('za 3 dny');
+    test('4 days', () => {
+      advanceTo(-1000 * 60 * 60 * 24 * 4);
+      expect(format(date, 'cs')).toEqual('za 4 dny');
+    });
+
+    test('5 days', () => {
+      advanceTo(-1000 * 60 * 60 * 24 * 5);
+      expect(format(date, 'cs')).toEqual('za 5 dnů');
     });
 
     test('next week', () => {
@@ -135,9 +150,9 @@ describe('cs', () => {
       expect(format(date, 'cs')).toEqual('příští týden');
     });
 
-    test('weeks', () => {
-      advanceTo(-1000 * 60 * 60 * 24 * 7 * 3);
-      expect(format(date, 'cs')).toEqual('za 3 týdnů');
+    test('4 weeks', () => {
+      advanceTo(-1000 * 60 * 60 * 24 * 7 * 4);
+      expect(format(date, 'cs')).toEqual('za 4 týdny');
     });
 
     test('next month', () => {
@@ -145,7 +160,12 @@ describe('cs', () => {
       expect(format(date, 'cs')).toEqual('přístí měsíc');
     });
 
-    test('months', () => {
+    test('4 months', () => {
+      advanceTo(-1000 * 60 * 60 * 24 * 31 * 4);
+      expect(format(date, 'cs')).toEqual('za 4 měsíce');
+    });
+
+    test('5 months', () => {
       advanceTo(-1000 * 60 * 60 * 24 * 31 * 5);
       expect(format(date, 'cs')).toEqual('za 5 měsíců');
     });
@@ -155,9 +175,14 @@ describe('cs', () => {
       expect(format(date, 'cs')).toEqual('přístí rok');
     });
 
-    test('years', () => {
-      advanceTo(-1000 * 60 * 60 * 24 * 366 * 10);
-      expect(format(date, 'cs')).toEqual('za 10 let');
+    test('4 years', () => {
+      advanceTo(-1000 * 60 * 60 * 24 * 366 * 4);
+      expect(format(date, 'cs')).toEqual('za 4 roky');
+    });
+
+    test('5 years', () => {
+      advanceTo(-1000 * 60 * 60 * 24 * 366 * 5);
+      expect(format(date, 'cs')).toEqual('za 5 let');
     });
   });
 });
