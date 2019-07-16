@@ -80,7 +80,7 @@ describe('cs', () => {
 
     test('last year', () => {
       advanceTo(1000 * 60 * 60 * 24 * 366);
-      expect(format(date, 'cs')).toEqual('vloni');
+      expect(format(date, 'cs')).toEqual('před rokem');
     });
 
     test('years', () => {
