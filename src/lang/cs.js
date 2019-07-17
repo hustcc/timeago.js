@@ -13,22 +13,24 @@ module.exports = function (number, index) {
   }
 
   return [
-    [['právě teď', 'právě teď']],
+    [
+      ['právě teď', 'právě teď']
+    ],
     [
       ['před %s vteřinami', 'za %s vteřiny'],
       ['před %s vteřinami', 'za %s vteřin']
     ],
-    [      ['před minutou', 'za minutu']    ],
+    [['před minutou', 'za minutu']],
     [
       ['před %s minutami', 'za %s minuty'],
       ['před %s minutami', 'za %s minut']
     ],
-    [      ['před hodinou', 'za hodinu']    ],
+    [['před hodinou', 'za hodinu']],
     [
       ['před %s hodinami', 'za %s hodiny'],
       ['před %s hodinami', 'za %s hodin'],
     ],
-    [      ['včera', 'zítra']    ],
+    [['včera', 'zítra']],
     [
       ['před %s dny', 'za %s dny'],
       ['před %s dny', 'za %s dnů'],
