@@ -76,27 +76,15 @@
   "jest": {
     "runner": "jest-electron/runner",
     "testEnvironment": "jest-electron/environment",
-    "setupFiles": [],
     "setupFilesAfterEnv": ["jest-expect"],
     "testRegex": "(/__tests__/.*(test|spec))\\.(js)$",
     "testURL": "https://timeago.org",
-    "moduleFileExtensions": [
-      "js",
-      "json"
-    ],
-    "transform": {
-      "^.+\\.js?$": "babel-jest"
-    },
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "src/**/*.{js}",
-      "!src/localesEntry.js",
+      "src/**/*.{js,jsx}",
       "!**/node_modules/**",
+      "!src/localesEntry.js",
       "!**/vendor/**"
-    ],
-    "moduleDirectories": [
-      "node_modules",
-      "src"
     ]
   }
 }
