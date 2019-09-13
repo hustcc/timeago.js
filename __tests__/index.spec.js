@@ -6,8 +6,6 @@
 import pkg from '../package.json';
 import { format, render, cancel, register, version } from '../src/';
 
-jest.useFakeTimers();
-
 describe('index', () => {
   test('all', () => {
     expect(format).toBeFunction();
@@ -27,11 +25,9 @@ describe('index', () => {
   test('render', () => {
     // render array
     render([{}]);
-    jest.advanceTimersByTime(30000);
 
     // render node
     render({});
-    jest.advanceTimersByTime(30000);
     expect(format(new Date() - 1000 * 1000, 'zh_CN')).toBe('16 分钟前');
   });
 
