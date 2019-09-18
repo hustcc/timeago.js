@@ -5,6 +5,7 @@
 
 const EN = 'second_minute_hour_day_week_month_year'.split('_');
 const ZH = '秒_分钟_小时_天_周_个月_年'.split('_');
+const CO = 'segundo_minuto_hora_dia_semana_mes_año'.split('_');
 
 const zh_CN = (number, index) => {
   if (index === 0) return ['刚刚', '片刻后'];
@@ -19,6 +20,15 @@ const en_US = (number, index) => {
   return [`${number} ${unit} ago`, `in ${number} ${unit}`];
 };
 
+const es_MX = function es_MX(number, index){
+  if (index === 0) return['Justo Ahora', 'Ahora mismo'];
+  var unit = MX[parseInt(index / 2)];
+  if (number > 1 && unit == 'mes'){
+     unit += 'es';
+  }else if (number > 1) unit += 's';
+  return ["".concat("Hace ", number).concat(" ", unit), "En ".concat(number, " ").concat(unit)];
+};
+
 /**
  * 所有的语言
  * @type {{en: function(*, *), zh_CN: function(*, *)}}
@@ -26,6 +36,7 @@ const en_US = (number, index) => {
 const Locales = {
   en_US,
   zh_CN,
+  es_MX
 };
 
 /**
