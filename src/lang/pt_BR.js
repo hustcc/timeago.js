@@ -1,6 +1,6 @@
 export default function(number, index) {
   return [
-    ['agora mesmo', 'daqui um pouco'],
+    ['agora mesmo', 'agora'],
     ['há %s segundos', 'em %s segundos'],
     ['há um minuto', 'em um minuto'],
     ['há %s minutos', 'em %s minutos'],
