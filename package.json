@@ -5,6 +5,11 @@
   "summary": "timeago.js is a simple library (less than 1kb) to used to format datetime with `*** time ago` statement. eg: '3 hours ago'.",
   "description": "timeago.js is a simple library (only 1kb) to used to format datetime with `*** time ago` statement. eg: '3 hours ago'. localization supported.",
   "main": "lib/index.js",
+  "files": [
+    "lib",
+    "dist",
+    "README_zh.md"
+  ],
   "scripts": {
     "clean": "rimraf -rf lib",
     "lint": "eslint src/**/* __tests__/**/*",
