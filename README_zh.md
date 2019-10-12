@@ -48,12 +48,11 @@ npm install timeago.js
 
  - 引入
 
-```js
-// ES6
+```ts
 import { format, render, cancel, register } from 'timeago.js';
 
-// commonjs
-const { format, render, cancel, register } = require('timeago.js');
+// or
+import * as timeago from 'timeago.js';
 ```
 
 或者使用 `script` 在 html 文件中引入，然后就可以使用全局的变量 `timeago`。
@@ -64,7 +63,7 @@ const { format, render, cancel, register } = require('timeago.js');
 
  - 使用
 
-```js
+```ts
 // 格式化日期
 format('2016-06-12', 'en_US');
 ```
@@ -115,13 +114,13 @@ format(Date.now() - 11 * 1000 * 60 * 60); // returns '11 hours ago'
 HTML code:
 
 ```html
-<div class="needs_to_be_rendered" datetime="2016-06-30 09:20:00"></div>
+<div class="needs-tobe-rendered" datetime="2016-06-30 09:20:00"></div>
 ```
 
 Javascript code:
 
 ```js
-var nodes = document.querySelectorAll('.needs_to_be_rendered');
+var nodes = document.querySelectorAll('.needs-tobe-rendered');
 
 // use render method to render nodes in real time
 timeago.render(nodes, 'zh_CN');
@@ -133,9 +132,9 @@ timeago.cancel();
 timeago.cancel(nodes[0])
 ```
 
-`render` 函数的输入必须是一个 dom 元素或者数组，JavaScript dom 和 JQuery 的 dom 均支持。
+`render` 函数的输入必须是一个 dom 元素或者数组，JavaScript dom ~~和 JQuery 的 dom 均~~支持。
 
-`cancel` 清楚实时渲染，如果传入 dom，则清除这个 dom 的实时渲染，否则清除所有。
+`cancel` 清除实时渲染，如果传入 dom，则清除这个 dom 的实时渲染，否则清除所有。
 
 > 被渲染的 dom 元素必须包含一个 `datetime` 属性，用于被格式化的日期。
 
@@ -146,10 +145,10 @@ timeago.cancel(nodes[0])
 
 ```js
 // the local dict example is below.
-const localeFunc = (number, index, total_sec) => {
+const localeFunc = (number, index, totalSec) => {
   // number: the timeago / timein number;
   // index: the index of array below;
-  // total_sec: total seconds between date to be formatted and today's date;
+  // totalSec: total seconds between date to be formatted and today's date;
   return [
     ['just now', 'right now'],
     ['%s seconds ago', 'in %s seconds'],

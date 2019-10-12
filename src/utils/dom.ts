@@ -1,0 +1,30 @@
+const ATTR_TIMEAGO_TID = 'timeago-tid';
+const ATTR_DATETIME = 'datetime';
+
+/**
+ * get the datetime attribute, `datetime` are supported.
+ * @param node
+ * @returns {*}
+ */
+export function getDateAttribute(node: HTMLElement): string {
+  return node.getAttribute(ATTR_DATETIME);
+}
+
+/**
+ * set the node attribute, native DOM
+ * @param node
+ * @param timerId
+ * @returns {*}
+ */
+export function setTimerId(node: HTMLElement, timerId: number): void {
+  // @ts-ignore
+  node.setAttribute(ATTR_TIMEAGO_TID, timerId);
+}
+
+/**
+ * get the timer id
+ * @param node
+ */
+export function getTimerId(node: HTMLElement): number {
+  return ~~node.getAttribute(ATTR_TIMEAGO_TID);
+}

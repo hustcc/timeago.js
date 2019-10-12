@@ -61,18 +61,14 @@ npm install timeago.js</pre>
         Or you can use ES6 style:
       </p>
       <pre>
-import timeago from 'timeago.js';
-// or
-var timeago = require("timeago.js");</pre>
+import * as timeago from 'timeago.js';</pre>
       <p class="how">
         Now, let's attach it to your timestamps on DOM ready:
       </p>
       <pre>
-timeago().render(document.querySelectorAll('.need_to_be_rendered'));
-// or use jquery selector
-timeago().render($('.need_to_be_rendered'));</pre>
+timeago().render(document.querySelectorAll('.need_to_be_rendered'));</pre>
       <p class="how">
-        This will realtime render all <tt>selected</tt>(javascript DOM selector, or jQuery selector all are supported) elements with a class of <tt>need_to_be_rendered</tt>.
+        This will realtime render all <tt>selected</tt>(javascript DOM selector) elements with a class of <tt>need_to_be_rendered</tt>.
       </p>
       <pre>
 &lt;span class=&quot;<em>need_to_be_rendered</em>&quot; datetime=&quot;<em>2016-07-07T09:24:17Z</em>&quot;&gt;July 07, 2016&lt;/span&gt;</pre>
@@ -86,14 +82,13 @@ timeago.format(1473245023718);          //=> &quot;<span id="demo_timestamp"></s
 
       <h3>Locales register ?</h3>
       <p>
-        Yes, timeago.js has locale/i18n/language support.  Here are some <a href="https://github.com/hustcc/timeago.js/tree/master/locales">configuration examples</a>.  Please submit a <a href="https://github.com/hustcc/timeago.js">GitHub pull request</a> for corrections or additional languages.
+        Yes, timeago.js has locale/i18n/language support.  Here are some <a href="https://github.com/hustcc/timeago.js/tree/master/src/lang">configuration examples</a>.  Please submit a <a href="https://github.com/hustcc/timeago.js">GitHub pull request</a> for corrections or additional languages.
       </p>
       <pre>
-
-var locale = function(number, index, total_sec) {
-  // number: the timeago / timein number;
+var locale = function(number, index, totalSec) {
+  // number: the time ago / time in number;
   // index: the index of array below;
-  // total_sec: total seconds between date to be formatted and today's date;
+  // totalSec: total seconds between date to be formatted and today's date;
   return [
     ['just now', 'right now'],
     ['%s seconds ago', 'in %s seconds'],
@@ -112,9 +107,8 @@ var locale = function(number, index, total_sec) {
   ][index];
 };
 timeago.register('pt_BR', locale);
-var timeagoInstance = timeago();
 // then you can use it
-timeagoInstance.format(1473245023718, 'pt_BR');</pre>
+timeago.format(1473245023718, 'pt_BR');</pre>
 
       <h3>Where ?</h3>
       <p>Package is managed with npm. so <em>npm install timeago.js</em> will be the latest version.</p>

@@ -4,21 +4,34 @@
  */
 
 import { uglify } from 'rollup-plugin-uglify';
-import babel from 'rollup-plugin-babel';
 import resolve from 'rollup-plugin-node-resolve';
+import typescript from 'rollup-plugin-typescript';
 
-export default {
-  input: 'src/index.js',
-  output: {
-    file: 'dist/timeago.min.js',
-    name: 'timeago',
-    format: 'umd',
+module.exports = [
+  {
+    input: 'src/index.ts',
+    output: {
+      file: 'dist/timeago.min.js',
+      name: 'timeago',
+      format: 'umd',
+    },
+    plugins: [
+      resolve(),
+      typescript(),
+      uglify(),
+    ],
   },
-  plugins: [
-    resolve(),
-    babel({
-      exclude: 'node_modules/**',
-    }),
-    uglify(),
-  ],
-};
+  {
+    input: 'src/full.ts',
+    output: {
+      file: 'dist/timeago.full.min.js',
+      name: 'timeago',
+      format: 'umd',
+    },
+    plugins: [
+      resolve(),
+      typescript(),
+      uglify(),
+    ],
+  },
+];

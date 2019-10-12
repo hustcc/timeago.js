@@ -50,12 +50,11 @@ npm install timeago.js
 
  - Import
 
-```js
-// ES6
+```ts
 import { format, render, cancel, register } from 'timeago.js';
 
-// commonjs
-const { format, render, cancel, register } = require('timeago.js');
+// or
+import * as timeago from 'timeago.js';
 ```
 
 or import with `script` in html file and access global variable `timeago`.
@@ -66,7 +65,7 @@ or import with `script` in html file and access global variable `timeago`.
 
  - Usage
 
-```js
+```ts
 // format the time with locale
 format('2016-06-12', 'en_US');
 ```
@@ -89,7 +88,7 @@ There only 4 API:
 
 Just format date into a string.
 
-```js
+```ts
 import { format, render, cancel, register } from 'timeago.js';
 
 // format timestamp
@@ -117,13 +116,15 @@ You can `render` a dom node with automatic rendering.
 HTML code:
 
 ```html
-<div class="needs_to_be_rendered" datetime="2016-06-30 09:20:00"></div>
+<div class="needs-tobe-rendered" datetime="2016-06-30 09:20:00"></div>
 ```
 
 Javascript code:
 
-```js
-var nodes = document.querySelectorAll('.needs_to_be_rendered');
+```ts
+import * as timeago from 'timeago.js';
+
+const nodes = document.querySelectorAll('.needs-tobe-rendered');
 
 // use render method to render nodes in real time
 timeago.render(nodes, 'zh_CN');
@@ -135,7 +136,7 @@ timeago.cancel();
 timeago.cancel(nodes[0])
 ```
 
-The input for `render` method should be DOM object / array, pure javascript DOM node or jQuery DOM object supported.
+The input for `render` method should be DOM object / array, pure javascript DOM node ~~or jQuery DOM object supported~~.
 
 The `cancel` method clears all the render timers and release all resources of the instance. Optionally it accepts a single node to cancel timer just for it.
 
@@ -146,12 +147,12 @@ The `cancel` method clears all the render timers and release all resources of th
 
 Default locale is **`en_US`**, and the library supports `en_US` and `zh_CN`. You can register your own language with `register`.
 
-```js
+```ts
 // the local dict example is below.
-const localeFunc = (number, index, total_sec) => {
+const localeFunc = (number: number, index: number, totalSec: number): [string, string] => {
   // number: the timeago / timein number;
   // index: the index of array below;
-  // total_sec: total seconds between date to be formatted and today's date;
+  // totalSec: total seconds between date to be formatted and today's date;
   return [
     ['just now', 'right now'],
     ['%s seconds ago', 'in %s seconds'],
@@ -187,7 +188,7 @@ Check out more [locales](src/lang).
 2. **locale translations**: The library needs more locale translations. You can:
 
  - Open an issue to write the locale translations, or submit a pull request. How to ? see [locales translation](src/lang/).
- - Please **test** the locale by exec `npm test`. How to write testcase, see [locales test cases](__tests__/lang/).
+ - Please **test** the locale by exec `npm test`. How to write test cases, see [locales test cases](__tests__/lang/).
 
 
 

@@ -19,8 +19,16 @@ function init_index_page() {
 }
 
 function init_test_page() {
-  $('.native time').attr('datetime', iso8601(new Date()));
-  $('.jquery time').attr('datetime', iso8601(new Date()));
-  $('.locales time').attr('datetime', iso8601(new Date()));
+  document.querySelectorAll('.native time').forEach(function(node) {
+    node.setAttribute('datetime', iso8601(new Date()));
+  });
+
+  document.querySelectorAll('.native time').forEach(function(node) {
+    node.setAttribute('datetime', iso8601(new Date()));
+  });
+
+  document.querySelectorAll('.locales time').forEach(function(node) {
+    node.setAttribute('datetime', iso8601(new Date()));
+  });
 }
 
