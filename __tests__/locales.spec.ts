@@ -11,7 +11,7 @@ describe('locales', () => {
     expect(getLocale('en_US')).toBeDefined();
   });
 
-  test('Locales zh', () => {
+  test('Locales zh_CN', () => {
     expect(getLocale('zh_CN')(1, 0)).toEqual(['刚刚', '片刻后']);
     expect(getLocale('zh_CN')(1, 1)).toEqual(['1 秒前', '1 秒后']);
 
@@ -34,7 +34,7 @@ describe('locales', () => {
     expect(getLocale('zh_CN')(1, 13)).toEqual(['1 年前', '1 年后']);
   });
 
-  test('Locales en', () => {
+  test('Locales en_US', () => {
     expect(getLocale('en_US')(1, 0)).toEqual(['just now', 'right now']);
 
     expect(getLocale('en_US')(1, 1)).toEqual(['1 second ago', 'in 1 second']);
@@ -62,11 +62,10 @@ describe('locales', () => {
   });
 
   test('register', () => {
-    const fr = () => 'test';
-    // @ts-ignore
-    register('fr', fr);
-    expect(getLocale('fr')).toBe(fr);
-    // @ts-ignore
-    expect(getLocale('fr')()).toBe('test');
+    const test = (diff: number, idx: number, totalSec: number) => ['test', 'locale'] as [string, string];
+    register('test', test);
+
+    expect(getLocale('test')).toBe(test);
+    expect(getLocale('test')(1, 1)).toEqual(['test', 'locale']);
   });
 });

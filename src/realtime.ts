@@ -55,9 +55,10 @@ export function cancel(node?: HTMLElement): void {
  * @param locale
  * @param opts
  */
-export function render(nodes: HTMLElement | NodeList, locale?: string, opts?: Opts) {
+export function render(nodes: HTMLElement | HTMLElement[] | NodeList, locale?: string, opts?: Opts) {
   // by .length
-  const nodeList: NodeList = 'length' in nodes ? nodes : (([nodes] as unknown) as NodeList);
+  // @ts-ignore
+  const nodeList: HTMLElement[] = nodes.length ? nodes : [nodes];
 
   nodeList.forEach((node: HTMLElement) => {
     run(node, getDateAttribute(node), getLocale(locale), opts || {});
