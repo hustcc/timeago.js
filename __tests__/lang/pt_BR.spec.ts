@@ -4,7 +4,6 @@ import pt_BR from '../../src/lang/pt_BR';
 
 register('pt_BR', pt_BR);
 
-
 let date = new Date();
 
 beforeEach(() => {
