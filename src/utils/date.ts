@@ -3,7 +3,7 @@
  * Contract: i@hust.cc
  */
 
-import { LocaleFunc, TDate } from '../interface';
+import { LocaleFunc, Opts, TDate } from '../interface';
 
 const SEC_ARRAY = [60, 60, 24, 7, 365 / 7 / 12, 12];
 
@@ -59,12 +59,12 @@ export function formatDiff(diff: number, localeFunc: LocaleFunc): string {
 /**
  * calculate the diff second between date to be formatted an now date.
  * @param date
- * @param nowDate
+ * @param relativeDate
  * @returns
  */
-export function diffSec(date: TDate, nowDate?: TDate): number {
-  nowDate = nowDate ? toDate(nowDate) : +new Date();
-  return (nowDate - toDate(date)) / 1000;
+export function diffSec(date: TDate, relativeDate): number {
+  relativeDate = relativeDate ? toDate(relativeDate) : +new Date();
+  return (relativeDate - toDate(date)) / 1000;
 }
 
 /**

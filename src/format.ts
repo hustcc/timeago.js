@@ -1,10 +1,16 @@
 import { formatDiff, diffSec } from './utils/date';
 import { getLocale } from './locales';
-import { TDate } from './interface';
+import { Opts, TDate } from './interface';
 
-export const format = (date: TDate, locale?: string, relativeDate?: TDate): string => {
+/**
+ * format a TDate into string
+ * @param date
+ * @param locale
+ * @param opts
+ */
+export const format = (date: TDate, locale?: string, opts?: Opts): string => {
   // diff seconds
-  const sec = diffSec(date, relativeDate);
+  const sec = diffSec(date, opts && opts.relativeDate);
   // format it with locale
   return formatDiff(sec, getLocale(locale));
 };

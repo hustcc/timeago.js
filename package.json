@@ -14,7 +14,7 @@
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "start": "tsc -w",
     "ci": "npm run lint && npm run test",
-    "build:umd": "rimraf ./dist && rollup -c && cp -rf dist/ gh-pages",
+    "build:umd": "rimraf ./dist && rollup -c && cp -rf dist/ gh-pages && npm run size",
     "build:lib": "rimraf ./lib && tsc",
     "build": "npm run build:umd && npm run build:lib",
     "prepublishOnly": "npm run build",

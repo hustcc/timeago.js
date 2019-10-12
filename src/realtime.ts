@@ -1,7 +1,7 @@
 import { setTimerId, getTimerId, getDateAttribute } from './utils/dom';
 import { formatDiff, diffSec, nextInterval } from './utils/date';
 import { getLocale } from './locales';
-import { TDate, TimerPool } from './interface';
+import { LocaleFunc, Opts, TimerPool } from './interface';
 
 // all realtime timer
 const TIMER_POOL: TimerPool = {};
@@ -16,20 +16,22 @@ const clear = (tid: number): void => {
 };
 
 // run with timer(setTimeout)
-function run(node: HTMLElement, date, localeFunc, nowDate): void {
+function run(node: HTMLElement, date: string, localeFunc: LocaleFunc, opts: Opts): void {
   // clear the node's exist timer
   clear(getTimerId(node));
 
+  const { relativeDate, minInterval } = opts;
+
   // get diff seconds
-  const diff = diffSec(date, nowDate);
+  const diff = diffSec(date, relativeDate);
   // render
   node.innerText = formatDiff(diff, localeFunc);
 
   const tid = (setTimeout(
     () => {
-      run(node, date, localeFunc, nowDate);
+      run(node, date, localeFunc, opts);
     },
-    nextInterval(diff) * 1000,
+    Math.max(nextInterval(diff), minInterval || 1) * 1000,
     0x7fffffff,
   ) as unknown) as number;
 
@@ -47,14 +49,19 @@ export function cancel(node?: HTMLElement): void {
   else Object.keys(TIMER_POOL).forEach(clear);
 }
 
-// 实时渲染一系列节点
-export const render = (nodes: HTMLElement | NodeList, locale?: string, relativeDate?: TDate) => {
+/**
+ * render a dom realtime
+ * @param nodes
+ * @param locale
+ * @param opts
+ */
+export function render(nodes: HTMLElement | NodeList, locale?: string, opts?: Opts) {
   // by .length
   const nodeList: NodeList = 'length' in nodes ? nodes : (([nodes] as unknown) as NodeList);
 
   nodeList.forEach((node: HTMLElement) => {
-    run(node, getDateAttribute(node), getLocale(locale), relativeDate);
+    run(node, getDateAttribute(node), getLocale(locale), opts || {});
   });
 
   return nodeList;
-};
+}

@@ -30,5 +30,9 @@ function init_test_page() {
   document.querySelectorAll('.locales time').forEach(function(node) {
     node.setAttribute('datetime', iso8601(new Date()));
   });
+
+  document.querySelectorAll('.min-interval time').forEach(function(node) {
+    node.setAttribute('datetime', iso8601(new Date()));
+  });
 }
 
