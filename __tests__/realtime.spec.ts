@@ -31,24 +31,25 @@ time1.setAttribute('datetime', now - 15000 + '');
 time2.setAttribute('datetime', now - 20000 + '');
 
 describe('realtime', () => {
-  test('render', () => {
-    render(time1, 'en_US', { relativeDate: now });
-    render(time2, 'zh_CN', { relativeDate: now });
+  test('render', async () => {
+    render(time1, 'en_US');
+    render(time2, 'zh_CN');
 
-    delay(2100);
+    await delay(2500);
 
-    expect(time1.innerText).toBe('15 seconds ago');
-    expect(time2.innerText).toBe('20 秒前');
+    expect(time1.innerText).toBe('17 seconds ago');
+    expect(time2.innerText).toBe('22 秒前');
   });
 
-  test('cancel', () => {
+  test('cancel', async () => {
     // cancel one
     cancel(time1);
     // cancel all
     cancel();
 
-    delay(2100);
-    expect(time1.innerText).toBe('15 seconds ago');
-    expect(time2.innerText).toBe('20 秒前');
+    await delay(2500);
+
+    expect(time1.innerText).toBe('17 seconds ago');
+    expect(time2.innerText).toBe('22 秒前');
   });
 });
