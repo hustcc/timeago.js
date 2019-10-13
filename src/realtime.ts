@@ -27,13 +27,9 @@ function run(node: HTMLElement, date: string, localeFunc: LocaleFunc, opts: Opts
   // render
   node.innerText = formatDiff(diff, localeFunc);
 
-  const tid = (setTimeout(
-    () => {
-      run(node, date, localeFunc, opts);
-    },
-    Math.max(nextInterval(diff), minInterval || 1) * 1000,
-    0x7fffffff,
-  ) as unknown) as number;
+  const tid = (setTimeout(() => {
+    run(node, date, localeFunc, opts);
+  }, Math.min(Math.max(nextInterval(diff), minInterval || 1) * 1000, 0x7fffffff)) as unknown) as number;
 
   // there is no need to save node in object. Just save the key
   TIMER_POOL[tid] = 0;
