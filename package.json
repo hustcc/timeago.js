@@ -8,7 +8,8 @@
   "module": "esm/index.js",
   "files": [
     "lib",
-    "esm"
+    "esm",
+    "dist"
   ],
   "scripts": {
     "lint": "eslint src/**/* __tests__/**/*",
