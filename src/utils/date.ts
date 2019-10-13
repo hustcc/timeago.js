@@ -8,11 +8,11 @@ import { LocaleFunc, TDate } from '../interface';
 const SEC_ARRAY = [60, 60, 24, 7, 365 / 7 / 12, 12];
 
 /**
- * format Date / string / timestamp to Date instance.
+ * format Date / string / timestamp to timestamp
  * @param input
  * @returns {*}
  */
-export function toDate(input?: Date | string | number): number {
+export function toTimestamp(input?: Date | string | number): number {
   if (input instanceof Date) return +input;
   // @ts-ignore
   if (!isNaN(input) || /^\d+$/.test(input)) return +new Date(parseInt(input));
@@ -63,8 +63,8 @@ export function formatDiff(diff: number, localeFunc: LocaleFunc): string {
  * @returns
  */
 export function diffSec(date: TDate, relativeDate): number {
-  relativeDate = relativeDate ? toDate(relativeDate) : +new Date();
-  return (relativeDate - toDate(date)) / 1000;
+  relativeDate = relativeDate ? toTimestamp(relativeDate) : +new Date();
+  return (relativeDate - toTimestamp(date)) / 1000;
 }
 
 /**

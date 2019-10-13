@@ -1,7 +1,7 @@
 {
   "name": "timeago.js",
   "officialName": "timeago.js",
-  "version": "4.0.0-beta.3",
+  "version": "4.0.0",
   "summary": "timeago.js is a simple library (less than 1kb) to used to format datetime with `*** time ago` statement. eg: '3 hours ago'.",
   "description": "timeago.js is a simple library (only 1kb) to used to format datetime with `*** time ago` statement. eg: '3 hours ago'. localization supported.",
   "main": "lib/index.js",
@@ -11,14 +11,12 @@
     "esm"
   ],
   "scripts": {
-    "clean": "rimraf -rf lib",
     "lint": "eslint src/**/* __tests__/**/*",
     "lint-staged": "lint-staged",
     "size": "size-limit",
     "test": "jest",
-    "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "start": "tsc -w",
     "ci": "npm run lint && npm run test && npm run size && lint-md .",
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
     "build:umd": "rimraf ./dist && rollup -c && cp -rf dist/ gh-pages && npm run size",
     "build:cjs": "rimraf ./lib && tsc --module commonjs --outDir lib",
     "build:esm": "rimraf ./esm && tsc --module ESNext --outDir esm",

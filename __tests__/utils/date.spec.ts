@@ -3,20 +3,19 @@
  * Contract: i@hust.cc
  */
 
-import { toDate, formatDiff, diffSec, nextInterval } from '../../src/utils/date';
+import { toTimestamp, formatDiff, diffSec, nextInterval } from '../../src/utils/date';
 
 import { getLocale } from '../../src/locales';
 
 describe('date', () => {
-  // TODO fill all test cases
-  test('toDate', () => {
-    expect(typeof toDate('1992-08-01')).toEqual('number');
-    expect(typeof toDate(712627200000)).toEqual('number');
+  test('toTimestamp', () => {
+    expect(toTimestamp('1992-08-01')).toBe(712598400000);
+    expect(toTimestamp(712627200000)).toBe(712627200000);
 
-    expect(typeof toDate('2017-2-5 3:57:52UTC')).toEqual('number');
-    expect(typeof toDate('2017-2-5T3:57:52Z')).toEqual('number');
+    expect(typeof toTimestamp('2017-2-5 3:57:52UTC')).toBe('number');
+    expect(typeof toTimestamp('2017-2-5T3:57:52Z')).toBe('number');
 
-    expect(typeof toDate()).toEqual('number');
+    expect(typeof toTimestamp()).toBe('number');
   });
 
   test('diffSec', () => {
@@ -45,7 +44,7 @@ describe('date', () => {
     expect(formatDiff(-1000, getLocale('en'))).toEqual('in 16 minutes');
 
     expect(formatDiff(-1000, getLocale('en'))).toEqual('in 16 minutes');
-    expect(formatDiff(-1000, getLocale('x'))).toEqual('in 16 minutes');
-    expect(formatDiff(-1000, getLocale('x'))).toEqual('in 16 minutes');
+    expect(formatDiff(-1000, getLocale('not-exist-locale'))).toEqual('in 16 minutes');
+    expect(formatDiff(-1000, getLocale('not-exist-locale'))).toEqual('in 16 minutes');
   });
 });

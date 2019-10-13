@@ -4,26 +4,9 @@
  */
 
 import { render, cancel } from '../src/';
+import { createTimeNode, delay } from './helper';
 
 const now = +new Date();
-
-/**
- * 创建一个 time 节点
- */
-function createTimeNode(): HTMLElement {
-  const time = document.createElement('time');
-  document.body.append(time);
-
-  return time;
-}
-
-function delay(ms = 1100) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve();
-    }, ms);
-  });
-}
 
 const time1 = createTimeNode();
 const time2 = createTimeNode();
