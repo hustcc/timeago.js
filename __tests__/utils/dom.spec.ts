@@ -22,7 +22,7 @@ describe('dom', () => {
 
   test('getDateAttribute', () => {
     const node1 = {
-      getAttribute: (name) => {
+      getAttribute: (name: string): string => {
         if (name === 'datetime') return 'datetime-value';
       },
     };

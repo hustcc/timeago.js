@@ -3,7 +3,7 @@
  * Contract: i@hust.cc
  */
 
-import { LocaleFunc, Opts, TDate } from '../interface';
+import { LocaleFunc, TDate } from '../interface';
 
 const SEC_ARRAY = [60, 60, 24, 7, 365 / 7 / 12, 12];
 

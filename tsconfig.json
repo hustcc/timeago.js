@@ -1,7 +1,5 @@
 {
   "compilerOptions": {
-    "outDir": "lib",
-    "module": "commonjs",
     "target": "es5",
     "jsx": "preserve",
     "moduleResolution": "node",
@@ -12,9 +10,7 @@
     "esModuleInterop": true,
     "pretty": true,
     "lib": ["dom", "esnext"],
-    "skipLibCheck": true,
-    "sourceRoot": "src",
-    "baseUrl": "src"
+    "skipLibCheck": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

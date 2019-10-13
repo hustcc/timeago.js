@@ -4,4 +4,5 @@ npm-debug.*
 coverage
 package-lock.json
 lib
+esm
 dist

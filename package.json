@@ -5,23 +5,24 @@
   "summary": "timeago.js is a simple library (less than 1kb) to used to format datetime with `*** time ago` statement. eg: '3 hours ago'.",
   "description": "timeago.js is a simple library (only 1kb) to used to format datetime with `*** time ago` statement. eg: '3 hours ago'. localization supported.",
   "main": "lib/index.js",
+  "module": "esm/index.js",
   "files": [
     "lib",
-    "dist",
-    "README_zh.md"
+    "esm"
   ],
   "scripts": {
     "clean": "rimraf -rf lib",
     "lint": "eslint src/**/* __tests__/**/*",
     "lint-staged": "lint-staged",
     "size": "size-limit",
-    "test": "jest && npm run size && lint-md .",
+    "test": "jest",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "start": "tsc -w",
-    "ci": "npm run lint && npm run test",
+    "ci": "npm run lint && npm run test && npm run size && lint-md .",
     "build:umd": "rimraf ./dist && rollup -c && cp -rf dist/ gh-pages && npm run size",
-    "build:lib": "rimraf ./lib && tsc",
-    "build": "npm run build:umd && npm run build:lib",
+    "build:cjs": "rimraf ./lib && tsc --module commonjs --outDir lib",
+    "build:esm": "rimraf ./esm && tsc --module ESNext --outDir esm",
+    "build": "npm run build:cjs && npm run build:esm && npm run build:umd",
     "prepublishOnly": "npm run build",
     "deploy": "gh-pages -d gh-pages"
   },
