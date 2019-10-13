@@ -30,6 +30,6 @@ export const register = (locale: string, func: LocaleFunc) => {
  * @param locale
  * @returns {*}
  */
-export const getLocale = (locale) => {
+export const getLocale = (locale: string): LocaleFunc => {
   return Locales[locale] || en_US;
 };

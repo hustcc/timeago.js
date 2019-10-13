@@ -3,19 +3,19 @@
  * Contract: i@hust.cc
  */
 
-import { toTimestamp, formatDiff, diffSec, nextInterval } from '../../src/utils/date';
+import { toDate, formatDiff, diffSec, nextInterval } from '../../src/utils/date';
 
 import { getLocale } from '../../src/locales';
 
 describe('date', () => {
   test('toTimestamp', () => {
-    expect(typeof toTimestamp('1992-08-01')).toBe('number');
-    expect(typeof toTimestamp(712627200000)).toBe('number');
+    expect(toDate('1992-08-01')).toBeInstanceOf(Date);
+    expect(toDate(712627200000)).toBeInstanceOf(Date);
 
-    expect(typeof toTimestamp('2017-2-5 3:57:52UTC')).toBe('number');
-    expect(typeof toTimestamp('2017-2-5T3:57:52Z')).toBe('number');
+    expect(toDate('2017-2-5 3:57:52UTC')).toBeInstanceOf(Date);
+    expect(toDate('2017-2-5T3:57:52Z')).toBeInstanceOf(Date);
 
-    expect(typeof toTimestamp()).toBe('number');
+    expect(toDate()).toBeInstanceOf(Date);
   });
 
   test('diffSec', () => {

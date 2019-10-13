@@ -12,10 +12,10 @@ const SEC_ARRAY = [60, 60, 24, 7, 365 / 7 / 12, 12];
  * @param input
  * @returns {*}
  */
-export function toTimestamp(input?: Date | string | number): number {
-  if (input instanceof Date) return +input;
+export function toDate(input?: Date | string | number): Date {
+  if (input instanceof Date) return input;
   // @ts-ignore
-  if (!isNaN(input) || /^\d+$/.test(input)) return +new Date(parseInt(input));
+  if (!isNaN(input) || /^\d+$/.test(input)) return new Date(parseInt(input));
   input = (input || '')
     // @ts-ignore
     .trim()
@@ -25,7 +25,7 @@ export function toTimestamp(input?: Date | string | number): number {
     .replace(/(\d)T(\d)/, '$1 $2')
     .replace(/Z/, ' UTC') // 2017-2-5T3:57:52Z -> 2017-2-5 3:57:52UTC
     .replace(/([+-]\d\d):?(\d\d)/, ' $1$2'); // -04:00 -> -0400
-  return +new Date(input);
+  return new Date(input);
 }
 
 /**
@@ -48,6 +48,7 @@ export function formatDiff(diff: number, localeFunc: LocaleFunc): string {
   for (; diff >= SEC_ARRAY[idx] && idx < SEC_ARRAY.length; idx++) {
     diff /= SEC_ARRAY[idx];
   }
+  // Math.floor
   diff = ~~diff;
   idx *= 2;
 
@@ -62,9 +63,9 @@ export function formatDiff(diff: number, localeFunc: LocaleFunc): string {
  * @param relativeDate
  * @returns
  */
-export function diffSec(date: TDate, relativeDate): number {
-  relativeDate = relativeDate ? toTimestamp(relativeDate) : +new Date();
-  return (relativeDate - toTimestamp(date)) / 1000;
+export function diffSec(date: TDate, relativeDate: TDate): number {
+  relativeDate = relativeDate ? toDate(relativeDate) : new Date();
+  return (+relativeDate - +toDate(date)) / 1000;
 }
 
 /**
@@ -86,6 +87,5 @@ export function nextInterval(diff: number): number {
   }
   d = d % rst;
   d = d ? rst - d : rst;
-  // Math.ceil
-  return ~~d;
+  return Math.ceil(d);
 }
