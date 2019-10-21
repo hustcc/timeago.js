@@ -88,7 +88,7 @@ format('2018-12-12');
 format(1544666010224, 'zh_CN');
 
 // format with locale and relative date
-format(1544666010224, 'zh_CN', { relativeData: '2018-11-11' });
+format(1544666010224, 'zh_CN', { relativeDate: '2018-11-11' });
 
 // e.g.
 format(Date.now() - 11 * 1000 * 60 * 60); // returns '11 hours ago'
