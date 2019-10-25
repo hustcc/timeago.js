@@ -1,6 +1,6 @@
 import { setTimerId, getTimerId, getDateAttribute } from './utils/dom';
 import { formatDiff, diffSec, nextInterval } from './utils/date';
-import { getLocale } from './locales';
+import { getLocale } from './register';
 import { LocaleFunc, Opts, TimerPool } from './interface';
 
 // all realtime timer

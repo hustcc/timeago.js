@@ -5,7 +5,7 @@
 
 import { format, render, cancel, register } from '../src/full';
 import * as Locales from '../src/lang';
-import { getLocale } from '../src/locales';
+import { getLocale } from '../src/register';
 
 describe('timeago.js full', () => {
   test('export', () => {

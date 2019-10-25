@@ -1,5 +1,5 @@
 import { formatDiff, diffSec } from './utils/date';
-import { getLocale } from './locales';
+import { getLocale } from './register';
 import { Opts, TDate } from './interface';
 
 /**
