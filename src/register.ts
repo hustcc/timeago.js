@@ -4,17 +4,11 @@
  */
 
 import { LocaleFunc, LocaleMap } from './interface';
-import en_US from './lang/en_US';
-import zh_CN from './lang/zh_CN';
 
 /**
- * All locales supported. en_US, zh_CN is build-in
- * @type {{en: function(*, *), zh_CN: function(*, *)}}
+ * All supported locales
  */
-const Locales: LocaleMap = {
-  en_US,
-  zh_CN,
-};
+const Locales: LocaleMap = {};
 
 /**
  * register a locale
@@ -31,5 +25,5 @@ export const register = (locale: string, func: LocaleFunc) => {
  * @returns {*}
  */
 export const getLocale = (locale: string): LocaleFunc => {
-  return Locales[locale] || en_US;
+  return Locales[locale] || Locales['en_US'];
 };
