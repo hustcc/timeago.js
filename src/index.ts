@@ -8,13 +8,9 @@ import zh_CN from './lang/zh_CN';
 
 import { register } from './register';
 
-export function registerBuiltInLocales() {
-  register('en_US', en_US);
-  register('zh_CN', zh_CN);
-}
+register('en_US', en_US);
+register('zh_CN', zh_CN);
 
 export { format } from './format';
 export { render, cancel } from './realtime';
 export { register };
-
-registerBuiltInLocales();
