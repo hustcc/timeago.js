@@ -6,7 +6,6 @@
 import { toDate, formatDiff, diffSec, nextInterval } from '../../src/utils/date';
 
 import { getLocale } from '../../src/register';
-import { registerBuiltInLocales } from '../../src';
 
 describe('date', () => {
   test('toTimestamp', () => {
@@ -38,16 +37,5 @@ describe('date', () => {
     expect(nextInterval(2 * 3600 + 100)).toEqual(3500); // hour
 
     expect(nextInterval(3600 * 24 + 3600)).toEqual(23 * 3600); // day
-  });
-
-  test('formatDiff', () => {
-    registerBuiltInLocales();
-
-    expect(formatDiff(100, getLocale('en'))).toEqual('1 minute ago');
-    expect(formatDiff(-1000, getLocale('en'))).toEqual('in 16 minutes');
-
-    expect(formatDiff(-1000, getLocale('en'))).toEqual('in 16 minutes');
-    expect(formatDiff(-1000, getLocale('not-exist-locale'))).toEqual('in 16 minutes');
-    expect(formatDiff(-1000, getLocale('not-exist-locale'))).toEqual('in 16 minutes');
   });
 });
