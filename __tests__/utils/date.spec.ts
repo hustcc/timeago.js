@@ -4,8 +4,12 @@
  */
 
 import { toDate, formatDiff, diffSec, nextInterval } from '../../src/utils/date';
+import { register, getLocale } from '../../src/register';
+import en_US from '../../src/lang/en_US';
+import zh_CN from '../../src/lang/zh_CN';
 
-import { getLocale } from '../../src/register';
+register('en_US', en_US);
+register('zh_CN', zh_CN);
 
 describe('date', () => {
   test('toTimestamp', () => {
@@ -16,6 +20,15 @@ describe('date', () => {
     expect(toDate('2017-2-5T3:57:52Z')).toBeInstanceOf(Date);
 
     expect(toDate()).toBeInstanceOf(Date);
+  });
+
+  test('formatDiff', () => {
+    expect(formatDiff(100, getLocale('en'))).toEqual('1 minute ago');
+    expect(formatDiff(-1000, getLocale('en'))).toEqual('in 16 minutes');
+
+    expect(formatDiff(-1000, getLocale('en'))).toEqual('in 16 minutes');
+    expect(formatDiff(-1000, getLocale('not-exist-locale'))).toEqual('in 16 minutes');
+    expect(formatDiff(-1000, getLocale('not-exist-locale'))).toEqual('in 16 minutes');
   });
 
   test('diffSec', () => {
