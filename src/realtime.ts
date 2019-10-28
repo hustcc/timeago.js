@@ -36,7 +36,10 @@ function run(node: HTMLElement, date: string, localeFunc: LocaleFunc, opts: Opts
   setTimerId(node, tid);
 }
 
-// 取消一个 node 的实时渲染
+/**
+ * cancel a timer or all timers
+ * @param node - node hosting the time string
+ */
 export function cancel(node?: HTMLElement): void {
   // cancel one
   if (node) clear(getTimerId(node));
