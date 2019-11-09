@@ -11,3 +11,4 @@ Object.keys(Languages).forEach((locale: string) => {
 });
 
 export { format, render, cancel, register };
+export * from './interface';
