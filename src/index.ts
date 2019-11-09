@@ -14,3 +14,4 @@ register('zh_CN', zh_CN);
 export { format } from './format';
 export { render, cancel } from './realtime';
 export { register };
+export * from './interface';
