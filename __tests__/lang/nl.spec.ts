@@ -63,7 +63,7 @@ describe('nl', () => {
   });
   test('time in', () => {
     advanceTo(-9 * 1000);
-    expect(format(date, 'nl')).toEqual('binnenkort');
+    expect(format(date, 'nl')).toEqual('zojuist');
 
     advanceTo(-30 * 1000);
     expect(format(date, 'nl')).toEqual('binnen 30 seconden');

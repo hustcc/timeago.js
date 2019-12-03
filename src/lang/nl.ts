@@ -1,6 +1,6 @@
 export default function(number: number, index: number): [string, string] {
   return [
-    ['recent', 'binnenkort'],
+    ['recent', 'zojuist'],
     ['%s seconden geleden', 'binnen %s seconden'],
     ['1 minuut geleden', 'binnen 1 minuut'],
     ['%s minuten geleden', 'binnen %s minuten'],
