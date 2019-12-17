@@ -5,7 +5,14 @@
 
 import { LocaleFunc, TDate } from '../interface';
 
-const SEC_ARRAY = [60, 60, 24, 7, 365 / 7 / 12, 12];
+const SEC_ARRAY = [
+  60, // 60 seconds in 1 min
+  60, // 60 mins in 1 hour
+  24, // 24 hours in 1 day
+  7, // 7 days in 1 week
+  365 / 7 / 12, // 4.345238095238096 weeks in 1 month
+  12, // 12 months in 1 year
+];
 
 /**
  * format Date / string / timestamp to timestamp
@@ -48,8 +55,19 @@ export function formatDiff(diff: number, localeFunc: LocaleFunc): string {
   for (; diff >= SEC_ARRAY[idx] && idx < SEC_ARRAY.length; idx++) {
     diff /= SEC_ARRAY[idx];
   }
-  // Math.floor
-  diff = ~~diff;
+
+  /**
+   * Math.floor() is alternative of ~~
+   *
+   * The differences and bugs:
+   * Math.floor(3.7) -> 4 but ~~3.7 -> 3
+   * Math.floor(1559125440000.6) -> 1559125440000 but ~~1559125440000.6 -> 52311552
+   *
+   * More information about performance of algebriac:
+   * https://www.youtube.com/watch?v=65-RbBwZQdU
+   */
+  diff = Math.floor(diff);
+
   idx *= 2;
 
   if (diff > (idx === 0 ? 9 : 1)) idx += 1;
@@ -61,11 +79,11 @@ export function formatDiff(diff: number, localeFunc: LocaleFunc): string {
  * calculate the diff second between date to be formatted an now date.
  * @param date
  * @param relativeDate
- * @returns
+ * @returns {number}
  */
 export function diffSec(date: TDate, relativeDate: TDate): number {
-  relativeDate = relativeDate ? toDate(relativeDate) : new Date();
-  return (+relativeDate - +toDate(date)) / 1000;
+  const relDate = relativeDate ? toDate(relativeDate) : new Date();
+  return (+relDate - +toDate(date)) / 1000;
 }
 
 /**
