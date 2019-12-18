@@ -42,14 +42,32 @@ export function toDate(input?: Date | string | number): Date {
  * @returns
  */
 export function formatDiff(diff: number, localeFunc: LocaleFunc): string {
-  // if locale is not exist, use defaultLocale.
-  // if defaultLocale is not exist, use build-in `en`.
-  // be sure of no error when locale is not exist.
-  const agoIn = diff < 0 ? 1 : 0; // time in or time ago
+  /**
+   * if locale is not exist, use defaultLocale.
+   * if defaultLocale is not exist, use build-in `en`.
+   * be sure of no error when locale is not exist.
+   *
+   * If `time in`, then 1
+   * If `time ago`, then 0
+   */
+  const agoIn = diff < 0 ? 1 : 0;
 
+  /**
+   * Get absolute value of number (|diff| is non-negative) value of x
+   * |diff| = diff if diff is positive
+   * |diff| = -diff if diff is negative
+   * |0| = 0
+   */
   diff = Math.abs(diff);
+
+  /**
+   * Time in seconds
+   */
   const totalSec = diff;
 
+  /**
+   * Unit of time
+   */
   let idx = 0;
 
   for (; diff >= SEC_ARRAY[idx] && idx < SEC_ARRAY.length; idx++) {
@@ -63,7 +81,7 @@ export function formatDiff(diff: number, localeFunc: LocaleFunc): string {
    * Math.floor(3.7) -> 4 but ~~3.7 -> 3
    * Math.floor(1559125440000.6) -> 1559125440000 but ~~1559125440000.6 -> 52311552
    *
-   * More information about performance of algebriac:
+   * More information about the performance of algebraic:
    * https://www.youtube.com/watch?v=65-RbBwZQdU
    */
   diff = Math.floor(diff);
@@ -71,8 +89,8 @@ export function formatDiff(diff: number, localeFunc: LocaleFunc): string {
   idx *= 2;
 
   if (diff > (idx === 0 ? 9 : 1)) idx += 1;
-  // @ts-ignore
-  return localeFunc(diff, idx, totalSec)[agoIn].replace('%s', diff);
+
+  return localeFunc(diff, idx, totalSec)[agoIn].replace('%s', diff.toString());
 }
 
 /**
