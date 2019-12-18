@@ -29,6 +29,11 @@ describe('date', () => {
     expect(formatDiff(-1000, getLocale('en'))).toEqual('in 16 minutes');
     expect(formatDiff(-1000, getLocale('not-exist-locale'))).toEqual('in 16 minutes');
     expect(formatDiff(-1000, getLocale('not-exist-locale'))).toEqual('in 16 minutes');
+
+    /**
+     * Big number test
+     */
+    expect(formatDiff(-9999999999999999999999, getLocale('en'))).toEqual('in 317097919837645 years');
   });
 
   test('diffSec', () => {
