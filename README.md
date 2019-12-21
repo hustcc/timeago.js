@@ -10,10 +10,10 @@
 
 [Official website](https://timeago.org/). React version here: [timeago-react](https://github.com/hustcc/timeago-react). Python version here: [timeago](https://github.com/hustcc/timeago).
 
-[![Build Status](https://img.shields.io/travis/hustcc/timeago.js.svg)](https://travis-ci.org/hustcc/timeago.js)
-[![Coverage Status](https://coveralls.io/repos/github/hustcc/timeago.js/badge.svg?branch=master)](https://coveralls.io/github/hustcc/timeago.js?branch=master)
 [![npm Version](https://img.shields.io/npm/v/timeago.js.svg)](https://www.npmjs.com/package/timeago.js)
 [![unpkg](https://img.shields.io/npm/v/timeago.js?label=cdn)](https://unpkg.com/browse/timeago.js/)
+[![Build Status](https://github.com/hustcc/timeago.js/workflows/build/badge.svg)](https://github.com/hustcc/timeago.js/actions)
+[![Coverage Status](https://coveralls.io/repos/github/hustcc/timeago.js/badge.svg?branch=master)](https://coveralls.io/github/hustcc/timeago.js?branch=master)
 [![Dist gzip](https://img.badgesize.io/https://unpkg.com/timeago.js/dist/timeago.min.js?compression=gzip)](https://unpkg.com/timeago.js/dist/timeago.min.js)
 [![npm Download](https://img.shields.io/npm/dm/timeago.js.svg)](https://www.npmjs.com/package/timeago.js)
 [![npm License](https://img.shields.io/npm/l/timeago.js.svg)](https://www.npmjs.com/package/timeago.js)
