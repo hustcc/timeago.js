@@ -1,0 +1,56 @@
+name: Release
+
+on:
+  release:
+    types: [created, edited]
+
+jobs:
+  build:
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm install
+      - run: npm run build
+      - run: npm run ci
+
+  publish-site:
+    needs: build
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm install
+      - run: npm run build
+      - run: |
+          cd gh-pages
+          git init
+          git config --local user.name action
+          git config --local user.email i@hust.cc
+          git add .
+          git commit -m "update by release action"
+      - uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          directory: gh-pages
+          branch: gh-pages
+          force: true
+
+  publish-npm:
+    needs: build
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+      - run: npm install
+      - run: npm run build
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
