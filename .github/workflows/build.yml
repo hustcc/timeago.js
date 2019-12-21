@@ -1,4 +1,4 @@
-name: CI
+name: build
 
 on: [push]
 
@@ -19,6 +19,7 @@ jobs:
       - name: npm install and ci
         run: |
           npm install
+          npm run build
           npm run ci
       - name: Coveralls
         uses: coverallsapp/github-action@master
