@@ -18,7 +18,7 @@ jobs:
 
   publish-site:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
@@ -27,7 +27,7 @@ jobs:
       - run: npm install
       - run: npm run build
       - run: |
-          cd public
+          cd gh-pages
           git init
           git config --local user.name action
           git config --local user.email i@hust.cc
@@ -42,7 +42,7 @@ jobs:
 
   publish-npm:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
