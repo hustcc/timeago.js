@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>timeago.js: testcases.</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="keywords" content="timeago, timeago.js, datetime,*** time ago, javascript timeago, react-timeago, jquery-timeago, timeago.org" />
+	<meta name="description" content="timeago.js is a tiny(2kb) library used to format date with `*** time ago`. eg: '3 hours ago'. No dependence. and support automatically updating fuzzy timestamps." />
+	<link rel="shortcut icon" href="clock.png" />
+	<link rel="bookmark" href="clock.png" />
+	<link rel="stylesheet" type="text/css" href="css.css" />
+</head>
+<body>
+<div id="content">
+	<h1><img src="clock.png" /> timeago.js</h1>
+	<h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a tiny / simple library</h2>
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- sorry for ad -->
+	<ins class="adsbygoogle"
+	     style="display:block"
+	     data-ad-client="ca-pub-7292810486004926"
+	     data-ad-slot="7806394673"
+	     data-ad-format="auto"></ins>
+	<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+
+	<h3>What ?</h3>
+	<p>
+		<strong>timeago.js</strong> is a tiny(2kb) library used to format date with `*** time ago`. eg: '3 hours ago'. No dependency. and support automatically updating fuzzy timestamps (e.g. "4 minutes ago" or "about 1 day ago").  <a href="https://github.com/hustcc/timeago.js">Download</a>, view the examples, and enjoy.
+	</p>
+	<div>
+		<input type="button" onclick="javascript:start_render_all();" value="Auto-render all by native." />
+		<input type="button" onclick="javascript:stop_render_all();" value="Stop all Auto-render." />
+	</div>
+
+	<h3>Test for native DOM</h3>
+	<p class="native example">
+		You opened this page <time class="strong single">when you opened the page</time>
+		<input type="button" onclick="javascript:start_single_native();" value="Start." />
+		<input type="button" onclick="javascript:stop_single_native();" value="Stop." />
+	</p>
+	<p class="native example">
+		You opened this page <time class="strong">when you opened the page</time>.
+	</p>
+
+	<h3>Test for Locales ?</h3>
+	<p class="locales example">
+		You opened this page <time class="strong single vi">when you opened the page</time>.
+		<input type="button" onclick="javascript:start_vi();" value="Start." />
+		<input type="button" onclick="javascript:stop_vi();" value="Stop." />
+	</p>
+
+	<h3>Test refreshing with minimal interval (every 3 second update) ?</h3>
+	<p class="min-interval example">
+		You opened this page <time class="strong single minint">when you opened the page</time>.
+		<input type="button" onclick="javascript:start_minint();" value="Start." />
+		<input type="button" onclick="javascript:stop_minint();" value="Stop." />
+	</p>
+</div>
+<div id="footer">
+	Copyright &copy; 2016 How to user it, see <a href="https://timeago.org/" target="_blank" rel="nofollow">timeago.js</a>.
+	Updated by <a href="http://Github.com/hustcc">Hustcc</a>
+</div>
+<script src="./timeago.full.min.js"></script>
+<script src="./index.js" type="text/javascript"></script>
+<script type="text/javascript">
+	init_test_page(); // 初始化标签上的时间
+
+	function start_render_all() {
+		timeago.render(document.querySelectorAll('.example time'));
+	}
+	function stop_render_all() {
+    timeago.cancel(); // cancel all.
+	}
+
+	function start_single_native() {
+		timeago.render(document.querySelector('.native .single', 'zh_CN'));
+	}
+
+	function stop_single_native() {
+    timeago.cancel(document.querySelector('.native .single'));
+	}
+
+
+  function start_vi() {
+    timeago.render(document.querySelector('.vi.single'), 'vi');
+  }
+
+  function stop_vi() {
+    timeago.cancel(document.querySelector('.vi.single'));
+  }
+
+  function start_minint() {
+    timeago.render(document.querySelector('.minint.single'), 'en_US', { minInterval: 3 });
+  }
+  function stop_minint() {
+    timeago.cancel(document.querySelector('.minint.single'));
+  }
+</script>
+</body>
+</html>

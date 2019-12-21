@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>timeago.js: is a tiny(2kb) library used to format date with `*** time ago`. eg: '3 hours ago'. No dependency.</title>
+    <meta name="keywords" content="timeago, timeago.js, datetime,*** time ago, javascript timeago, react-timeago, jquery-timeago, timeago.org" />
+    <meta name="description" content="timeago.js is a tiny(2kb) library used to format date with `*** time ago`. eg: '3 hours ago'. No dependence. and support automatically updating fuzzy timestamps." />
+    <link rel="shortcut icon" href="./clock.png" />
+    <link rel="bookmark" href="./clock.png" />
+    <link rel="stylesheet" type="text/css" href="./css.css" />
+  </head>
+  <body>
+    <div id="content">
+      <h1><img src="./clock.png" /> timeago.js</h1>
+      <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a tiny / simple library</h2>
+
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- sorry for ad -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7292810486004926"
+           data-ad-slot="7806394673"
+           data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+
+      <h3>What ?</h3>
+      <p>
+        <strong>timeago.js</strong> is a tiny(2kb) library used to format date with `*** time ago`. eg: '3 hours ago'. No dependency. and support automatically updating fuzzy timestamps (e.g. "4 minutes ago" or "about 1 day ago").  <a href="https://github.com/hustcc/timeago.js">Download</a>, view the examples, and enjoy.
+      </p>
+
+      <p class="example">
+        You opened this page <time class="need_to_be_rendered load_time strong">when you opened the page</time>. <span class="help">(This will update automatically. Wait for it.)</span>
+      </p>
+      <p class="example">
+        Hustcc was born <span class="need_to_be_rendered strong" datetime="1992-08-01">Aug 01, 1989</span>.
+      </p>
+
+      <h3>Why ?</h3>
+      <p>timeago.js was built to format date with `*** time ago` statement. You can test timeago.js <a href="./demo.html">here</a> with the live demo.</p>
+      <ul>
+        <li>Avoid timestamps dated "1 minute ago" even though the page was opened 10 minutes ago; <em>timeago refreshes automatically</em>.</li>
+        <li>You can <em>take full advantage of page caching</em> in your web applications, because the timestamps aren't calculated on the server.</li>
+        <li>Very tiny(less than 2kb), and has <em>no dependency</em>, e.g. jQuery.</li>
+      </ul>
+
+      <h3>How ?</h3>
+      <p class="how">
+        First, load and install <a href="https://github.com/hustcc/timeago.js">timeago.js</a> library:
+      </p>
+      <pre>
+npm install timeago.js</pre>
+      <p class="how">
+        Load timeago.js library file with script tag:
+      </p>
+      <pre>
+&lt;script src=&quot;dist/timeago.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</pre>
+      <p class="how">
+        Or you can use ES6 style:
+      </p>
+      <pre>
+import * as timeago from 'timeago.js';</pre>
+      <p class="how">
+        Now, let's attach it to your timestamps on DOM ready:
+      </p>
+      <pre>
+timeago().render(document.querySelectorAll('.need_to_be_rendered'));</pre>
+      <p class="how">
+        This will realtime render all <tt>selected</tt>(javascript DOM selector) elements with a class of <tt>need_to_be_rendered</tt>.
+      </p>
+      <pre>
+&lt;span class=&quot;<em>need_to_be_rendered</em>&quot; datetime=&quot;<em>2016-07-07T09:24:17Z</em>&quot;&gt;July 07, 2016&lt;/span&gt;</pre>
+      <p class="how">
+        You can also use it programmatically:
+      </p>
+      <pre>
+timeago.format(new Date());             //=> &quot;<span id="demo_now"></span>&quot;
+timeago.format('2016-09-07', 'zh_CN')           //=> &quot;<span id="demo_20160907"></span>&quot;
+timeago.format(1473245023718);          //=> &quot;<span id="demo_timestamp"></span>&quot;</pre>
+
+      <h3>Locales register ?</h3>
+      <p>
+        Yes, timeago.js has locale/i18n/language support.  Here are some <a href="https://github.com/hustcc/timeago.js/tree/master/src/lang">configuration examples</a>.  Please submit a <a href="https://github.com/hustcc/timeago.js">GitHub pull request</a> for corrections or additional languages.
+      </p>
+      <pre>
+var locale = function(number, index, totalSec) {
+  // number: the time ago / time in number;
+  // index: the index of array below;
+  // totalSec: total seconds between date to be formatted and today's date;
+  return [
+    ['just now', 'right now'],
+    ['%s seconds ago', 'in %s seconds'],
+    ['1 minute ago', 'in 1 minute'],
+    ['%s minutes ago', 'in %s minutes'],
+    ['1 hour ago', 'in 1 hour'],
+    ['%s hours ago', 'in %s hours'],
+    ['1 day ago', 'in 1 day'],
+    ['%s days ago', 'in %s days'],
+    ['1 week ago', 'in 1 week'],
+    ['%s weeks ago', 'in %s weeks'],
+    ['1 month ago', 'in 1 month'],
+    ['%s months ago', 'in %s months'],
+    ['1 year ago', 'in 1 year'],
+    ['%s years ago', 'in %s years']
+  ][index];
+};
+timeago.register('pt_BR', locale);
+// then you can use it
+timeago.format(1473245023718, 'pt_BR');</pre>
+
+      <h3>Where ?</h3>
+      <p>Package is managed with npm. so <em>npm install timeago.js</em> will be the latest version.</p>
+      <p>
+        The code is hosted on
+        GitHub: <a href="http://github.com/hustcc/timeago.js">http://github.com/hustcc/timeago.js</a>.
+        Go on, live on the edge.
+      </p>
+
+      <h3>Who ?</h3>
+      <p>
+        timeago.js was built by <a href="https://atool.vip">Hustcc</a> while standing on the
+        shoulders of giants.
+      </p>
+
+      <h3>What else ?</h3>
+      <ul>
+        <li><em>timeago.js for react</em>: timeago-react is <a href="https://github.com/hustcc/timeago-react">here</a></li>
+        <li><em>timeago for python</em>: timeago is <a href="https://github.com/hustcc/timeago">here</a></li>
+      </ul>
+      <p class="example">
+        Other timeago, welcome to pull a request.
+      </p>
+
+      <h3>Do you use timeago.js ?</h3>
+      <p>
+        Great! Please let me know, and can add into the README</a>.
+      </p>
+
+    </div>
+    <div id="footer">
+      Copyright &copy; 2016 Theme from <a href="http://timeago.yarp.com/" target="_blank" rel="nofollow">jQuery-timeago</a>.
+      Updated by <a href="http://Github.com/hustcc">Hustcc</a>
+    </div>
+    <script src="./timeago.min.js"></script>
+    <script src="./index.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      init_index_page();
+    </script>
+    <span style="display:none">
+      <script src="http://s4.cnzz.com/stat.php?id=1257060683&web_id=1257060683" language="JavaScript"></script>
+    </span>
+  </body>
+</html>
