@@ -7,6 +7,7 @@
   "main": "lib/index.js",
   "module": "esm/index.js",
   "unpkg": "dist/timeago.min.js",
+  "browser": "dist/timeago.min.js",
   "files": [
     "lib",
     "esm",
