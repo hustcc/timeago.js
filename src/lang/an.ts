@@ -2,7 +2,7 @@ export default function(number: number, index: number): [string, string] {
   return [
     ['fa un momento', "d'aquí a un momento"],
     ['fa %s segundos', "d'aquí a %s segundos"],
-    ['fa 1 minut', "d'aquí a 1 minuto"],
+    ['fa 1 minuto', "d'aquí a 1 minuto"],
     ['fa %s minutos', "d'aquí a %s minutos"],
     ['fa 1 hora', "d'aquí a 1 hora"],
     ['fa %s horas', "d'aquí a %s horas"],
