@@ -10,7 +10,7 @@ export default function(diff: number, idx: number): [string, string] {
   const is_indx = Math.floor(idx / 2);
   const unit = is[is_indx];
   let unit_in, unit_ago;
-  if (diff === 1) {
+  if (diff === 1 || (diff > 20 && parseInt(diff.toString().slice(-1)) === 1)) {
     unit_in = singular_in[is_indx];
     unit_ago = singular_ago[is_indx];
   } else {

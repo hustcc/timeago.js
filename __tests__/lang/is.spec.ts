@@ -68,11 +68,17 @@ describe('is', () => {
     advanceTo(-30 * 1000);
     expect(format(date, 'is')).toEqual('eftir 30 sekúndur');
 
+    advanceTo(-21 * 1000);
+    expect(format(date, 'is')).toEqual('eftir 21 sekúndu');
+
     advanceTo(-1000 * 60);
     expect(format(date, 'is')).toEqual('eftir 1 mínútu');
 
     advanceTo(-1000 * 60 * 30);
     expect(format(date, 'is')).toEqual('eftir 30 mínútur');
+
+    advanceTo(-1000 * 60 * 31);
+    expect(format(date, 'is')).toEqual('eftir 31 mínútu');
 
     advanceTo(-1000 * 60 * 60);
     expect(format(date, 'is')).toEqual('eftir 1 klukkutíma');
