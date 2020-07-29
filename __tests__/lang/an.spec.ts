@@ -1,6 +1,6 @@
 import { advanceTo, clear } from 'jest-date-mock';
 import { register, format } from '../../src';
-import oc from '../../src/lang/an';
+import an from '../../src/lang/an';
 
 register('an', an);
 
