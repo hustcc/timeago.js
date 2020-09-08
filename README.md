@@ -63,6 +63,13 @@ or import with `script` tag in html file and access global variable `timeago`.
 format('2016-06-12', 'en_US');
 ```
 
+## CDN 
+
+Alternatively to NPM, you can also use a CDN which will reflect the latest version as soon as it is published to npm.
+
+```html
+<script src="//unpkg.com/timeago.js"></script>
+```
 
 ## API
 
