@@ -14,7 +14,7 @@
   "scripts": {
     "lint": "eslint src/**/* __tests__/**/*",
     "lint-staged": "lint-staged",
-    "size": "size-limit",
+    "size": "limit-size",
     "test": "jest",
     "ci": "npm run lint && npm run test && npm run size && lint-md .",
     "build:umd": "rimraf ./dist && rollup -c && cp -rf dist/ gh-pages && npm run size",
@@ -37,6 +37,7 @@
     "jest-date-mock": "^1.0.5",
     "jest-electron": "^0.1.7",
     "jest-expect": "^0.0.1",
+    "limit-size": "^0.1.2",
     "lint-md-cli": "^0.1.0",
     "lint-staged": "^9.3.0",
     "prettier": "^1.18.2",
@@ -45,18 +46,19 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-typescript": "^1.0.1",
     "rollup-plugin-uglify": "^6.0.3",
-    "size-limit": "^0.18.0",
     "ts-jest": "^24.1.0",
     "typescript": "^3.6.3"
   },
-  "size-limit": [
+  "limit-size": [
     {
-      "limit": "1 KB",
-      "path": "dist/timeago.min.js"
+      "limit": "1.1 Kb",
+      "path": "dist/timeago.min.js",
+      "gzip": true
     },
     {
-      "limit": "10 KB",
-      "path": "dist/timeago.full.min.js"
+      "limit": "10 Kb",
+      "path": "dist/timeago.full.min.js",
+      "gzip": true
     }
   ],
   "jest": {
