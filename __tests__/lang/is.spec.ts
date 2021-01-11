@@ -1,6 +1,6 @@
 /**
- * Created by hustcc on 18/5/24.
- * Contact: i@hust.cc
+ * Created by Óli Tómas
+ * Contact: olitomas@olitomas.com
  */
 import { advanceTo, clear } from 'jest-date-mock';
 import { format, register } from '../../src';
