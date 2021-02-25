@@ -38,6 +38,7 @@ export { default as sr } from './sr';
 export { default as sv } from './sv';
 export { default as ta } from './ta';
 export { default as th } from './th';
+export { default as tk } from './tk';
 export { default as tr } from './tr';
 export { default as uk } from './uk';
 export { default as vi } from './vi';
