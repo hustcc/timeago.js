@@ -1,19 +1,19 @@
 // Indonesian (Indonesia)
 export default function(number: number, index: number): [string, string] {
   return [
-    ['baru saja', 'sebentar'],
+    ['baru saja', 'sebentar lagi'],
     ['%s detik yang lalu', 'dalam %s detik'],
-    ['1 menit yang lalu', 'dalam 1 menit'],
+    ['semenit yang lalu', 'dalam semenit'],
     ['%s menit yang lalu', 'dalam %s menit'],
-    ['1 jam yang lalu', 'dalam 1 jam'],
+    ['sejam yang lalu', 'dalam sejam'],
     ['%s jam yang lalu', 'dalam %s jam'],
-    ['1 hari yang lalu', 'dalam 1 hari'],
+    ['sehari yang lalu', 'dalam sehari'],
     ['%s hari yang lalu', 'dalam %s hari'],
-    ['1 minggu yang lalu', 'dalam 1 minggu'],
+    ['seminggu yang lalu', 'dalam seminggu'],
     ['%s minggu yang lalu', 'dalam %s minggu'],
-    ['1 bulan yang lalu', 'dalam 1 bulan'],
+    ['sebulan yang lalu', 'dalam sebulan'],
     ['%s bulan yang lalu', 'dalam %s bulan'],
-    ['1 tahun yang lalu', 'dalam 1 tahun'],
+    ['setahun yang lalu', 'dalam setahun'],
     ['%s tahun yang lalu', 'dalam %s tahun'],
   ][index] as [string, string];
 }
