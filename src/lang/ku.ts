@@ -16,5 +16,6 @@ const kurdishFuzzyDates = [
 ];
 
 export default function(number: number, index: number): [string] {
+  if (index === 0) return ['هەر ئێستا'];
   return [kurdishFuzzyDates[Math.floor(index / 2)][0].replace('%s', toKurdishNumeric(number))];
 }
