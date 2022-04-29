@@ -6,13 +6,13 @@ function toKurdishNumeric(number: number): string {
 }
 
 const kurdishFuzzyDates = [
-  ['%s چرکە لەمەوپێش', '%s چرکەی داهاتوو'], // Seconds
-  ['%s دەقە لەمەوپێش', '%s دەقەی داهاتوو'], // Minutes
-  ['%s کاتژمێر لەمەوپێش', '%s کاتژمێری داهاتوو'], // Hours
-  ['%s ڕۆژ لەمەوپێش', '%s ڕۆژی داهاتوو'], // Days
-  ['%s هەفتە لەمەوپێش', '%s هەفتەی داهاتوو'], // Weeks
-  ['%s مانگ لەمەوپێش', '%s مانگی داهاتوو'], // Months
-  ['%s ساڵ لەمەوپێش', '%s ساڵی داهاتوو'], // Years
+  ['%s چرکە لەمەوپێش', '%s چرکەیتر'], // Seconds
+  ['%s دەقە لەمەوپێش', '%s دەقەیتر'], // Minutes
+  ['%s کاتژمێر لەمەوپێش', '%s کاتژمێریتر'], // Hours
+  ['%s ڕۆژ لەمەوپێش', '%s ڕۆژیتر'], // Days
+  ['%s هەفتە لەمەوپێش', '%s هەفتەیتر'], // Weeks
+  ['%s مانگ لەمەوپێش', '%s مانگیتر'], // Months
+  ['%s ساڵ لەمەوپێش', '%s ساڵیتر'], // Years
 ];
 
 export default function(number: number, index: number): [string, string] {
