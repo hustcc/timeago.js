@@ -26,6 +26,7 @@ export { default as ko } from './ko';
 export { default as ml } from './ml';
 export { default as my } from './my';
 export { default as nb_NO } from './nb_NO';
+export { default as ne } from './ne';
 export { default as nl } from './nl';
 export { default as nn_NO } from './nn_NO';
 export { default as oc } from './oc';
