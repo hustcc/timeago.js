@@ -50,7 +50,7 @@
     "rollup-plugin-typescript": "^1.0.1",
     "rollup-plugin-uglify": "^6.0.3",
     "ts-jest": "^24.1.0",
-    "typescript": "^3.6.3"
+    "typescript": "^5.0.2"
   },
   "limit-size": [
     {
