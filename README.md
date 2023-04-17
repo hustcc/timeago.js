@@ -180,6 +180,10 @@ const localeFunc = (number: number, index: number, totalSec: number): [string, s
 // register your locale with timeago
 register('my-locale', localeFunc);
 
+// resister an existing locale 
+import es from 'timeago.js/lib/lang/es';
+register('es', es);
+
 // use it
 format('2016-06-12', 'my-locale');
 ```
