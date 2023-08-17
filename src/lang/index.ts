@@ -9,6 +9,7 @@ export { default as de } from './de';
 export { default as el } from './el';
 export { default as en_short } from './en_short';
 export { default as en_US } from './en_US';
+export { default as eo } from './eo';
 export { default as es } from './es';
 export { default as eu } from './eu';
 export { default as fa } from './fa';
