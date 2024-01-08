@@ -57,7 +57,8 @@ export function cancel(node?: HTMLElement): void {
 export function render(nodes: HTMLElement | HTMLElement[] | NodeList, locale?: string, opts?: Opts) {
   // by .length
   // @ts-ignore
-  const nodeList: HTMLElement[] = nodes.length ? nodes : [nodes];
+  // supports empty list of nodes
+  const nodeList: HTMLElement[] = NodeList.prototype.isPrototypeOf(nodes) ? nodes : [nodes];
 
   nodeList.forEach((node: HTMLElement) => {
     run(node, getDateAttribute(node), getLocale(locale), opts || {});
