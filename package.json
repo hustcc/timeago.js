@@ -1,7 +1,7 @@
 {
   "name": "timeago.js",
   "officialName": "timeago.js",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "summary": "timeago.js is a simple library (less than 1kb) to used to format datetime with `*** time ago` statement. eg: '3 hours ago'.",
   "description": "timeago.js is a simple library (only 1kb) to used to format datetime with `*** time ago` statement. eg: '3 hours ago'. localization supported.",
   "main": "lib/index.js",
@@ -9,6 +9,7 @@
   "unpkg": "dist/timeago.min.js",
   "browser": "dist/timeago.min.js",
   "files": [
+    "src",
     "lib",
     "esm",
     "dist"
@@ -49,7 +50,7 @@
     "rollup-plugin-typescript": "^1.0.1",
     "rollup-plugin-uglify": "^6.0.3",
     "ts-jest": "^24.1.0",
-    "typescript": "^3.6.3"
+    "typescript": "^5.0.2"
   },
   "limit-size": [
     {
