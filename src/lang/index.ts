@@ -36,6 +36,7 @@ export { default as ru } from './ru';
 export { default as sq } from './sq';
 export { default as sr } from './sr';
 export { default as sv } from './sv';
+export { default as sw } from './sw';
 export { default as ta } from './ta';
 export { default as th } from './th';
 export { default as tk } from './tk';
