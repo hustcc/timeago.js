@@ -14,4 +14,6 @@ export type Opts = {
   readonly relativeDate?: TDate;
   /** the realtime */
   readonly minInterval?: number;
+  /** the locale used to format the number part of the relative time */
+  readonly numberLocale?: string;
 };

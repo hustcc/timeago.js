@@ -1,7 +1,7 @@
-import { setTimerId, getTimerId, getDateAttribute } from './utils/dom';
-import { formatDiff, diffSec, nextInterval } from './utils/date';
-import { getLocale } from './register';
 import { LocaleFunc, Opts, TimerPool } from './interface';
+import { getLocale } from './register';
+import { diffSec, formatDiff, nextInterval } from './utils/date';
+import { getDateAttribute, getTimerId, setTimerId } from './utils/dom';
 
 // all realtime timer
 const TIMER_POOL: TimerPool = {};
@@ -20,16 +20,19 @@ function run(node: HTMLElement, date: string, localeFunc: LocaleFunc, opts: Opts
   // clear the node's exist timer
   clear(getTimerId(node));
 
-  const { relativeDate, minInterval } = opts;
+  const { relativeDate, minInterval, numberLocale } = opts;
 
   // get diff seconds
   const diff = diffSec(date, relativeDate);
   // render
-  node.innerText = formatDiff(diff, localeFunc);
+  node.innerText = formatDiff(diff, localeFunc, numberLocale);
 
-  const tid = (setTimeout(() => {
-    run(node, date, localeFunc, opts);
-  }, Math.min(Math.max(nextInterval(diff), minInterval || 1) * 1000, 0x7fffffff)) as unknown) as number;
+  const tid = setTimeout(
+    () => {
+      run(node, date, localeFunc, opts);
+    },
+    Math.min(Math.max(nextInterval(diff), minInterval || 1) * 1000, 0x7fffffff),
+  ) as unknown as number;
 
   // there is no need to save node in object. Just save the key
   TIMER_POOL[tid] = 0;
