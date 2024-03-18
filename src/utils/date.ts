@@ -41,7 +41,7 @@ export function toDate(input?: Date | string | number): Date {
  * @param localeFunc
  * @returns
  */
-export function formatDiff(diff: number, localeFunc: LocaleFunc): string {
+export function formatDiff(diff: number, localeFunc: LocaleFunc, numberLocale?: string): string {
   /**
    * if locale is not exist, use defaultLocale.
    * if defaultLocale is not exist, use build-in `en`.
@@ -90,7 +90,7 @@ export function formatDiff(diff: number, localeFunc: LocaleFunc): string {
 
   if (diff > (idx === 0 ? 9 : 1)) idx += 1;
 
-  return localeFunc(diff, idx, totalSec)[agoIn].replace('%s', diff.toString());
+  return localeFunc(diff, idx, totalSec)[agoIn].replace('%s', diff.toLocaleString(numberLocale));
 }
 
 /**
