@@ -8,8 +8,19 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Build UMD bundles
+        run: |
+          npm ci
+          npm run build
+          cp dist/timeago.min.js dist/timeago.full.min.js site/
       - name: Deploy site to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:
