@@ -97,7 +97,7 @@ export function formatDiff(diff: number, localeFunc: LocaleFunc): string {
  * @param relativeDate
  * @returns {number}
  */
-export function diffSec(date: TDate, relativeDate: TDate): number {
+export function diffSec(date: TDate, relativeDate?: TDate): number {
   const relDate = relativeDate ? toDate(relativeDate) : new Date();
   return (+relDate - +toDate(date)) / 1000;
 }

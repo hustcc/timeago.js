@@ -6,10 +6,10 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: false,
     lib: {
-      entry: resolve(__dirname, 'src/full.ts'),
+      entry: resolve(__dirname, 'src/index.ts'),
       name: 'timeago',
       formats: ['umd'],
-      fileName: () => 'timeago.full.min.js',
+      fileName: () => 'timeago.min.js',
     },
     minify: 'terser',
   },

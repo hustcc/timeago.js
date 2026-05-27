@@ -7,11 +7,10 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'timeago',
-      formats: ['cjs', 'es', 'umd'],
-      fileName: (fmt) =>
-        fmt === 'es' ? 'index.mjs' : fmt === 'cjs' ? 'index.cjs' : 'timeago.min.js',
+      formats: ['cjs', 'es'],
+      fileName: (fmt) => (fmt === 'es' ? 'index.mjs' : 'index.cjs'),
     },
-    minify: 'terser',
+    minify: false,
   },
   test: {
     globals: true,

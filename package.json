@@ -22,7 +22,11 @@
   "scripts": {
     "test": "vitest run --coverage",
     "test:watch": "vitest",
-    "build": "rimraf dist && vite build && vite build --config vite.full.config.ts",
+    "build": "rimraf dist && npm run build:lib && npm run build:umd && npm run build:full && npm run build:dts",
+    "build:lib": "vite build",
+    "build:umd": "vite build --config vite.umd.config.ts",
+    "build:full": "vite build --config vite.full.config.ts",
+    "build:dts": "tsc --emitDeclarationOnly --outDir dist",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {

@@ -1,4 +1,5 @@
 export { default as ar } from './ar';
+export { default as an } from './an';
 export { default as be } from './be';
 export { default as bg } from './bg';
 export { default as bn_IN } from './bn_IN';

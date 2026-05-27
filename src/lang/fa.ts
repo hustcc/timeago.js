@@ -1,10 +1,10 @@
 // As persian language has different number symbols we need to replace regular numbers
 // to standard persian numbres.
-function toPersianNumber(number): string {
+function toPersianNumber(number: number): string {
   // List of standard persian numbers from 0 to 9
   const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
 
-  return number.toString().replace(/\d/g, (x) => persianDigits[x]);
+  return number.toString().replace(/\d/g, (x: string) => persianDigits[Number(x)]);
 }
 
 export default function(number: number, index: number): [string, string] {

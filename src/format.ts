@@ -10,7 +10,7 @@ import { Opts, TDate } from './interface';
  */
 export const format = (date: TDate, locale?: string, opts?: Opts): string => {
   // diff seconds
-  const sec = diffSec(date, opts && opts.relativeDate);
+  const sec = diffSec(date, opts?.relativeDate);
   // format it with locale
   return formatDiff(sec, getLocale(locale));
 };
