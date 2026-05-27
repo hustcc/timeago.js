@@ -19,8 +19,7 @@
       "require": "./dist/lib/*.js"
     },
     "./esm/*": {
-      "import": "./dist/esm/*.js",
-      "require": "./dist/lib/*.js"
+      "import": "./dist/esm/*.js"
     }
   },
   "files": [
