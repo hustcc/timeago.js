@@ -1,8 +1,4 @@
-/**
- * Created by hustcc on 18/5/20.
- * Contract: i@hust.cc
- */
-
+import { vi } from 'vitest';
 import { format } from '../src/';
 
 describe('format', () => {
@@ -16,4 +12,13 @@ describe('format', () => {
 
     expect(format(+now - 1000 * 1000, 'not-exist-locale', { relativeDate: now })).toBe('16 minutes ago');
   });
+
+  test('format with fake time', () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2024-01-01T00:00:00Z'));
+    const date = new Date('2024-01-01T00:00:00Z');
+    expect(format(date)).toBe('just now');
+    vi.useRealTimers();
+  });
 });
+

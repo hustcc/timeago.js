@@ -14,7 +14,7 @@
 [![unpkg](https://img.shields.io/npm/v/timeago.js?label=cdn)](https://unpkg.com/browse/timeago.js/)
 [![Build Status](https://github.com/hustcc/timeago.js/workflows/build/badge.svg)](https://github.com/hustcc/timeago.js/actions)
 [![Coverage Status](https://coveralls.io/repos/github/hustcc/timeago.js/badge.svg?branch=master)](https://coveralls.io/github/hustcc/timeago.js?branch=master)
-[![Dist gzip](https://img.badgesize.io/https://unpkg.com/timeago.js/dist/timeago.min.js?compression=gzip)](https://unpkg.com/timeago.js/dist/timeago.min.js)
+[![Dist gzip](https://img.badgesize.io/https://unpkg.com/timeago.js/dist/timeago.umd.js?compression=gzip)](https://unpkg.com/timeago.js/dist/timeago.umd.js)
 [![npm Download](https://img.shields.io/npm/dm/timeago.js.svg)](https://www.npmjs.com/package/timeago.js)
 [![npm License](https://img.shields.io/npm/l/timeago.js.svg)](https://www.npmjs.com/package/timeago.js)
 
@@ -53,7 +53,7 @@ import { format, render, cancel, register } from 'timeago.js';
 or import with `script` tag in html file and access global variable `timeago`.
 
 ```html
-<script src="dist/timeago.min.js"></script>
+<script src="dist/timeago.umd.js"></script>
 ```
 
  - example

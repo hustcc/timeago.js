@@ -1,18 +1,18 @@
 {
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "./tsconfig.ci.json"
+    "project": "./tsconfig.json",
+    "createDefaultProgram": true
   },
   "plugins": ["@typescript-eslint"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier",
-    "prettier/@typescript-eslint"
+    "prettier"
   ],
   "rules": {
-    "@typescript-eslint/ban-ts-ignore": 1,
-    "@typescript-eslint/camelcase": 0
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/naming-convention": 0
   }
 }

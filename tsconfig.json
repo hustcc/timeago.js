@@ -1,17 +1,16 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "jsx": "preserve",
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
+    "target": "ES2017",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "declaration": true,
     "sourceMap": true,
+    "strict": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "pretty": true,
-    "lib": ["dom", "esnext"],
+    "lib": ["DOM", "ESNext"],
     "skipLibCheck": true
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist"]
 }

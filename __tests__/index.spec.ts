@@ -1,8 +1,3 @@
-/**
- * Created by hustcc on 18/5/20.
- * Contract: i@hust.cc
- */
-
 import { format, render, cancel, register } from '../src/';
 import { getLocale } from '../src/register';
 
@@ -71,3 +66,4 @@ describe('timeago.js core', () => {
     });
   });
 });
+
