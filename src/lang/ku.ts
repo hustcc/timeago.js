@@ -2,7 +2,7 @@ const kurdishDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩
 
 // change digits from English to Kurdish
 function toKurdishNumeric(number: number): string {
-  return number.toString().replace(/\d/g, (x: string) => kurdishDigits[Number(x)]);
+  return number.toString().replace(/\d/g, (x: string) => kurdishDigits[+x]);
 }
 
 const kurdishFuzzyDates = [

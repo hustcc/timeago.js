@@ -4,7 +4,7 @@ function toPersianNumber(number: number): string {
   // List of standard persian numbers from 0 to 9
   const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
 
-  return number.toString().replace(/\d/g, (x: string) => persianDigits[Number(x)]);
+  return number.toString().replace(/\d/g, (x: string) => persianDigits[+x]);
 }
 
 export default function(number: number, index: number): [string, string] {
