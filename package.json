@@ -29,7 +29,7 @@
   "scripts": {
     "test": "vitest run --coverage",
     "test:watch": "vitest",
-    "build": "rimraf dist && run-s build:lib build:umd build:full build:cjs build:esm build:dts",
+    "build": "rimraf dist && run-s build:*",
     "build:lib": "vite build",
     "build:umd": "vite build --config vite.umd.config.ts",
     "build:full": "vite build --config vite.full.config.ts",
