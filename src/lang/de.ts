@@ -1,6 +1,6 @@
 export default function(number: number, index: number): [string, string] {
   return [
-    ['gerade eben', 'vor einer Weile'],
+    ['gerade eben', 'gleich'],
     ['vor %s Sekunden', 'in %s Sekunden'],
     ['vor 1 Minute', 'in 1 Minute'],
     ['vor %s Minuten', 'in %s Minuten'],
