@@ -6,7 +6,7 @@ const ATTR_TIMEAGO_TID = 'timeago-id';
  * @returns {*}
  */
 export function getDateAttribute(node: HTMLElement): string {
-  return node.getAttribute('datetime');
+  return node.getAttribute('datetime') || '';
 }
 
 /**
@@ -16,8 +16,7 @@ export function getDateAttribute(node: HTMLElement): string {
  * @returns {*}
  */
 export function setTimerId(node: HTMLElement, timerId: number): void {
-  // @ts-ignore
-  node.setAttribute(ATTR_TIMEAGO_TID, timerId);
+  node.setAttribute(ATTR_TIMEAGO_TID, String(timerId));
 }
 
 /**
@@ -25,5 +24,5 @@ export function setTimerId(node: HTMLElement, timerId: number): void {
  * @param node
  */
 export function getTimerId(node: HTMLElement): number {
-  return parseInt(node.getAttribute(ATTR_TIMEAGO_TID));
+  return parseInt(node.getAttribute(ATTR_TIMEAGO_TID) || '0', 10);
 }

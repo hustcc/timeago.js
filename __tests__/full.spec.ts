@@ -1,8 +1,3 @@
-/**
- * Created by hustcc on 18/5/20.
- * Contract: i@hust.cc
- */
-
 import { format, render, cancel, register } from '../src/full';
 import * as Locales from '../src/lang';
 import { getLocale } from '../src/register';
@@ -17,7 +12,8 @@ describe('timeago.js full', () => {
 
   test('locales', () => {
     Object.keys(Locales).forEach((key: string) => {
-      expect(getLocale(key)).toBe(Locales[key]);
+      expect(getLocale(key)).toBe(Locales[key as keyof typeof Locales]);
     });
   });
 });
+

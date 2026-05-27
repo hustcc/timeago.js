@@ -21,18 +21,16 @@ const SEC_ARRAY = [
  */
 export function toDate(input?: Date | string | number): Date {
   if (input instanceof Date) return input;
-  // @ts-ignore
-  if (!isNaN(input) || /^\d+$/.test(input)) return new Date(parseInt(input));
-  input = (input || '')
-    // @ts-ignore
+  const s = String(input ?? '');
+  if (!isNaN(input as number) || /^\d+$/.test(s)) return new Date(parseInt(s));
+  const normalized = s
     .trim()
     .replace(/\.\d+/, '') // remove milliseconds
-    .replace(/-/, '/')
-    .replace(/-/, '/')
+    .replace(/-/g, '/')
     .replace(/(\d)T(\d)/, '$1 $2')
     .replace(/Z/, ' UTC') // 2017-2-5T3:57:52Z -> 2017-2-5 3:57:52UTC
     .replace(/([+-]\d\d):?(\d\d)/, ' $1$2'); // -04:00 -> -0400
-  return new Date(input);
+  return new Date(normalized);
 }
 
 /**
@@ -99,7 +97,7 @@ export function formatDiff(diff: number, localeFunc: LocaleFunc): string {
  * @param relativeDate
  * @returns {number}
  */
-export function diffSec(date: TDate, relativeDate: TDate): number {
+export function diffSec(date: TDate, relativeDate?: TDate): number {
   const relDate = relativeDate ? toDate(relativeDate) : new Date();
   return (+relDate - +toDate(date)) / 1000;
 }

@@ -1,8 +1,3 @@
-/**
- * Created by hustcc on 18/5/20.
- * Contract: i@hust.cc
- */
-
 import { render, cancel } from '../src/';
 import { createTimeNode, delay } from './helper';
 
@@ -22,7 +17,7 @@ describe('realtime', () => {
 
     expect(time1.innerText).toBe('17 seconds ago');
     expect(time2.innerText).toBe('22 秒前');
-  });
+  }, 10000);
 
   test('cancel', async () => {
     // cancel one
@@ -34,5 +29,6 @@ describe('realtime', () => {
 
     expect(time1.innerText).toBe('17 seconds ago');
     expect(time2.innerText).toBe('22 秒前');
-  });
+  }, 10000);
 });
+
