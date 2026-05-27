@@ -33,8 +33,8 @@
     "build:lib": "vite build",
     "build:umd": "vite build --config vite.umd.config.ts",
     "build:full": "vite build --config vite.full.config.ts",
-    "build:cjs": "tsc --project tsconfig.build.cjs.json",
-    "build:esm": "tsc --project tsconfig.build.esm.json",
+    "build:cjs": "vite build --config vite.lib.cjs.config.ts",
+    "build:esm": "vite build --config vite.lib.esm.config.ts",
     "build:dts": "tsc --emitDeclarationOnly --outDir dist",
     "prepublishOnly": "npm run build"
   },
