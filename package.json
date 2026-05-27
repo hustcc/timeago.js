@@ -13,6 +13,14 @@
     ".": {
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
+    },
+    "./lib/*": {
+      "import": "./dist/esm/*.js",
+      "require": "./dist/lib/*.js"
+    },
+    "./esm/*": {
+      "import": "./dist/esm/*.js",
+      "require": "./dist/lib/*.js"
     }
   },
   "files": [
@@ -22,10 +30,12 @@
   "scripts": {
     "test": "vitest run --coverage",
     "test:watch": "vitest",
-    "build": "rimraf dist && npm run build:lib && npm run build:umd && npm run build:full && npm run build:dts",
+    "build": "rimraf dist && npm run build:lib && npm run build:umd && npm run build:full && npm run build:cjs && npm run build:esm && npm run build:dts",
     "build:lib": "vite build",
     "build:umd": "vite build --config vite.umd.config.ts",
     "build:full": "vite build --config vite.full.config.ts",
+    "build:cjs": "tsc --project tsconfig.build.cjs.json",
+    "build:esm": "tsc --project tsconfig.build.esm.json",
     "build:dts": "tsc --emitDeclarationOnly --outDir dist",
     "prepublishOnly": "npm run build"
   },
