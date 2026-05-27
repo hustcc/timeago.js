@@ -24,6 +24,7 @@ export { default as ja } from './ja';
 export { default as ka } from './ka';
 export { default as ko } from './ko';
 export { default as ml } from './ml';
+export { default as ms } from './ms';
 export { default as my } from './my';
 export { default as nb_NO } from './nb_NO';
 export { default as nl } from './nl';
