@@ -11,7 +11,6 @@ export default defineConfig({
         full: resolve(__dirname, 'src/full.ts'),
       },
       formats: ['cjs'],
-      fileName: '[name].js',
     },
     minify: false,
     rollupOptions: {
