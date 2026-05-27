@@ -1,6 +1,6 @@
 export default function(number: number, index: number): [string, string] {
   return [
-    ["à l'instant", 'dans un instant'],
+    ['à l\'instant', 'dans un instant'],
     ['il y a %s secondes', 'dans %s secondes'],
     ['il y a 1 minute', 'dans 1 minute'],
     ['il y a %s minutes', 'dans %s minutes'],
