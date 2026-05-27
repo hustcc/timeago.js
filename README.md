@@ -8,7 +8,7 @@
  - Node and browser supported.
  - Well tested.
 
-[Official website](https://timeago.org/). React version here: [timeago-react](https://github.com/hustcc/timeago-react). Python version here: [timeago](https://github.com/hustcc/timeago).
+[Official website](https://timeago.ling.pub/). React version here: [timeago-react](https://github.com/hustcc/timeago-react). Python version here: [timeago](https://github.com/hustcc/timeago).
 
 [![npm Version](https://img.shields.io/npm/v/timeago.js.svg)](https://www.npmjs.com/package/timeago.js)
 [![unpkg](https://img.shields.io/npm/v/timeago.js?label=cdn)](https://unpkg.com/browse/timeago.js/)

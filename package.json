@@ -16,7 +16,8 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "scripts": {
     "test": "vitest run --coverage",
@@ -35,7 +36,7 @@
   },
   "author": {
     "name": "hustcc",
-    "url": "https://timeago.org"
+    "url": "https://timeago.ling.pub"
   },
   "license": "MIT",
   "keywords": [

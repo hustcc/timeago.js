@@ -44,8 +44,7 @@ export function cancel(node?: HTMLElement): void {
   // cancel one
   if (node) clear(getTimerId(node));
   // cancel all
-  // @ts-ignore
-  else Object.keys(TIMER_POOL).forEach(clear);
+  else (Object.keys(TIMER_POOL) as unknown as number[]).forEach(clear);
 }
 
 /**
@@ -55,10 +54,9 @@ export function cancel(node?: HTMLElement): void {
  * @param opts
  */
 export function render(nodes: HTMLElement | HTMLElement[] | NodeList, locale?: string, opts?: Opts) {
-  // by .length
-  // @ts-ignore
-  // supports empty list of nodes
-  const nodeList: HTMLElement[] = NodeList.prototype.isPrototypeOf(nodes) ? nodes : [nodes];
+  const nodeList: HTMLElement[] = nodes instanceof NodeList
+    ? Array.from(nodes as NodeListOf<HTMLElement>)
+    : Array.isArray(nodes) ? nodes : [nodes as HTMLElement];
 
   nodeList.forEach((node: HTMLElement) => {
     run(node, getDateAttribute(node), getLocale(locale), opts || {});

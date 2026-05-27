@@ -16,8 +16,7 @@ export function getDateAttribute(node: HTMLElement): string {
  * @returns {*}
  */
 export function setTimerId(node: HTMLElement, timerId: number): void {
-  // @ts-ignore
-  node.setAttribute(ATTR_TIMEAGO_TID, timerId);
+  node.setAttribute(ATTR_TIMEAGO_TID, String(timerId));
 }
 
 /**
