@@ -16,7 +16,7 @@ const seconds = formatNum.bind(null, 'секунду', '%s секунду', '%s 
   minutes = formatNum.bind(null, 'хвилину', '%s хвилину', '%s хвилини', '%s хвилин'),
   hours = formatNum.bind(null, 'годину', '%s годину', '%s години', '%s годин'),
   days = formatNum.bind(null, 'день', '%s день', '%s дні', '%s днів'),
-  weeks = formatNum.bind(null, 'тиждень', '%s тиждень', '%s тиждні', '%s тижднів'),
+  weeks = formatNum.bind(null, 'тиждень', '%s тиждень', '%s тижні', '%s тижнів'),
   months = formatNum.bind(null, 'місяць', '%s місяць', '%s місяці', '%s місяців'),
   years = formatNum.bind(null, 'рік', '%s рік', '%s роки', '%s років');
 
