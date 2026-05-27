@@ -6,8 +6,8 @@
   "description": "timeago.js is a nano library (less than 2kb) used to format datetime with `*** time ago` statement. eg: '3 hours ago'. i18n supported.",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
-  "unpkg": "dist/timeago.umd.js",
-  "browser": "dist/timeago.umd.js",
+  "unpkg": "dist/timeago.min.js",
+  "browser": "dist/timeago.min.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {

@@ -9,7 +9,7 @@ export default defineConfig({
       name: 'timeago',
       formats: ['cjs', 'es', 'umd'],
       fileName: (fmt) =>
-        fmt === 'es' ? 'index.mjs' : fmt === 'cjs' ? 'index.cjs' : 'timeago.umd.js',
+        fmt === 'es' ? 'index.mjs' : fmt === 'cjs' ? 'index.cjs' : 'timeago.min.js',
     },
     minify: 'terser',
   },
