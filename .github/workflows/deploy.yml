@@ -15,10 +15,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
       - name: Build UMD bundles
         run: |
-          npm ci
+          npm install
           npm run build
           cp dist/timeago.min.js dist/timeago.full.min.js site/
       - name: Deploy site to gh-pages branch
