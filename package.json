@@ -19,8 +19,6 @@
     "dist"
   ],
   "scripts": {
-    "lint": "eslint src __tests__",
-    "lint-staged": "lint-staged",
     "test": "vitest run --coverage",
     "test:watch": "vitest",
     "build": "rimraf dist && vite build && vite build --config vite.full.config.ts",
@@ -28,11 +26,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
-    "@typescript-eslint/eslint-plugin": "^7.18.0",
-    "@typescript-eslint/parser": "^7.18.0",
     "@vitest/coverage-v8": "^2.1.9",
-    "eslint": "^8.57.1",
-    "eslint-config-prettier": "^9.1.2",
     "husky": "^9.1.7",
     "jsdom": "^24.1.3",
     "lint-staged": "^15.5.2",
@@ -45,7 +39,6 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "eslint --fix",
       "prettier --write"
     ]
   },

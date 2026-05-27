@@ -10,7 +10,7 @@ export default defineConfig({
       name: 'timeago',
       formats: ['cjs', 'es', 'umd'],
       fileName: (fmt) =>
-        fmt === 'es' ? 'full.mjs' : fmt === 'cjs' ? 'full.cjs' : 'timeago.full.umd.js',
+        fmt === 'es' ? 'full.mjs' : fmt === 'cjs' ? 'full.cjs' : 'timeago.full.min.js',
     },
     minify: 'terser',
   },
