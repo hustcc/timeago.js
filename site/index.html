@@ -1,14 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>timeago.js: is a tiny(2kb) library used to format date with `*** time ago`. eg: '3 hours ago'. No dependency.</title>
-    <meta name="keywords" content="timeago, timeago.js, datetime,*** time ago, javascript timeago, react-timeago, jquery-timeago, timeago.org" />
-    <meta name="description" content="timeago.js is a tiny(2kb) library used to format date with `*** time ago`. eg: '3 hours ago'. No dependence. and support automatically updating fuzzy timestamps." />
+    <meta name="theme-color" content="#3a3a3d" />
+    <title>timeago.js - Tiny JavaScript library for time ago formatting</title>
+    <meta name="keywords" content="timeago, timeago.js, datetime, time ago, javascript timeago, react-timeago, jquery-timeago" />
+    <meta name="description" content="timeago.js is a tiny library (less than 2kb) used to format datetime with '*** time ago' statements. eg: '3 hours ago'. No dependencies. Supports i18n and automatic updates." />
+    <link rel="canonical" href="https://timeago.ling.pub/" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://timeago.ling.pub/" />
+    <meta property="og:title" content="timeago.js - Tiny JavaScript library for time ago formatting" />
+    <meta property="og:description" content="timeago.js is a tiny library (less than 2kb) used to format datetime with '*** time ago' statements. No dependencies. Supports i18n and automatic updates." />
+    <meta property="og:image" content="https://timeago.ling.pub/clock.png" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://timeago.ling.pub/" />
+    <meta name="twitter:title" content="timeago.js - Tiny JavaScript library for time ago formatting" />
+    <meta name="twitter:description" content="timeago.js is a tiny library (less than 2kb) used to format datetime with '*** time ago' statements. No dependencies. Supports i18n and automatic updates." />
+    <meta name="twitter:image" content="https://timeago.ling.pub/clock.png" />
+    
     <link rel="shortcut icon" href="./clock.png" />
     <link rel="bookmark" href="./clock.png" />
     <link rel="stylesheet" type="text/css" href="./css.css" />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "timeago.js",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "description": "Tiny JavaScript library (less than 2kb) for formatting datetime with '*** time ago' statements",
+      "url": "https://timeago.ling.pub/",
+      "downloadUrl": "https://github.com/hustcc/timeago.js",
+      "author": {
+        "@type": "Person",
+        "name": "hustcc",
+        "url": "https://github.com/hustcc"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "license": "https://opensource.org/licenses/MIT"
+    }
+    </script>
   </head>
   <body>
     <div id="content">
@@ -28,7 +70,7 @@
 
       <h3>What ?</h3>
       <p>
-        <strong>timeago.js</strong> is a tiny(2kb) library used to format date with `*** time ago`. eg: '3 hours ago'. No dependency. and support automatically updating fuzzy timestamps (e.g. "4 minutes ago" or "about 1 day ago").  <a href="https://github.com/hustcc/timeago.js">Download</a>, view the examples, and enjoy.
+        <strong>timeago.js</strong> is a tiny library (less than 2kb) used to format date with `*** time ago`. eg: '3 hours ago'. No dependencies. Supports automatically updating fuzzy timestamps (e.g. "4 minutes ago" or "about 1 day ago").  <a href="https://github.com/hustcc/timeago.js">Download</a>, view the examples, and enjoy.
       </p>
 
       <p class="example">
@@ -114,7 +156,7 @@ timeago.format(1473245023718, 'pt_BR');</pre>
       <p>Package is managed with npm. so <em>npm install timeago.js</em> will be the latest version.</p>
       <p>
         The code is hosted on
-        GitHub: <a href="http://github.com/hustcc/timeago.js">http://github.com/hustcc/timeago.js</a>.
+        GitHub: <a href="https://github.com/hustcc/timeago.js">https://github.com/hustcc/timeago.js</a>.
         Go on, live on the edge.
       </p>
 
@@ -140,16 +182,13 @@ timeago.format(1473245023718, 'pt_BR');</pre>
 
     </div>
     <div id="footer">
-      Copyright &copy; 2016 Theme from <a href="http://timeago.yarp.com/" target="_blank" rel="nofollow">jQuery-timeago</a>.
-      Updated by <a href="http://Github.com/hustcc">Hustcc</a>
+      Copyright &copy; 2016 Theme from <a href="https://timeago.yarp.com/" target="_blank" rel="nofollow">jQuery-timeago</a>.
+      Updated by <a href="https://github.com/hustcc">Hustcc</a>
     </div>
     <script src="./timeago.min.js"></script>
     <script src="./index.js" type="text/javascript"></script>
     <script type="text/javascript">
       init_index_page();
     </script>
-    <span style="display:none">
-      <script src="http://s4.cnzz.com/stat.php?id=1257060683&web_id=1257060683" language="JavaScript"></script>
-    </span>
   </body>
 </html>
