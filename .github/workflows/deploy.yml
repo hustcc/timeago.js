@@ -4,15 +4,9 @@ on:
   push:
     branches:
       - master
-  pull_request:
-    types:
-      - closed
-    branches:
-      - master
 
 jobs:
   deploy:
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
     runs-on: ubuntu-latest
     permissions:
       contents: write
