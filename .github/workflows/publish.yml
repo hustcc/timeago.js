@@ -1,4 +1,4 @@
-name: publish
+name: Publish to npm
 
 on:
   release:
@@ -17,8 +17,35 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
           registry-url: https://registry.npmjs.org
       - run: npm ci
       - run: npm run build
       - run: npm test
-      - run: npm publish --provenance --access public
+      - name: Check package version
+        id: package_check
+        run: |
+          PACKAGE_NAME=$(node -p "require('./package.json').name")
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          echo "package_name=${PACKAGE_NAME}" >> "$GITHUB_OUTPUT"
+          echo "package_version=${PACKAGE_VERSION}" >> "$GITHUB_OUTPUT"
+          if NPM_VIEW_OUTPUT=$(npm view "${PACKAGE_NAME}@${PACKAGE_VERSION}" version 2>&1); then
+            echo "already_published=true" >> "$GITHUB_OUTPUT"
+            echo "${PACKAGE_NAME}@${PACKAGE_VERSION} is already published, skipping publish."
+          else
+            if echo "$NPM_VIEW_OUTPUT" | grep -Eq "E404|404 Not Found"; then
+              echo "already_published=false" >> "$GITHUB_OUTPUT"
+            else
+              echo "$NPM_VIEW_OUTPUT"
+              exit 1
+            fi
+          fi
+      - name: Publish package
+        if: steps.package_check.outputs.already_published == 'false'
+        run: |
+          PACKAGE_NAME="${{ steps.package_check.outputs.package_name }}"
+          if [[ "$PACKAGE_NAME" == @* ]]; then
+            npm publish --provenance --access public
+          else
+            npm publish --provenance
+          fi
