@@ -16,7 +16,7 @@ const Locales: LocaleMap = {};
  * @param func
  */
 export const register = (locale: string, func: LocaleFunc) => {
-  Locales[locale] = func;
+  Locales[locale.toLowerCase()] = func;
 };
 
 /**
@@ -25,5 +25,5 @@ export const register = (locale: string, func: LocaleFunc) => {
  * @returns {*}
  */
 export const getLocale = (locale?: string): LocaleFunc => {
-  return Locales[locale || 'en_US'] || Locales['en_US'];
+  return Locales[(locale || 'en_us').toLowerCase()] || Locales.en_us;
 };
