@@ -9,9 +9,6 @@ import { LocaleFunc, LocaleMap } from './interface';
  * All supported locales
  */
 const Locales: LocaleMap = {};
-const DEFAULT_LOCALE = 'en_us';
-
-const normalizeLocale = (locale: string) => locale.toLowerCase();
 
 /**
  * register a locale
@@ -19,7 +16,7 @@ const normalizeLocale = (locale: string) => locale.toLowerCase();
  * @param func
  */
 export const register = (locale: string, func: LocaleFunc) => {
-  Locales[normalizeLocale(locale)] = func;
+  Locales[locale.toLowerCase()] = func;
 };
 
 /**
@@ -28,5 +25,5 @@ export const register = (locale: string, func: LocaleFunc) => {
  * @returns {*}
  */
 export const getLocale = (locale?: string): LocaleFunc => {
-  return Locales[locale ? normalizeLocale(locale) : DEFAULT_LOCALE] || Locales[DEFAULT_LOCALE];
+  return Locales[(locale || 'en_us').toLowerCase()] || Locales.en_us;
 };
