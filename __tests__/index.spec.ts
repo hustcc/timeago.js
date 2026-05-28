@@ -13,6 +13,8 @@ describe('timeago.js core', () => {
     test('getLocale', () => {
       expect(getLocale('zh_CN')).toBeDefined();
       expect(getLocale('en_US')).toBeDefined();
+      expect(getLocale('zh_cn')).toBeDefined();
+      expect(getLocale('en_us')).toBeDefined();
     });
 
     test('Locales zh_CN', () => {
@@ -66,4 +68,3 @@ describe('timeago.js core', () => {
     });
   });
 });
-
