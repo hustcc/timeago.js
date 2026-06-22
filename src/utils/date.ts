@@ -112,9 +112,12 @@ export function diffSec(date: TDate, relativeDate?: TDate): number {
  * make the interval with high performance.
  **/
 export function nextInterval(diff: number): number {
+  // Use the absolute diff so future times (negative diff) walk the unit
+  // buckets too; otherwise the loop is skipped and the result is always 1.
+  diff = Math.abs(diff);
   let rst = 1,
     i = 0,
-    d = Math.abs(diff);
+    d = diff;
   for (; diff >= SEC_ARRAY[i] && i < SEC_ARRAY.length; i++) {
     diff /= SEC_ARRAY[i];
     rst *= SEC_ARRAY[i];
