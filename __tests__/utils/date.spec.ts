@@ -39,6 +39,10 @@ describe('date', () => {
     expect(nextInterval(110)).toEqual(10);
     expect(nextInterval(2 * 3600 + 100)).toEqual(3500);
     expect(nextInterval(3600 * 24 + 3600)).toEqual(23 * 3600);
+    // future times (negative diff) must use the same interval as past times
+    expect(nextInterval(-110)).toEqual(10);
+    expect(nextInterval(-(2 * 3600 + 100))).toEqual(3500);
+    expect(nextInterval(-(3600 * 24 + 3600))).toEqual(23 * 3600);
   });
 });
 
