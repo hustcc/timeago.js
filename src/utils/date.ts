@@ -23,14 +23,21 @@ export function toDate(input?: Date | string | number): Date {
   if (input instanceof Date) return input;
   const s = String(input ?? '');
   if (!isNaN(input as number) || /^\d+$/.test(s)) return new Date(parseInt(s));
+  // Pull the trailing timezone offset off first so the global `-` -> `/`
+  // replacement below cannot eat the offset's minus sign (which previously
+  // turned `-04:00` into `/04:00` and produced an Invalid Date).
+  let tz = '';
   const normalized = s
     .trim()
+    .replace(/([+-]\d\d):?(\d\d)$/, (_m, h, m) => {
+      tz = ` ${h}${m}`; // -04:00 -> ' -0400'
+      return '';
+    })
     .replace(/\.\d+/, '') // remove milliseconds
     .replace(/-/g, '/')
     .replace(/(\d)T(\d)/, '$1 $2')
-    .replace(/Z/, ' UTC') // 2017-2-5T3:57:52Z -> 2017-2-5 3:57:52UTC
-    .replace(/([+-]\d\d):?(\d\d)/, ' $1$2'); // -04:00 -> -0400
-  return new Date(normalized);
+    .replace(/Z/, ' UTC'); // 2017-2-5T3:57:52Z -> 2017-2-5 3:57:52UTC
+  return new Date(normalized + tz);
 }
 
 /**
