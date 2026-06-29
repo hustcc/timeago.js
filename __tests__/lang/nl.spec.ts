@@ -67,42 +67,42 @@ describe('nl', () => {
     expect(format(date, 'nl')).toEqual('binnenkort');
 
     vi.setSystemTime(-30 * 1000);
-    expect(format(date, 'nl')).toEqual('binnen 30 seconden');
+    expect(format(date, 'nl')).toEqual('over 30 seconden');
 
     vi.setSystemTime(-1000 * 60);
-    expect(format(date, 'nl')).toEqual('binnen 1 minuut');
+    expect(format(date, 'nl')).toEqual('over 1 minuut');
 
     vi.setSystemTime(-1000 * 60 * 30);
-    expect(format(date, 'nl')).toEqual('binnen 30 minuten');
+    expect(format(date, 'nl')).toEqual('over 30 minuten');
 
     vi.setSystemTime(-1000 * 60 * 60);
-    expect(format(date, 'nl')).toEqual('binnen 1 uur');
+    expect(format(date, 'nl')).toEqual('over 1 uur');
 
     vi.setSystemTime(-1000 * 60 * 60 * 8);
-    expect(format(date, 'nl')).toEqual('binnen 8 uur');
+    expect(format(date, 'nl')).toEqual('over 8 uur');
 
     vi.setSystemTime(-1000 * 60 * 60 * 24);
-    expect(format(date, 'nl')).toEqual('binnen 1 dag');
+    expect(format(date, 'nl')).toEqual('over 1 dag');
 
     vi.setSystemTime(-1000 * 60 * 60 * 24 * 3);
-    expect(format(date, 'nl')).toEqual('binnen 3 dagen');
+    expect(format(date, 'nl')).toEqual('over 3 dagen');
 
     vi.setSystemTime(-1000 * 60 * 60 * 24 * 7);
-    expect(format(date, 'nl')).toEqual('binnen 1 week');
+    expect(format(date, 'nl')).toEqual('over 1 week');
 
     vi.setSystemTime(-1000 * 60 * 60 * 24 * 7 * 3);
-    expect(format(date, 'nl')).toEqual('binnen 3 weken');
+    expect(format(date, 'nl')).toEqual('over 3 weken');
 
     vi.setSystemTime(-1000 * 60 * 60 * 24 * 31);
-    expect(format(date, 'nl')).toEqual('binnen 1 maand');
+    expect(format(date, 'nl')).toEqual('over 1 maand');
 
     vi.setSystemTime(-1000 * 60 * 60 * 24 * 31 * 4);
-    expect(format(date, 'nl')).toEqual('binnen 4 maanden');
+    expect(format(date, 'nl')).toEqual('over 4 maanden');
 
     vi.setSystemTime(-1000 * 60 * 60 * 24 * 366);
-    expect(format(date, 'nl')).toEqual('binnen 1 jaar');
+    expect(format(date, 'nl')).toEqual('over 1 jaar');
 
     vi.setSystemTime(-1000 * 60 * 60 * 24 * 366 * 10);
-    expect(format(date, 'nl')).toEqual('binnen 10 jaar');
+    expect(format(date, 'nl')).toEqual('over 10 jaar');
   });
 });
