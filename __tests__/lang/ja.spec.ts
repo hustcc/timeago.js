@@ -63,42 +63,42 @@ describe('ja', () => {
     expect(format(date, 'ja')).toEqual('すぐに');
 
     vi.setSystemTime(-30000);
-    expect(format(date, 'ja')).toEqual('30秒以内');
+    expect(format(date, 'ja')).toEqual('30秒後');
 
     vi.setSystemTime(-60000);
-    expect(format(date, 'ja')).toEqual('1分以内');
+    expect(format(date, 'ja')).toEqual('1分後');
 
     vi.setSystemTime(-1800000);
-    expect(format(date, 'ja')).toEqual('30分以内');
+    expect(format(date, 'ja')).toEqual('30分後');
 
     vi.setSystemTime(-3600000);
-    expect(format(date, 'ja')).toEqual('1時間以内');
+    expect(format(date, 'ja')).toEqual('1時間後');
 
     vi.setSystemTime(-28800000);
-    expect(format(date, 'ja')).toEqual('8時間以内');
+    expect(format(date, 'ja')).toEqual('8時間後');
 
     vi.setSystemTime(-86400000);
-    expect(format(date, 'ja')).toEqual('1日以内');
+    expect(format(date, 'ja')).toEqual('1日後');
 
     vi.setSystemTime(-259200000);
-    expect(format(date, 'ja')).toEqual('3日以内');
+    expect(format(date, 'ja')).toEqual('3日後');
 
     vi.setSystemTime(-604800000);
-    expect(format(date, 'ja')).toEqual('1週間以内');
+    expect(format(date, 'ja')).toEqual('1週間後');
 
     vi.setSystemTime(-1814400000);
-    expect(format(date, 'ja')).toEqual('3週間以内');
+    expect(format(date, 'ja')).toEqual('3週間後');
 
     vi.setSystemTime(-2678400000);
-    expect(format(date, 'ja')).toEqual('1ヶ月以内');
+    expect(format(date, 'ja')).toEqual('1ヶ月後');
 
     vi.setSystemTime(-10713600000);
-    expect(format(date, 'ja')).toEqual('4ヶ月以内');
+    expect(format(date, 'ja')).toEqual('4ヶ月後');
 
     vi.setSystemTime(-31622400000);
-    expect(format(date, 'ja')).toEqual('1年以内');
+    expect(format(date, 'ja')).toEqual('1年後');
 
     vi.setSystemTime(-316224000000);
-    expect(format(date, 'ja')).toEqual('10年以内');
+    expect(format(date, 'ja')).toEqual('10年後');
   });
 });
