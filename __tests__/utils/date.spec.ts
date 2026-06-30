@@ -17,6 +17,24 @@ describe('date', () => {
     expect(toDate()).toBeInstanceOf(Date);
   });
 
+  test('toDate timezone offset', () => {
+    // positive offsets already worked
+    expect(toDate('2021-01-19T14:23:07+04:00').toISOString()).toEqual(
+      '2021-01-19T10:23:07.000Z',
+    );
+    // negative offsets used to produce an Invalid Date because the global
+    // `-` -> `/` replacement ate the offset's minus sign.
+    expect(toDate('2021-01-19T14:23:07-04:00').toISOString()).toEqual(
+      '2021-01-19T18:23:07.000Z',
+    );
+    expect(toDate('2021-01-19T14:23:07.418-04:00').toISOString()).toEqual(
+      '2021-01-19T18:23:07.000Z',
+    );
+    expect(toDate('2021-01-19T14:23:07-0530').toISOString()).toEqual(
+      '2021-01-19T19:53:07.000Z',
+    );
+  });
+
   test('formatDiff', () => {
     expect(formatDiff(100, getLocale('en_US'))).toEqual('1 minute ago');
     expect(formatDiff(-1000, getLocale('en_US'))).toEqual('in 16 minutes');
