@@ -122,4 +122,8 @@ describe('ru', () => {
     vi.setSystemTime(-1000 * 60 * 60 * 24 * 366 * 10);
     expect(format(date, 'ru')).toEqual('через 10 лет');
   });
+
+  test('unknown unit', () => {
+    expect(ru(1, 14)).toEqual(['', '']);
+  });
 });

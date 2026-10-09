@@ -9,6 +9,20 @@ time1.setAttribute('datetime', now - 15000 + '');
 time2.setAttribute('datetime', now - 20000 + '');
 
 describe('realtime', () => {
+  test('render arrays and NodeLists', () => {
+    const arrayNodes = [createTimeNode(+new Date() - 5000), createTimeNode(+new Date() - 5000)];
+    const container = document.createElement('div');
+    const listNodes = [createTimeNode(+new Date() - 5000), createTimeNode(+new Date() - 5000)];
+    listNodes.forEach((node) => container.appendChild(node));
+    const nodeList = container.querySelectorAll('time');
+
+    expect(render(arrayNodes, 'en_US')).toEqual(arrayNodes);
+    expect(render(nodeList, 'en_US')).toEqual(listNodes);
+    expect(arrayNodes.every((node) => node.innerText.includes('ago'))).toBe(true);
+    expect(listNodes.every((node) => node.innerText.includes('ago'))).toBe(true);
+    cancel();
+  });
+
   test('render', async () => {
     render(time1, 'en_US');
     render(time2, 'zh_CN');
@@ -31,4 +45,3 @@ describe('realtime', () => {
     expect(time2.innerText).toBe('22 秒前');
   }, 10000);
 });
-

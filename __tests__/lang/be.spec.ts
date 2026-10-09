@@ -101,4 +101,9 @@ describe('be', () => {
     vi.setSystemTime(-1000 * 60 * 60 * 24 * 366 * 10);
     expect(format(date, 'be')).toEqual('праз 10 гадоў');
   });
+
+  test('pluralization and unknown unit', () => {
+    expect(be(21, 1)).toEqual(['%s секунду назад', 'через %s секунду']);
+    expect(be(0, 14)).toEqual(['', '']);
+  });
 });
