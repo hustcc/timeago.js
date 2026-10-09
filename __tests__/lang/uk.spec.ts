@@ -101,4 +101,9 @@ describe('uk', () => {
     vi.setSystemTime(-1000 * 60 * 60 * 24 * 366 * 10);
     expect(format(date, 'uk')).toEqual('через 10 років');
   });
+
+  test('pluralization and unknown unit', () => {
+    expect(uk(21, 1)).toEqual(['%s секунду тому', 'через %s секунду']);
+    expect(uk(0, 14)).toEqual(['', '']);
+  });
 });

@@ -113,4 +113,11 @@ describe('sr', () => {
     vi.setSystemTime(-1000 * 60 * 60 * 24 * 366 * 10);
     expect(format(date, 'sr')).toEqual('за 10 година');
   });
+
+  test('pluralization boundaries and unknown unit', () => {
+    expect(sr(21, 1)).toEqual(['пре %s секунд', 'за %s секунд']);
+    expect(sr(22, 1)).toEqual(['пре %s секунде', 'за %s секунде']);
+    expect(sr(12, 1)).toEqual(['пре %s секунди', 'за %s секунди']);
+    expect(sr(1, 14)).toEqual(['', '']);
+  });
 });

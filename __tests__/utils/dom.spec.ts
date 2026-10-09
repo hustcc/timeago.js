@@ -13,6 +13,6 @@ describe('dom', () => {
 
   test('getDateAttribute', () => {
     expect(getDateAttribute(time)).toBe(`${ms}`);
+    expect(getDateAttribute(document.createElement('time'))).toBe('');
   });
 });
-
