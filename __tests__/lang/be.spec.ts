@@ -103,7 +103,7 @@ describe('be', () => {
   });
 
   test('pluralization and unknown unit', () => {
-    expect(be(21, 1)).toEqual(['%s секунду назад', 'через %s секунду']);
+    expect(be(21, 1)).toEqual(['%s секунду таму', 'праз %s секунду']);
     expect(be(0, 14)).toEqual(['', '']);
   });
 });

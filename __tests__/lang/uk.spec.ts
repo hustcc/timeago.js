@@ -103,7 +103,7 @@ describe('uk', () => {
   });
 
   test('pluralization and unknown unit', () => {
-    expect(uk(21, 1)).toEqual(['%s секунду тому', 'праз %s секунду']);
+    expect(uk(21, 1)).toEqual(['%s секунду тому', 'через %s секунду']);
     expect(uk(0, 14)).toEqual(['', '']);
   });
 });
