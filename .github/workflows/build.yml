@@ -16,7 +16,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+      - run: npx --yes npm@12.2.1 install
+        if: matrix.node-version == '22.x'
       - run: npm install
+        if: matrix.node-version != '22.x'
       - run: npm run build
       - run: npm test
       - name: Upload coverage to Coveralls

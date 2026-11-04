@@ -22,6 +22,9 @@
       "import": "./dist/esm/*.js"
     }
   },
+  "allowScripts": {
+    "esbuild": true
+  },
   "files": [
     "dist",
     "src"
