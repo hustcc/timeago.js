@@ -132,9 +132,8 @@ export function nextInterval(diff: number): number {
   }
   d = d % rst;
   d = d ? rst - d : rst;
-  // The next unit can start before the next multiple of the current one
-  // (4 weeks -> 1 month, as a month is not a whole number of weeks), so the
-  // text must also be refreshed when the next unit is reached.
+  // The next unit can start before the next multiple of this one (a month is
+  // not a whole number of weeks), so do not wait past its start.
   if (i < SEC_ARRAY.length) d = Math.min(d, rst * SEC_ARRAY[i] - total);
   return Math.ceil(d);
 }
