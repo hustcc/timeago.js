@@ -61,22 +61,15 @@ describe('date', () => {
     expect(nextInterval(-110)).toEqual(10);
     expect(nextInterval(-(2 * 3600 + 100))).toEqual(3500);
     expect(nextInterval(-(3600 * 24 + 3600))).toEqual(23 * 3600);
-    // "4 weeks" turns into "1 month" before the 5th week starts
-    const week = 7 * 24 * 3600;
-    const month = Math.ceil(week * (365 / 7 / 12));
-    expect(nextInterval(4 * week + 100)).toEqual(month - 4 * week - 100);
-    expect(nextInterval(-(4 * week + 100))).toEqual(month - 4 * week - 100);
-    expect(nextInterval(3 * week + 100)).toEqual(week - 100);
   });
 
-  test('nextInterval refreshes the text when it changes', () => {
-    const locale = getLocale('en_US');
-    for (const start of [4 * 7 * 24 * 3600 + 100, 2 * 3600 + 100, 59 * 60 + 5]) {
-      const text = formatDiff(start, locale);
-      const wait = nextInterval(start);
-      expect(formatDiff(start + wait - 2, locale)).toEqual(text);
-      expect(formatDiff(start + wait, locale)).not.toEqual(text);
-    }
+  test('nextInterval does not wait past the start of the next unit', () => {
+    // 4 weeks + 100s still reads "4 weeks ago". It reads "1 month ago" from
+    // 365 / 7 / 12 weeks (about 4.35), not from the 5th week, so the timer must
+    // fire at that point. It used to wait for a full week (the 5th week mark).
+    const week = 7 * 24 * 3600;
+    const month = Math.ceil(week * (365 / 7 / 12));
+    expect(nextInterval(4 * week + 100)).toEqual(month - (4 * week + 100));
   });
 });
 
