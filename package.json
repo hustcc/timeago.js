@@ -11,15 +11,25 @@
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
     "./lib/*": {
-      "import": "./dist/esm/*.js",
-      "require": "./dist/lib/*.js"
+      "import": {
+        "types": "./dist/esm/*.d.ts",
+        "default": "./dist/esm/*.js"
+      },
+      "require": {
+        "types": "./dist/lib/*.d.ts",
+        "default": "./dist/lib/*.js"
+      }
     },
     "./esm/*": {
-      "import": "./dist/esm/*.js"
+      "import": {
+        "types": "./dist/esm/*.d.ts",
+        "default": "./dist/esm/*.js"
+      }
     }
   },
   "allowScripts": {
@@ -36,8 +46,8 @@
     "build:lib": "vite build",
     "build:umd": "vite build --config vite.umd.config.ts",
     "build:full": "vite build --config vite.full.config.ts",
-    "build:cjs": "tsc --project tsconfig.json --module CommonJS --moduleResolution Node --outDir dist/lib --declaration false --sourceMap false",
-    "build:esm": "tsc --project tsconfig.json --module ESNext --moduleResolution Node --outDir dist/esm --declaration false --sourceMap false",
+    "build:cjs": "tsc --project tsconfig.json --module CommonJS --moduleResolution Node --outDir dist/lib --sourceMap false",
+    "build:esm": "tsc --project tsconfig.json --module ESNext --moduleResolution Node --outDir dist/esm --sourceMap false",
     "build:dts": "tsc --emitDeclarationOnly --outDir dist",
     "prepublishOnly": "npm run build"
   },
