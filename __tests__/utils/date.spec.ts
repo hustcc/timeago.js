@@ -35,6 +35,14 @@ describe('date', () => {
     );
   });
 
+  test('toDate date-only string ending in a dash and digits', () => {
+    // the trailing `-2020` is the year, not a timezone offset
+    const d = toDate('12-31-2020');
+    expect([d.getFullYear(), d.getMonth(), d.getDate()]).toEqual([2020, 11, 31]);
+    const d2 = toDate('01-02-2020');
+    expect([d2.getFullYear(), d2.getMonth(), d2.getDate()]).toEqual([2020, 0, 2]);
+  });
+
   test('formatDiff', () => {
     expect(formatDiff(100, getLocale('en_US'))).toEqual('1 minute ago');
     expect(formatDiff(-1000, getLocale('en_US'))).toEqual('in 16 minutes');
