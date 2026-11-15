@@ -122,6 +122,7 @@ export function nextInterval(diff: number): number {
   // Use the absolute diff so future times (negative diff) walk the unit
   // buckets too; otherwise the loop is skipped and the result is always 1.
   diff = Math.abs(diff);
+  const total = diff;
   let rst = 1,
     i = 0,
     d = diff;
@@ -131,5 +132,8 @@ export function nextInterval(diff: number): number {
   }
   d = d % rst;
   d = d ? rst - d : rst;
+  // The next unit can start before the next multiple of this one (a month is
+  // not a whole number of weeks), so do not wait past its start.
+  if (i < SEC_ARRAY.length) d = Math.min(d, rst * SEC_ARRAY[i] - total);
   return Math.ceil(d);
 }
