@@ -45,6 +45,37 @@ describe('date', () => {
     expect(formatDiff(-9999999999999999999999, getLocale('en_US'))).toEqual('in 317097919837645 years');
   });
 
+  test('formatDiff on an exact unit boundary', () => {
+    const DAY = 24 * 3600;
+    const YEAR = 365 * DAY;
+    const MONTH = YEAR / 12;
+    const en = getLocale('en_US');
+
+    // dividing step by step left these just under the whole number
+    expect(formatDiff(3 * YEAR, en)).toEqual('3 years ago');
+    expect(formatDiff(5 * YEAR, en)).toEqual('5 years ago');
+    expect(formatDiff(10 * YEAR, en)).toEqual('10 years ago');
+    expect(formatDiff(-3 * YEAR, en)).toEqual('in 3 years');
+    expect(formatDiff(11 * MONTH, en)).toEqual('11 months ago');
+
+    for (let n = 1; n <= 200; n++) {
+      expect(formatDiff(n * YEAR, en)).toEqual(n === 1 ? '1 year ago' : `${n} years ago`);
+      expect(formatDiff(n * YEAR - 1, en)).not.toEqual(`${n} years ago`);
+    }
+    for (let n = 2; n <= 11; n++) {
+      expect(formatDiff(n * MONTH, en)).toEqual(`${n} months ago`);
+    }
+    for (let n = 2; n <= 4; n++) {
+      expect(formatDiff(n * 7 * DAY, en)).toEqual(`${n} weeks ago`);
+    }
+  });
+
+  test('diffSec / formatDiff across three years without a leap day', () => {
+    // 2021, 2022 and 2023 have no 29 February: exactly 3 * 365 days
+    const sec = diffSec('2021-01-01T00:00:00Z', '2024-01-01T00:00:00Z');
+    expect(formatDiff(sec, getLocale('en_US'))).toEqual('3 years ago');
+  });
+
   test('diffSec', () => {
     const now = new Date();
     expect(diffSec(now, now)).toBeCloseTo(0, 0);
