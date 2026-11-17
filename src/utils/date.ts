@@ -15,6 +15,14 @@ const SEC_ARRAY = [
 ];
 
 /**
+ * Length of each unit in seconds: second, minute, hour, day, week,
+ * month (365 / 12 days) and year (365 days). These are whole numbers, so
+ * dividing by them once is exact on a unit boundary. Dividing step by step
+ * through SEC_ARRAY is not: 3 * 365 days came out as 2.9999999999999996 years.
+ */
+const UNIT_SEC = [1, 60, 3600, 86400, 604800, 2628000, 31536000];
+
+/**
  * format Date / string / timestamp to timestamp
  * @param input
  * @returns {*}
@@ -75,9 +83,8 @@ export function formatDiff(diff: number, localeFunc: LocaleFunc): string {
    */
   let idx = 0;
 
-  for (; diff >= SEC_ARRAY[idx] && idx < SEC_ARRAY.length; idx++) {
-    diff /= SEC_ARRAY[idx];
-  }
+  for (; idx < UNIT_SEC.length - 1 && diff >= UNIT_SEC[idx + 1]; idx++);
+  diff /= UNIT_SEC[idx];
 
   /**
    * Math.floor() is alternative of ~~
