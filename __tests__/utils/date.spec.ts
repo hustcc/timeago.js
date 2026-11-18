@@ -43,6 +43,12 @@ describe('date', () => {
     expect([d2.getFullYear(), d2.getMonth(), d2.getDate()]).toEqual([2020, 0, 2]);
   });
 
+  test('toDate keeps a space before a negative offset', () => {
+    const iso = '2021-01-19T18:23:07.000Z';
+    expect(toDate('2021-01-19 14:23:07 -04:00').toISOString()).toEqual(iso);
+    expect(toDate('2021-01-19 14:23:07 -0400').toISOString()).toEqual(iso);
+  });
+
   test('formatDiff', () => {
     expect(formatDiff(100, getLocale('en_US'))).toEqual('1 minute ago');
     expect(formatDiff(-1000, getLocale('en_US'))).toEqual('in 16 minutes');

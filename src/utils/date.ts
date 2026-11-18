@@ -30,7 +30,7 @@ export function toDate(input?: Date | string | number): Date {
   const normalized = s
     .trim()
     // only after a time, so the year in `12-31-2020` isn't taken as an offset
-    .replace(/(\d:\d\d(?::\d\d)?(?:\.\d+)?)([+-]\d\d):?(\d\d)$/, (_m, t, h, m) => {
+    .replace(/(\d:\d\d(?::\d\d)?(?:\.\d+)?)\s*([+-]\d\d):?(\d\d)$/, (_m, t, h, m) => {
       tz = ` ${h}${m}`; // -04:00 -> ' -0400'
       return t;
     })
