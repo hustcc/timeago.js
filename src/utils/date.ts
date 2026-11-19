@@ -29,9 +29,10 @@ export function toDate(input?: Date | string | number): Date {
   let tz = '';
   const normalized = s
     .trim()
-    .replace(/([+-]\d\d):?(\d\d)$/, (_m, h, m) => {
+    // only after a time, so the year in `12-31-2020` isn't taken as an offset
+    .replace(/(\d:\d\d(?::\d\d)?(?:\.\d+)?)\s*([+-]\d\d):?(\d\d)$/, (_m, t, h, m) => {
       tz = ` ${h}${m}`; // -04:00 -> ' -0400'
-      return '';
+      return t;
     })
     .replace(/\.\d+/, '') // remove milliseconds
     .replace(/-/g, '/')
