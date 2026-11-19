@@ -1,12 +1,13 @@
 function formatNum(f1: string, f: string, s: string, t: string, n: number): string {
   const n10 = n % 10;
+  const n100 = n % 100;
   let str = t;
 
   if (n === 1) {
     str = f1;
-  } else if (n10 === 1 && n > 20) {
+  } else if (n10 === 1 && n100 !== 11) {
     str = f;
-  } else if (n10 > 1 && n10 < 5 && (n > 20 || n < 10)) {
+  } else if (n10 > 1 && n10 < 5 && !(n100 >= 12 && n100 <= 14)) {
     str = s;
   }
   return str;
