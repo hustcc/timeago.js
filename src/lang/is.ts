@@ -1,4 +1,19 @@
+// Counts ending in 1, except those ending in 11, take the singular: 21 mínútu, 31 ári.
+const singular = [
+  ['fyrir %s sekúndu', 'eftir %s sekúndu'],
+  ['fyrir %s mínútu', 'eftir %s mínútu'],
+  ['fyrir %s klukkutíma', 'eftir %s klukkutíma'],
+  ['fyrir %s degi', 'eftir %s dag'],
+  ['fyrir %s viku', 'eftir %s viku'],
+  ['fyrir %s mánuði', 'eftir %s mánuð'],
+  ['fyrir %s ári', 'eftir %s ár'],
+];
+
 export default function(number: number, index: number): [string, string] {
+  if (index % 2 === 1 && number % 10 === 1 && number % 100 !== 11) {
+    return singular[(index - 1) / 2] as [string, string];
+  }
+
   return [
     ['rétt í þessu', 'rétt strax'],
     ['fyrir %s sekúndum', 'eftir %s sekúndur'],

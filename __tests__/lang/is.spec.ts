@@ -101,4 +101,20 @@ describe('is', () => {
     vi.setSystemTime(-316224000000);
     expect(format(date, 'is')).toEqual('eftir 10 ár');
   });
+  test.each([
+    [21000, 'fyrir 21 sekúndu'],
+    [-51000, 'eftir 51 sekúndu'],
+    [1860000, 'fyrir 31 mínútu'],
+    [-2460000, 'eftir 41 mínútu'],
+    [75600000, 'fyrir 21 klukkutíma'],
+    [-75600000, 'eftir 21 klukkutíma'],
+    [662342400000, 'fyrir 21 ári'],
+    [-662342400000, 'eftir 21 ár'],
+    [660000, 'fyrir 11 mínútum'],
+    [-660000, 'eftir 11 mínútur'],
+    [3500582400000, 'fyrir 111 árum'],
+  ])('counts ending in 1, except 11, take the singular (%i)', (time, expected) => {
+    vi.setSystemTime(time);
+    expect(format(date, 'is')).toEqual(expected);
+  });
 });
