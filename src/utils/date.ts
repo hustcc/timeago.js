@@ -5,22 +5,23 @@
 
 import { LocaleFunc, TDate } from '../interface';
 
-const SEC_ARRAY = [
-  60, // 60 seconds in 1 min
-  60, // 60 mins in 1 hour
-  24, // 24 hours in 1 day
-  7, // 7 days in 1 week
-  365 / 7 / 12, // 4.345238095238096 weeks in 1 month
-  12, // 12 months in 1 year
-];
-
 /**
  * Length of each unit in seconds: second, minute, hour, day, week,
  * month (365 / 12 days) and year (365 days). These are whole numbers, so
- * dividing by them once is exact on a unit boundary. Dividing step by step
- * through SEC_ARRAY is not: 3 * 365 days came out as 2.9999999999999996 years.
+ * dividing by them once is exact on a unit boundary.
  */
 const UNIT_SEC = [1, 60, 3600, 86400, 604800, 2628000, 31536000];
+
+/**
+ * index in UNIT_SEC of the largest unit that fits in the diff
+ * @param diff the diff second, not negative
+ * @returns
+ */
+function unitIndex(diff: number): number {
+  let idx = 0;
+  while (diff >= UNIT_SEC[idx + 1]) idx++;
+  return idx;
+}
 
 /**
  * format Date / string / timestamp to timestamp
@@ -81,9 +82,7 @@ export function formatDiff(diff: number, localeFunc: LocaleFunc): string {
   /**
    * Unit of time
    */
-  let idx = 0;
-
-  for (; idx < UNIT_SEC.length - 1 && diff >= UNIT_SEC[idx + 1]; idx++);
+  let idx = unitIndex(diff);
   diff /= UNIT_SEC[idx];
 
   /**
@@ -129,14 +128,6 @@ export function nextInterval(diff: number): number {
   // Use the absolute diff so future times (negative diff) walk the unit
   // buckets too; otherwise the loop is skipped and the result is always 1.
   diff = Math.abs(diff);
-  let rst = 1,
-    i = 0,
-    d = diff;
-  for (; diff >= SEC_ARRAY[i] && i < SEC_ARRAY.length; i++) {
-    diff /= SEC_ARRAY[i];
-    rst *= SEC_ARRAY[i];
-  }
-  d = d % rst;
-  d = d ? rst - d : rst;
-  return Math.ceil(d);
+  const unit = UNIT_SEC[unitIndex(diff)];
+  return Math.ceil(unit - (diff % unit));
 }
