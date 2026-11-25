@@ -129,5 +129,6 @@ export function nextInterval(diff: number): number {
   // buckets too; otherwise the loop is skipped and the result is always 1.
   diff = Math.abs(diff);
   const unit = UNIT_SEC[unitIndex(diff)];
-  return Math.ceil(unit - (diff % unit));
+  // an invalid date gives NaN: fall back to the unit, so the timer never gets a NaN delay
+  return Math.ceil(unit - (diff % unit)) || unit;
 }

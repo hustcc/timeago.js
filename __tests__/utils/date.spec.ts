@@ -93,5 +93,15 @@ describe('date', () => {
     expect(nextInterval(-(2 * 3600 + 100))).toEqual(3500);
     expect(nextInterval(-(3600 * 24 + 3600))).toEqual(23 * 3600);
   });
+
+  test('nextInterval on month and year units', () => {
+    expect(nextInterval(4000000)).toEqual(2628000 * 2 - 4000000);
+    expect(nextInterval(365 * 24 * 3600)).toEqual(365 * 24 * 3600);
+  });
+
+  test('nextInterval of an invalid date is a finite number', () => {
+    expect(nextInterval(NaN)).toEqual(1);
+    expect(nextInterval(Infinity)).toEqual(365 * 24 * 3600);
+  });
 });
 
